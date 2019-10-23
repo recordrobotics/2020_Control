@@ -15,6 +15,10 @@ import frc.robot.OI;
  * An example command.  You can replace me with your own command.
  */
 public class ManualDrive extends Command{
+
+  //input multiplier, reduces or increases the input value
+  private double inputMult = 0.5;
+
   public ManualDrive() {
     // Use requires() here to declare subsystem dependencies
     requires(Robot.driveTrain);
@@ -32,8 +36,8 @@ public class ManualDrive extends Command{
   }
 
   private double drive(){
-    double turnAmount = OI.getTurn();
-    double forwardAmount = OI.getForward();
+    double turnAmount = OI.getTurn() * inputMult;
+    double forwardAmount = OI.getForward() * inputMult;
 
     double leftAmount = forwardAmount;
     double rightAmount = forwardAmount;
