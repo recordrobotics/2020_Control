@@ -57,7 +57,7 @@ public class MaintainCourse extends Command {
     Kd = 0;
 
     tolerance = 5; //Percent tolerance, 5.0 means 5%.
-    target = Robot.gyro.getAngle(); //set the target to be the angle that the robot was at when the command was initialised
+    target = Robot.gyro.getDeg(); //set the target to be the angle that the robot was at when the command was initialised
 
     gyroSource = new PIDSource() { //set up the angle of the gyroscope as the source of the PID. Due to a quirk of the library, a double cannot be used directly
     
@@ -66,7 +66,7 @@ public class MaintainCourse extends Command {
     
       @Override
       public double pidGet() {
-        return Robot.gyro.getAngle();
+        return Robot.gyro.getDeg();
       }
     
       @Override
@@ -102,7 +102,7 @@ public class MaintainCourse extends Command {
     
     //write result to output for debugging and calibration
     try {
-    writeOutput(interval, PID.get(), PID.getError(), Robot.gyro.getAngle(), PID.getSetpoint());
+    writeOutput(interval, PID.get(), PID.getError(), Robot.gyro.getDeg(), PID.getSetpoint());
     } catch(IOException er) {
       System.out.println("Couldn't write to file because of " + er);
     }

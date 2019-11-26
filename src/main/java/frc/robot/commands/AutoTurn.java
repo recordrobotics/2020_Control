@@ -30,7 +30,7 @@ public class AutoTurn extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    initAngle = Robot.gyro.getAngle(); //is a value representing the angle the robot is at
+    initAngle = Robot.gyro.getDeg(); //is a value representing the angle the robot is at
     targetAngle = initAngle + inputAngle; //sets the target angle, there is a risk of the angle being less than 360 or greater than 0
     System.out.println("init autoturn, target: " + targetAngle);
   }
@@ -38,7 +38,7 @@ public class AutoTurn extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    System.out.println(Robot.gyro.getAngle());
+    System.out.println(Robot.gyro.getDeg());
     double increment = 0.5; //the amount that the robot will turn every execution
     double leftAmount;
     double rightAmount;
@@ -68,8 +68,8 @@ public class AutoTurn extends Command {
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    if (Robot.gyro.getAngle() > targetAngle - precision && Robot.gyro.getAngle() < targetAngle + precision){
-        System.out.println("Done turing at angle: " + Robot.gyro.getAngle());
+    if (Robot.gyro.getDeg() > targetAngle - precision && Robot.gyro.getDeg() < targetAngle + precision){
+        System.out.println("Done turing at angle: " + Robot.gyro.getDeg());
         return true;
     } else{
         return false;

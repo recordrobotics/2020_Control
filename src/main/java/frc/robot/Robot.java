@@ -41,7 +41,7 @@ public class Robot extends TimedRobot {
   SendableChooser<Command> m_chooser = new SendableChooser<>();
 
   //gyroscope constructor
-  public static ADXRS450_Gyro gyro = new ADXRS450_Gyro(RobotMap.gyroPort);
+  public static Gyroscope gyro = new Gyroscope();
   
   /**
    * This function is run when the robot is first started up and should be
@@ -64,7 +64,7 @@ public class Robot extends TimedRobot {
     }
 
     //calibrate gyroscope
-    gyro.calibrate();
+    gyro.gyroInit();
   }
 
   /**
@@ -77,6 +77,8 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotPeriodic() {
+    System.out.println(gyro.getDeg());
+
   }
 
   /**
