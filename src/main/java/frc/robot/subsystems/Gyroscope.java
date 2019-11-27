@@ -32,6 +32,7 @@ public class Gyroscope extends Subsystem {
       return Math.toRadians(gyro.getAngle());
   }
 
+  //initialization: calibrate the gyroscope and set the initial angle to be 0
   public void gyroInit(){
     gyro.calibrate();
     gyro.reset();

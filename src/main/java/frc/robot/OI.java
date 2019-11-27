@@ -25,7 +25,7 @@ public class OI {
   private static ButtonPanelController buttonPanel = new ButtonPanelController();
   private static HotasController hotas = new HotasController();
 
-  boolean enablePID = false;
+  boolean enablePID = false; //do not set to true unless you know what you are doing. It causes issues.
 
   public OI(){
     // buttonPanel

@@ -15,7 +15,7 @@ public class AutoTurn extends Command {
     double inputAngle; //number of degrees to turn
     double initAngle;   //angle when command is started
     double targetAngle; //angle robot is trying to be at
-    double precision = 1;
+    double precision = 1; //how close are we trying to get
 
     //constructor
   public AutoTurn(double angle) {
@@ -24,7 +24,7 @@ public class AutoTurn extends Command {
       requires(Robot.driveTrain);
     }
     //assigns argument to variable
-    this.inputAngle = angle; //input should be an angle from -180 to positive 180
+    inputAngle = angle; //input should be an angle from -180 to positive 180
   }
 
   // Called just before this Command runs the first time
@@ -39,7 +39,7 @@ public class AutoTurn extends Command {
   @Override
   protected void execute() {
     System.out.println(Robot.gyro.getDeg());
-    double increment = 0.5; //the amount that the robot will turn every execution
+    double increment = 0.5; //the amount that the robot will turn every period
     double leftAmount;
     double rightAmount;
 
