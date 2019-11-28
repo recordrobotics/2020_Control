@@ -16,6 +16,7 @@ public class Dashboard extends Subsystem {
 
   @Override
   public void periodic(){
+        //write gyro angle to dashboard
         SmartDashboard.putNumber("Gyro Angle", Robot.gyro.getDeg());
   }
 }

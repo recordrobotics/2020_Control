@@ -7,16 +7,16 @@
 
 package frc.robot;
 
+import org.junit.validator.PublicClassValidator;
+
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.commands.*;
 import frc.robot.subsystems.*;
-//gyroscope imports
-import edu.wpi.first.wpilibj.ADXRS450_Gyro;
-
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -42,6 +42,9 @@ public class Robot extends TimedRobot {
 
   //gyroscope constructor
   public static Gyroscope gyro = new Gyroscope();
+
+  //Dashboard contructor
+  public static Dashboard dash = new Dashboard();
   
   /**
    * This function is run when the robot is first started up and should be
@@ -64,7 +67,14 @@ public class Robot extends TimedRobot {
     }
 
     //calibrate gyroscope
-    gyro.gyroInit();
+    boolean recalibrateGyro = false;
+
+    if (recalibrateGyro) {
+      gyro.gyroInit();
+      System.out.println("Please wait... Calibrating Gyroscope");
+      Timer.delay(5);
+      System.out.println("Calibration Complete");
+    }
   }
 
   /**
