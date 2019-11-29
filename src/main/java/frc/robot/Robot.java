@@ -7,8 +7,6 @@
 
 package frc.robot;
 
-import org.junit.validator.PublicClassValidator;
-
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;

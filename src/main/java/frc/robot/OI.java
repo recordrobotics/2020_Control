@@ -7,14 +7,9 @@
 
 package frc.robot;
 
-import java.io.IOException;
-import java.lang.Math;
-
-import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.control.ButtonPanelController;
 import frc.robot.control.HotasController;
 import frc.robot.commands.AutoTurn;
-import frc.robot.commands.MaintainCourse;
 import frc.robot.control.ButtonMap;;
 
 /**
@@ -25,7 +20,7 @@ public class OI {
   private static ButtonPanelController buttonPanel = new ButtonPanelController();
   private static HotasController hotas = new HotasController();
 
-  boolean enablePID = false; //do not set to true unless you know what you are doing. It causes issues.
+  boolean enablePID = false; //do not set to true unless you know what you are doing. It causes issues. 
 
   public OI(){
     // buttonPanel
@@ -37,23 +32,6 @@ public class OI {
 
     buttonPanel.getButton(autoRightButton).whenPressed(new AutoTurn(90 * dirMult)); //right turn
     buttonPanel.getButton(autoLeftButton).whenPressed(new AutoTurn(90 * -dirMult)); //left turn
-
-    //toggle MaintainCourse
-    if (enablePID){
-      int PIDtoggle = ButtonMap.togglePID;
-      Command PIDcmd = null;
-      try {
-        PIDcmd = new MaintainCourse();
-      } catch (IOException err){
-        System.out.println(err);
-        System.out.println("unable to instantiate PID controller");
-      }
-      if (PIDcmd == null){
-        System.out.println("UNABLE TO TOGGLE: PID CONTROLLER NULL");
-      } else {
-        buttonPanel.getButton(PIDtoggle).toggleWhenPressed(PIDcmd);
-      }
-    }
   }
 
   /*

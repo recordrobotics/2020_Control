@@ -9,6 +9,7 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
+import frc.robot.control.*;
 
 public class AutoTurn extends Command {
     //declare variables
@@ -16,6 +17,7 @@ public class AutoTurn extends Command {
     double initAngle;   //angle when command is started
     double targetAngle; //angle robot is trying to be at
     double precision = 0.25; //how close are we trying to get to target
+    PID pid; //PID controller object
 
     //constructor
   public AutoTurn(double angle) {
@@ -33,13 +35,21 @@ public class AutoTurn extends Command {
     initAngle = Robot.gyro.getDeg(); //is a value representing the angle the robot is at
     targetAngle = initAngle + inputAngle; //sets the target angle, there is a risk of the angle being less than 360 or greater than 0
     System.out.println("init autoturn, target: " + targetAngle);
+
+    //set up PID controller
+    double kp = 0.1, ki = 0, kd = 0;
+    pid = new PID(kp, ki, kd, Math.toRadians(targetAngle));
+
+    /*
+    I am doing the PID loop in radians because radians are smaller, and the motors will be unable to handle an input of 90, but kp * pi/2 will probably be fine
+    */
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
     System.out.println(Robot.gyro.getDeg());
-    double increment = 0.5; //the amount that the robot will turn every period
+    double increment; //the amount that the robot will turn every period
     double leftAmount;
     double rightAmount;
 
@@ -51,6 +61,8 @@ public class AutoTurn extends Command {
     } else {
       turnRight = true;
     }
+
+    increment = pid.control(Robot.gyro.getRad());
 
     if (turnRight){
       leftAmount = increment;
