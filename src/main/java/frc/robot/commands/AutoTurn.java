@@ -15,7 +15,7 @@ public class AutoTurn extends Command {
     double inputAngle; //number of degrees to turn
     double initAngle;   //angle when command is started
     double targetAngle; //angle robot is trying to be at
-    double precision = 1; //how close are we trying to get
+    double precision = 0.25; //how close are we trying to get to target
 
     //constructor
   public AutoTurn(double angle) {

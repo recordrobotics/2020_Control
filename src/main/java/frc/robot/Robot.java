@@ -70,10 +70,12 @@ public class Robot extends TimedRobot {
     boolean recalibrateGyro = false;
 
     if (recalibrateGyro) {
-      gyro.gyroInit();
+      gyro.gyroCalib();
       System.out.println("Please wait... Calibrating Gyroscope");
       Timer.delay(5);
       System.out.println("Calibration Complete");
+    } else {
+      gyro.gyroReset();
     }
   }
 
@@ -87,7 +89,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotPeriodic() {
-    System.out.println(gyro.getDeg());
+    //System.out.println(gyro.getDeg());
 
   }
 

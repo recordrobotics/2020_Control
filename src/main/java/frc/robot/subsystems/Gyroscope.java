@@ -33,8 +33,13 @@ public class Gyroscope extends Subsystem {
   }
 
   //initialization: calibrate the gyroscope and set the initial angle to be 0
-  public void gyroInit(){
+  public void gyroCalib(){
     gyro.calibrate();
+    gyro.reset();
+  }
+
+  //reset the gyro without recalibrating
+  public void gyroReset(){
     gyro.reset();
   }
 }
