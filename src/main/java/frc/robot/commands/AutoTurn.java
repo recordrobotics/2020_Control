@@ -16,7 +16,7 @@ public class AutoTurn extends Command {
     double inputAngle; //number of degrees to turn
     double initAngle;   //angle when command is started
     double targetAngle; //angle robot is trying to be at
-    double precision = 0.25; //how close are we trying to get to target
+    double precision = 0.5; //how close are we trying to get to target
     PID pid; //PID controller object
 
     //constructor
@@ -33,11 +33,11 @@ public class AutoTurn extends Command {
   @Override
   protected void initialize() {
     initAngle = Robot.gyro.getDeg(); //is a value representing the angle the robot is at
-    targetAngle = initAngle + inputAngle; //sets the target angle, there is a risk of the angle being less than 360 or greater than 0
+    targetAngle = (initAngle + inputAngle); //sets the target angle, there is a risk of the angle being less than 360 or greater than 0
     System.out.println("init autoturn, target: " + targetAngle);
 
     //set up PID controller
-    double kp = 0.1, ki = 0, kd = 0;
+    double kp = 0.35, ki = 0.25, kd = 0;
     pid = new PID(kp, ki, kd, Math.toRadians(targetAngle));
 
     /*
@@ -62,7 +62,8 @@ public class AutoTurn extends Command {
       turnRight = true;
     }
 
-    increment = pid.control(Robot.gyro.getRad());
+    increment = Math.abs(pid.control(Robot.gyro.getRad()));
+    //increment = 0.5;
 
     if (turnRight){
       leftAmount = increment;

@@ -65,13 +65,14 @@ public class Robot extends TimedRobot {
     }
 
     //calibrate gyroscope
-    boolean recalibrateGyro = false;
+    boolean recalibrateGyro = true;
 
     if (recalibrateGyro) {
       gyro.gyroCalib();
       System.out.println("Please wait... Calibrating Gyroscope");
       Timer.delay(5);
       System.out.println("Calibration Complete");
+      gyro.gyroReset();
     } else {
       gyro.gyroReset();
     }
