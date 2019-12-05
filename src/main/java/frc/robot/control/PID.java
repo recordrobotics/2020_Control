@@ -1,11 +1,14 @@
 package frc.robot.control;
+import java.util.ArrayList;
 
 public class PID {
     //variables for current error, previous error, and integral, and the coefficients
-    private double integral = 0, error = 0, prevError = 0;
+    private double integral = 0, error = 0, deriv = 0;
     private double kp, ki, kd, target;
 
     private final double time = 0.02; //robot periodic called once every 20ms
+
+    private ArrayList<Double> errorlist = new ArrayList<Double>();
 
     public PID (double p, double i, double d, double setpoint){
         //takes as args the 3 coefficients and the target value
@@ -21,18 +24,38 @@ public class PID {
 
         double output = 0;
 
-        //set the error and the prevError
-        prevError = error;
         error = target - value;
+        errorlist.add(error);
 
         //factor in the p-term
         output += kp * error;
         //factor in the i-term
         integral += error*time;
         output += ki * integral;
+
+        if (errorlist.size() >= 10){
+            updateIntegral();
+        }
+
         //factor in the d-term
-        output += kd * ((error - prevError)/time);
+        output += kd * deriv;
 
         return output;
+    }
+
+    private void updateIntegral(){
+        double sumx = 0, sumy = 0, sumxy = 0, sumxsq = 0;
+
+        for (int i = 0; i < errorlist.size(); i++){
+            sumx += errorlist.get(i);
+            sumy += 0.2 * i;
+            sumxy += (errorlist.get(i) * 0.2 * i);
+            sumxsq += errorlist.get(i) * errorlist.get(i);
+        }
+
+        double m = (sumxy - sumx * sumy)/(sumxsq - sumx * sumx);
+        deriv = m;
+
+        errorlist.clear();
     }
 }
