@@ -17,8 +17,8 @@ import frc.robot.control.ButtonMap;;
  * interface to the commands and command groups that allow control of the robot.
  */
 public class OI {
-  private static ButtonPanelController buttonPanel = new ButtonPanelController();
-  private static HotasController hotas = new HotasController();
+  public static ButtonPanelController buttonPanel = new ButtonPanelController();
+  public static HotasController hotas = new HotasController();
 
   boolean enablePID = false; //do not set to true unless you know what you are doing. It causes issues. 
 
@@ -32,6 +32,7 @@ public class OI {
 
     buttonPanel.getButton(autoRightButton).whenPressed(new AutoTurn(90 * dirMult)); //right turn
     buttonPanel.getButton(autoLeftButton).whenPressed(new AutoTurn(90 * -dirMult)); //left turn
+
   }
 
   /*

@@ -8,6 +8,7 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Robot;
 import frc.robot.OI;
 
@@ -32,7 +33,7 @@ public class ManualDrive extends Command{
   }
 
   private double drive(){
-    double turnAmount = OI.getTurn();
+    double turnAmount = OI.getTurn() * 0.4;
     double forwardAmount = OI.getForward();
 
     double leftAmount = forwardAmount;

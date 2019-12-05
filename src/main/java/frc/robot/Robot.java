@@ -34,6 +34,7 @@ public class Robot extends TimedRobot {
   public static ExampleSubsystem m_subsystem = new ExampleSubsystem();
   public static DriveTrain driveTrain;
   public static OI m_oi;
+  public static Lift lift = new Lift();
 
   Command m_autonomousCommand;
   SendableChooser<Command> m_chooser = new SendableChooser<>();
@@ -86,6 +87,9 @@ public class Robot extends TimedRobot {
    * <p>This runs after the mode specific periodic functions, but before
    * LiveWindow and SmartDashboard integrated updating.
    */
+
+
+
   @Override
   public void robotPeriodic() {
     //System.out.println(gyro.getDeg());
