@@ -1,7 +1,9 @@
 package frc.robot.subsystems;
 
-import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import frc.robot.RobotMap;
+import edu.wpi.first.wpilibj.Talon;
+import frc.robot.commands.*;
 
 /**
  *
@@ -11,18 +13,20 @@ public class Lift extends Subsystem {
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 	
-	private VictorSP lift_motor = new VictorSP(6);
+	Talon motor = new Talon(RobotMap.liftPortMonolith);
 
-    public void initDefaultCommand() {}
+    public void initDefaultCommand() {
+        initDefaultCommand(new PeripheralControl());
+    }
     
     public void moveLift(double v)
     {
-    	this.lift_motor.set(v);
+    	motor.set(v);
     }
     
     public void stop()
     {
-    	this.lift_motor.stopMotor();
-    	this.lift_motor.set(0.0);
+    	motor.stopMotor();
+    	motor.set(0.0);
     }
 }

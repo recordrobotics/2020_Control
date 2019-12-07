@@ -34,6 +34,8 @@ public class Robot extends TimedRobot {
   public static ExampleSubsystem m_subsystem = new ExampleSubsystem();
   public static DriveTrain driveTrain;
   public static OI m_oi;
+
+  //Lift constructor
   public static Lift lift = new Lift();
 
   Command m_autonomousCommand;
