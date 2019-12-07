@@ -29,15 +29,19 @@ public class PeripheralControl extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-      //if the left green button is pressed, move up
-      //if the right green button is pressed, move down
-      if(OI.getButtonState(ButtonMap.liftRaise)){
-          Robot.lift.moveLift(speed);
-      } else if(OI.getButtonState(ButtonMap.liftLower)){
-          Robot.lift.moveLift(-speed);
-      } else {
-          Robot.lift.stop();
-      }
+      liftControl();
+  }
+
+  private void liftControl(){
+    //if the left green button is pressed, move up
+    //if the right green button is pressed, move down
+    if(OI.getButtonState(ButtonMap.liftRaise)){
+        Robot.lift.moveLift(speed);
+    } else if(OI.getButtonState(ButtonMap.liftLower)){
+        Robot.lift.moveLift(-speed);
+    } else {
+        Robot.lift.stop();
+    }
   }
 
   // Make this return true when this Command no longer needs to run execute()
