@@ -16,7 +16,7 @@ public class Lift extends Subsystem {
 	Talon motor = new Talon(RobotMap.liftPortMonolith);
 
     public void initDefaultCommand() {
-        initDefaultCommand(new PeripheralControl());
+        setDefaultCommand(new LiftControl());
     }
     
     public void moveLift(double v)
