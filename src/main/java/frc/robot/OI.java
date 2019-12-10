@@ -32,6 +32,7 @@ public class OI {
 
     buttonPanel.getButton(autoRightButton).whenPressed(new AutoTurn(90 * dirMult)); //right turn
     buttonPanel.getButton(autoLeftButton).whenPressed(new AutoTurn(90 * -dirMult)); //left turn
+
   }
 
   /*
@@ -67,7 +68,9 @@ public class OI {
   * * * * * * * * * * * * * *
   */
 
-
+  public static boolean getButtonState(int button){
+    return buttonPanel.getState(button);
+  }
 
 
   public static double getForward(){
