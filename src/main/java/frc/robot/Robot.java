@@ -46,6 +46,9 @@ public class Robot extends TimedRobot {
 
   //Dashboard contructor
   public static Dashboard dash = new Dashboard();
+
+  //grabber constructor
+  public static Grabber grabber = new Grabber();
   
   /**
    * This function is run when the robot is first started up and should be
