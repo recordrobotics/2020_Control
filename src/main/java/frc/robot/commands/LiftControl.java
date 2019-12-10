@@ -12,13 +12,13 @@ import frc.robot.OI;
 import frc.robot.Robot;
 import frc.robot.control.*;
 
-public class PeripheralControl extends Command {
-  public PeripheralControl() {
+public class LiftControl extends Command {
+  public LiftControl() {
     // Use requires() here to declare subsystem dependencies
     requires(Robot.lift);
   } 
 
-  private double speed = 0.2;
+  private double speed = 0.5;
 
 
   // Called just before this Command runs the first time
