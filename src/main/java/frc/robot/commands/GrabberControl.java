@@ -21,7 +21,7 @@ import frc.robot.subsystems.Grabber;
 public class GrabberControl extends Command {
   public GrabberControl() {
     // Use requires() here to declare subsystem dependencies
-    requires(Robot.m_subsystem);
+    requires(Robot.grabber);
   }
 
   // Called just before this Command runs the first time
@@ -32,24 +32,43 @@ public class GrabberControl extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
+    grabberPistons();  
+    extenderPistons();
+    motors();
+  }
+
+  private void grabberPistons(){
       //on red button press, open or close the grabber
       if (OI.getButtonState(ButtonMap.redLeft)){
-          Robot.grabber.moveGrabber(Value.kForward);
-      } else if (OI.getButtonState(ButtonMap.redRight)){
-          Robot.grabber.moveGrabber(Value.kReverse);
-      } else {
-          Robot.grabber.moveGrabber(Value.kOff);
-      }
+        Robot.grabber.moveGrabber(Value.kForward);
+    } else if (OI.getButtonState(ButtonMap.redRight)){
+        Robot.grabber.moveGrabber(Value.kReverse);
+    } else {
+        Robot.grabber.moveGrabber(Value.kOff);
+    }
+  }
 
-      //on blue button press, extend or retract the extender
-      if (OI.getButtonState(ButtonMap.blueLeft)){
-        Robot.grabber.moveExtender(Value.kForward);
-      } else if (OI.getButtonState(ButtonMap.blueRight)){
-        Robot.grabber.moveExtender(Value.kReverse);
-      } else {
-        Robot.grabber.moveExtender(Value.kOff);
-      }
+  private void extenderPistons(){
+    //on blue button press, extend or retract the extender
+    if (OI.getButtonState(ButtonMap.blueLeft)){
+      Robot.grabber.moveExtender(Value.kForward);
+      System.out.println("Blue Left");
+    } else if (OI.getButtonState(ButtonMap.blueRight)){
+      Robot.grabber.moveExtender(Value.kReverse);
+    } else {
+      Robot.grabber.moveExtender(Value.kOff);
+    }
+  }
 
+  private void motors(){
+    if (OI.getButtonState(ButtonMap.white)){
+      System.out.println("White Button");
+      Robot.grabber.moveLeftMotor(0.6);
+      Robot.grabber.moveRightMotor(0.6);
+    } else {
+      Robot.grabber.moveLeftMotor(0.0);
+      Robot.grabber.moveRightMotor(0.0);
+    }
   }
 
   // Make this return true when this Command no longer needs to run execute()

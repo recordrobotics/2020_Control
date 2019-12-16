@@ -33,8 +33,8 @@ public class ManualDrive extends Command{
   }
 
   private double drive(){
-    double turnAmount = OI.getTurn() * 0.4;
-    double forwardAmount = OI.getForward();
+    double turnAmount = OI.getTurn() * 0.25;
+    double forwardAmount = OI.getForward() * 0.25;
 
     double leftAmount = forwardAmount;
     double rightAmount = forwardAmount;

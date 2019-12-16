@@ -9,17 +9,22 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import frc.robot.commands.GrabberControl;
+import edu.wpi.first.wpilibj.Spark;
 
 public class Grabber extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
   @Override
   public void initDefaultCommand() {
-    // setDefaultCommand(new MySpecialCommand());
+    setDefaultCommand(new GrabberControl());
   }
 
   private DoubleSolenoid grabSolenoid = new DoubleSolenoid(2, 3);
   private DoubleSolenoid extendSolenoid = new DoubleSolenoid(0, 1);
+
+  private Spark leftMotor = new Spark(5);
+  private Spark rightMotor = new Spark(6);
 
   public void moveGrabber(DoubleSolenoid.Value v){
       grabSolenoid.set(v);
@@ -29,4 +34,13 @@ public class Grabber extends Subsystem {
       extendSolenoid.set(v);
   }
 
+  public void moveLeftMotor(double v){
+    System.out.println("Left Grab");
+    leftMotor.set(v);
+  }
+
+  public void moveRightMotor(double v){
+    System.out.println("Right Grab");
+    rightMotor.set(v);
+  }
 }
