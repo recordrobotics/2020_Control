@@ -35,14 +35,13 @@ public class Robot extends TimedRobot {
   public static DriveTrain driveTrain;
   public static OI m_oi;
 
-  //Lift constructor
-  public static Lift lift = new Lift();
-
   Command m_autonomousCommand;
   SendableChooser<Command> m_chooser = new SendableChooser<>();
 
+  public static Lift lift;
+
   //gyroscope constructor
-  public static Gyroscope gyro = new Gyroscope();
+  public static Gyroscope gyro;
 
   //Dashboard contructor
   public static Dashboard dash = new Dashboard();
@@ -59,10 +58,9 @@ public class Robot extends TimedRobot {
     SmartDashboard.putData("Auto mode", m_chooser);
 
     if(currentRobot == CurrentRobot.MONOLITH){
-      driveTrain = new DriveMonolith();
-      System.out.println("Monolith Initialized");
+      monolithInit();
     } else if (currentRobot == CurrentRobot.MONTY){
-      driveTrain = new DriveMonty();
+      montyInit();
     } else {
       System.out.println("OH NO ---> someone forgot to instantiate the drive train");
     }
@@ -79,6 +77,19 @@ public class Robot extends TimedRobot {
     } else {
       gyro.gyroReset();
     }
+  }
+
+  private void montyInit(){
+    driveTrain = new DriveMonty();
+  }
+
+  private void monolithInit(){
+    driveTrain = new DriveMonolith();
+    System.out.println("Monolith Initialized");
+    //Lift constructor
+    lift = new LiftMonolith();
+    //gyro
+    gyro = new Gyroscope();
   }
 
   /**
