@@ -17,15 +17,22 @@ import com.ctre.phoenix.motorcontrol.can.*;
 
 public class Drive2020 extends DriveTrain {
 
-    WPI_VictorSPX left = new WPI_VictorSPX(RobotMap.driveLeft2020);
-    WPI_VictorSPX right = new WPI_VictorSPX(RobotMap.driveRight2020);
+    WPI_VictorSPX frontLeft = new WPI_VictorSPX(RobotMap.driveFrontLeft2020);
+    WPI_VictorSPX frontRight = new WPI_VictorSPX(RobotMap.driveFrontRight2020);
+    WPI_VictorSPX backLeft = new WPI_VictorSPX(RobotMap.driveBackLeft2020);
+    WPI_VictorSPX backRight = new WPI_VictorSPX(RobotMap.driveBackLeft2020);
+
+    public Drive2020(){
+        backRight.follow(frontRight);
+        backLeft.follow(frontLeft);
+    }
 
     public void moveLeftWheels(double amount){
-        left.set(ControlMode.PercentOutput, amount);
+        frontLeft.set(ControlMode.PercentOutput, amount);
     }
 
     public void moveRightWheels(double amount){
-        right.set(ControlMode.PercentOutput, amount);
+        frontRight.set(ControlMode.PercentOutput, amount);
     }
 
     public double getRightEncoder(){

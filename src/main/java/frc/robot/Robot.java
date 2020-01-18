@@ -28,7 +28,7 @@ public class Robot extends TimedRobot {
   public enum CurrentRobot{
     MONOLITH, MONTY, ROBOT2020;
   }
-  CurrentRobot currentRobot = CurrentRobot.MONOLITH;
+  CurrentRobot currentRobot = CurrentRobot.ROBOT2020;
 
 
   public static ExampleSubsystem m_subsystem = new ExampleSubsystem();
