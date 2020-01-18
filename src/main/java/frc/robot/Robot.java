@@ -69,19 +69,6 @@ public class Robot extends TimedRobot {
         Robot2020Init();
         break;
     }
-
-    //calibrate gyroscope
-    boolean recalibrateGyro = true;
-
-    if (recalibrateGyro) {
-      gyro.gyroCalib();
-      System.out.println("Please wait... Calibrating Gyroscope");
-      Timer.delay(5);
-      System.out.println("Calibration Complete");
-      gyro.gyroReset();
-    } else {
-      gyro.gyroReset();
-    }
   }
 
   private void montyInit(){
@@ -95,6 +82,19 @@ public class Robot extends TimedRobot {
     lift = new LiftMonolith();
     //gyro
     gyro = new Gyroscope();
+
+    //calibrate gyroscope
+    boolean recalibrateGyro = true;
+
+    if (recalibrateGyro) {
+      gyro.gyroCalib();
+      System.out.println("Please wait... Calibrating Gyroscope");
+      Timer.delay(5);
+      System.out.println("Calibration Complete");
+      gyro.gyroReset();
+    } else {
+      gyro.gyroReset();
+    }
   }
 
   private void Robot2020Init(){
