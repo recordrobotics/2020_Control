@@ -26,7 +26,7 @@ import frc.robot.subsystems.*;
 public class Robot extends TimedRobot {
   
   public enum CurrentRobot{
-    MONOLITH, MONTY;
+    MONOLITH, MONTY, ROBOT2020;
   }
   CurrentRobot currentRobot = CurrentRobot.MONOLITH;
 
@@ -58,12 +58,16 @@ public class Robot extends TimedRobot {
     // chooser.addOption("My Auto", new MyAutoCommand());
     SmartDashboard.putData("Auto mode", m_chooser);
 
-    if(currentRobot == CurrentRobot.MONOLITH){
-      monolithInit();
-    } else if (currentRobot == CurrentRobot.MONTY){
-      montyInit();
-    } else {
-      System.out.println("OH NO ---> someone forgot to instantiate the drive train");
+    switch(currentRobot){
+      case MONOLITH:
+        monolithInit();
+        break;
+      case MONTY:
+        montyInit();
+        break;
+      case ROBOT2020:
+        Robot2020Init();
+        break;
     }
 
     //calibrate gyroscope
@@ -91,6 +95,10 @@ public class Robot extends TimedRobot {
     lift = new LiftMonolith();
     //gyro
     gyro = new Gyroscope();
+  }
+
+  private void Robot2020Init(){
+    driveTrain = new Drive2020();
   }
 
   /**
