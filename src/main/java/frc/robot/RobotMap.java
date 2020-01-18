@@ -37,6 +37,8 @@ public class RobotMap {
 	public static int driveBackRightPortMonty = 2;
 	public static int driveBackLeftPortMonty = 1;
 
+	//lifting mechanism port
+	public static int liftPortMonolith = 4;
 
 	// the controller ports can be found in the driver station
 
@@ -44,6 +46,10 @@ public class RobotMap {
 	public static int buttonPanelPort = 1;
 	//hotas
 	public static int hotasPort = 0;
+
+	//gyroscope port
+	public static SPI.Port gyroPort = SPI.Port.kOnboardCS0;
+
 	
 
 }

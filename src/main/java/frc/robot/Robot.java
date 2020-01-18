@@ -8,6 +8,7 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
@@ -38,6 +39,14 @@ public class Robot extends TimedRobot {
   Command m_autonomousCommand;
   SendableChooser<Command> m_chooser = new SendableChooser<>();
 
+  public static Lift lift;
+
+  //gyroscope constructor
+  public static Gyroscope gyro;
+
+  //Dashboard contructor
+  public static Dashboard dash = new Dashboard();
+  
   /**
    * This function is run when the robot is first started up and should be
    * used for any initialization code.
@@ -50,12 +59,38 @@ public class Robot extends TimedRobot {
     SmartDashboard.putData("Auto mode", m_chooser);
 
     if(currentRobot == CurrentRobot.MONOLITH){
-      driveTrain = new DriveMonolith();
+      monolithInit();
     } else if (currentRobot == CurrentRobot.MONTY){
-      driveTrain = new DriveMonty();
+      montyInit();
     } else {
       System.out.println("OH NO ---> someone forgot to instantiate the drive train");
     }
+
+    //calibrate gyroscope
+    boolean recalibrateGyro = true;
+
+    if (recalibrateGyro) {
+      gyro.gyroCalib();
+      System.out.println("Please wait... Calibrating Gyroscope");
+      Timer.delay(5);
+      System.out.println("Calibration Complete");
+      gyro.gyroReset();
+    } else {
+      gyro.gyroReset();
+    }
+  }
+
+  private void montyInit(){
+    driveTrain = new DriveMonty();
+  }
+
+  private void monolithInit(){
+    driveTrain = new DriveMonolith();
+    System.out.println("Monolith Initialized");
+    //Lift constructor
+    lift = new LiftMonolith();
+    //gyro
+    gyro = new Gyroscope();
   }
 
   /**
@@ -66,8 +101,13 @@ public class Robot extends TimedRobot {
    * <p>This runs after the mode specific periodic functions, but before
    * LiveWindow and SmartDashboard integrated updating.
    */
+
+
+
   @Override
   public void robotPeriodic() {
+    //System.out.println(gyro.getDeg());
+
   }
 
   /**
