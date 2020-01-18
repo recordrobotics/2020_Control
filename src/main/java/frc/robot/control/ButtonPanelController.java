@@ -23,7 +23,7 @@ public class ButtonPanelController{
 		
 	}
 
-	private JoystickButton getButton(int button){
+	public JoystickButton getButton(int button){
 		return buttons[button];
 	}
 
@@ -44,6 +44,7 @@ public class ButtonPanelController{
 	public boolean getReleased(int button){
 		return buttonPanel.getRawButtonReleased(button);
 	}
+
 
 	
 

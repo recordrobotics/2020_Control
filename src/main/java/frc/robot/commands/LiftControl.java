@@ -1,4 +1,4 @@
-  /*----------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------------*/
 /* Copyright (c) 2017-2018 FIRST. All Rights Reserved.                        */
 /* Open Source Software - may be modified and shared by FRC teams. The code   */
 /* must be accompanied by the FIRST BSD license file in the root directory of */
@@ -8,22 +8,18 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import frc.robot.Robot;
 import frc.robot.OI;
+import frc.robot.Robot;
+import frc.robot.control.*;
 
-/**
- * An example command.  You can replace me with your own command.
- */
-public class ManualDrive extends Command{
-
-  //input multiplier, reduces or increases the input value
-  private double inputMult = 0.5;
-
-  public ManualDrive() {
+public class LiftControl extends Command {
+  public LiftControl() {
     // Use requires() here to declare subsystem dependencies
-    requires(Robot.driveTrain);
-  }
+    requires(Robot.lift);
+  } 
+
+  private double speed = 0.5;
+
 
   // Called just before this Command runs the first time
   @Override
@@ -33,34 +29,20 @@ public class ManualDrive extends Command{
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    drive();
+      liftControl();
   }
 
-  private double drive(){
-
-    double turnAmount = OI.getTurn() * 0.4;
-    double forwardAmount = OI.getForward();
-
-    double turnAmount = OI.getTurn() * inputMult;
-    double forwardAmount = OI.getForward() * inputMult;
-
-
-    double leftAmount = forwardAmount;
-    double rightAmount = forwardAmount;
-
-    leftAmount += turnAmount;
-    rightAmount -= turnAmount;
-
-    leftAmount = OI.accCurve(leftAmount);
-    rightAmount = OI.accCurve(rightAmount);
-
-    Robot.driveTrain.moveLeftWheels(leftAmount);
-    Robot.driveTrain.moveRightWheels(rightAmount);
-
-    return ((leftAmount + rightAmount) / 2);
+  private void liftControl(){
+    //if the left green button is pressed, move up
+    //if the right green button is pressed, move down
+    if(OI.getButtonState(ButtonMap.liftRaise)){
+        Robot.lift.moveLift(speed);
+    } else if(OI.getButtonState(ButtonMap.liftLower)){
+        Robot.lift.moveLift(-speed);
+    } else {
+        Robot.lift.stop();
+    }
   }
-
-
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
