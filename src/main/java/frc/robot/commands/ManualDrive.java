@@ -65,7 +65,7 @@ public class ManualDrive extends Command{
   }
 
   private void drive2020(){
-    Robot.driveTrain.drive.arcadeDrive(OI.getForward(), OI.getTurn() * inputMult);
+    Robot.driveTrain.getDrive().arcadeDrive(OI.getForward(), OI.getTurn() * inputMult);
   }
 
   // Make this return true when this Command no longer needs to run execute()
