@@ -9,6 +9,7 @@ package frc.robot.subsystems;
 
 
 import edu.wpi.first.wpilibj.Spark;
+import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import frc.robot.RobotMap;
 
 /**
@@ -44,5 +45,6 @@ public class DriveMonolith extends DriveTrain {
     return 0.0;
   }
 
+  public DifferentialDrive getDrive() {return null;}
 
 }

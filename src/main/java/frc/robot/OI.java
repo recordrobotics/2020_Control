@@ -78,7 +78,7 @@ public class OI {
   }
 
   public static double getTurn(){
-    return hotas.getRotation();
+    return hotas.getZ();
   }
   //temp
   public static int getLiftMotion(){

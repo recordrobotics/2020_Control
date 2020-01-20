@@ -12,7 +12,7 @@ public class HotasController {
 		hotas = new Joystick(RobotMap.hotasPort);
 	}
 
-	public double getRotation(){
+	public double getZ(){
 		return hotas.getTwist();
 	}
 

@@ -10,6 +10,7 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Robot;
+import frc.robot.subsystems.Drive2020;
 import frc.robot.OI;
 
 /**
@@ -33,13 +34,20 @@ public class ManualDrive extends Command{
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    drive();
+    switch (Robot.currentRobot){
+      case MONOLITH:
+        driveMonolith();
+        break;
+      case ROBOT2020:
+        drive2020();
+        break;
+    }
   }
 
-  private double drive(){
-
+  private double driveMonolith(){
     double turnAmount = OI.getTurn() * inputMult;
     double forwardAmount = OI.getForward() * inputMult;
+
 
     double leftAmount = forwardAmount;
     double rightAmount = forwardAmount;
@@ -56,7 +64,9 @@ public class ManualDrive extends Command{
     return ((leftAmount + rightAmount) / 2);
   }
 
-
+  private void drive2020(){
+    Robot.driveTrain.drive.arcadeDrive(OI.getForward(), OI.getTurn() * inputMult);
+  }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override

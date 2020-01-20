@@ -28,12 +28,15 @@ public class Robot extends TimedRobot {
   public enum CurrentRobot{
     MONOLITH, MONTY, ROBOT2020;
   }
-  CurrentRobot currentRobot = CurrentRobot.ROBOT2020;
+  public static CurrentRobot currentRobot = CurrentRobot.ROBOT2020;
 
 
   public static ExampleSubsystem m_subsystem = new ExampleSubsystem();
   public static DriveTrain driveTrain;
   public static OI m_oi;
+
+  //dashboard
+  public static Dashboard dash = new Dashboard(currentRobot);
 
 
   Command m_autonomousCommand;
@@ -43,9 +46,6 @@ public class Robot extends TimedRobot {
 
   //gyroscope constructor
   public static Gyroscope gyro;
-
-  //Dashboard contructor
-  public static Dashboard dash = new Dashboard();
   
   /**
    * This function is run when the robot is first started up and should be

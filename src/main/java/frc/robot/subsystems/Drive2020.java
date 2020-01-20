@@ -15,12 +15,16 @@ import frc.robot.RobotMap;
 import com.ctre.phoenix.motorcontrol.*;
 import com.ctre.phoenix.motorcontrol.can.*;
 
+import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+
 public class Drive2020 extends DriveTrain {
 
-    WPI_VictorSPX frontLeft = new WPI_VictorSPX(RobotMap.driveFrontLeft2020);
-    WPI_VictorSPX frontRight = new WPI_VictorSPX(RobotMap.driveFrontRight2020);
-    WPI_VictorSPX backLeft = new WPI_VictorSPX(RobotMap.driveBackLeft2020);
-    WPI_VictorSPX backRight = new WPI_VictorSPX(RobotMap.driveBackLeft2020);
+    WPI_VictorSPX frontLeft = new WPI_VictorSPX(2);
+    WPI_VictorSPX frontRight = new WPI_VictorSPX(1);
+    WPI_VictorSPX backLeft = new WPI_VictorSPX(4);
+    WPI_VictorSPX backRight = new WPI_VictorSPX(3);
+
+    private DifferentialDrive drive = new DifferentialDrive(frontLeft, frontRight);
 
     public Drive2020(){
         backRight.follow(frontRight);
@@ -32,7 +36,7 @@ public class Drive2020 extends DriveTrain {
     }
 
     public void moveRightWheels(double amount){
-        frontRight.set(ControlMode.PercentOutput, amount);
+        frontRight.set(ControlMode.PercentOutput, -amount);
     }
 
     public double getRightEncoder(){
@@ -42,4 +46,6 @@ public class Drive2020 extends DriveTrain {
     public double getLeftEncoder(){
         return 0.0;
     }
+
+    public DifferentialDrive getDrive() {return drive;}
 }
