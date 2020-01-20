@@ -4,8 +4,8 @@
 /* must be accompanied by the FIRST BSD license file in the root directory of */
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
-
 package frc.robot;
+import edu.wpi.first.wpilibj.SPI;
 
 /**
  * The RobotMap is a mapping from the ports sensors and actuators are wired into
@@ -46,6 +46,7 @@ public class RobotMap {
 	public static int buttonPanelPort = 1;
 	//hotas
 	public static int hotasPort = 0;
+	public static int xboxPort = 1;
 
 	//gyroscope port
 	public static SPI.Port gyroPort = SPI.Port.kOnboardCS0;
