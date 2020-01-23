@@ -10,6 +10,8 @@ package frc.robot;
 import frc.robot.control.ButtonPanelController;
 import frc.robot.control.HotasController;
 import frc.robot.commands.AutoTurn;
+import frc.robot.control.XboxJoystick;
+import frc.robot.control.Controller;
 import frc.robot.control.ButtonMap;;
 
 /**
@@ -19,6 +21,8 @@ import frc.robot.control.ButtonMap;;
 public class OI {
   private static ButtonPanelController buttonPanel = new ButtonPanelController();
   private static HotasController hotas = new HotasController();
+  private static XboxJoystick xbox = new XboxJoystick();
+  private static Controller joystick = hotas;
 
   boolean enablePID = false; //do not set to true unless you know what you are doing. It causes issues. 
 
@@ -74,11 +78,11 @@ public class OI {
 
 
   public static double getForward(){
-    return hotas.getY();
+    return joystick.getYAxis();
   }
 
   public static double getTurn(){
-    return hotas.getRotation();
+    return joystick.getZ();
   }
   //temp
   public static int getLiftMotion(){

@@ -46,6 +46,7 @@ public class RobotMap {
 	public static int buttonPanelPort = 1;
 	//hotas
 	public static int hotasPort = 0;
+	//xbox
 	public static int xboxPort = 1;
 
 	//gyroscope port
