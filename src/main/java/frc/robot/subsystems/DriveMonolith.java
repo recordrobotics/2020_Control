@@ -23,9 +23,6 @@ public class DriveMonolith extends DriveTrain {
   Spark frontLeft = new Spark(RobotMap.driveFrontLeftPortMonolith);
   Spark backLeft = new Spark(RobotMap.driveBackLeftPortMonolith);
 
-
-
-
   public void moveLeftWheels(double amount){
     frontLeft.set(-amount);
     backLeft.set(-amount);

@@ -9,12 +9,11 @@ package frc.robot.subsystems;
 
 import frc.robot.RobotMap;
 
-
-
 //If this is throwing an error - you need to install ctre Pheonix stuff, it's a pain, sorry :(
 import com.ctre.phoenix.motorcontrol.*;
 import com.ctre.phoenix.motorcontrol.can.*;
 
+import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 
 public class Drive2020 extends DriveTrain {
@@ -24,11 +23,19 @@ public class Drive2020 extends DriveTrain {
     WPI_VictorSPX backLeft = new WPI_VictorSPX(4);
     WPI_VictorSPX backRight = new WPI_VictorSPX(3);
 
+    Encoder rightEnc = new Encoder(0, 1);
+    Encoder leftEnc = new Encoder(2, 3);
+    double ticksPerRotation = 4 * 107.1;
+    double wheelCirc = 6 * Math.PI;
+
     private DifferentialDrive drive = new DifferentialDrive(frontLeft, frontRight);
 
     public Drive2020(){
         backRight.follow(frontRight);
         backLeft.follow(frontLeft);
+
+        rightEnc.setDistancePerPulse(wheelCirc / ticksPerRotation);
+        leftEnc.setDistancePerPulse(wheelCirc / ticksPerRotation);
     }
 
     public void moveLeftWheels(double amount){
@@ -40,11 +47,11 @@ public class Drive2020 extends DriveTrain {
     }
 
     public double getRightEncoder(){
-        return 0.0;
+        return -rightEnc.getDistance();
     }
 
     public double getLeftEncoder(){
-        return 0.0;
+        return leftEnc.getDistance();
     }
 
     public DifferentialDrive getDrive() {return drive;}

@@ -41,11 +41,7 @@ public class Dashboard extends Subsystem {
   }
 
   private void display2020(){
-    SmartDashboard.putNumber("Hotas Turn", OI.getTurn());
-    SmartDashboard.putNumber("Hotas Fwd", OI.getForward());
-  }
-
-  public void addNumber(String key, double n){
-    SmartDashboard.putNumber(key, n);
+    SmartDashboard.putNumber("Right Encoder", Robot.driveTrain.getRightEncoder());
+    SmartDashboard.putNumber("Left Encoder", Robot.driveTrain.getLeftEncoder());
   }
 }
