@@ -31,11 +31,17 @@ public class RobotMap {
 	public static int driveBackRightPortMonolith = 3;
 	public static int driveBackLeftPortMonolith = 1;
 
-	// CAN Bus Drive 
+	// CAN Bus Drive on Monty
 	public static int driveFrontRightPortMonty = 7;
 	public static int driveFrontLeftPortMonty = 5;
 	public static int driveBackRightPortMonty = 2;
 	public static int driveBackLeftPortMonty = 1;
+
+	//CAN bus on the 2020 Robot
+	public static int driveFrontRight2020 = 1;
+	public static int driveFrontLeft2020 = 2;
+	public static int driveBackRight2020 = 3;
+	public static int driveBackLeft2020 = 4;
 
 	//lifting mechanism port
 	public static int liftPortMonolith = 4;

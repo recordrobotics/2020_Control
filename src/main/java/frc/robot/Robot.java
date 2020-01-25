@@ -26,14 +26,17 @@ import frc.robot.subsystems.*;
 public class Robot extends TimedRobot {
   
   public enum CurrentRobot{
-    MONOLITH, MONTY;
+    MONOLITH, MONTY, ROBOT2020;
   }
-  CurrentRobot currentRobot = CurrentRobot.MONOLITH;
+  public static CurrentRobot currentRobot = CurrentRobot.ROBOT2020;
 
 
   public static ExampleSubsystem m_subsystem = new ExampleSubsystem();
   public static DriveTrain driveTrain;
   public static OI m_oi;
+
+  //dashboard
+  public static Dashboard dash = new Dashboard(currentRobot);
 
 
   Command m_autonomousCommand;
@@ -43,9 +46,6 @@ public class Robot extends TimedRobot {
 
   //gyroscope constructor
   public static Gyroscope gyro;
-
-  //Dashboard contructor
-  public static Dashboard dash = new Dashboard();
   
   /**
    * This function is run when the robot is first started up and should be
@@ -58,13 +58,30 @@ public class Robot extends TimedRobot {
     // chooser.addOption("My Auto", new MyAutoCommand());
     SmartDashboard.putData("Auto mode", m_chooser);
 
-    if(currentRobot == CurrentRobot.MONOLITH){
-      monolithInit();
-    } else if (currentRobot == CurrentRobot.MONTY){
-      montyInit();
-    } else {
-      System.out.println("OH NO ---> someone forgot to instantiate the drive train");
+    switch(currentRobot){
+      case MONOLITH:
+        monolithInit();
+        break;
+      case MONTY:
+        montyInit();
+        break;
+      case ROBOT2020:
+        Robot2020Init();
+        break;
     }
+  }
+
+  private void montyInit(){
+    driveTrain = new DriveMonty();
+  }
+
+  private void monolithInit(){
+    driveTrain = new DriveMonolith();
+    System.out.println("Monolith Initialized");
+    //Lift constructor
+    lift = new LiftMonolith();
+    //gyro
+    gyro = new Gyroscope();
 
     //calibrate gyroscope
     boolean recalibrateGyro = true;
@@ -80,17 +97,8 @@ public class Robot extends TimedRobot {
     }
   }
 
-  private void montyInit(){
-    driveTrain = new DriveMonty();
-  }
-
-  private void monolithInit(){
-    driveTrain = new DriveMonolith();
-    System.out.println("Monolith Initialized");
-    //Lift constructor
-    lift = new LiftMonolith();
-    //gyro
-    gyro = new Gyroscope();
+  private void Robot2020Init(){
+    driveTrain = new Drive2020();
   }
 
   /**
