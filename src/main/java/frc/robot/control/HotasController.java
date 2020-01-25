@@ -4,7 +4,7 @@ import edu.wpi.first.wpilibj.Joystick;
 import frc.robot.RobotMap;
 import edu.wpi.first.wpilibj.GenericHID.Hand;
 
-public class HotasController {
+public class HotasController extends Controller{
 	public Joystick hotas;
 	
 
@@ -16,12 +16,12 @@ public class HotasController {
 		return hotas.getTwist();
 	}
 
-	public double getY(){
+	public double getYAxis(){
 		//it's negative because all the way forward is -1
 		return -hotas.getY(Hand.kRight);
 	}
 
-	public double getX(){
+	public double getXAxis(){
 		return hotas.getX(Hand.kRight);
 	}
 }
