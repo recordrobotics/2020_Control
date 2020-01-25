@@ -22,7 +22,7 @@ public class OI {
   private static ButtonPanelController buttonPanel = new ButtonPanelController();
   private static HotasController hotas = new HotasController();
   private static XboxJoystick xbox = new XboxJoystick();
-  private static Controller joystick = hotas;
+  private static Controller joystick = xbox;
 
   boolean enablePID = false; //do not set to true unless you know what you are doing. It causes issues. 
 
