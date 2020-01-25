@@ -4,7 +4,6 @@
 /* must be accompanied by the FIRST BSD license file in the root directory of */
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
-
 package frc.robot;
 import edu.wpi.first.wpilibj.SPI;
 
@@ -53,6 +52,8 @@ public class RobotMap {
 	public static int buttonPanelPort = 1;
 	//hotas
 	public static int hotasPort = 0;
+	//xbox
+	public static int xboxPort = 0;
 
 	//gyroscope port
 	public static SPI.Port gyroPort = SPI.Port.kOnboardCS0;
