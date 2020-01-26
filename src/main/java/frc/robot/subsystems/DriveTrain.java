@@ -33,6 +33,7 @@ public abstract class DriveTrain extends Subsystem {
 
   public abstract double getRightEncoder();
   public abstract double getLeftEncoder();
+  public abstract void resetEncoders();
 
   public abstract DifferentialDrive getDrive();
 

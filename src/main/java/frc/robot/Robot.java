@@ -7,6 +7,9 @@
 
 package frc.robot;
 
+import edu.wpi.first.networktables.NetworkTable;
+import edu.wpi.first.networktables.NetworkTableEntry;
+import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
@@ -33,20 +36,19 @@ public class Robot extends TimedRobot {
 
   public static ExampleSubsystem m_subsystem = new ExampleSubsystem();
   public static DriveTrain driveTrain;
+  public static Lift lift;
+  public static Gyroscope gyro;
   public static OI m_oi;
 
-  //dashboard
   public static Dashboard dash = new Dashboard(currentRobot);
-
 
   Command m_autonomousCommand;
   SendableChooser<Command> m_chooser = new SendableChooser<>();
 
-  public static Lift lift;
+  public static NetworkTableInstance inst;
+  public static NetworkTable table;
+  public static NetworkTableEntry testEntry;
 
-  //gyroscope constructor
-  public static Gyroscope gyro;
-  
   /**
    * This function is run when the robot is first started up and should be
    * used for any initialization code.
@@ -66,9 +68,11 @@ public class Robot extends TimedRobot {
         montyInit();
         break;
       case ROBOT2020:
-        Robot2020Init();
+        robot2020Init();
         break;
     }
+
+    networkInit();
   }
 
   private void montyInit(){
@@ -97,8 +101,15 @@ public class Robot extends TimedRobot {
     }
   }
 
-  private void Robot2020Init(){
+  private void robot2020Init(){
     driveTrain = new Drive2020();
+  }
+
+  private void networkInit(){
+    inst = NetworkTableInstance.getDefault();
+    table = inst.getTable("datatable");
+
+    testEntry = table.getEntry("Test");
   }
 
   /**

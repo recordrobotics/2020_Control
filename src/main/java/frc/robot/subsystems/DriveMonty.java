@@ -60,4 +60,5 @@ public class DriveMonty extends DriveTrain {
   
   public DifferentialDrive getDrive() {return null;}
 
+  public void resetEncoders(){}
 }

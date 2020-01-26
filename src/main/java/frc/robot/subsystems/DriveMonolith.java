@@ -42,6 +42,8 @@ public class DriveMonolith extends DriveTrain {
     return 0.0;
   }
 
+  public void resetEncoders(){}
+
   public DifferentialDrive getDrive() {return null;}
 
 }

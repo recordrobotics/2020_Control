@@ -55,4 +55,9 @@ public class Drive2020 extends DriveTrain {
     }
 
     public DifferentialDrive getDrive() {return drive;}
+
+    public void resetEncoders(){
+        leftEnc.reset();
+        rightEnc.reset();
+    }
 }
