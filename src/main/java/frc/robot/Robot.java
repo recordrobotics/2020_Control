@@ -75,6 +75,9 @@ public class Robot extends TimedRobot {
     networkInit();
   }
 
+  //calibrate gyroscope
+  boolean recalibrateGyro = true;
+
   private void montyInit(){
     driveTrain = new DriveMonty();
   }
@@ -85,11 +88,24 @@ public class Robot extends TimedRobot {
     //Lift constructor
     lift = new LiftMonolith();
     //gyro
-    gyro = new Gyroscope();
+    gyro = new Gyroscope(RobotMap.gyroPortSPI);    
+    gyroInit();
+  }
 
-    //calibrate gyroscope
-    boolean recalibrateGyro = true;
+  private void robot2020Init(){
+    driveTrain = new Drive2020();
+    //gyro = new Gyroscope(2);
+    //gyroInit();
+  }
 
+  private void networkInit(){
+    inst = NetworkTableInstance.getDefault();
+    table = inst.getTable("datatable");
+
+    testEntry = table.getEntry("Test");
+  }
+
+  private void gyroInit(){
     if (recalibrateGyro) {
       gyro.gyroCalib();
       System.out.println("Please wait... Calibrating Gyroscope");
@@ -99,17 +115,6 @@ public class Robot extends TimedRobot {
     } else {
       gyro.gyroReset();
     }
-  }
-
-  private void robot2020Init(){
-    driveTrain = new Drive2020();
-  }
-
-  private void networkInit(){
-    inst = NetworkTableInstance.getDefault();
-    table = inst.getTable("datatable");
-
-    testEntry = table.getEntry("Test");
   }
 
   /**

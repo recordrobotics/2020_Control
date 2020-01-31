@@ -10,11 +10,13 @@ public class XboxJoystick extends Controller{
     public XboxJoystick(){
         xbox = new XboxController(RobotMap.xboxPort);
     }
-    public double getZ (){
-        return 0;
-    }
+    
     public double getXAxis (){
         return xbox.getX(Hand.kLeft);
+    }
+
+    public double getZ (){
+        return getXAxis();
     }
 
     public double getYAxis (){

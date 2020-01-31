@@ -25,6 +25,7 @@ public class MoveForward extends Command {
     protected void initialize() {
         //reset the encoders
         Robot.driveTrain.resetEncoders();
+        System.out.println("command move init");
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -37,7 +38,8 @@ public class MoveForward extends Command {
     // Make this return true when this Command no longer needs to run execute()
     @Override
     protected boolean isFinished() {
-        return Robot.driveTrain.getRightEncoder() >= distance || Robot.driveTrain.getLeftEncoder() >= distance;
+        return Robot.driveTrain.getRightEncoder() >= distance ||
+             Robot.driveTrain.getLeftEncoder() >= distance;
     }
 
     // Called once after isFinished returns true

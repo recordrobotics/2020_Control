@@ -25,7 +25,7 @@ public class Drive2020 extends DriveTrain {
 
     Encoder rightEnc = new Encoder(0, 1);
     Encoder leftEnc = new Encoder(2, 3);
-    double ticksPerRotation = 4 * 107.1;
+    double ticksPerRotation = 20 * 10.71;
     double wheelCirc = 6 * Math.PI;
 
     private DifferentialDrive drive = new DifferentialDrive(frontLeft, frontRight);

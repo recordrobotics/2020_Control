@@ -8,6 +8,9 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
+import edu.wpi.first.wpilibj.AnalogGyro;
+import edu.wpi.first.wpilibj.GyroBase;
+import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
 
@@ -20,7 +23,15 @@ public class Gyroscope extends Subsystem {
     // Set the default command for a subsystem here.
     // setDefaultCommand(new MySpecialCommand());
   }
-  private ADXRS450_Gyro gyro = new ADXRS450_Gyro(RobotMap.gyroPort);
+  private GyroBase gyro;
+
+  public Gyroscope(SPI.Port port){
+    gyro = new ADXRS450_Gyro(port);
+  }
+
+  public Gyroscope(int port){
+    gyro = new AnalogGyro(port);
+  }
 
   //get angle in degrees
   public double getDeg(){
