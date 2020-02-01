@@ -9,7 +9,9 @@ public class Gyro2020 extends Gyroscope{
         //do nothing, no default command for this subsystem
     }
 
-    private AHRS gyro = new AHRS(I2C.Port.kMXP);
+    I2C port = new I2C(I2C.Port.kOnboard, 2);
+
+    private AHRS gyro = new AHRS(port);
 
     public double getDeg(){
         return gyro.getAngle();
