@@ -72,6 +72,10 @@ public class OI {
   * * * * * * * * * * * * * *
   */
 
+  public static boolean getXboxButtonState(String buttonName){
+    return xbox.getButtonState(buttonName);
+  }
+
   public static boolean getButtonState(int button){
     return buttonPanel.getState(button);
   }
