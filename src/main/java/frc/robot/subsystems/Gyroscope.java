@@ -53,4 +53,6 @@ public class Gyroscope extends Subsystem {
   public void gyroReset(){
     gyro.reset();
   }
+  getDeg();
+  getRad();
 }
