@@ -2,6 +2,7 @@ package frc.robot.subsystems;
 
 import com.kauailabs.navx.frc.AHRS;
 import edu.wpi.first.wpilibj.I2C;
+import edu.wpi.first.wpilibj.I2C.Port;
 
 public class Gyro2020 extends Gyroscope{
     @Override
@@ -9,9 +10,7 @@ public class Gyro2020 extends Gyroscope{
         //do nothing, no default command for this subsystem
     }
 
-    I2C port = new I2C(I2C.Port.kOnboard, 2);
-
-    private AHRS gyro = new AHRS(port);
+    private AHRS gyro = new AHRS(I2C.Port.kOnboard);
 
     public double getDeg(){
         return gyro.getAngle();
