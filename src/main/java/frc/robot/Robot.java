@@ -89,7 +89,7 @@ public class Robot extends TimedRobot {
     //Lift constructor
     lift = new LiftMonolith();
     //gyro
-    gyro = new Gyroscope(RobotMap.gyroPortSPI);    
+    gyro = new GyroMonolith();  
     gyroInit();
   }
 
@@ -98,6 +98,8 @@ public class Robot extends TimedRobot {
     //gyro = new Gyroscope(2);
     //gyroInit();
     acq = new Acquisition2020();
+    gyro = new Gyro2020();
+
   }
 
   private void networkInit(){
