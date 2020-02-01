@@ -14,12 +14,10 @@ public abstract class Gyroscope extends Subsystem {
   public abstract double getRad();
 
   public abstract void gyroCalib();
-  public abstract void gyroReset();
-}
-
-
+  //public abstract void gyroReset();
+  
   //reset the gyro without recalibrating
-  public void gyroReset(){
+  public void gyroReset() {
     gyro.reset();
   }
-
+}

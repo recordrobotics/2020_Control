@@ -28,6 +28,4 @@ public class Gyro2020 extends Gyroscope{
         gyro.reset();
     }
     
-    getDeg();
-    getRad();
 }
