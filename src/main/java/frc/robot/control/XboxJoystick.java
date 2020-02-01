@@ -20,7 +20,35 @@ public class XboxJoystick extends Controller{
     }
 
     public double getYAxis (){
-        return -xbox.getY(Hand.kLeft);
+        return -0.25*xbox.getY(Hand.kLeft);
+    }
+
+    public boolean getButtonState (String buttonName){
+        buttonName.toUpperCase();
+
+        switch (buttonName){
+            case "X":
+                return xbox.getXButton();
+            case "Y":
+                return xbox.getYButton();
+            case "A":
+                return xbox.getAButton();
+            case "B":
+                return xbox.getBButton();
+            case "LB":
+                return xbox.getBumper(Hand.kLeft);
+            case "RB":
+                return xbox.getBumper(Hand.kRight);
+            default:
+                return false;
+        }
+
+    }
+    public double getCStickXAxis(){
+        return xbox.getX(Hand.kRight);
+    }
+    public double getCStickYAxis(){
+        return xbox.getY(Hand.kRight);
     }
 
 
