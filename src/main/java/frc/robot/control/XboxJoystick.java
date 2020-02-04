@@ -39,6 +39,10 @@ public class XboxJoystick extends Controller{
                 return xbox.getBumper(Hand.kLeft);
             case "RB":
                 return xbox.getBumper(Hand.kRight);
+            case "LT":
+                return getTrigger("LT");
+            case "RT":
+                return getTrigger("RT");
             default:
                 return false;
         }
