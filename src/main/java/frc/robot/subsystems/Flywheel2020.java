@@ -9,11 +9,12 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 
-public abstract class Gyroscope extends Subsystem {
-  public abstract double getDeg();
-  public abstract double getRad();
+public class Flywheel2020 extends Subsystem {
 
-  public abstract void gyroCalib();
-  public abstract void gyroReset();
+  @Override
+  public void initDefaultCommand() {
+    //init default command
+  }
+
+  
 }
-

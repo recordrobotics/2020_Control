@@ -17,8 +17,6 @@ import com.ctre.phoenix.motorcontrol.can.*;
 
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 
-
-
 /*
 * Drive Train for Monty
 */
