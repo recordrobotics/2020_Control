@@ -39,6 +39,10 @@ public class XboxJoystick extends Controller{
                 return xbox.getBumper(Hand.kLeft);
             case "RB":
                 return xbox.getBumper(Hand.kRight);
+            case "LT":
+                return getTrigger("LT");
+            case "RT":
+                return getTrigger("RT");
             default:
                 return false;
         }
@@ -51,5 +55,28 @@ public class XboxJoystick extends Controller{
         return xbox.getY(Hand.kRight);
     }
 
+    public double getRTAxis(){
+        return xbox.getTriggerAxis(Hand.kRight);
+    }
 
+    public double getLTAxis(){
+        return xbox.getTriggerAxis(Hand.kLeft);
+    }
+
+    public boolean getTrigger(String triggerName) {
+        triggerName.toUpperCase();
+        double cutoff = 0.5;    
+
+        switch (triggerName){
+            case "LT":
+                return (int)(getLTAxis() + cutoff) == 1;
+            case "RT":
+                return (int)(getRTAxis() + cutoff) == 1;
+            default:
+                return false;
+            
+        }
+    }
 }
+
+
