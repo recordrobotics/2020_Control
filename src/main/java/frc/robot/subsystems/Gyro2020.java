@@ -8,7 +8,7 @@ public class Gyro2020 extends Gyroscope{
     @Override
     public void initDefaultCommand() {;
         //do nothing, no default command for this subsystem
-    }
+    }   
 
     private AHRS gyro = new AHRS(I2C.Port.kOnboard);
 
