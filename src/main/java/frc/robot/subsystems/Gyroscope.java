@@ -17,9 +17,3 @@ public abstract class Gyroscope extends Subsystem {
   public abstract void gyroReset();
 }
 
-
-  //reset the gyro without recalibrating
-  public void gyroReset(){
-    gyro.reset();
-  }
-
