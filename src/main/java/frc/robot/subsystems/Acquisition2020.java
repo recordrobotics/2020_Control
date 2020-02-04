@@ -6,20 +6,27 @@
 /*----------------------------------------------------------------------------*/
 
 package frc.robot.subsystems;
-
 import edu.wpi.first.wpilibj.command.Subsystem;
 
-public abstract class Gyroscope extends Subsystem {
-  public abstract double getDeg();
-  public abstract double getRad();
+import com.ctre.phoenix.motorcontrol.*;
+import com.ctre.phoenix.motorcontrol.can.*;
 
-  public abstract void gyroCalib();
-  public abstract void gyroReset();
+public class Acquisition2020 extends Subsystem {
+
+    //TODO set motor channels
+    private WPI_VictorSPX acquireMotor = new WPI_VictorSPX(-1);
+    private WPI_VictorSPX tiltMotor = new WPI_VictorSPX(-1);
+
+    public void moveAcq(double v) {
+        acquireMotor.set(ControlMode.PercentOutput, v);
+    }
+
+    public void moveTilt(double v) {
+        tiltMotor.set(ControlMode.PercentOutput, v);
+    }
+
+    @Override
+    public void initDefaultCommand() {
+
+    }
 }
-
-
-  //reset the gyro without recalibrating
-  public void gyroReset(){
-    gyro.reset();
-  }
-

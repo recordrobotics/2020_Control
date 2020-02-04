@@ -38,6 +38,7 @@ public class Robot extends TimedRobot {
   public static DriveTrain driveTrain;
   public static Lift lift;
   public static Gyroscope gyro;
+  public static Acquisition2020 acq;
   public static OI m_oi;
 
   public static Dashboard dash = new Dashboard(currentRobot);
@@ -94,6 +95,9 @@ public class Robot extends TimedRobot {
 
   private void robot2020Init(){
     driveTrain = new Drive2020();
+    //gyro = new Gyroscope(2);
+    //gyroInit();
+    acq = new Acquisition2020();
     gyro = new Gyro2020();
 
   }
