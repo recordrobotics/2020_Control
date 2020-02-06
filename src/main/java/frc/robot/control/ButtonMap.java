@@ -20,7 +20,7 @@ public final class ButtonMap {
 	public static int liftLower = greenRight;
 	public static int aquire = redLeft;
 	public static int eject = redRight;
-	public static int togglePID = white;
+	public static int mainButton = white;
 	public static int turn90Right = yellowRight;
 	public static int turn90Left = yellowLeft;
 }

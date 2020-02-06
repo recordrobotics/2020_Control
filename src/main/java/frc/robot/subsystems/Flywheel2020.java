@@ -7,14 +7,21 @@
 
 package frc.robot.subsystems;
 
+import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class Flywheel2020 extends Subsystem {
 
-  @Override
-  public void initDefaultCommand() {
-    //init default command
-  }
+    //TODO set port number
+    private WPI_VictorSPX flywheelMotor = new WPI_VictorSPX(-1);
 
-  
+    @Override
+    public void initDefaultCommand() {
+        //init default command
+    }
+
+    public void moveWheel(double v){
+
+    }
+
 }
