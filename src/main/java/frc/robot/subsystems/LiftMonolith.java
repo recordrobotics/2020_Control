@@ -7,7 +7,7 @@ import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Talon;
 import frc.robot.commands.*;
 
-public class LiftMonolith extends Lift{
+public class LiftMonolith extends RobotLift{
 // Put methods for controlling this subsystem
     // here. Call these from Commands.
     

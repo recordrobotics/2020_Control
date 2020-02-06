@@ -9,6 +9,7 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
+import frc.robot.OI;
 
 public class ControlAcquisition extends Command {
 
@@ -42,15 +43,15 @@ public class ControlAcquisition extends Command {
     */
     boolean limitSwitchTop = true;
     boolean limitSwitchBottom = false;
-    boolean inputPosition = true //true is up, false is down
+    boolean inputPosition = true; //true is up, false is down
     double v = 0.5;
 
     public void setAcqPos() {
         if (!limitSwitchTop && inputPosition) {
-            moveTilt(v);
+            Robot.acq.moveTilt(v);
         }
         else if (!limitSwitchBottom && !inputPosition) {
-            moveTilt(-v);
+            Robot.acq.moveTilt(-v);
         }
     }
 
