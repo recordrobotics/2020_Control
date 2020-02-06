@@ -32,7 +32,7 @@ public class ControlAcquisition extends Command {
     private boolean isAcqUp = false;
 
     public void controlTilt(boolean spin) {
-        if (spin) {
+        if (spin && isAcqUp) {
             Robot.acq.moveTilt(tiltSpeed);
             isAcqUp = true;
         }

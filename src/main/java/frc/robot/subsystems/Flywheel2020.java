@@ -9,6 +9,7 @@ package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import frc.robot.commands.ControlFlywheel;
 
 public class Flywheel2020 extends Subsystem {
 
@@ -17,7 +18,7 @@ public class Flywheel2020 extends Subsystem {
 
     @Override
     public void initDefaultCommand() {
-        //init default command
+        setDefaultCommand(new ControlFlywheel());
     }
 
     public void moveWheel(double v){

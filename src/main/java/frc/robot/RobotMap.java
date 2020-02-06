@@ -43,6 +43,12 @@ public class RobotMap {
 	public static int driveBackRight2020 = 3;
 	public static int driveBackLeft2020 = 4;
 
+	//Set of subsystem motors 2020, temporary ports, set to real numbers later
+	public static int acquireMotorPort = -1;
+	public static int tiltMotorPort = -1;
+	public static int beltMotorPort = -1;
+	public static int flywheelMotorPort = -1;
+	
 	//lifting mechanism port
 	public static int liftPortMonolith = 4;
 

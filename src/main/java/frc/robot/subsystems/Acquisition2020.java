@@ -7,6 +7,7 @@
 
 package frc.robot.subsystems;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import frc.robot.commands.ControlAcquisition;
 
 import com.ctre.phoenix.motorcontrol.*;
 import com.ctre.phoenix.motorcontrol.can.*;
@@ -27,6 +28,6 @@ public class Acquisition2020 extends Subsystem {
 
     @Override
     public void initDefaultCommand() {
-
+        setDefaultCommand(new ControlAcquisition());
     }
 }
