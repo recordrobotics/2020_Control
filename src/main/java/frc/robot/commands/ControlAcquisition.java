@@ -9,6 +9,7 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
+import frc.robot.OI;
 
 public class ControlAcquisition extends Command {
 
@@ -30,15 +31,27 @@ public class ControlAcquisition extends Command {
     }
 
     private boolean isAcqUp = false;
+    /*
+    if the angle is up and should be up:
+        do nothing
+    if the angle is up and should be down:
+        move until
+    if the angle is down and should be up:
+        move until
+    if the angle is down and should be down:
+        do nothing
+    */
+    boolean limitSwitchTop = true;
+    boolean limitSwitchBottom = false;
+    boolean inputPosition = true; //true is up, false is down
+    double v = 0.5;
 
-    public void controlTilt(boolean spin) {
-        if (spin && isAcqUp) {
-            Robot.acq.moveTilt(tiltSpeed);
-            isAcqUp = true;
+    public void setAcqPos() {
+        if (!limitSwitchTop && inputPosition) {
+            Robot.acq.moveTilt(v);
         }
-        else {
-            Robot.acq.moveTilt(0);
-            isAcqUp = false;
+        else if (!limitSwitchBottom && !inputPosition) {
+            Robot.acq.moveTilt(-v);
         }
     }
 
@@ -48,8 +61,17 @@ public class ControlAcquisition extends Command {
     }
 
     // Called repeatedly when this Command is scheduled to run
+    boolean prevButton = false;
+    String toggleButton = "A";
+
     @Override
     protected void execute() {
+        if (!prevButton && OI.getXboxButtonState(toggleButton)) {
+            inputPosition = !inputPosition;
+        }
+        setAcqPos();
+
+        prevButton = OI.getXboxButtonState(toggleButton);
     }
 
     // Make this return true when this Command no longer needs to run execute()
