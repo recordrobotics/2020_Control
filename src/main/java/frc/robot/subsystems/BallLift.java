@@ -7,9 +7,6 @@ import com.ctre.phoenix.motorcontrol.*;
 import com.ctre.phoenix.motorcontrol.can.*;
 import frc.robot.commands.*;
 
-/**
- COPY OF LIFT.JAVA modified for Ball storage lift.
- */
 
 
 public class BallLift extends Subsystem {

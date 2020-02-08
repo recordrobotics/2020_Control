@@ -48,6 +48,7 @@ public class RobotMap {
 	public static int tiltMotorPort = -1;
 	public static int beltMotorPort = -1;
 	public static int flywheelMotorPort = -1;
+	public static int robotLiftMotorPort = -1;
 	
 	//lifting mechanism port
 	public static int liftPortMonolith = 4;
