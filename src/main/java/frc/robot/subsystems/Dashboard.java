@@ -38,7 +38,7 @@ public class Dashboard extends Subsystem {
 
   private void displayMonolith(){
     //write gyro angle to dashboard
-    SmartDashboard.putNumber("Gyro Angle", Robot.gyro.getDeg());
+    
   }
 
   private void display2020(){
@@ -48,5 +48,7 @@ public class Dashboard extends Subsystem {
     SmartDashboard.putData("Move 3ft", new MoveForward(36, 0.2));
     SmartDashboard.putData("Turn Left", new AutoTurn(-90));
     SmartDashboard.putData("Turn Right", new AutoTurn(90));
+
+    SmartDashboard.putNumber("Gyro Angle", Robot.gyro.getDeg());
   }
 }

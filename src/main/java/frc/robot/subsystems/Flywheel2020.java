@@ -7,6 +7,7 @@
 
 package frc.robot.subsystems;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
@@ -21,7 +22,7 @@ public class Flywheel2020 extends Subsystem {
     }
 
     public void moveWheel(double v){
-
+        flywheelMotor.set(ControlMode.PercentOutput, v);
     }
 
 }
