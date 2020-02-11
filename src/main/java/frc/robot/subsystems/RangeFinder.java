@@ -6,24 +6,23 @@
 /*----------------------------------------------------------------------------*/
 
 package frc.robot.subsystems;
-
-import com.ctre.phoenix.motorcontrol.ControlMode;
-import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
+import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import frc.robot.commands.ControlFlywheel;
 
-public class Flywheel2020 extends Subsystem {
+/**
+ * An example subsystem.  You can replace me with your own Subsystem.
+ */
+public class RangeFinder extends Subsystem {
+  // Put methods for controlling this subsystem
+  // here. Call these from Commands.
+  public AnalogInput m_ultrasonic = new AnalogInput(-1);
+  double currentDistance = m_ultrasonic.getValue() * 1;
 
-    //TODO set port number
-    private WPI_VictorSPX flywheelMotor = new WPI_VictorSPX(-1);
+  @Override
+  public void initDefaultCommand() {
+    // Set the default command for a subsystem here.
+    // setDefaultCommand(new MySpecialCommand());
+   
 
-    @Override
-    public void initDefaultCommand() {
-        setDefaultCommand(new ControlFlywheel());
-    }
-
-    public void moveWheel(double v){
-        flywheelMotor.set(ControlMode.PercentOutput, v);
-    }
-
+  }
 }

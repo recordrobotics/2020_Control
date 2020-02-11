@@ -44,6 +44,7 @@ public class Dashboard extends Subsystem {
   private void display2020(){
     SmartDashboard.putNumber("Right Encoder", Robot.driveTrain.getRightEncoder());
     SmartDashboard.putNumber("Left Encoder", Robot.driveTrain.getLeftEncoder());
+    SmartDashboard.putNumber("Gyro Angle", Robot.gyro.getDeg());
 
     SmartDashboard.putData("Move 3ft", new MoveForward(36, 0.2));
     SmartDashboard.putData("Turn Left", new AutoTurn(-90));

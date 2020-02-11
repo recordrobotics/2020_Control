@@ -37,11 +37,12 @@ public class Robot extends TimedRobot {
 
   public static ExampleSubsystem m_subsystem = new ExampleSubsystem();
   public static DriveTrain driveTrain;
-  public static Lift lift;
+  public static RobotLift lift;
   public static Gyroscope gyro;
   public static Acquisition2020 acq;
   public static OI m_oi;
   public static Flywheel2020 flywheel;
+  public static BallLift belt;
 
   public static Dashboard dash = new Dashboard(currentRobot);
 
@@ -104,6 +105,7 @@ public class Robot extends TimedRobot {
     acq = new Acquisition2020();
     gyro = new Gyro2020();
     flywheel = new Flywheel2020();
+    belt = new BallLift();
 
   }
 
