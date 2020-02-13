@@ -19,7 +19,7 @@ public class Flywheel2020 extends Subsystem {
 
     @Override
     public void initDefaultCommand() {
-        setDefaultCommand(new ControlFlywheel());
+        //setDefaultCommand(new ControlFlywheel());
     }
 
     public void moveWheel(double v){

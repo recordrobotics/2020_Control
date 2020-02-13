@@ -43,6 +43,7 @@ public class Robot extends TimedRobot {
   public static OI m_oi;
   public static Flywheel2020 flywheel;
   public static BallLift belt;
+  public static RangeFinder rangeFinder = new RangeFinder();
 
   public static Dashboard dash = new Dashboard(currentRobot);
 
