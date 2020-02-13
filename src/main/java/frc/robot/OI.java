@@ -25,6 +25,9 @@ public class OI {
   private static Controller joystick = hotas;
 
   boolean enablePID = false; //do not set to true unless you know what you are doing. It causes issues. 
+  /* code for AutoTurn on the xbox bumpers
+  boolean rbPressed = false;
+  boolean lbPressed = false;*/
 
   public OI(){
     // buttonPanel
@@ -33,9 +36,21 @@ public class OI {
     double dirMult = 1; //change to -1 if the right button makes robot turns left and vice-versa - DO NOT SET TO ANY VALUE OTHER THAN 1 OR -1
     int autoRightButton = ButtonMap.turn90Right; //button to use for turing the robot 90 degrees to the right
     int autoLeftButton = ButtonMap.turn90Left; //button to use for turing the robot 90 degrees to the left
+    
 
     buttonPanel.getButton(autoRightButton).whenPressed(new AutoTurn(90 * dirMult)); //right turn
     buttonPanel.getButton(autoLeftButton).whenPressed(new AutoTurn(90 * -dirMult)); //left turn
+   /* rest of the code for the xbox command stuff
+   I cut it because it probably sucks
+   if (xbox.getButtonState("RB") && !rbPressed){
+      AutoTurn turn = new AutoTurn(90 * dirMult);
+      turn.start();
+
+    }
+    rbPressed = xbox.getButtonState("RB");
+    lbPressed = xbox.getButtonState("LB");
+    */
+
   }
 
   /*
@@ -78,6 +93,7 @@ public class OI {
   public static boolean getButtonState(int button){
     return buttonPanel.getState(button);
   }
+
 
   public static double getForward(){
     return joystick.getYAxis();

@@ -2,6 +2,7 @@ package frc.robot.control;
 
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.GenericHID.Hand;
+import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.RobotMap;
 
 public class XboxJoystick extends Controller{
@@ -76,6 +77,9 @@ public class XboxJoystick extends Controller{
                 return false;
             
         }
+    }
+    // unused but planned direct support for commands in the XboxJoystick class, would work similar to whenPressed for a Button
+    public void whenXBPressed(String buttonName, final Command command){
     }
 }
 
