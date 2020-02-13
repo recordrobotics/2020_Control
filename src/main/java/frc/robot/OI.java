@@ -79,7 +79,6 @@ public class OI {
     return buttonPanel.getState(button);
   }
 
-
   public static double getForward(){
     return joystick.getYAxis();
   }

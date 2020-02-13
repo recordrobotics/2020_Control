@@ -28,6 +28,6 @@ public class Acquisition2020 extends Subsystem {
 
     @Override
     public void initDefaultCommand() {
-        setDefaultCommand(new ControlAcquisition());
+        //setDefaultCommand(new ControlAcquisition());
     }
 }
