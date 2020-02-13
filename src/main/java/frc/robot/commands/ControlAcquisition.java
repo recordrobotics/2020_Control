@@ -18,7 +18,7 @@ public class ControlAcquisition extends Command {
 
     public void ExampleCommand() {
         // Use requires() here to declare subsystem dependencies
-        requires(Robot.m_subsystem);
+        requires(Robot.acq);
     }
 
     public void controlAquire(boolean spin) {
