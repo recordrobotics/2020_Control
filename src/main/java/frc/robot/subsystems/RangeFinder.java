@@ -11,24 +11,27 @@ import edu.wpi.first.wpilibj.PWM;
 import edu.wpi.first.wpilibj.SerialPort;
 import edu.wpi.first.wpilibj.Ultrasonic;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  * An example subsystem.  You can replace me with your own Subsystem.
  */
 public class RangeFinder extends Subsystem {
   // factor to convert sensor values to a distance in inches
-  private static final double kValueToInches = 1;
 
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
-  private Ultrasonic m_ultrasonic = new Ultrasonic(9, 8);
+  private Ultrasonic m_ultrasonic = new Ultrasonic(6, 7);
+
+  public RangeFinder(){
+    m_ultrasonic.setEnabled(true);
+    m_ultrasonic.setAutomaticMode(true);    
+  }
 
   public double getDistance() {
     // sensor returns a value from 0-4095 that is scaled to inches
-    // returns current distance in inches
     return m_ultrasonic.getRangeInches();
     }
-  
 
   @Override
   public void initDefaultCommand() {
