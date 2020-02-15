@@ -15,8 +15,8 @@ import com.ctre.phoenix.motorcontrol.can.*;
 public class Acquisition2020 extends Subsystem {
 
     //TODO set motor channels
-    private WPI_VictorSPX acquireMotor = new WPI_VictorSPX(-1);
-    private WPI_VictorSPX tiltMotor = new WPI_VictorSPX(-1);
+    private WPI_VictorSPX acquireMotor = new WPI_VictorSPX(8);
+    private WPI_VictorSPX tiltMotor = new WPI_VictorSPX(0);
 
     public void moveAcq(double v) {
         acquireMotor.set(ControlMode.PercentOutput, v);
@@ -28,6 +28,6 @@ public class Acquisition2020 extends Subsystem {
 
     @Override
     public void initDefaultCommand() {
-        //setDefaultCommand(new ControlAcquisition());
+        setDefaultCommand(new ControlAcquisition());
     }
 }

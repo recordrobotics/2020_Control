@@ -7,18 +7,19 @@
 
 package frc.robot.commands;
 
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 import frc.robot.OI;
 
 public class ControlAcquisition extends Command {
 
-    private double acqSpeed = 0.6;
-    private double tiltSpeed = 0.6;
+    private double acqSpeed = 0.5;
+    private double tiltSpeed = 0.5;
 
-    public void ExampleCommand() {
+    public ControlAcquisition() {
         // Use requires() here to declare subsystem dependencies
-        requires(Robot.m_subsystem);
+        requires(Robot.acq);
     }
 
     public void controlAquire(boolean spin) {
@@ -29,30 +30,39 @@ public class ControlAcquisition extends Command {
              Robot.acq.moveAcq(0);
         }
     }
-
-    private boolean isAcqUp = false;
-    /*
-    if the angle is up and should be up:
-        do nothing
-    if the angle is up and should be down:
-        move until
-    if the angle is down and should be up:
-        move until
-    if the angle is down and should be down:
-        do nothing
-    */
-    boolean limitSwitchTop = true;
+    
+    DigitalInput io_limitTop = null;
+    DigitalInput io_limitBottom = null;
+    
+    boolean limitSwitchTop = false;
     boolean limitSwitchBottom = false;
+
+    private void setLimitSwitches(){
+        limitSwitchBottom = io_limitBottom.get();
+        limitSwitchTop = io_limitTop.get();
+    }
+
     boolean inputPosition = true; //true is up, false is down
-    double v = 0.5;
 
     public void setAcqPos() {
+        //control the acqusition wheels
+        if (OI.getXboxButtonState(acqButton)){
+            Robot.acq.moveAcq(acqSpeed);
+        } else {
+            Robot.acq.moveAcq(0);
+        }
+        /*
+        //control the tilting system
         if (!limitSwitchTop && inputPosition) {
-            Robot.acq.moveTilt(v);
+            Robot.acq.moveTilt(tiltSpeed);
         }
         else if (!limitSwitchBottom && !inputPosition) {
-            Robot.acq.moveTilt(-v);
+            Robot.acq.moveTilt(-tiltSpeed);
+        } else {
+            Robot.acq.moveTilt(0);
         }
+        */
+        //TODO RESTORE LIMIT SWITCH BASED
     }
 
     // Called just before this Command runs the first time
@@ -63,9 +73,12 @@ public class ControlAcquisition extends Command {
     // Called repeatedly when this Command is scheduled to run
     boolean prevButton = false;
     String toggleButton = "A";
+    String acqButton = "LT";
 
     @Override
     protected void execute() {
+        //setLimitSwitches();
+
         if (!prevButton && OI.getXboxButtonState(toggleButton)) {
             inputPosition = !inputPosition;
         }
