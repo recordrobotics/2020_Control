@@ -15,7 +15,7 @@ import frc.robot.control.ButtonMap;
 public class ControlFlywheel extends Command {
   public ControlFlywheel() {
     // Use requires() here to declare subsystem dependencies
-    requires(Robot.m_subsystem);
+    requires(Robot.flywheel);
   }
 
   // Called just before this Command runs the first time

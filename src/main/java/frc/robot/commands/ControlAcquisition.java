@@ -7,7 +7,6 @@
 
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 import frc.robot.OI;
@@ -22,47 +21,25 @@ public class ControlAcquisition extends Command {
         requires(Robot.acq);
     }
 
-    public void controlAquire(boolean spin) {
-        if (spin) {
-            Robot.acq.moveAcq(acqSpeed);
-        }
-        else {
-             Robot.acq.moveAcq(0);
-        }
-    }
-    
-    DigitalInput io_limitTop = null;
-    DigitalInput io_limitBottom = null;
-    
-    boolean limitSwitchTop = false;
-    boolean limitSwitchBottom = false;
-
-    private void setLimitSwitches(){
-        limitSwitchBottom = io_limitBottom.get();
-        limitSwitchTop = io_limitTop.get();
-    }
-
     boolean inputPosition = true; //true is up, false is down
 
-    public void setAcqPos() {
+    private void controlAcq() {
         //control the acqusition wheels
         if (OI.getXboxButtonState(acqButton)){
             Robot.acq.moveAcq(acqSpeed);
         } else {
             Robot.acq.moveAcq(0);
         }
-        /*
+    }
+
+    private void controlTilt(){
         //control the tilting system
-        if (!limitSwitchTop && inputPosition) {
+        if (!Robot.acq.getTopLimit() && inputPosition) {
             Robot.acq.moveTilt(tiltSpeed);
         }
-        else if (!limitSwitchBottom && !inputPosition) {
+        else if (!Robot.acq.getBottomLimit() && !inputPosition) {
             Robot.acq.moveTilt(-tiltSpeed);
-        } else {
-            Robot.acq.moveTilt(0);
         }
-        */
-        //TODO RESTORE LIMIT SWITCH BASED
     }
 
     // Called just before this Command runs the first time
@@ -77,12 +54,13 @@ public class ControlAcquisition extends Command {
 
     @Override
     protected void execute() {
-        //setLimitSwitches();
-
+        //control the toggle, this will invert inputPosition when "A" is pressed
         if (!prevButton && OI.getXboxButtonState(toggleButton)) {
             inputPosition = !inputPosition;
         }
-        setAcqPos();
+
+        controlAcq();
+        //controlTilt();
 
         prevButton = OI.getXboxButtonState(toggleButton);
     }
