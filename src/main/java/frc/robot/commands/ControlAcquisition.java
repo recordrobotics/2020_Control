@@ -13,45 +13,32 @@ import frc.robot.OI;
 
 public class ControlAcquisition extends Command {
 
-    private double acqSpeed = 0.6;
-    private double tiltSpeed = 0.6;
+    private double acqSpeed = 0.5;
+    private double tiltSpeed = 0.5;
 
-    public void ExampleCommand() {
+    public ControlAcquisition() {
         // Use requires() here to declare subsystem dependencies
         requires(Robot.acq);
     }
 
-    public void controlAquire(boolean spin) {
-        if (spin) {
+    boolean inputPosition = true; //true is up, false is down
+
+    private void controlAcq() {
+        //control the acqusition wheels
+        if (OI.getXboxButtonState(acqButton)){
             Robot.acq.moveAcq(acqSpeed);
-        }
-        else {
-             Robot.acq.moveAcq(0);
+        } else {
+            Robot.acq.moveAcq(0);
         }
     }
 
-    private boolean isAcqUp = false;
-    /*
-    if the angle is up and should be up:
-        do nothing
-    if the angle is up and should be down:
-        move until
-    if the angle is down and should be up:
-        move until
-    if the angle is down and should be down:
-        do nothing
-    */
-    boolean limitSwitchTop = true;
-    boolean limitSwitchBottom = false;
-    boolean inputPosition = true; //true is up, false is down
-    double v = 0.5;
-
-    public void setAcqPos() {
-        if (!limitSwitchTop && inputPosition) {
-            Robot.acq.moveTilt(v);
+    private void controlTilt(){
+        //control the tilting system
+        if (!Robot.acq.getTopLimit() && inputPosition) {
+            Robot.acq.moveTilt(tiltSpeed);
         }
-        else if (!limitSwitchBottom && !inputPosition) {
-            Robot.acq.moveTilt(-v);
+        else if (!Robot.acq.getBottomLimit() && !inputPosition) {
+            Robot.acq.moveTilt(-tiltSpeed);
         }
     }
 
@@ -63,13 +50,17 @@ public class ControlAcquisition extends Command {
     // Called repeatedly when this Command is scheduled to run
     boolean prevButton = false;
     String toggleButton = "A";
+    String acqButton = "LT";
 
     @Override
     protected void execute() {
+        //control the toggle, this will invert inputPosition when "A" is pressed
         if (!prevButton && OI.getXboxButtonState(toggleButton)) {
             inputPosition = !inputPosition;
         }
-        setAcqPos();
+
+        controlAcq();
+        //controlTilt();
 
         prevButton = OI.getXboxButtonState(toggleButton);
     }

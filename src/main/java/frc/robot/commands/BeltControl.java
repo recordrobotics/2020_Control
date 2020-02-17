@@ -18,7 +18,7 @@ public class BeltControl extends Command {
   private double Beltspeed = 0.6;
   public BeltControl() {
     // Use requires() here to declare subsystem dependencies
-    requires(Robot.m_subsystem);
+    requires(Robot.belt);
   }
   private void controlBelt(){
     if(ballSensors[0] && !ballSensors[4]){
