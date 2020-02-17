@@ -23,7 +23,7 @@ public class BeltControl extends Command {
   private void controlBelt(){
     if(ballSensors[0] && !ballSensors[4]){
       //timer code to stop mechanicald issues of the belt stopping immediately
-      Robot.belt.moveBelt(Beltspeed);
+      Robot.belt.moveBelt(beltSpeed);
     }
    
   } 

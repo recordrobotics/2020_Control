@@ -45,7 +45,6 @@ public class OI {
     xbox.getButton(autoLeftXboxButton).whenPressed(new AutoTurn(90 * -xboxDirMult)); //left turn
     xbox.getButton(autoRightXboxButton).whenPressed(new AutoTurn(90 * xboxDirMult)); //right turn
 
-
   }
 
   /*
