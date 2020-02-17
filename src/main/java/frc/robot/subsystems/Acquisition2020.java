@@ -6,6 +6,8 @@
 /*----------------------------------------------------------------------------*/
 
 package frc.robot.subsystems;
+
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.commands.ControlAcquisition;
 
@@ -14,9 +16,16 @@ import com.ctre.phoenix.motorcontrol.can.*;
 
 public class Acquisition2020 extends Subsystem {
 
-    //TODO set motor channels
-    private WPI_VictorSPX acquireMotor = new WPI_VictorSPX(-1);
-    private WPI_VictorSPX tiltMotor = new WPI_VictorSPX(-1);
+    private WPI_VictorSPX acquireMotor = new WPI_VictorSPX(8);
+    private WPI_VictorSPX tiltMotor = new WPI_VictorSPX(7);
+
+    DigitalInput limitTop;
+    DigitalInput limitBottom;
+
+    public Acquisition2020(){
+        //limitTop = new DigitalInput(3);
+        //limitBottom = new DigitalInput(3);
+    }
 
     public void moveAcq(double v) {
         acquireMotor.set(ControlMode.PercentOutput, v);
@@ -26,8 +35,16 @@ public class Acquisition2020 extends Subsystem {
         tiltMotor.set(ControlMode.PercentOutput, v);
     }
 
+    public boolean getTopLimit(){
+        return limitTop.get();
+    }
+
+    public boolean getBottomLimit(){
+        return limitBottom.get();
+    }
+
     @Override
     public void initDefaultCommand() {
-        //setDefaultCommand(new ControlAcquisition());
+        setDefaultCommand(new ControlAcquisition());
     }
 }

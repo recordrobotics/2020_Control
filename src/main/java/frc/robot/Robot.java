@@ -139,11 +139,13 @@ public class Robot extends TimedRobot {
    */
 
 
-
+  private boolean prevLampState = false;
   @Override
   public void robotPeriodic() {
-    //System.out.println(gyro.getDeg());
-    o.pulse(10);
+    if (!prevLampState && OI.getXboxButtonState("Y")){
+      o.set(!o.get());
+    }
+    prevLampState = OI.getXboxButtonState("Y");
   }
 
   /**
