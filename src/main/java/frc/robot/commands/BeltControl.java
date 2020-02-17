@@ -15,7 +15,7 @@ import frc.robot.Robot;
  */
 public class BeltControl extends Command {
   private boolean[] ballSensors = new boolean[5];
-  private double Beltspeed = 0.6;
+  private double beltSpeed = 0.6;
   public BeltControl() {
     // Use requires() here to declare subsystem dependencies
     requires(Robot.m_subsystem);
