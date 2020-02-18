@@ -85,7 +85,7 @@ public class OI {
     return xbox.getButtonState(buttonName);
   }
 
-  public static boolean getButtonState(int button){
+  public static boolean getPanelButtonState(int button){
     return buttonPanel.getState(button);
   }
 

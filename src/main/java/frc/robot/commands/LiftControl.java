@@ -35,9 +35,9 @@ public class LiftControl extends Command {
   private void liftControl(){
     //if the left green button is pressed, move up
     //if the right green button is pressed, move down
-    if(OI.getButtonState(ButtonMap.liftRaise)){
+    if(OI.getPanelButtonState(ButtonMap.liftRaise)){
         Robot.lift.moveLift(speed);
-    } else if(OI.getButtonState(ButtonMap.liftLower)){
+    } else if(OI.getPanelButtonState(ButtonMap.liftLower)){
         Robot.lift.moveLift(-speed);
     } else {
         Robot.lift.stop();

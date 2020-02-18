@@ -13,15 +13,16 @@ public class BallLift extends Subsystem {
 
   //array of limit switches that are triggered when a ball occupies it's slot
   private DigitalInput[] ballLimits = new DigitalInput[5];
-  /*
+  
   public BallLift() {
     //instance of limit switches
     int offset = 0;
+    //ballLimits = new DigitalInput [5];
     for (int i = 0; i < ballLimits.length; i++){
-      ballLimits[i] = new DigitalInput(i + offset);
+      //ballLimits[i] = new DigitalInput(i + offset);
     }
   }
-  */
+  
   public void initDefaultCommand() {
       //setDefaultCommand(new BeltControl());
   }
@@ -30,6 +31,25 @@ public class BallLift extends Subsystem {
     beltMotor.set(ControlMode.PercentOutput, v);
   }
 
+  public int lowestFullSlot(){
+    int lowest = ballLimits.length - 1;
+    for(int i = ballLimits.length - 1; i >= 0; i--){
+      if (ballLimits[i].get()){
+        lowest = i;
+      }
+    }
+    return lowest;
+  }
+  
+  public int highestFullSlot(){
+    int highest = 0;
+    for(int i = 0; i < ballLimits.length; i++){
+      if (ballLimits[i].get()){
+        highest = i;
+      }
+    }
+    return highest;
+  }
   public int countBall(){
     int count = 0;
 

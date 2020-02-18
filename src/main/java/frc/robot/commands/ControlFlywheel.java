@@ -26,7 +26,7 @@ public class ControlFlywheel extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    if ((OI.getXboxButtonState("RT") || OI.getButtonState(ButtonMap.mainButton))){
+    if ((OI.getXboxButtonState("RT") || OI.getPanelButtonState(ButtonMap.mainButton))){
         Robot.flywheel.moveWheel(0.8);
     } else {
         Robot.flywheel.moveWheel(0);
