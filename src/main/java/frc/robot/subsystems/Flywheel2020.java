@@ -15,11 +15,11 @@ import frc.robot.commands.ControlFlywheel;
 public class Flywheel2020 extends Subsystem {
 
     //TODO set port number
-    private WPI_VictorSPX flywheelMotor = new WPI_VictorSPX(-1);
+    private WPI_VictorSPX flywheelMotor = new WPI_VictorSPX(5);
 
     @Override
     public void initDefaultCommand() {
-        //setDefaultCommand(new ControlFlywheel());
+        setDefaultCommand(new ControlFlywheel());
     }
 
     public void moveWheel(double v){

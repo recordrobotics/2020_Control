@@ -144,6 +144,7 @@ public class Robot extends TimedRobot {
   public void robotPeriodic() {
     if (!prevLampState && OI.getXboxButtonState("Y")){
       o.set(!o.get());
+      System.out.println("Hi");
     }
     prevLampState = OI.getXboxButtonState("Y");
   }

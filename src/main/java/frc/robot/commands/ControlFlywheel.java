@@ -27,7 +27,7 @@ public class ControlFlywheel extends Command {
   @Override
   protected void execute() {
     if ((OI.getXboxButtonState("RT") || OI.getPanelButtonState(ButtonMap.mainButton))){
-        Robot.flywheel.moveWheel(0.8);
+        Robot.flywheel.moveWheel(1);
     } else {
         Robot.flywheel.moveWheel(0);
     }

@@ -10,10 +10,11 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 import frc.robot.OI;
+import frc.robot.control.XboxJoystick;
 
 public class ControlAcquisition extends Command {
 
-    private double acqSpeed = -0.25;
+    private double acqSpeed = -0.75;
     private double tiltSpeed = 0.5;
 
     public ControlAcquisition() {
@@ -25,8 +26,10 @@ public class ControlAcquisition extends Command {
 
     private void controlAcq() {
         //control the acqusition wheels
+       
         if (OI.getXboxButtonState(acqButton)){
             Robot.acq.moveAcq(acqSpeed);
+         
         } else {
             Robot.acq.moveAcq(0);
         }
@@ -46,12 +49,11 @@ public class ControlAcquisition extends Command {
     @Override
     protected void initialize() {
     }
-
-    // Called repeatedly when this Command is scheduled to run
     boolean prevButton = false;
     String toggleButton = "A";
     String acqButton = "LT";
 
+    // Called repeatedly when this Command is scheduled to run
     @Override
     protected void execute() {
         //control the toggle, this will invert inputPosition when "A" is pressed

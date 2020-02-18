@@ -24,4 +24,5 @@ public final class ButtonMap {
 	public static int turn90Right = yellowRight;
 	public static int turn90Left = yellowLeft;
 	public static int override = blueLeft;
+	public static int acqButton = blueRight;
 }
