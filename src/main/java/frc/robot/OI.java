@@ -82,7 +82,7 @@ public class OI {
   */
 
   /**
-   * Gets the state a button of the specific XboxJoystick instance xbox, basically an extension of {@link XboxJoystick#getButtonState()} specifically for the instance xbox
+   * Gets the state a button of the specific XboxJoystick instance xbox, basically an extension of {@link XboxJoystick#getButtonState(buttonName) getButtonState()} specifically for the instance xbox
    * @param buttonName The abbreviation for the button <p> Accepted inputs are A, B, X, Y, LB, RB, LT, RT
    * @return Whether or not the buttton buttonName is pressed, unaccepted inputs will return false
    */
