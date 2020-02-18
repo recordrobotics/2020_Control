@@ -26,8 +26,10 @@ public class ControlAcquisition extends Command {
 
     private void controlAcq() {
         //control the acqusition wheels
+       
         if (OI.getXboxButtonState(acqButton)){
             Robot.acq.moveAcq(acqSpeed);
+         
         } else {
             Robot.acq.moveAcq(0);
         }
@@ -47,12 +49,11 @@ public class ControlAcquisition extends Command {
     @Override
     protected void initialize() {
     }
-
-    // Called repeatedly when this Command is scheduled to run
     boolean prevButton = false;
     String toggleButton = "A";
     String acqButton = "LT";
 
+    // Called repeatedly when this Command is scheduled to run
     @Override
     protected void execute() {
         //control the toggle, this will invert inputPosition when "A" is pressed

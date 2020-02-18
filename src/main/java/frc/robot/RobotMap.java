@@ -60,7 +60,7 @@ public class RobotMap {
 	//hotas
 	public static int hotasPort = 0;
 	//xbox
-	public static int xboxPort = 0;
+	public static int xboxPort = 2;
 
 	//gyroscope port
 	public static SPI.Port gyroPortSPI = SPI.Port.kOnboardCS0;
