@@ -8,25 +8,36 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
+import frc.robot.OI;
 import frc.robot.Robot;
 
-/**
- * An example command.  You can replace me with your own command.
- */
+
 public class BeltControl extends Command {
-  private boolean[] ballSensors = new boolean[5];
   private double beltSpeed = 0.6;
+  private boolean moveUp = false;
+
   public BeltControl() {
     // Use requires() here to declare subsystem dependencies
     requires(Robot.belt);
   }
-  private void controlBelt(){
-    if(ballSensors[0] && !ballSensors[4]){
-      //timer code to stop mechanicald issues of the belt stopping immediately
-      Robot.belt.moveBelt(beltSpeed);
-    }
-   
-  } 
+
+  
+  //new ball in the lift from acq
+  private boolean checkNewBall(){
+   return Robot.belt.getSlot(0) || (!Robot.belt.getSlot(1) && moveUp) && !Robot.belt.getSlot(4);
+    /*
+    Move up if there is a ball in the lowest slot OR if the ball is already moving and there is no ball in slot 1
+    NEVER move the ball if there is a ball in the top slot, unless due to user input
+
+    May cause bug if there is an attempt to fire before any balls have been aquired
+    maybe add timer when moving automatically, and time out to avoid movement when empty?
+    or a flag when a ball has been recently aquired?
+    */
+  }
+
+  private boolean checkInput(){
+    return OI.getXboxButtonState("RT");
+  }
 
   // Called just before this Command runs the first time
   @Override
@@ -36,7 +47,11 @@ public class BeltControl extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute(){
-  controlBelt();
+    moveUp = checkInput() || checkNewBall();
+
+    if (moveUp) { 
+      Robot.belt.moveBelt(beltSpeed);
+    }
   }
 
   // Make this return true when this Command no longer needs to run execute()
