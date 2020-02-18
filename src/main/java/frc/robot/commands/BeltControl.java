@@ -24,7 +24,7 @@ public class BeltControl extends Command {
   
   //new ball in the lift from acq
   private boolean checkNewBall(){
-   return Robot.belt.getSlot(0) || (!Robot.belt.getSlot(1) && moveUp) && !Robot.belt.getSlot(4);
+   return Robot.belt.getSlot(0) || (!Robot.belt.getSlot(1) && moveUp && !checkInput()) && !Robot.belt.getSlot(4);
     /*
     Move up if there is a ball in the lowest slot OR if the ball is already moving and there is no ball in slot 1
     NEVER move the ball if there is a ball in the top slot, unless due to user input
