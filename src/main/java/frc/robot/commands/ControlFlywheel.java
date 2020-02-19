@@ -13,6 +13,12 @@ import frc.robot.Robot;
 import frc.robot.control.ButtonMap;
 
 public class ControlFlywheel extends Command {
+
+  private String toggleButton = "X";
+  private boolean prevToggle = false, flywheelIsOn = true;
+
+  private double wheelSpeed = 0.8;
+
   public ControlFlywheel() {
     // Use requires() here to declare subsystem dependencies
     requires(Robot.flywheel);
@@ -26,11 +32,18 @@ public class ControlFlywheel extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    if ((OI.getXboxButtonState("RT") || OI.getPanelButtonState(ButtonMap.mainButton))){
-        Robot.flywheel.moveWheel(1);
-    } else {
-        Robot.flywheel.moveWheel(0);
+    //toggle
+    if (OI.getXboxButtonState(toggleButton) != prevToggle){
+      flywheelIsOn = !flywheelIsOn;
     }
+
+    if (flywheelIsOn){
+      Robot.flywheel.moveWheel(wheelSpeed);
+    } else {
+      Robot.flywheel.moveWheel(wheelSpeed);
+    }
+
+    prevToggle = OI.getXboxButtonState(toggleButton);
   }
 
   // Make this return true when this Command no longer needs to run execute()
