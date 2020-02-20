@@ -1,4 +1,4 @@
-  /*----------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------------*/
 /* Copyright (c) 2017-2018 FIRST. All Rights Reserved.                        */
 /* Open Source Software - may be modified and shared by FRC teams. The code   */
 /* must be accompanied by the FIRST BSD license file in the root directory of */
@@ -8,22 +8,19 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
-//import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import frc.robot.Robot;
-//import frc.robot.subsystems.Drive2020;
 import frc.robot.OI;
+import frc.robot.Robot;
 
 /**
  * An example command.  You can replace me with your own command.
  */
-public class ManualDrive extends Command{
-
-  //input multiplier, reduces or increases the input value
-  private double inputMult = 0.5;
-
-  public ManualDrive() {
+public class ControlSpool extends Command {
+  private double spoolSpeed = 0.5;
+  private String raiseButton = "LB";
+  private String lowerButton = "RB";
+  public ControlSpool() {
     // Use requires() here to declare subsystem dependencies
-    requires(Robot.driveTrain);
+    requires(Robot.spool);
   }
 
   // Called just before this Command runs the first time
@@ -34,36 +31,13 @@ public class ManualDrive extends Command{
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    switch (Robot.currentRobot){
-      case MONOLITH:
-        driveMonolith();
-        break;
-      case ROBOT2020:
-        drive2020();
-        break;
+    if(OI.getXboxButtonState(lowerButton)){
+      Robot.spool.MoveSpool(spoolSpeed);
+    } else if(OI.getXboxButtonState(raiseButton)){
+     Robot.spool.MoveSpool(-spoolSpeed);
+    } else {
+      Robot.spool.MoveSpool(0);
     }
-  }
-  private double driveMonolith(){
-    double turnAmount = OI.getTurn() * inputMult;
-    double forwardAmount = OI.getForward() * inputMult;
-
-    double leftAmount = forwardAmount;
-    double rightAmount = forwardAmount;
-
-    leftAmount += turnAmount;
-    rightAmount -= turnAmount;
-
-    leftAmount = OI.accCurve(leftAmount);
-    rightAmount = OI.accCurve(rightAmount);
-
-    Robot.driveTrain.moveLeftWheels(leftAmount);
-    Robot.driveTrain.moveRightWheels(rightAmount);
-
-    return ((leftAmount + rightAmount) / 2);
-  }
-
-  private void drive2020(){
-    Robot.driveTrain.getDrive().arcadeDrive(OI.getForward(), OI.getTurn() * inputMult);
   }
 
   // Make this return true when this Command no longer needs to run execute()

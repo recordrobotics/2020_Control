@@ -10,13 +10,14 @@ package frc.robot.subsystems;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import frc.robot.RobotMap;
 import frc.robot.commands.ControlFlywheel;
 
 public class Flywheel2020 extends Subsystem {
 
-    //TODO set port number
-    private WPI_VictorSPX flywheelMotor = new WPI_VictorSPX(5);
-
+   
+    private WPI_VictorSPX flywheelMotor = new WPI_VictorSPX(RobotMap.flywheelMotorPort);
+    
     @Override
     public void initDefaultCommand() {
         setDefaultCommand(new ControlFlywheel());
@@ -25,5 +26,6 @@ public class Flywheel2020 extends Subsystem {
     public void moveWheel(double v){
         flywheelMotor.set(ControlMode.PercentOutput, v);
     }
+
 
 }

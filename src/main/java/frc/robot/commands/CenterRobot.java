@@ -19,13 +19,14 @@ public class CenterRobot extends SequentialCommandGroup {
   private static double distanceOffCenter = 1;
   private static double distanceFromTarget = 1;
   private static double distanceToMove = Math.pow(Math.pow(distanceOffCenter,2)+Math.pow(distanceFromTarget,2),0.5);
+  private static int sideOfTarget = 1; //Set to 1 or -1 depending on side
   public CenterRobot(AutoTurn AutoTurn, MoveForward MoveForward) {
 
   // Possibly needs one version for each side of the target
 
-    new AutoTurn(90+Math.atan(distanceFromTarget/distanceOffCenter));
+    new AutoTurn(sideOfTarget*(90+Math.atan(distanceFromTarget/distanceOffCenter)));
     new MoveForward(distanceToMove, 0.5);
-    new AutoTurn(90-Math.atan(distanceFromTarget/distanceOffCenter));
+    new AutoTurn(sideOfTarget*(90-Math.atan(distanceFromTarget/distanceOffCenter)));
   
   }
 }

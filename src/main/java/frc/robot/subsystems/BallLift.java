@@ -9,7 +9,8 @@ import com.ctre.phoenix.motorcontrol.can.*;
 import frc.robot.commands.*;
 
 public class BallLift extends Subsystem {
-  private WPI_VictorSPX beltMotor = new WPI_VictorSPX(-1);
+  private WPI_VictorSPX beltMotor = new WPI_VictorSPX(RobotMap.beltMotorPort);
+
 
   //array of limit switches that are triggered when a ball occupies it's slot
   private DigitalInput[] ballLimits = new DigitalInput[5];

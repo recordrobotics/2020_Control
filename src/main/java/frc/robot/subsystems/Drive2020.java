@@ -7,7 +7,7 @@
 
 package frc.robot.subsystems;
 
-import frc.robot.RobotMap;
+//import frc.robot.RobotMap;
 
 //If this is throwing an error - you need to install ctre Pheonix stuff, it's a pain, sorry :(
 import com.ctre.phoenix.motorcontrol.*;

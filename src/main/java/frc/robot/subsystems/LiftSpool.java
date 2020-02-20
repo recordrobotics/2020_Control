@@ -6,38 +6,34 @@
 /*----------------------------------------------------------------------------*/
 
 package frc.robot.subsystems;
-//import edu.wpi.first.wpilibj.AnalogInput;
-//import edu.wpi.first.wpilibj.PWM;
-//import edu.wpi.first.wpilibj.SerialPort;
-import edu.wpi.first.wpilibj.Ultrasonic;
+
 import edu.wpi.first.wpilibj.command.Subsystem;
-//import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
+import com.ctre.phoenix.motorcontrol.*;
+
+import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
+
+
+import frc.robot.commands.ControlSpool;
+
 
 /**
  * An example subsystem.  You can replace me with your own Subsystem.
  */
-public class RangeFinder extends Subsystem {
-  // factor to convert sensor values to a distance in inches
-
+public class LiftSpool extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
-  private Ultrasonic m_ultrasonic = new Ultrasonic(6, 7);
-
-  public RangeFinder(){
-    m_ultrasonic.setEnabled(true);
-    m_ultrasonic.setAutomaticMode(true);    
+  private WPI_VictorSPX robotSpoolMotorLeft = new WPI_VictorSPX(11);
+  private WPI_VictorSPX robotSpoolMotorRight = new WPI_VictorSPX(10);
+  
+  public void MoveSpool(double v){
+    robotSpoolMotorLeft.follow(robotSpoolMotorRight);
+    robotSpoolMotorRight.set(ControlMode.PercentOutput, v);
   }
-
-  public double getDistance() {
-    // sensor returns a value from 0-4095 that is scaled to inches
-    return m_ultrasonic.getRangeInches();
-    }
 
   @Override
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
-    // setDefaultCommand(new MySpecialCommand());
-   
-
+     setDefaultCommand(new ControlSpool());
   }
 }

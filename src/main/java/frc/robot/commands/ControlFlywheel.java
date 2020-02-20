@@ -10,14 +10,14 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.OI;
 import frc.robot.Robot;
-import frc.robot.control.ButtonMap;
+//import frc.robot.control.ButtonMap;
 
 public class ControlFlywheel extends Command {
 
   private String toggleButton = "X";
   private boolean prevToggle = false, flywheelIsOn = true;
 
-  private double wheelSpeed = 0.8;
+  private double wheelSpeed = 1;
 
   public ControlFlywheel() {
     // Use requires() here to declare subsystem dependencies
@@ -40,7 +40,7 @@ public class ControlFlywheel extends Command {
     if (flywheelIsOn){
       Robot.flywheel.moveWheel(wheelSpeed);
     } else {
-      Robot.flywheel.moveWheel(wheelSpeed);
+      Robot.flywheel.moveWheel(0);
     }
 
     prevToggle = OI.getXboxButtonState(toggleButton);

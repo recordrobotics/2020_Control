@@ -10,11 +10,11 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 import frc.robot.OI;
-import frc.robot.control.XboxJoystick;
+//import frc.robot.control.XboxJoystick;
 
 public class ControlAcquisition extends Command {
 
-    private double acqSpeed = -0.75;
+    private double acqSpeed = -0.5;
     private double tiltSpeed = 0.5;
 
     public ControlAcquisition() {

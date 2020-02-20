@@ -45,10 +45,12 @@ public class RobotMap {
 
 	//Set of subsystem motors 2020, temporary ports, set to real numbers later
 	public static int acquireMotorPort = 8;
-	public static int tiltMotorPort = -1;
-	public static int beltMotorPort = -1;
-	public static int flywheelMotorPort = -1;
-	public static int robotLiftMotorPort = -1;
+	public static int tiltMotorPort = 7;
+	public static int beltMotorPort = 6;
+	public static int flywheelMotorPort = 5;
+	public static int spoolLiftLeftMotor = 10;
+	public static int spoolLiftRightMotor = 11;
+	public static int robotLiftLeftMotorPort = 9;
 	
 	//lifting mechanism port
 	public static int liftPortMonolith = 4;

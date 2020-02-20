@@ -9,6 +9,7 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import frc.robot.RobotMap;
 import frc.robot.commands.ControlAcquisition;
 
 import com.ctre.phoenix.motorcontrol.*;
@@ -16,8 +17,8 @@ import com.ctre.phoenix.motorcontrol.can.*;
 
 public class Acquisition2020 extends Subsystem {
 
-    private WPI_VictorSPX acquireMotor = new WPI_VictorSPX(8);
-    private WPI_VictorSPX tiltMotor = new WPI_VictorSPX(7);
+    private WPI_VictorSPX acquireMotor = new WPI_VictorSPX(RobotMap.acquireMotorPort);
+    private WPI_VictorSPX tiltMotor = new WPI_VictorSPX(RobotMap.tiltMotorPort);
 
     DigitalInput limitTop;
     DigitalInput limitBottom;

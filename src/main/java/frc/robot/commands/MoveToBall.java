@@ -10,11 +10,12 @@ import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.Robot;
 import frc.robot.commands.AutoTurn;
 import frc.robot.commands.MoveForward;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 /**
  * An example command.  You can replace me with your own command.
  */
 public class MoveToBall extends SequentialCommandGroup {
-  private static double pyangle = 1;
+  private static double pyangle = SmartDashboard.getNumber("Angle to Ball", 359);
   private static double rangeDistance = Robot.rangeFinder.getDistance();
 
   public MoveToBall(AutoTurn AutoTurn, MoveForward MoveForward){
