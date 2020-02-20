@@ -11,13 +11,14 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.commands.AutoTurn;
 import frc.robot.commands.MoveForward;
+//import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 /**
  * An example command.  You can replace me with your own command.
  */
 public class CenterRobot extends SequentialCommandGroup {
   //TODO: Set distances to correct values
-  private static double distanceOffCenter = 1;
-  private static double distanceFromTarget = 1;
+  private static double distanceOffCenter = 1; // How are we getting this?
+  private static double distanceFromTarget = 1; //SmartDashboard.getNumber("NAME OF DISTANCE", 100);
   private static double distanceToMove = Math.pow(Math.pow(distanceOffCenter,2)+Math.pow(distanceFromTarget,2),0.5);
   private static int sideOfTarget = 1; //Set to 1 or -1 depending on side
   public CenterRobot(AutoTurn AutoTurn, MoveForward MoveForward) {
