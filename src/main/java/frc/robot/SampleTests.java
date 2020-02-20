@@ -16,6 +16,6 @@ Thanks - Rit
 public class SampleTests {
     @Test
     void test1() {
-        Assertions.assertEquals(7, 7)
+        Assertions.assertEquals(7, 7);
     }
 }
