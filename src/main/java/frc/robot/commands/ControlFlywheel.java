@@ -15,7 +15,7 @@ import frc.robot.Robot;
 public class ControlFlywheel extends Command {
 
   private String toggleButton = "X";
-  private boolean prevToggle = false, flywheelIsOn = true;
+  private boolean prevToggle = false, flywheelIsOn = false;
 
   private double wheelSpeed = 1;
 
@@ -33,7 +33,7 @@ public class ControlFlywheel extends Command {
   @Override
   protected void execute() {
     //toggle
-    if (OI.getXboxButtonState(toggleButton) != prevToggle){
+    if ((OI.getXboxButtonState(toggleButton) != prevToggle) && OI.getXboxButtonState(toggleButton)){
       flywheelIsOn = !flywheelIsOn;
     }
 
@@ -42,6 +42,7 @@ public class ControlFlywheel extends Command {
     } else {
       Robot.flywheel.moveWheel(0);
     }
+
 
     prevToggle = OI.getXboxButtonState(toggleButton);
   }
