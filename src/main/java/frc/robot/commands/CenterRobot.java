@@ -8,25 +8,25 @@
 package frc.robot.commands;
 
 
-import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
+import edu.wpi.first.wpilibj.command.CommandGroup;
 import frc.robot.commands.AutoTurn;
 import frc.robot.commands.MoveForward;
 /**
  * An example command.  You can replace me with your own command.
  */
-public class CenterRobot extends SequentialCommandGroup {
+public class CenterRobot extends CommandGroup {
   //TODO: Set distances to correct values
-  private static double distanceOffCenter = 1;
-  private static double distanceFromTarget = 1;
-  private static double distanceToMove = Math.pow(Math.pow(distanceOffCenter,2)+Math.pow(distanceFromTarget,2),0.5);
-  private static int sideOfTarget = 1; //Set to 1 or -1 depending on side
-  public CenterRobot(AutoTurn AutoTurn, MoveForward MoveForward) {
+  private double distanceToMove;
+  private final double distLineToGoal = 0;
 
-  // Possibly needs one version for each side of the target
+  public CenterRobot(double distanceFromTarget, double distanceOffCenter) {
+    distanceToMove = Math.pow(Math.pow(distanceOffCenter,2)+Math.pow(distanceFromTarget,2),0.5);
+    distanceFromTarget -= distLineToGoal;
 
-    new AutoTurn(sideOfTarget*(90+Math.atan(distanceFromTarget/distanceOffCenter)));
-    new MoveForward(distanceToMove, 0.5);
-    new AutoTurn(sideOfTarget*(90-Math.atan(distanceFromTarget/distanceOffCenter)));
+    // Possibly needs one version for each side of the target
+    addSequential(new AutoTurn(Math.atan(distanceFromTarget/distanceOffCenter)));
+    addSequential(new MoveForward(distanceToMove, 0.5));
+    addSequential(new AutoTurn(Math.atan(distanceFromTarget/distanceOffCenter)));
   
   }
 }
