@@ -6,7 +6,7 @@
 /*----------------------------------------------------------------------------*/
 
 package frc.robot.commands;
-import edu.wpi.first.wpilibj.command.CommandGroup;
+import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.Robot;
 import frc.robot.commands.AutoTurn;
 import frc.robot.commands.MoveForward;
@@ -14,14 +14,13 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 /**
  * An example command.  You can replace me with your own command.
  */
-public class MoveToBall extends CommandGroup {
-  
+public class MoveToBall extends SequentialCommandGroup {
+  private static double pyangle = SmartDashboard.getNumber("Angle to Ball", 359);
+  private static double rangeDistance = Robot.rangeFinder.getDistance();
 
-  public MoveToBall(double pyangle, double rangeDistance){
-    pyangle = SmartDashboard.getNumber("Angle to Ball", 359);
-    rangeDistance = Robot.rangeFinder.getDistance();
-   addSequential(new AutoTurn(pyangle));
-   addSequential(new MoveForward(rangeDistance, 1));
+  public MoveToBall(AutoTurn AutoTurn, MoveForward MoveForward){
+    new AutoTurn(pyangle);
+    new MoveForward(rangeDistance, 1);
  
   }
  
