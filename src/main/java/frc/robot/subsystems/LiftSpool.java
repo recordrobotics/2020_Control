@@ -17,12 +17,7 @@ import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 import frc.robot.commands.ControlSpool;
 
 
-/**
- * An example subsystem.  You can replace me with your own Subsystem.
- */
 public class LiftSpool extends Subsystem {
-  // Put methods for controlling this subsystem
-  // here. Call these from Commands.
   private WPI_VictorSPX robotSpoolMotorLeft = new WPI_VictorSPX(11);
   private WPI_VictorSPX robotSpoolMotorRight = new WPI_VictorSPX(10);
   
@@ -33,7 +28,6 @@ public class LiftSpool extends Subsystem {
 
   @Override
   public void initDefaultCommand() {
-    // Set the default command for a subsystem here.
      setDefaultCommand(new ControlSpool());
   }
 }
