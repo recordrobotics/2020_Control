@@ -13,7 +13,7 @@ public class Gyro2020 extends Gyroscope{
     private AHRS gyro = new AHRS(I2C.Port.kOnboard);
 
     public double getDeg(){
-        return gyro.getAngle();
+        return gyro.getPitch();
     }
 
     public double getRad(){

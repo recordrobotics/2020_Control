@@ -65,7 +65,7 @@ public class XboxJoystick extends Controller{
     }
 
     public double getYAxis (){
-        return -0.25*xbox.getY(Hand.kLeft);
+        return xbox.getY(Hand.kLeft);
     }
     /**
      * Gets whether or not a button is pressed as a boolean

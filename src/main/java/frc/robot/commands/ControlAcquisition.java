@@ -8,6 +8,7 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Robot;
 import frc.robot.OI;
 //import frc.robot.control.XboxJoystick;
@@ -15,14 +16,15 @@ import frc.robot.OI;
 public class ControlAcquisition extends Command {
 
     private double acqSpeed = -0.5;
-    private double tiltSpeed = 0.5;
+    private double tiltSpeed = 1;
+    private double upperAngle = 0, lowerAngle = -105;
 
     public ControlAcquisition() {
         // Use requires() here to declare subsystem dependencies
         requires(Robot.acq);
     }
 
-    boolean inputPosition = true; //true is up, false is down
+    boolean tiltPosition = false; //true is up, false is down
 
     private void controlAcq() {
         //control the acqusition wheels
@@ -33,18 +35,26 @@ public class ControlAcquisition extends Command {
         } else {
             Robot.acq.moveAcq(0);
         }
+
+        if (OI.getXboxButtonState("RB")){
+            Robot.acq.moveTilt(tiltSpeed);
+        } else if (OI.getXboxButtonState("LB")){
+            Robot.acq.moveTilt(-tiltSpeed);
+        } else {
+            Robot.acq.moveTilt(0);
+        }
     }
 
     private void controlTilt(){
-        //control the tilting system
-        if (!Robot.acq.getTopLimit() && inputPosition) {
-            Robot.acq.moveTilt(tiltSpeed);
-        }
-        else if (!Robot.acq.getBottomLimit() && !inputPosition) {
-            Robot.acq.moveTilt(-tiltSpeed);
-        }
+       if (tiltPosition && Robot.acq.getAngle() < upperAngle){
+           Robot.acq.moveTilt(tiltSpeed);
+       } else if (!tiltPosition && Robot.acq.getAngle() > lowerAngle){
+           Robot.acq.moveTilt(-tiltSpeed);
+       } else {
+           Robot.acq.moveTilt(0);
+       }
     }
-
+    
     // Called just before this Command runs the first time
     @Override
     protected void initialize() {
@@ -58,11 +68,13 @@ public class ControlAcquisition extends Command {
     protected void execute() {
         //control the toggle, this will invert inputPosition when "A" is pressed
         if (!prevButton && OI.getXboxButtonState(toggleButton)) {
-            inputPosition = !inputPosition;
+            tiltPosition = !tiltPosition;
         }
 
         controlAcq();
         //controlTilt();
+
+        SmartDashboard.putNumber("tilt angle", Robot.acq.getAngle());
 
         prevButton = OI.getXboxButtonState(toggleButton);
     }

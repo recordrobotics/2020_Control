@@ -25,7 +25,7 @@ public class BallLift extends Subsystem {
   }
   
   public void initDefaultCommand() {
-      //setDefaultCommand(new BeltControl());
+      setDefaultCommand(new BeltControl());
   }
   
   public void moveBelt(double v){

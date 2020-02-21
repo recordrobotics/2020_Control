@@ -102,10 +102,9 @@ public class Robot extends TimedRobot {
 
   private void robot2020Init(){
     driveTrain = new Drive2020();
-    //gyro = new Gyroscope(2);
-    //gyroInit();
-    acq = new Acquisition2020();
     gyro = new Gyro2020();
+    gyroInit();
+    acq = new Acquisition2020();
     flywheel = new Flywheel2020();
     belt = new BallLift();
     spool = new LiftSpool();

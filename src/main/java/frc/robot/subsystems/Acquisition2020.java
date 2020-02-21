@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
 import frc.robot.commands.ControlAcquisition;
+import edu.wpi.first.wpilibj.Encoder;
 
 import com.ctre.phoenix.motorcontrol.*;
 import com.ctre.phoenix.motorcontrol.can.*;
@@ -23,9 +24,12 @@ public class Acquisition2020 extends Subsystem {
     DigitalInput limitTop;
     DigitalInput limitBottom;
 
+    Encoder acqEncoder = new Encoder(5, 30); //30 is placeholder value. Encoder only needs one port?
+
     public Acquisition2020(){
         //limitTop = new DigitalInput(3);
         //limitBottom = new DigitalInput(3);
+        acqEncoder.reset();
     }
 
     public void moveAcq(double v) {
@@ -43,7 +47,11 @@ public class Acquisition2020 extends Subsystem {
     public boolean getBottomLimit(){
         return limitBottom.get();
     }
-
+    
+    public double getAngle(){
+        return acqEncoder.get() * 360/174.9;
+    }
+    
     @Override
     public void initDefaultCommand() {
         setDefaultCommand(new ControlAcquisition());

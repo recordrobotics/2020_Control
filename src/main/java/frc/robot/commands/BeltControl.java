@@ -47,11 +47,16 @@ public class BeltControl extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute(){
-    moveUp = checkInput() || checkNewBall();
+    //moveUp = checkInput() || checkNewBall();
+    
+    moveUp = checkInput();
 
     if (moveUp) { 
       Robot.belt.moveBelt(beltSpeed);
+    } else {
+      Robot.belt.moveBelt(0);
     }
+    
   }
 
   // Make this return true when this Command no longer needs to run execute()

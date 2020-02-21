@@ -23,7 +23,7 @@ public class OI {
   private static ButtonPanelController buttonPanel = new ButtonPanelController();
   private static HotasController hotas = new HotasController();
   private static XboxJoystick xbox = new XboxJoystick();
-  private static Controller joystick = hotas;
+  private static Controller joystick = xbox;
 
   boolean enablePID = false; //do not set to true unless you know what you are doing. It causes issues. 
   
@@ -39,12 +39,12 @@ public class OI {
     String autoRightXboxButton = XboxMap.aTurnRStr; //Xbox button to use for turing the robot 90 degrees to the right
     String autoLeftXboxButton = XboxMap.aTurnLStr; //Xbox button to use for turing the robot 90 degrees to the left
     
-
+    /*
     buttonPanel.getButton(autoRightButton).whenPressed(new AutoTurn(90 * dirMult)); //right turn
     buttonPanel.getButton(autoLeftButton).whenPressed(new AutoTurn(90 * -dirMult)); //left turn
     xbox.getButton(autoLeftXboxButton).whenPressed(new AutoTurn(90 * -xboxDirMult)); //left turn
     xbox.getButton(autoRightXboxButton).whenPressed(new AutoTurn(90 * xboxDirMult)); //right turn
-
+    */
   }
 
   /*
@@ -99,7 +99,7 @@ public class OI {
   }
 
   public static double getTurn(){
-    return joystick.getZ();
+    return joystick.getXAxis();
 
   }
   //temp

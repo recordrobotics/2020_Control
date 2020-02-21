@@ -50,7 +50,7 @@ public class RobotMap {
 	public static int flywheelMotorPort = 5;
 	public static int spoolLiftLeftMotor = 10;
 	public static int spoolLiftRightMotor = 11;
-	public static int robotLiftLeftMotorPort = 9;
+	public static int robotLiftLeftMotorPort = 9; 
 	
 	//lifting mechanism port
 	public static int liftPortMonolith = 4;
