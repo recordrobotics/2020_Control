@@ -10,6 +10,7 @@ package frc.robot;
 import frc.robot.control.ButtonPanelController;
 import frc.robot.control.HotasController;
 import frc.robot.commands.AutoTurn;
+import frc.robot.commands.MoveForward;
 import frc.robot.control.XboxJoystick;
 import frc.robot.control.XboxMap;
 import frc.robot.control.Controller;
@@ -45,6 +46,7 @@ public class OI {
     xbox.getButton(autoLeftXboxButton).whenPressed(new AutoTurn(90 * -xboxDirMult)); //left turn
     xbox.getButton(autoRightXboxButton).whenPressed(new AutoTurn(90 * xboxDirMult)); //right turn
     */
+    xbox.getButton("B").whenPressed(new MoveForward(24, -0.3));
   }
 
   /*

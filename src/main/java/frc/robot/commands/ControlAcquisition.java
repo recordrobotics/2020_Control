@@ -17,14 +17,14 @@ public class ControlAcquisition extends Command {
 
     private double acqSpeed = -0.5;
     private double tiltSpeed = 1;
-    private double upperAngle = 0, lowerAngle = -105;
+    private double upperAngle = 5, lowerAngle = 0;
 
     public ControlAcquisition() {
         // Use requires() here to declare subsystem dependencies
         requires(Robot.acq);
     }
 
-    boolean tiltPosition = false; //true is up, false is down
+
 
     private void controlAcq() {
         //control the acqusition wheels
@@ -46,13 +46,15 @@ public class ControlAcquisition extends Command {
     }
 
     private void controlTilt(){
-       if (tiltPosition && Robot.acq.getAngle() < upperAngle){
-           Robot.acq.moveTilt(tiltSpeed);
-       } else if (!tiltPosition && Robot.acq.getAngle() > lowerAngle){
-           Robot.acq.moveTilt(-tiltSpeed);
-       } else {
-           Robot.acq.moveTilt(0);
-       }
+        boolean tiltPosition = Robot.acq.getTiltPosition();
+
+        if (!tiltPosition && Robot.acq.getAngle() < upperAngle){
+            Robot.acq.moveTilt(-tiltSpeed);
+        } else if (tiltPosition && Robot.acq.getAngle() > lowerAngle){
+            Robot.acq.moveTilt(tiltSpeed);
+        } else {
+            Robot.acq.moveTilt(0);
+        }
     }
     
     // Called just before this Command runs the first time
@@ -67,8 +69,8 @@ public class ControlAcquisition extends Command {
     @Override
     protected void execute() {
         //control the toggle, this will invert inputPosition when "A" is pressed
-        if (!prevButton && OI.getXboxButtonState(toggleButton)) {
-            tiltPosition = !tiltPosition;
+        if (prevButton != OI.getXboxButtonState(toggleButton) && OI.getXboxButtonState(toggleButton)) {
+            Robot.acq.setTiltPosition(!Robot.acq.getTiltPosition());
         }
 
         controlAcq();

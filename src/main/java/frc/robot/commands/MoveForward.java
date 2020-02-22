@@ -20,6 +20,11 @@ public class MoveForward extends Command {
         speed = sp;
     }
 
+    public MoveForward(){
+        distance = Robot.rangeFinder.getDistance();
+        speed = 0.7;
+    }
+
     // Called just before this Command runs the first time
     @Override
     protected void initialize() {

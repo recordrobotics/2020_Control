@@ -17,12 +17,10 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class MoveToBall extends CommandGroup {
   private static double pyangle = SmartDashboard.getNumber("Angle to Ball", 0);
-  private static double rangeDistance = Robot.rangeFinder.getDistance();
-
 
   public MoveToBall(){
     addSequential(new AutoTurn(pyangle));
-    addSequential(new MoveForward(rangeDistance, 0.8));
+    addSequential(new MoveForward());
  
   }
  

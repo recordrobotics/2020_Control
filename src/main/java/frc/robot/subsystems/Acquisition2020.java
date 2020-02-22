@@ -7,11 +7,12 @@
 
 package frc.robot.subsystems;
 
+import edu.wpi.first.wpilibj.AnalogEncoder;
+import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
 import frc.robot.commands.ControlAcquisition;
-import edu.wpi.first.wpilibj.Encoder;
 
 import com.ctre.phoenix.motorcontrol.*;
 import com.ctre.phoenix.motorcontrol.can.*;
@@ -24,12 +25,23 @@ public class Acquisition2020 extends Subsystem {
     DigitalInput limitTop;
     DigitalInput limitBottom;
 
-    Encoder acqEncoder = new Encoder(5, 30); //30 is placeholder value. Encoder only needs one port?
+    AnalogInput encoderInput = new AnalogInput(0);
+    AnalogEncoder acqEncoder = new AnalogEncoder(encoderInput);
+
+    boolean tiltPosition = true; //true is up, false is down
 
     public Acquisition2020(){
         //limitTop = new DigitalInput(3);
         //limitBottom = new DigitalInput(3);
         acqEncoder.reset();
+    }
+
+    public boolean getTiltPosition() {
+        return tiltPosition;
+    }
+    
+    public void setTiltPosition(boolean pos){
+        tiltPosition = pos;
     }
 
     public void moveAcq(double v) {

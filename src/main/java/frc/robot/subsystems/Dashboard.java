@@ -6,6 +6,8 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 //import frc.robot.OI;
 import frc.robot.Robot;
 import frc.robot.Robot.CurrentRobot;
+import frc.robot.commands.AutoTurn;
+import frc.robot.commands.MoveForward;
 
 public class Dashboard extends Subsystem {
   // Put methods for controlling this subsystem
@@ -42,17 +44,16 @@ public class Dashboard extends Subsystem {
   }
 
   private void display2020(){
-    /*
+    
     SmartDashboard.putNumber("Right Encoder", Robot.driveTrain.getRightEncoder());
     SmartDashboard.putNumber("Left Encoder", Robot.driveTrain.getLeftEncoder());
     SmartDashboard.putNumber("Gyro Angle", Robot.gyro.getDeg());
 
-    SmartDashboard.putData("Move 3ft", new MoveForward(36, 0.2));
+    SmartDashboard.putData("Move 3ft", new MoveForward(24, 0.2));
     SmartDashboard.putData("Turn Left", new AutoTurn(-90));
     SmartDashboard.putData("Turn Right", new AutoTurn(90));
-    */
+    
     SmartDashboard.putNumber("Range Found", Robot.rangeFinder.getDistance());
-    SmartDashboard.putNumber("Gyro Angle", Robot.gyro.getDeg());
     
   }
 

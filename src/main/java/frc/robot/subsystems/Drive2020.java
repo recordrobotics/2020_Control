@@ -47,11 +47,11 @@ public class Drive2020 extends DriveTrain {
     }
 
     public double getRightEncoder(){
-        return -rightEnc.getDistance();
+        return rightEnc.getDistance();
     }
 
     public double getLeftEncoder(){
-        return leftEnc.getDistance();
+        return -leftEnc.getDistance();
     }
 
     public DifferentialDrive getDrive() {return drive;}
