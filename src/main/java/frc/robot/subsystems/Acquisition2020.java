@@ -63,6 +63,10 @@ public class Acquisition2020 extends Subsystem {
     public double getAngle(){
         return acqEncoder.get() * 360/174.9;
     }
+
+    public boolean isAcqOn(){
+        return acquireMotor.get() > 0;
+    }
     
     @Override
     public void initDefaultCommand() {

@@ -8,6 +8,7 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.OI;
 import frc.robot.Robot;
 //import frc.robot.control.ButtonMap;
@@ -37,6 +38,7 @@ public class ControlFlywheel extends Command {
     //toggle
     if ((getButton() != prevToggle) && getButton()){
       flywheelIsOn = !flywheelIsOn;
+      System.out.println("toggle! " + flywheelIsOn);
     }
 
     if (flywheelIsOn){
@@ -44,7 +46,6 @@ public class ControlFlywheel extends Command {
     } else {
       Robot.flywheel.moveWheel(0);
     }
-
 
     prevToggle = getButton();
   }

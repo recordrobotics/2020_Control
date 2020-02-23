@@ -16,7 +16,7 @@ import frc.robot.commands.ControlFlywheel;
 public class Flywheel2020 extends Subsystem {
 
    
-    private WPI_VictorSPX flywheelMotor = new WPI_VictorSPX(RobotMap.flywheelMotorPort);
+    private WPI_VictorSPX flywheelMotor = new WPI_VictorSPX (RobotMap.flywheelMotorPort);
     
     @Override
     public void initDefaultCommand() {
@@ -26,6 +26,10 @@ public class Flywheel2020 extends Subsystem {
     public void moveWheel(double v){
         flywheelMotor.set(ControlMode.PercentOutput, v);
     }
-
+    /*
+    public double getSpeed(){
+        return flywheelMotor.get();
+    }
+    */
 
 }

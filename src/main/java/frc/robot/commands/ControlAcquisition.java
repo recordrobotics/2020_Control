@@ -31,7 +31,8 @@ public class ControlAcquisition extends Command {
        
         if (OI.getXboxButtonState(acqButton)){
             Robot.acq.moveAcq(acqSpeed);
-         
+        } else if (OI.getXboxButtonState(reverseButton)){
+            Robot.acq.moveAcq(-acqSpeed);
         } else {
             Robot.acq.moveAcq(0);
         }
@@ -63,16 +64,18 @@ public class ControlAcquisition extends Command {
     }
     boolean prevButton = false;
     String toggleButton = "A";
+    String reverseButton = "A";
     String acqButton = "LT";
 
     // Called repeatedly when this Command is scheduled to run
     @Override
     protected void execute() {
         //control the toggle, this will invert inputPosition when "A" is pressed
+        /*
         if (prevButton != OI.getXboxButtonState(toggleButton) && OI.getXboxButtonState(toggleButton)) {
             Robot.acq.setTiltPosition(!Robot.acq.getTiltPosition());
         }
-
+        */
         controlAcq();
         //controlTilt();
 

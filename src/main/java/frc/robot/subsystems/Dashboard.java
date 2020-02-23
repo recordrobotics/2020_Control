@@ -52,6 +52,8 @@ public class Dashboard extends Subsystem {
     SmartDashboard.putData("Move 3ft", new MoveForward(24, 0.2));
     SmartDashboard.putData("Turn Left", new AutoTurn(-90));
     SmartDashboard.putData("Turn Right", new AutoTurn(90));
+
+    //SmartDashboard.putNumber("Flywheel Speed", Robot.flywheel.getSpeed());
     
     SmartDashboard.putNumber("Range Found", Robot.rangeFinder.getDistance());
     

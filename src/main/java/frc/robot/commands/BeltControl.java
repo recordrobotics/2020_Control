@@ -53,7 +53,10 @@ public class BeltControl extends Command {
 
     if (moveUp) { 
       Robot.belt.moveBelt(beltSpeed);
-    } else {
+    } else if (OI.getXboxButtonState("B")){
+      Robot.belt.moveBelt(-beltSpeed);
+    }
+    else {
       Robot.belt.moveBelt(0);
     }
     

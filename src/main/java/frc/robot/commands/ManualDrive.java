@@ -19,7 +19,7 @@ import frc.robot.OI;
 public class ManualDrive extends Command{
 
   //input multiplier, reduces or increases the input value
-  private double inputMult = 0.5;
+  private double turnMult = 0.5, fwdMult = 0.7;
 
   public ManualDrive() {
     // Use requires() here to declare subsystem dependencies
@@ -44,8 +44,8 @@ public class ManualDrive extends Command{
     }
   }
   private double driveMonolith(){
-    double turnAmount = OI.getTurn() * inputMult;
-    double forwardAmount = OI.getForward() * inputMult;
+    double turnAmount = OI.getTurn() * turnMult;
+    double forwardAmount = OI.getForward() * fwdMult;
 
     double leftAmount = forwardAmount;
     double rightAmount = forwardAmount;
@@ -63,7 +63,7 @@ public class ManualDrive extends Command{
   }
 
   private void drive2020(){
-    Robot.driveTrain.getDrive().arcadeDrive(OI.getForward(), OI.getTurn() * inputMult);
+    Robot.driveTrain.getDrive().arcadeDrive(OI.getForward() * fwdMult, OI.getTurn() * turnMult);
   }
 
   // Make this return true when this Command no longer needs to run execute()
