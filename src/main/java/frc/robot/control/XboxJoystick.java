@@ -69,7 +69,7 @@ public class XboxJoystick extends Controller{
     }
     /**
      * Gets whether or not a button is pressed as a boolean
-     * @param buttonName The common abbreviation for the button <p> Accepted inputs are X, Y, A, B, LB, RB, LT, and RT <p> Non-accepted inputs will return false
+     * @param buttonName The common abbreviation for the button <p> Accepted inputs are X, Y, A, B, LB, RB, LS, RS, LT, RT, START, and BACK <p> Non-accepted inputs will return false
      * @return The boolean value of the button
      */
     public boolean getButtonState (String buttonName){
@@ -88,10 +88,18 @@ public class XboxJoystick extends Controller{
                 return xbox.getBumper(Hand.kLeft);
             case "RB":
                 return xbox.getBumper(Hand.kRight);
+            case "LS":
+                return xbox.getStickButton(Hand.kLeft);
+            case "RS":
+                return xbox.getStickButton(Hand.kRight);
             case "LT":
                 return getTrigger("LT");
             case "RT":
                 return getTrigger("RT");
+            case "START":
+                return xbox.getStartButton();
+            case "BACK":
+                return xbox.getBackButton();
             default:
                 return false;
         }
@@ -131,6 +139,7 @@ public class XboxJoystick extends Controller{
             
         }
     }
+
     // unused but planned direct support for commands in the XboxJoystick class, would work similar to whenPressed for a Button
     public void whenXBPressed(String buttonName, final Command command){
     }
