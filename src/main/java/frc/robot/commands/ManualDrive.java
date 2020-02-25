@@ -67,8 +67,10 @@ public class ManualDrive extends Command{
     double fwdMult2020 = fwdMult;
     double turnMult2020 = turnMult;
     if (OI.getXboxButtonState("LS")){
+
       fwdMult2020 = fwdMult * 1.5;
       turnMult2020 = turnMult * 1.5;
+
       if (fwdMult2020>1){
         fwdMult2020 = 1;
       }
@@ -76,7 +78,7 @@ public class ManualDrive extends Command{
         turnMult2020 = 1;
       }
     }
-    Robot.driveTrain.getDrive().arcadeDrive(OI.getForward() * fwdMult, OI.getTurn() * turnMult);
+    Robot.driveTrain.getDrive().arcadeDrive(OI.getForward() * fwdMult2020, OI.getTurn() * turnMult2020);
   }
 
   // Make this return true when this Command no longer needs to run execute()
