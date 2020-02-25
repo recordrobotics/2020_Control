@@ -20,6 +20,7 @@ public class ManualDrive extends Command{
 
   //input multiplier, reduces or increases the input value
   private double turnMult = 0.5, fwdMult = 0.7;
+  
 
   public ManualDrive() {
     // Use requires() here to declare subsystem dependencies
@@ -63,6 +64,18 @@ public class ManualDrive extends Command{
   }
 
   private void drive2020(){
+    double fwdMult2020 = fwdMult;
+    double turnMult2020 = turnMult;
+    if (OI.getXboxButtonState("LS")){
+      fwdMult2020 = fwdMult * 1.5;
+      turnMult2020 = turnMult * 1.5;
+      if (fwdMult2020>1){
+        fwdMult2020 = 1;
+      }
+      if (turnMult2020>1){
+        turnMult2020 = 1;
+      }
+    }
     Robot.driveTrain.getDrive().arcadeDrive(OI.getForward() * fwdMult, OI.getTurn() * turnMult);
   }
 
