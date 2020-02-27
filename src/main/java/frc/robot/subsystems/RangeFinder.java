@@ -21,7 +21,7 @@ public class RangeFinder extends Subsystem {
 
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
-  private Ultrasonic m_ultrasonic = new Ultrasonic(6, 7);
+  private Ultrasonic m_ultrasonic = new Ultrasonic(8, 9);
 
   public RangeFinder(){
     m_ultrasonic.setEnabled(true);
