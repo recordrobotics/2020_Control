@@ -24,16 +24,23 @@ public class Acquisition2020 extends Subsystem {
 
     DigitalInput limitTop;
     DigitalInput limitBottom;
+    DigitalInput tiltLimit;
 
     AnalogInput encoderInput = new AnalogInput(0);
     AnalogEncoder acqEncoder = new AnalogEncoder(encoderInput);
 
+    private double tiltSpeed = 1;
     boolean tiltPosition = true; //true is up, false is down
 
     public Acquisition2020(){
         //limitTop = new DigitalInput(3);
         //limitBottom = new DigitalInput(3);
+        tiltLimit = new DigitalInput(4);
         acqEncoder.reset();
+    }
+
+    public double getTiltSpeed(){
+        return tiltSpeed;
     }
 
     public boolean getTiltPosition() {
@@ -51,15 +58,11 @@ public class Acquisition2020 extends Subsystem {
     public void moveTilt(double v) {
         tiltMotor.set(ControlMode.PercentOutput, v);
     }
+     
+    public boolean getTiltLimit(){
+        return tiltLimit.get();
+     }
 
-    public boolean getTopLimit(){
-        return limitTop.get();
-    }
-
-    public boolean getBottomLimit(){
-        return limitBottom.get();
-    }
-    
     public double getAngle(){
         return acqEncoder.get() * 360/174.9;
     }

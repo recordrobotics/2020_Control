@@ -16,15 +16,12 @@ import frc.robot.OI;
 public class ControlAcquisition extends Command {
 
     private double acqSpeed = -0.5;
-    private double tiltSpeed = 1;
     private double upperAngle = 5, lowerAngle = 0;
 
     public ControlAcquisition() {
         // Use requires() here to declare subsystem dependencies
         requires(Robot.acq);
     }
-
-
 
     private void controlAcq() {
         //control the acqusition wheels
@@ -38,9 +35,9 @@ public class ControlAcquisition extends Command {
         }
 
         if (OI.getXboxButtonState("RB")){
-            Robot.acq.moveTilt(tiltSpeed);
+            Robot.acq.moveTilt(Robot.acq.getTiltSpeed());
         } else if (OI.getXboxButtonState("LB")){
-            Robot.acq.moveTilt(-tiltSpeed);
+            Robot.acq.moveTilt(-Robot.acq.getTiltSpeed());
         } else {
             Robot.acq.moveTilt(0);
         }
@@ -50,9 +47,9 @@ public class ControlAcquisition extends Command {
         boolean tiltPosition = Robot.acq.getTiltPosition();
 
         if (!tiltPosition && Robot.acq.getAngle() < upperAngle){
-            Robot.acq.moveTilt(-tiltSpeed);
+            Robot.acq.moveTilt(-Robot.acq.getTiltSpeed());
         } else if (tiltPosition && Robot.acq.getAngle() > lowerAngle){
-            Robot.acq.moveTilt(tiltSpeed);
+            Robot.acq.moveTilt(Robot.acq.getTiltSpeed());
         } else {
             Robot.acq.moveTilt(0);
         }
