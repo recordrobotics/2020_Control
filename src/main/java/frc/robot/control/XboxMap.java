@@ -8,7 +8,10 @@ public final class XboxMap{
     private static int yButton = 4;
     private static int rBumper = 6;
     private static int lBumper = 5;
-
+    private static int rightStickYUp = 7;
+    private static int rightStickYDown = 8;
+    private static int rightStickXUp = 9;
+    private static int rightStickXDown = 10;
     /**
      * Port value for auto turn left button
      */
