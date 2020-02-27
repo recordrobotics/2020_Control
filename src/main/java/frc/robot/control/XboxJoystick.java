@@ -54,10 +54,10 @@ public class XboxJoystick extends Controller{
             case "RSYDOWN":
                 button = 8;
                 break;
-            case "RSXUP":
+            case "RSXRIGHT":
                 button = 9;
                 break;
-            case "RSXDOWN":
+            case "RSXLEFT":
                 button = 10;
                 break;
             default:
@@ -112,10 +112,10 @@ public class XboxJoystick extends Controller{
                 return getRightStickYUp();
             case "RSYDOWN":
                 return getRightStickYDown();
-            case "RSXUP":
-                return getRightStickXUp();
-            case "RSXDOWN":
-                return getRightStickXDown();
+            case "RSXRIGHT":
+                return getRightStickXRight();
+            case "RSXLEFT":
+                return getRightStickXLeft();
             case "START":
                 return xbox.getStartButton();
             case "BACK":
@@ -133,7 +133,7 @@ public class XboxJoystick extends Controller{
         return xbox.getY(Hand.kRight);
     }
 
-    public boolean getRightStickXUp() {
+    public boolean getRightStickXRight() {
         if (getCStickXAxis() > 0.5) {
             return true;
         }
@@ -142,7 +142,7 @@ public class XboxJoystick extends Controller{
         }
     }
     
-    public boolean getRightStickXDown() {
+    public boolean getRightStickXLeft() {
         if (getCStickXAxis() > -0.5) {
             return true;
         }
