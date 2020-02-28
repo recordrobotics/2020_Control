@@ -108,6 +108,7 @@ public class Robot extends TimedRobot {
     flywheel = new Flywheel2020();
     belt = new BallLift();
     spool = new LiftSpool();
+    o.set(true);
 
   }
 
@@ -143,11 +144,7 @@ public class Robot extends TimedRobot {
   private boolean prevLampState = false;
   @Override
   public void robotPeriodic() {
-    if (!prevLampState && OI.getXboxButtonState("Y")){
-      o.set(!o.get());
-      System.out.println("Hi");
-    }
-    prevLampState = OI.getXboxButtonState("Y");
+   
   }
 
   /**

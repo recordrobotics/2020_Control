@@ -34,7 +34,7 @@ public class PID {
         output += ki * integral;
 
         if (errorlist.size() >= 10){
-            updateIntegral();
+            updateDeriv();
         }
 
         //factor in the d-term
@@ -43,7 +43,7 @@ public class PID {
         return output;
     }
 
-    private void updateIntegral(){
+    private void updateDeriv(){
         double sumx = 0, sumy = 0, sumxy = 0, sumxsq = 0;
 
         for (int i = 0; i < errorlist.size(); i++){
