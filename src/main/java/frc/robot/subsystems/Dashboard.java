@@ -9,6 +9,7 @@ import frc.robot.Robot.CurrentRobot;
 import frc.robot.commands.AutoTurn;
 import frc.robot.commands.MoveForward;
 import frc.robot.commands.MoveToRange;
+import frc.robot.commands.TurnToGoal;
 
 public class Dashboard extends Subsystem {
   // Put methods for controlling this subsystem
@@ -53,7 +54,8 @@ public class Dashboard extends Subsystem {
     SmartDashboard.putData("Move 3ft", new MoveForward(24, 0.2));
     SmartDashboard.putData("Turn Left", new AutoTurn(-90));
     SmartDashboard.putData("Turn Right", new AutoTurn(90));
-    SmartDashboard.putData("Move to 4ft0", new MoveToRange(48));
+    SmartDashboard.putData("Move to 3ft", new MoveToRange(36));
+    SmartDashboard.putData("Turn to Goal", new TurnToGoal());
 
     //SmartDashboard.putNumber("Flywheel Speed", Robot.flywheel.getSpeed());
     

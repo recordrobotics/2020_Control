@@ -62,7 +62,7 @@ public class TurnToGoal extends Command {
     angle = SmartDashboard.getNumber("Angle to Goal", 0);
     angle = smoothData();
 
-    double speed = 0.5;
+    double speed = 0.4;
 
     if (angle < 0){
         speed *= -1; 

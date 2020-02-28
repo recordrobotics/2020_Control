@@ -30,6 +30,7 @@ public class RangeFinder extends Subsystem {
 
   public double getDistance() {
     // sensor returns a value from 0-4095 that is scaled to inches
+    //System.out.println(m_ultrasonic.getRangeInches());
     return m_ultrasonic.getRangeInches();
     }
 
