@@ -35,7 +35,7 @@ public class Acquisition2020 extends Subsystem {
     public Acquisition2020(){
         //limitTop = new DigitalInput(3);
         //limitBottom = new DigitalInput(3);
-        //tiltLimit = new DigitalInput(4);
+        tiltLimit = new DigitalInput(4);
         acqEncoder.reset();
     }
 

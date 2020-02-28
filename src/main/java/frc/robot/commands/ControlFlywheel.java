@@ -20,7 +20,7 @@ public class ControlFlywheel extends Command {
   private String xboxButton = "X";
   private int panelButton = 6;
 
-  private double wheelSpeed = 0.925;
+  private double wheelSpeed = 1;
 
   public ControlFlywheel() {
     // Use requires() here to declare subsystem dependencies
