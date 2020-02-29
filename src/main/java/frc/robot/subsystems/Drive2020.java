@@ -30,12 +30,27 @@ public class Drive2020 extends DriveTrain {
 
     private DifferentialDrive drive = new DifferentialDrive(frontLeft, frontRight);
 
+    //setting to false may help with crash, but ya know... saftey!? I don't exactly know what this turns on/off...
+    //alternative solution: see if chaning the timeout value using motor.setExpiration​(seconds) will fix it
+    private boolean useSaftey = true; 
+    private double timeout = 600; //600s, 10min
+
     public Drive2020(){
         backRight.follow(frontRight);
         backLeft.follow(frontLeft);
 
         rightEnc.setDistancePerPulse(wheelCirc / ticksPerRotation);
         leftEnc.setDistancePerPulse(wheelCirc / ticksPerRotation);
+
+        frontLeft.setSafetyEnabled(useSaftey);
+        backLeft.setSafetyEnabled(useSaftey);
+        frontRight.setSafetyEnabled(useSaftey);
+        backRight.setSafetyEnabled(useSaftey);
+
+        frontLeft.setExpiration(timeout);
+        backLeft.setExpiration(timeout);
+        frontRight.setExpiration(timeout);
+        backRight.setExpiration(timeout);
     }
 
     public void moveLeftWheels(double amount){

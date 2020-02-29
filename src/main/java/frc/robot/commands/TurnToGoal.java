@@ -10,6 +10,8 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Robot;
+import frc.robot.control.PID;
+
 import java.util.ArrayList;
 
 /**
@@ -20,14 +22,18 @@ public class TurnToGoal extends Command {
   private double targetAngle = 0;
   private double tolerance = 3; //degrees
   private double angle;
+  double speed = 0.3;
+
+  private ArrayList<Double> angleData = new ArrayList<Double>();
+  private PID pid;
+  private double kp = 0.4, ki = 0, kd = 0;
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
     System.out.println("init");
+    pid = new PID(kp, ki, kd, 0);
   }
-
-  private ArrayList<Double> angleData = new ArrayList<Double>();
 
   private double smoothData(){
     angleData.add(angle);
@@ -44,6 +50,7 @@ public class TurnToGoal extends Command {
       average += angleData.get(i);
     }
     average /= angleData.size();
+    SmartDashboard.putNumber("AVERAGE angleToGoal", average);
 
     return average;
   }
@@ -54,11 +61,8 @@ public class TurnToGoal extends Command {
     angle = SmartDashboard.getNumber("Angle to Goal", 0);
     angle = smoothData();
 
-    double speed = 0.3;
-
-    if (angle > 0){
-        speed *= -1; 
-    }
+    speed = pid.control(angle);
+    if (speed > 0.3) speed = 0.3; //saftey
 
     Robot.driveTrain.moveRightWheels(speed);
     Robot.driveTrain.moveLeftWheels(-speed);
@@ -76,6 +80,8 @@ public class TurnToGoal extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
+    Robot.driveTrain.moveRightWheels(0);
+    Robot.driveTrain.moveLeftWheels(0);
   }
 
   // Called when another command which requires one or more of the same
