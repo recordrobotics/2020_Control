@@ -26,7 +26,7 @@ public class MoveToFire extends CommandGroup {
             targetAngle = 0;
         }
 
-        addSequential(new TurnToGoal(targetAngle), 15);
+        addSequential(new TurnToGoal(), 15);
         addSequential(new MoveToRange(firingDistance));
         addSequential(new BeltAutoRun());
     }

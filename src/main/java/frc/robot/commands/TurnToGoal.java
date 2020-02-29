@@ -18,21 +18,13 @@ import java.util.ArrayList;
 public class TurnToGoal extends Command {
   
   private double targetAngle = 0;
-  private double tolerance = 2; //degrees
+  private double tolerance = 3; //degrees
   private double angle;
-
-  public TurnToGoal(double a) {
-    targetAngle = a;
-  }
-
-  public TurnToGoal(){
-    this(0);
-  }
-
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
+    System.out.println("init");
   }
 
   private ArrayList<Double> angleData = new ArrayList<Double>();
@@ -62,9 +54,9 @@ public class TurnToGoal extends Command {
     angle = SmartDashboard.getNumber("Angle to Goal", 0);
     angle = smoothData();
 
-    double speed = 0.4;
+    double speed = 0.3;
 
-    if (angle < 0){
+    if (angle > 0){
         speed *= -1; 
     }
 

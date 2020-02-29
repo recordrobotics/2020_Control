@@ -11,12 +11,12 @@ import frc.robot.control.ButtonPanelController;
 import frc.robot.control.HotasController;
 import frc.robot.commands.AutoTurn;
 import frc.robot.commands.MoveForward;
-import frc.robot.commands.TiltAcquisition;
 import frc.robot.commands.TurnToGoal;
 import frc.robot.control.XboxJoystick;
 import frc.robot.control.XboxMap;
 import frc.robot.control.Controller;
-import frc.robot.control.ButtonMap;;
+import frc.robot.control.ButtonMap;
+import frc.robot.commands.TiltAcquisition;
 
 /**
  * This class is the glue that binds the controls on the physical operator
