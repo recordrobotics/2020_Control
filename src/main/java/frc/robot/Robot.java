@@ -108,6 +108,7 @@ public class Robot extends TimedRobot {
     flywheel = new Flywheel2020();
     belt = new BallLift();
     spool = new LiftSpool();
+    lift = new RobotLift2020();
     o.set(true);
 
   }

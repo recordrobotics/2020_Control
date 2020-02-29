@@ -15,6 +15,7 @@ import frc.robot.Robot;
 public class BeltControl extends Command {
   private double beltSpeed = 0.6;
   private boolean moveUp = false;
+  private boolean moveDown = false;
 
   public BeltControl() {
     // Use requires() here to declare subsystem dependencies
@@ -39,6 +40,10 @@ public class BeltControl extends Command {
     return OI.getXboxButtonState("RT");
   }
 
+  private boolean checkReverseInput(){
+return OI.getXboxButtonState("B");
+  }
+
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
@@ -50,10 +55,11 @@ public class BeltControl extends Command {
     //moveUp = checkInput() || checkNewBall();
     
     moveUp = checkInput();
+    moveDown = checkReverseInput();
 
     if (moveUp) { 
       Robot.belt.moveBelt(beltSpeed);
-    } else if (OI.getXboxButtonState("B")){
+    } else if (moveDown){
       Robot.belt.moveBelt(-beltSpeed);
     }
     else {

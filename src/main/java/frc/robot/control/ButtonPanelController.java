@@ -6,7 +6,7 @@ import frc.robot.RobotMap;
 
 
 public class ButtonPanelController{
-	private static final int NUM_BUTTONS = 9;
+	private static final int NUM_BUTTONS = 10;
 
 	public Joystick buttonPanel;
 	private JoystickButton[] buttons;

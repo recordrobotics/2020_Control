@@ -16,7 +16,7 @@ import edu.wpi.first.wpilibj.Timer;
  */
 public class TiltAcquisition extends Command {
   private Timer acqTimer = new Timer();
-  private double acqMoveTime = 1;
+  private double acqMoveTime = 1.5;
   public TiltAcquisition() {
     // Use requires() here to declare subsystem dependencies  
   }
@@ -31,17 +31,17 @@ public class TiltAcquisition extends Command {
   @Override 
   protected void execute() {
     if(Robot.acq.getTiltPosition()){
-      Robot.acq.moveTilt(Robot.acq.getTiltSpeed());
+      Robot.acq.moveTilt(-Robot.acq.getTiltSpeed());
     }
     else{
-      Robot.acq.moveTilt(-Robot.acq.getTiltSpeed());
+      Robot.acq.moveTilt(Robot.acq.getTiltSpeed());
     }    
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return !(acqTimer.get() < acqMoveTime || !Robot.acq.getTiltLimit());
+    return acqTimer.get() > acqMoveTime && Robot.acq.getTiltLimit();
   }
 
   // Called once after isFinished returns true
