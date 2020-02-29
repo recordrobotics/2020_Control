@@ -21,6 +21,14 @@ public class Dashboard extends Subsystem {
   private CurrentRobot cRobot;
   public Dashboard(CurrentRobot r){
     cRobot = r;
+
+    SmartDashboard.putData("Move 3ft", new MoveForward(24, 0.2));
+    SmartDashboard.putData("Turn Left", new AutoTurn(-90));
+    SmartDashboard.putData("Turn Right", new AutoTurn(90));
+    SmartDashboard.putData("Tilt Acquisition", new TiltAcquisition());
+    SmartDashboard.putData("Move to 3ft", new MoveToRange(36));
+    SmartDashboard.putData("Turn to Goal", new TurnToGoal());
+
   }
 
   @Override
@@ -53,18 +61,19 @@ public class Dashboard extends Subsystem {
     SmartDashboard.putNumber("Right Encoder", Robot.driveTrain.getRightEncoder());
     SmartDashboard.putNumber("Left Encoder", Robot.driveTrain.getLeftEncoder());
     SmartDashboard.putNumber("Gyro Angle", Robot.gyro.getDeg());
-
-    SmartDashboard.putData("Move 3ft", new MoveForward(24, 0.2));
-    SmartDashboard.putData("Turn Left", new AutoTurn(-90));
-    SmartDashboard.putData("Turn Right", new AutoTurn(90));
-    SmartDashboard.putData("Tilt Acquisition", new TiltAcquisition());
-    SmartDashboard.putData("Move to 3ft", new MoveToRange(36));
-    SmartDashboard.putData("Turn to Goal", new TurnToGoal());
-
     //SmartDashboard.putNumber("Flywheel Speed", Robot.flywheel.getSpeed());
     
     SmartDashboard.putNumber("Range Found", Robot.rangeFinder.getDistance());
     SmartDashboard.putBoolean("Green Button", OI.getPanelButtonState(ButtonMap.liftRaise));
   }
+
+  /*
+  SmartDashboard.putData("Move 3ft", new MoveForward(24, 0.2));
+    SmartDashboard.putData("Turn Left", new AutoTurn(-90));
+    SmartDashboard.putData("Turn Right", new AutoTurn(90));
+    SmartDashboard.putData("Tilt Acquisition", new TiltAcquisition());
+    SmartDashboard.putData("Move to 3ft", new MoveToRange(36));
+    SmartDashboard.putData("Turn to Goal", new TurnToGoal());
+  */
 
 }
