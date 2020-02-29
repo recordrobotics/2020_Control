@@ -16,12 +16,12 @@ import frc.robot.control.PID;
  */
 public class MoveToRange extends Command {
 
-    private double distance, speed;
-    private double tolerance = 3; //inches
+    private double distance, speed = 0.3;
+    private double tolerance = 5; //inches
     private double range;
 
     private PID pid;
-    private double kp = 1, ki = 0, kd = 0;
+    private double kp = 0.4, ki = 0, kd = 0;
 
     public MoveToRange(double dist){
         distance = dist;
@@ -43,10 +43,10 @@ public class MoveToRange extends Command {
             direction = -1;
         }
 
-        speed = pid.control(range * 0.083); //0.083 = conversion factor to FT
+        //speed = pid.control(range * 0.083); //0.083 = conversion factor to FT
         
-        if (speed > 0.5) speed = 0.5;
-        if (speed < 0.1) speed = 0.1;
+        //if (speed > 0.3) speed = 0.3;
+        //if (speed < 0.1) speed = 0.1;
 
         Robot.driveTrain.moveLeftWheels(speed * -direction);
         Robot.driveTrain.moveRightWheels(speed * -direction);
