@@ -10,14 +10,14 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.OI;
 import frc.robot.Robot;
+import frc.robot.control.ButtonMap;
 
 /**
  * An example command.  You can replace me with your own command.
  */
 public class ControlSpool extends Command {
   private double spoolSpeed = 0.5;
-  private String raiseButton = "LB";
-  private String lowerButton = "RB";
+  
   public ControlSpool() {
     // Use requires() here to declare subsystem dependencies
     requires(Robot.spool);
@@ -31,9 +31,9 @@ public class ControlSpool extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    if(OI.getXboxButtonState(lowerButton)){
+    if(OI.getPanelButtonState(ButtonMap.winchUp)){
       Robot.spool.MoveSpool(spoolSpeed);
-    } else if(OI.getXboxButtonState(raiseButton)){
+    } else if(OI.getPanelButtonState(ButtonMap.winchDown)){
      Robot.spool.MoveSpool(-spoolSpeed);
     } else {
       Robot.spool.MoveSpool(0);

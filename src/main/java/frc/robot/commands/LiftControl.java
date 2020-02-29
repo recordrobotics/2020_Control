@@ -8,9 +8,11 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.OI;
 import frc.robot.Robot;
 import frc.robot.control.*;
+import frc.robot.subsystems.Dashboard;
 
 public class LiftControl extends Command {
   public LiftControl() {
@@ -18,7 +20,7 @@ public class LiftControl extends Command {
     requires(Robot.lift);
   } 
 
-  private double speed = 0.5;
+  private double speed = 0.8;
 
 
   // Called just before this Command runs the first time
@@ -37,11 +39,15 @@ public class LiftControl extends Command {
     //if the right green button is pressed, move down
     if(OI.getPanelButtonState(ButtonMap.liftRaise)){
         Robot.lift.moveLift(speed);
+        System.out.println("button");
+        
     } else if(OI.getPanelButtonState(ButtonMap.liftLower)){
         Robot.lift.moveLift(-speed);
     } else {
-        Robot.lift.stop();
+        Robot.lift.moveLift(0);
     }
+    SmartDashboard.putBoolean("Green Button", OI.getPanelButtonState(ButtonMap.liftRaise));
+
   }
 
   // Make this return true when this Command no longer needs to run execute()
