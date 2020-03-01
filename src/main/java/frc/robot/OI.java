@@ -11,10 +11,12 @@ import frc.robot.control.ButtonPanelController;
 import frc.robot.control.HotasController;
 import frc.robot.commands.AutoTurn;
 import frc.robot.commands.MoveForward;
+import frc.robot.commands.TurnToGoal;
 import frc.robot.control.XboxJoystick;
 import frc.robot.control.XboxMap;
 import frc.robot.control.Controller;
-import frc.robot.control.ButtonMap;;
+import frc.robot.control.ButtonMap;
+import frc.robot.commands.TiltAcquisition;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -35,11 +37,11 @@ public class OI {
     //control autoTurning with blue buttons
     double dirMult = 1; //change to -1 if the right button makes robot turns left and vice-versa - DO NOT SET TO ANY VALUE OTHER THAN 1 OR -1
     double xboxDirMult = 1; //change to -1 if the right button for the Xbox controller makes robot turns left and vice-versa - DO NOT SET TO ANY VALUE OTHER THAN 1 OR -1
-    int autoRightButton = ButtonMap.turn90Right; //button to use for turing the robot 90 degrees to the right
+   /* int autoRightButton = ButtonMap.turn90Right; //button to use for turing the robot 90 degrees to the right
     int autoLeftButton = ButtonMap.turn90Left; //button to use for turing the robot 90 degrees to the left
     String autoRightXboxButton = XboxMap.aTurnRStr; //Xbox button to use for turing the robot 90 degrees to the right
     String autoLeftXboxButton = XboxMap.aTurnLStr; //Xbox button to use for turing the robot 90 degrees to the left
-    
+    */
     /*
     buttonPanel.getButton(autoRightButton).whenPressed(new AutoTurn(90 * dirMult)); //right turn
     buttonPanel.getButton(autoLeftButton).whenPressed(new AutoTurn(90 * -dirMult)); //left turn
@@ -47,6 +49,8 @@ public class OI {
     xbox.getButton(autoRightXboxButton).whenPressed(new AutoTurn(90 * xboxDirMult)); //right turn
     */
     //xbox.getButton("B").whenPressed(new MoveForward(24, -0.3));
+    buttonPanel.getButton(ButtonMap.mainButton).whenPressed(new TurnToGoal());
+    buttonPanel.getButton(ButtonMap.tiltAcquisition).whenPressed(new TiltAcquisition());
   }
 
   /*

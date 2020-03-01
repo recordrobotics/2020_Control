@@ -15,7 +15,7 @@ import frc.robot.OI;
 
 public class ControlAcquisition extends Command {
 
-    private double acqSpeed = -0.5;
+    private double acqSpeed = -0.7;
     private double upperAngle = 5, lowerAngle = 0;
 
     public ControlAcquisition() {
@@ -42,7 +42,7 @@ public class ControlAcquisition extends Command {
             Robot.acq.moveTilt(0);
         }
     }
-
+    /*
     private void controlTilt(){
         boolean tiltPosition = Robot.acq.getTiltPosition();
 
@@ -54,7 +54,7 @@ public class ControlAcquisition extends Command {
             Robot.acq.moveTilt(0);
         }
     }
-    
+    */
     // Called just before this Command runs the first time
     @Override
     protected void initialize() {
@@ -76,7 +76,7 @@ public class ControlAcquisition extends Command {
         controlAcq();
         //controlTilt();
 
-        SmartDashboard.putNumber("tilt angle", Robot.acq.getAngle());
+        //SmartDashboard.putNumber("tilt angle", Robot.acq.getAngle());
 
         prevButton = OI.getXboxButtonState(toggleButton);
     }
