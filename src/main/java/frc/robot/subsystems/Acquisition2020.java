@@ -22,8 +22,6 @@ public class Acquisition2020 extends Subsystem {
     private WPI_VictorSPX acquireMotor = new WPI_VictorSPX(RobotMap.acquireMotorPort);
     private WPI_VictorSPX tiltMotor = new WPI_VictorSPX(RobotMap.tiltMotorPort);
 
-    DigitalInput limitTop;
-    DigitalInput limitBottom;
     DigitalInput tiltLimit;
 
     //AnalogInput encoderInput = new AnalogInput(0);
@@ -35,7 +33,7 @@ public class Acquisition2020 extends Subsystem {
     public Acquisition2020(){
         //limitTop = new DigitalInput(3);
         //limitBottom = new DigitalInput(3);
-        tiltLimit = new DigitalInput(5);
+        tiltLimit = new DigitalInput(7);
         //acqEncoder.reset();
     }
 

@@ -13,13 +13,13 @@ import com.ctre.phoenix.motorcontrol.*;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 
-
+import frc.robot.RobotMap;
 import frc.robot.commands.ControlSpool;
 
 
 public class LiftSpool extends Subsystem {
-  private WPI_VictorSPX robotSpoolMotorLeft = new WPI_VictorSPX(11);
-  private WPI_VictorSPX robotSpoolMotorRight = new WPI_VictorSPX(10);
+  private WPI_VictorSPX robotSpoolMotorLeft = new WPI_VictorSPX(RobotMap.spoolLiftLeftMotor);
+  private WPI_VictorSPX robotSpoolMotorRight = new WPI_VictorSPX(RobotMap.spoolLiftRightMotor);
   
   public void MoveSpool(double v){
     robotSpoolMotorLeft.follow(robotSpoolMotorRight);

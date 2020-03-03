@@ -10,6 +10,7 @@ package frc.robot;
 import frc.robot.control.ButtonPanelController;
 import frc.robot.control.HotasController;
 import frc.robot.commands.AutoTurn;
+import frc.robot.commands.BallUpOne;
 import frc.robot.commands.MoveForward;
 import frc.robot.commands.TurnToGoal;
 import frc.robot.control.XboxJoystick;
@@ -51,6 +52,7 @@ public class OI {
     //xbox.getButton("B").whenPressed(new MoveForward(24, -0.3));
     buttonPanel.getButton(ButtonMap.mainButton).whenPressed(new TurnToGoal());
     buttonPanel.getButton(ButtonMap.tiltAcquisition).whenPressed(new TiltAcquisition());
+    buttonPanel.getButton(ButtonMap.beltUpOne).whenPressed(new BallUpOne());
   }
 
   /*

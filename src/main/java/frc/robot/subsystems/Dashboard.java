@@ -65,6 +65,7 @@ public class Dashboard extends Subsystem {
     
     SmartDashboard.putNumber("Range Found", Robot.rangeFinder.getDistance());
     SmartDashboard.putBoolean("Green Button", OI.getPanelButtonState(ButtonMap.liftRaise));
+    //SmartDashboard.putBoolean("Bottom Ball Lift", Robot.belt.)
   }
 
   /*
