@@ -19,7 +19,7 @@ import frc.robot.OI;
 public class ManualDrive extends Command{
 
   //input multiplier, reduces or increases the input value
-  private double turnMult = 0.5, fwdMult = 0.7;
+  private double turnMult = 0.6, fwdMult = 0.6;
   
 
   public ManualDrive() {
@@ -78,7 +78,7 @@ public class ManualDrive extends Command{
         turnMult2020 = 1;
       }
     }
-    Robot.driveTrain.getDrive().arcadeDrive(OI.getForward() * fwdMult2020, OI.getTurn() * turnMult2020);
+    Robot.driveTrain.getDrive().arcadeDrive(OI.getForward() * fwdMult2020, OI.getTurn() * turnMult);
   }
 
   // Make this return true when this Command no longer needs to run execute()

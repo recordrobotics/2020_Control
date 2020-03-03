@@ -8,14 +8,14 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+//import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Robot;
 import frc.robot.OI;
-//import frc.robot.control.XboxJoystick;
+
 
 public class ControlAcquisition extends Command {
 
-    private double acqSpeed = -0.5;
+    private double acqSpeed = -0.6;
     private double upperAngle = 5, lowerAngle = 0;
 
     public ControlAcquisition() {

@@ -56,7 +56,7 @@ public class Robot extends TimedRobot {
   public static NetworkTableEntry testEntry;
 
 
-  DigitalOutput o = new DigitalOutput(4);
+  //DigitalOutput o = new DigitalOutput(4);
   /**
    * This function is run when the robot is first started up and should be
    * used for any initialization code.
@@ -109,7 +109,7 @@ public class Robot extends TimedRobot {
     belt = new BallLift();
     spool = new LiftSpool();
     lift = new RobotLift2020();
-    o.set(true);
+
 
   }
 

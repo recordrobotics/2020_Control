@@ -8,60 +8,37 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import frc.robot.OI;
 import frc.robot.Robot;
-//import frc.robot.control.ButtonMap;
 
-public class ControlFlywheel extends Command {
 
-  private boolean prevToggle = false, flywheelIsOn = false;
-  private boolean useXboxController = true;
-  private String xboxButton = "X";
-  private int panelButton = 6;
-
-  private double wheelSpeed = -1;
-
-  public ControlFlywheel() {
+public class BallUpOne extends Command {
+  public BallUpOne() {
     // Use requires() here to declare subsystem dependencies
-    requires(Robot.flywheel);
   }
-
+  private int highestSlot, targetSlot;
+  private double beltSpeed = 0.6;
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
+    highestSlot = Robot.belt.highestFullSlot();
+    if(highestSlot == 3){
+      targetSlot = 3;
+    }
+    else if(highestSlot != 0){
+      targetSlot = highestSlot+1;
+    }
   }
 
   // Called repeatedly when this Command is scheduled to run
-  @Override
+  @Override 
   protected void execute() {
-    //toggle
-    if ((getButton() != prevToggle) && getButton()){
-      flywheelIsOn = !flywheelIsOn;
-      System.out.println("toggle! " + flywheelIsOn);
-    }
-
-    if (flywheelIsOn){
-      Robot.flywheel.moveWheel(wheelSpeed);
-    } else {
-      Robot.flywheel.moveWheel(0);
-    }
-
-    prevToggle = getButton();
-  }
-
-  private boolean getButton(){
-    if (useXboxController){
-      return OI.getXboxButtonState(xboxButton);
-    } else {
-      return OI.getPanelButtonState(panelButton);
-    }
+    Robot.belt.moveBelt(beltSpeed);
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return false;
+    return Robot.belt.highestFullSlot() == targetSlot;
   }
 
   // Called once after isFinished returns true

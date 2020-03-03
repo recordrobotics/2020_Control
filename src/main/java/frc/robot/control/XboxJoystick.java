@@ -48,6 +48,18 @@ public class XboxJoystick extends Controller{
             case "RB":
                 button = 6;
                 break;
+            case "RSYUP":
+                button = 7;
+                break;
+            case "RSYDOWN":
+                button = 8;
+                break;
+            case "RSXRIGHT":
+                button = 9;
+                break;
+            case "RSXLEFT":
+                button = 10;
+                break;
             default:
                 button = 1;
                 break;
@@ -96,6 +108,14 @@ public class XboxJoystick extends Controller{
                 return getTrigger("LT");
             case "RT":
                 return getTrigger("RT");
+            case "RSYUP":
+                return getRightStickYUp();
+            case "RSYDOWN":
+                return getRightStickYDown();
+            case "RSXRIGHT":
+                return getRightStickXRight();
+            case "RSXLEFT":
+                return getRightStickXLeft();
             case "START":
                 return xbox.getStartButton();
             case "BACK":
@@ -108,10 +128,47 @@ public class XboxJoystick extends Controller{
     public double getCStickXAxis(){
         return xbox.getX(Hand.kRight);
     }
+
     public double getCStickYAxis(){
         return xbox.getY(Hand.kRight);
     }
 
+    public boolean getRightStickXRight() {
+        if (getCStickXAxis() > 0.5) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+    
+    public boolean getRightStickXLeft() {
+        if (getCStickXAxis() > -0.5) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+    
+    public boolean getRightStickYUp() {
+        if (getCStickYAxis() < -0.5) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+    
+    public boolean getRightStickYDown() {
+        if (getCStickYAxis() > 0.5) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+    
     public double getRTAxis(){
         return xbox.getTriggerAxis(Hand.kRight);
     }
