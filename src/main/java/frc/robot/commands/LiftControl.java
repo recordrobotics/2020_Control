@@ -12,7 +12,6 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.OI;
 import frc.robot.Robot;
 import frc.robot.control.*;
-import frc.robot.subsystems.Dashboard;
 
 public class LiftControl extends Command {
   public LiftControl() {

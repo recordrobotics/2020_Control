@@ -17,19 +17,21 @@ import frc.robot.Robot;
 public class BeltAutoRun extends Command {
   
   private Timer ballTimer = new Timer();
-  private double beltSpeed = 0.7;
-  private double ballTimeout = 2.0;
+  private double beltSpeed = 0.7, flywheelSpeed = 1;
+  private double ballTimeout = 3.0;
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
     ballTimer.start();
+    Robot.flywheel.moveWheel(flywheelSpeed);
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
     Robot.belt.moveBelt(beltSpeed);
+    Robot.flywheel.moveWheel(flywheelSpeed);
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -41,6 +43,8 @@ public class BeltAutoRun extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
+    Robot.flywheel.moveWheel(0);
+    Robot.belt.moveBelt(0);
   }
 
   // Called when another command which requires one or more of the same

@@ -20,15 +20,15 @@ import java.util.ArrayList;
 public class TurnToGoal extends Command {
   
   private double targetAngle = 0;
-  private double tolerance = 1; //degrees
+  private double tolerance = 3; //degrees
   private double angle;
-  double speed = 0.25;
+  double speed = 0.15;
 
   private ArrayList<Double> angleData = new ArrayList<Double>();
   private PID pid;
-  private double kp = 0.4, ki = 0, kd = 0;
+  private double kp = 0.2, ki = 0, kd = 0;
 
-  public TurnToGoal(int a){
+  public TurnToGoal(double a){
     targetAngle = a;
   }
 
@@ -69,13 +69,13 @@ public class TurnToGoal extends Command {
     angle = SmartDashboard.getNumber("Angle to Goal", 0);
     //angle = smoothData();
 
-    if(angle < 0)
-      speed = -0.25;
-    else
-      speed = 0.25;
-
     //speed = pid.control(angle);
+
+    if (angle < 0 && speed > 0) speed *= -1;
+    if (angle > 0 && speed < 0) speed *= -1;
+
     if (speed > 0.3) speed = 0.3; //saftey
+    if (speed < -0.3) speed = -0.3;
 
     Robot.driveTrain.moveRightWheels(speed);
     Robot.driveTrain.moveLeftWheels(-speed);
@@ -84,7 +84,7 @@ public class TurnToGoal extends Command {
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    if ((angle > targetAngle - tolerance || angle < targetAngle + tolerance) && angle != -1.0){
+    if ((angle > targetAngle - tolerance && angle < targetAngle + tolerance) && angle != -1.0){
         return true;
     }
     return false;

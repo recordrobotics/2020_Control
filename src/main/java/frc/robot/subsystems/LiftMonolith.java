@@ -15,8 +15,8 @@ public class LiftMonolith extends RobotLift{
 
     Talon motor = new Talon(RobotMap.liftPortMonolith);
     
-   // DigitalInput topLimit = new DigitalInput(1);
-   // DigitalInput bottomLimit = new DigitalInput(2);
+    DigitalInput topLimit = new DigitalInput(1);
+    DigitalInput bottomLimit = new DigitalInput(2);
 
     public void initDefaultCommand() {
         setDefaultCommand(new LiftControl());
