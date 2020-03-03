@@ -43,10 +43,10 @@ public class MoveToRange extends Command {
             direction = -1;
         }
 
-        speed = pid.control(range * 0.083); //0.083 = conversion factor to FT
+        //speed = pid.control(range * 0.083); //0.083 = conversion factor to FT
         
         if (speed > 0.3) speed = 0.3;
-        //if (speed < 0.1) speed = 0.1;
+        if (speed < -0.3) speed = -0.3;
 
         Robot.driveTrain.moveLeftWheels(speed * -direction);
         Robot.driveTrain.moveRightWheels(speed * -direction);

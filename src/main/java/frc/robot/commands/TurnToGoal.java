@@ -20,13 +20,21 @@ import java.util.ArrayList;
 public class TurnToGoal extends Command {
   
   private double targetAngle = 0;
-  private double tolerance = 3; //degrees
+  private double tolerance = 1; //degrees
   private double angle;
-  double speed = 0.3;
+  double speed = 0.25;
 
   private ArrayList<Double> angleData = new ArrayList<Double>();
   private PID pid;
   private double kp = 0.4, ki = 0, kd = 0;
+
+  public TurnToGoal(int a){
+    targetAngle = a;
+  }
+
+  public TurnToGoal(){
+    this(0);
+  }
 
   // Called just before this Command runs the first time
   @Override
@@ -59,9 +67,14 @@ public class TurnToGoal extends Command {
   @Override 
   protected void execute() {
     angle = SmartDashboard.getNumber("Angle to Goal", 0);
-    angle = smoothData();
+    //angle = smoothData();
 
-    speed = pid.control(angle);
+    if(angle < 0)
+      speed = -0.25;
+    else
+      speed = 0.25;
+
+    //speed = pid.control(angle);
     if (speed > 0.3) speed = 0.3; //saftey
 
     Robot.driveTrain.moveRightWheels(speed);

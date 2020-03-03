@@ -11,12 +11,9 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import frc.robot.Robot;
 
-/**
- * An example command.  You can replace me with your own command.
- */
 public class MoveToFire extends CommandGroup {
 
-    double cameraOffCenter = 0;
+    double cameraOffCenter = 4.5;
     double targetAngle;
 
     public MoveToFire(double firingDistance){
@@ -26,8 +23,8 @@ public class MoveToFire extends CommandGroup {
             targetAngle = 0;
         }
 
-        addSequential(new TurnToGoal(), 15);
-        addSequential(new MoveToRange(firingDistance));
-        addSequential(new BeltAutoRun());
+        addSequential(new TurnToGoal());
+        //addSequential(new MoveToRange(firingDistance));
+        //addSequential(new BeltAutoRun());
     }
 }

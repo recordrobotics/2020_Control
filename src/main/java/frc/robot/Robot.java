@@ -104,7 +104,7 @@ public class Robot extends TimedRobot {
     driveTrain = new Drive2020();
     gyro = new Gyro2020();
     gyroInit();
-    acq = new Acquisition2020();
+    acq = new Acquisition2020();  
     flywheel = new Flywheel2020();
     belt = new BallLift();
     spool = new LiftSpool();
@@ -145,7 +145,7 @@ public class Robot extends TimedRobot {
   private boolean prevLampState = false;
   @Override
   public void robotPeriodic() {
-   
+
   }
 
   /**
