@@ -13,19 +13,23 @@ import frc.robot.Robot;
 
 
 public class BeltControl extends Command {
-  private double beltSpeed = 0.6;
-  private boolean moveUp = false;
-  private boolean moveDown = false;
+  private double beltSpeed;
+  private boolean moveUp;
+  private boolean moveDown;
 
   public BeltControl() {
     // Use requires() here to declare subsystem dependencies
     requires(Robot.belt);
+    this.beltSpeed = 0.6;
+    this.moveUp = false;
+    this.moveDown = false;
   }
 
   
   //new ball in the lift from acq
   private boolean checkNewBall(){
-   return Robot.belt.getSlot(0) || (!Robot.belt.getSlot(1) && moveUp && !checkInput()) && !Robot.belt.getSlot(3);
+   return Robot.belt.getSlot(0) || (!Robot.belt.getSlot(1) && 
+   moveUp && !checkInput()) && !Robot.belt.getSlot(3);
     /*
     Move up if there is a ball in the lowest slot OR if the ball is already moving and there is no ball in slot 1
     NEVER move the ball if there is a ball in the top slot, unless due to user input

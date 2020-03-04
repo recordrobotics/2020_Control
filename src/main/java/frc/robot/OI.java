@@ -13,6 +13,7 @@ import frc.robot.commands.AutoTurn;
 import frc.robot.commands.BallUpOne;
 import frc.robot.commands.BeltAutoRun;
 import frc.robot.commands.MoveForward;
+import frc.robot.commands.MoveToAim;
 import frc.robot.commands.MoveToFire;
 import frc.robot.commands.MoveToRange;
 import frc.robot.commands.TurnToGoal;
@@ -53,7 +54,7 @@ public class OI {
     xbox.getButton(autoRightXboxButton).whenPressed(new AutoTurn(90 * xboxDirMult)); //right turn
     */
     //xbox.getButton("B").whenPressed(new MoveForward(24, -0.3));
-    buttonPanel.getButton(ButtonMap.mainButton).whenPressed(new MoveToFire(48));
+    buttonPanel.getButton(ButtonMap.mainButton).whenPressed(new MoveToAim(Robot.shootingDistance));
     buttonPanel.getButton(ButtonMap.blueTempNameLeft).whenPressed(new MoveToRange(48));
     buttonPanel.getButton(ButtonMap.tiltAcquisition).whenPressed(new TiltAcquisition());
     buttonPanel.getButton(ButtonMap.blueTempNameRight).whenPressed(new BeltAutoRun());

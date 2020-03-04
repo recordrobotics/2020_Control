@@ -10,6 +10,7 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
+import edu.wpi.first.wpilibj.Timer;
 
 public class BallUpOne extends Command {
   public BallUpOne() {
@@ -17,10 +18,17 @@ public class BallUpOne extends Command {
   }
   private int highestSlot, targetSlot;
   private double beltSpeed = 0.6;
+  private double moveTime = 0.3;
+
+  private Timer ballTimer = new Timer();
+
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
+    ballTimer.start();
+
     highestSlot = Robot.belt.highestFullSlot();
+
     if(highestSlot == 3){
       targetSlot = 3;
     }
@@ -38,7 +46,7 @@ public class BallUpOne extends Command {
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return Robot.belt.highestFullSlot() == targetSlot;
+    return ballTimer.get() > moveTime;
   }
 
   // Called once after isFinished returns true

@@ -33,6 +33,8 @@ public class Robot extends TimedRobot {
   }
   public static CurrentRobot currentRobot = CurrentRobot.ROBOT2020;
 
+  public static final double restingVoltage = 12.5;
+  public static double shootingDistance = 48;
 
   public static ExampleSubsystem m_subsystem = new ExampleSubsystem();
   public static DriveTrain driveTrain;
@@ -173,7 +175,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void autonomousInit() {
-    m_autonomousCommand = new MoveForward(24, -0.5);
+    m_autonomousCommand = new MoveToFire(shootingDistance);
 
     /*
      * String autoSelected = SmartDashboard.getString("Auto Selector",

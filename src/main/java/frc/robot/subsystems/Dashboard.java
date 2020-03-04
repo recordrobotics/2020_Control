@@ -66,15 +66,7 @@ public class Dashboard extends Subsystem {
     SmartDashboard.putNumber("Range Found", Robot.rangeFinder.getDistance());
     SmartDashboard.putBoolean("Green Button", OI.getPanelButtonState(ButtonMap.liftRaise));
     //SmartDashboard.putBoolean("Bottom Ball Lift", Robot.belt.)
+
+    SmartDashboard.putNumber("Flywheel Voltage", Robot.flywheel.getVoltage());
   }
-
-  /*
-  SmartDashboard.putData("Move 3ft", new MoveForward(24, 0.2));
-    SmartDashboard.putData("Turn Left", new AutoTurn(-90));
-    SmartDashboard.putData("Turn Right", new AutoTurn(90));
-    SmartDashboard.putData("Tilt Acquisition", new TiltAcquisition());
-    SmartDashboard.putData("Move to 3ft", new MoveToRange(36));
-    SmartDashboard.putData("Turn to Goal", new TurnToGoal());
-  */
-
 }
