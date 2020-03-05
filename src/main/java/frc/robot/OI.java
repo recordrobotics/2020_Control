@@ -22,6 +22,7 @@ import frc.robot.control.XboxJoystick;
 import frc.robot.control.Controller;
 import frc.robot.control.ButtonMap;
 import frc.robot.commands.TiltAcquisition;
+import frc.robot.commands.TurnToAngle;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -38,26 +39,10 @@ public class OI {
 
   public OI(){
     // buttonPanel
-
-    //control autoTurning with blue buttons
-    double dirMult = 1; //change to -1 if the right button makes robot turns left and vice-versa - DO NOT SET TO ANY VALUE OTHER THAN 1 OR -1
-    double xboxDirMult = 1; //change to -1 if the right button for the Xbox controller makes robot turns left and vice-versa - DO NOT SET TO ANY VALUE OTHER THAN 1 OR -1
-   /* int autoRightButton = ButtonMap.turn90Right; //button to use for turing the robot 90 degrees to the right
-    int autoLeftButton = ButtonMap.turn90Left; //button to use for turing the robot 90 degrees to the left
-    String autoRightXboxButton = XboxMap.aTurnRStr; //Xbox button to use for turing the robot 90 degrees to the right
-    String autoLeftXboxButton = XboxMap.aTurnLStr; //Xbox button to use for turing the robot 90 degrees to the left
-    */
-    /*
-    buttonPanel.getButton(autoRightButton).whenPressed(new AutoTurn(90 * dirMult)); //right turn
-    buttonPanel.getButton(autoLeftButton).whenPressed(new AutoTurn(90 * -dirMult)); //left turn
-    xbox.getButton(autoLeftXboxButton).whenPressed(new AutoTurn(90 * -xboxDirMult)); //left turn
-    xbox.getButton(autoRightXboxButton).whenPressed(new AutoTurn(90 * xboxDirMult)); //right turn
-    */
-    //xbox.getButton("B").whenPressed(new MoveForward(24, -0.3));
     buttonPanel.getButton(ButtonMap.mainButton).whenPressed(new MoveToAim(Robot.shootingDistance));
     buttonPanel.getButton(ButtonMap.blueTempNameLeft).whenPressed(new MoveToRange(48));
     buttonPanel.getButton(ButtonMap.tiltAcquisition).whenPressed(new TiltAcquisition());
-    buttonPanel.getButton(ButtonMap.blueTempNameRight).whenPressed(new BeltAutoRun());
+    buttonPanel.getButton(ButtonMap.blueTempNameRight).whenPressed(new TurnToAngle(180));
     buttonPanel.getButton(ButtonMap.beltUpOne).whenPressed(new BallUpOne());
   }
 

@@ -16,7 +16,7 @@ import edu.wpi.first.wpilibj.Timer;
  */
 public class TiltAcquisition extends Command {
   private Timer acqTimer = new Timer();
-  private double acqMoveTime = 3;
+  private double acqMoveTime = 2.5;
   public TiltAcquisition() {
     // Use requires() here to declare subsystem dependencies  
   }

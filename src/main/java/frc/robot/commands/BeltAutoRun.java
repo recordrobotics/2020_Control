@@ -18,7 +18,7 @@ public class BeltAutoRun extends Command {
   
   private Timer ballTimer = new Timer();
   private double beltSpeed = 0.7, flywheelSpeed = 1;
-  private double ballTimeout = 3.0;
+  private double ballTimeout = 10.0;
 
   // Called just before this Command runs the first time
   @Override

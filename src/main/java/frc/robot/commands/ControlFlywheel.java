@@ -14,7 +14,7 @@ import frc.robot.Robot;
 
 public class ControlFlywheel extends Command {
 
-  private boolean prevToggle = false, flywheelIsOn = false;
+  private boolean prevToggle = false, flywheelIsOn = true;
   private boolean useXboxController = true;
   private String xboxButton = "X";
   private int panelButton = 6;

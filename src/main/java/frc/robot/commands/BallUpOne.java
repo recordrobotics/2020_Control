@@ -18,7 +18,7 @@ public class BallUpOne extends Command {
   }
   private int highestSlot, targetSlot;
   private double beltSpeed = 0.6;
-  private double moveTime = 0.3;
+  private double moveTime = 0.2;
 
   private Timer ballTimer = new Timer();
 
@@ -41,6 +41,7 @@ public class BallUpOne extends Command {
   @Override 
   protected void execute() {
     Robot.belt.moveBelt(beltSpeed);
+    Robot.acq.moveAcq(0.9);
   }
 
   // Make this return true when this Command no longer needs to run execute()
