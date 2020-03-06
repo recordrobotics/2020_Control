@@ -9,12 +9,15 @@ package frc.robot.commands;
 
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
+import edu.wpi.first.wpilibj.interfaces.Gyro;
 import frc.robot.Robot;
+import frc.robot.subsystems.Gyro2020;
 
 public class MoveToFire extends CommandGroup {
 
     double cameraOffCenter = 5.25;
     double targetAngle;
+    double gyroAngle = Robot.gyro.getDeg();
 
     public MoveToFire(double firingDistance){
         if (cameraOffCenter != 0){
@@ -29,13 +32,13 @@ public class MoveToFire extends CommandGroup {
         else {
             targetAngle = 0;
         }
-        
+
         addSequential(new TurnToGoal(targetAngle));
         addSequential(new TurnToGoal(targetAngle));
         addSequential(new MoveToRange(firingDistance));
         addSequential(new TurnToGoal(targetAngle));
         addSequential(new BeltAutoRun());
-        //addSequential(new TurnToAngle(180));
-        //addSequential(new MoveForward((10 - firingDistance) + 4, 0.5));
+        addSequential(new TurnToAngle(-180+gyroAngle));
+        addSequential(new MoveForward((10 - firingDistance) + 4, 0.5));
     }
 }

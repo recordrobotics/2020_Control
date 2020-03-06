@@ -16,9 +16,11 @@ public class BallUpOne extends Command {
   public BallUpOne() {
     // Use requires() here to declare subsystem dependencies
   }
-  private int highestSlot, targetSlot;
-  private double beltSpeed = 0.6;
-  private double moveTime = 0.2;
+  private int highestSlot, targetSlot, ballCount;
+  private double beltSpeed = 0.4;
+  private double moveTime = 0.1;
+  private Boolean hitSlot;
+
 
   private Timer ballTimer = new Timer();
 
@@ -42,12 +44,19 @@ public class BallUpOne extends Command {
   protected void execute() {
     Robot.belt.moveBelt(beltSpeed);
     Robot.acq.moveAcq(0.9);
+    ballCount = Robot.belt.countBall();
+    hitSlot = Robot.belt.getSlot(targetSlot-1);
+    
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return ballTimer.get() > moveTime;
+    // Last or is emergency shutoff so the command will stop running in case of a ball getting stuck
+    // The +0.1 to moveTime in the second or is to extend the movement length when 
+    return (ballTimer.get() > moveTime && hitSlot)
+     || (ballTimer.get() > moveTime+0.1 && targetSlot == 3 && ballCount == 0 )
+     || (ballTimer.get() > 1);
   }
 
   // Called once after isFinished returns true

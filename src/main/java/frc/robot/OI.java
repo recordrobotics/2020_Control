@@ -40,9 +40,7 @@ public class OI {
   public OI(){
     // buttonPanel
     buttonPanel.getButton(ButtonMap.mainButton).whenPressed(new MoveToAim(Robot.shootingDistance));
-    buttonPanel.getButton(ButtonMap.blueTempNameLeft).whenPressed(new MoveToRange(48));
     buttonPanel.getButton(ButtonMap.tiltAcquisition).whenPressed(new TiltAcquisition());
-    buttonPanel.getButton(ButtonMap.blueTempNameRight).whenPressed(new TurnToAngle(180));
     buttonPanel.getButton(ButtonMap.beltUpOne).whenPressed(new BallUpOne());
   }
 
