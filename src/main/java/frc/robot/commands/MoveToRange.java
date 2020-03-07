@@ -69,6 +69,7 @@ public class MoveToRange extends Command {
     protected void end() {
         Robot.driveTrain.moveLeftWheels(0);
         Robot.driveTrain.moveRightWheels(0);
+        System.out.println("Moved TO Range");
     }
 
     // Called when another command which requires one or more of the same

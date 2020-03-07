@@ -53,9 +53,7 @@ public class BallUpOne extends Command {
   @Override
   protected boolean isFinished() {
     // Last or is emergency shutoff so the command will stop running in case of a ball getting stuck
-    // The +0.1 to moveTime in the second or is to extend the movement length when 
     return (ballTimer.get() > moveTime && hitSlot)
-     || (ballTimer.get() > moveTime+0.1 && targetSlot == 3 && ballCount == 0 )
      || (ballTimer.get() > 1);
   }
 

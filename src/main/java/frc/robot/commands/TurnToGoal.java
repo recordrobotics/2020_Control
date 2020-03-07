@@ -95,6 +95,7 @@ public class TurnToGoal extends Command {
   protected void end() {
     Robot.driveTrain.moveRightWheels(0);
     Robot.driveTrain.moveLeftWheels(0);
+    System.out.println("Turn To Goal Completed");
   }
 
   // Called when another command which requires one or more of the same

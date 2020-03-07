@@ -9,7 +9,6 @@ package frc.robot.commands;
 
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
-import frc.robot.Robot;
 
 public class MoveToAim extends CommandGroup {
 
@@ -17,6 +16,9 @@ public class MoveToAim extends CommandGroup {
     double targetAngle;
 
     public MoveToAim(double firingDistance){
+
+        setTimeout(7);
+
         if (cameraOffCenter != 0){
             targetAngle = (90 - Math.toDegrees(Math.atan(firingDistance / cameraOffCenter)));
             targetAngle = (int)(targetAngle + 0.5);

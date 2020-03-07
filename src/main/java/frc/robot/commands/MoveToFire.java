@@ -9,9 +9,8 @@ package frc.robot.commands;
 
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
-import edu.wpi.first.wpilibj.interfaces.Gyro;
 import frc.robot.Robot;
-import frc.robot.subsystems.Gyro2020;
+
 
 public class MoveToFire extends CommandGroup {
 
@@ -39,6 +38,6 @@ public class MoveToFire extends CommandGroup {
         addSequential(new TurnToGoal(targetAngle));
         addSequential(new BeltAutoRun());
         addSequential(new TurnToAngle(-180+gyroAngle));
-        addSequential(new MoveForward((10 - firingDistance) + 4, 0.5));
+        addSequential(new MoveForward((120-firingDistance) + 48, 0.5));
     }
 }
