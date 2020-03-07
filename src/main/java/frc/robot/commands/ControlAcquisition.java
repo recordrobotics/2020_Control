@@ -42,19 +42,7 @@ public class ControlAcquisition extends Command {
             Robot.acq.moveTilt(0);
         }
     }
-    /*
-    private void controlTilt(){
-        boolean tiltPosition = Robot.acq.getTiltPosition();
 
-        if (!tiltPosition && Robot.acq.getAngle() < upperAngle){
-            Robot.acq.moveTilt(-Robot.acq.getTiltSpeed());
-        } else if (tiltPosition && Robot.acq.getAngle() > lowerAngle){
-            Robot.acq.moveTilt(Robot.acq.getTiltSpeed());
-        } else {
-            Robot.acq.moveTilt(0);
-        }
-    }
-    */
     // Called just before this Command runs the first time
     @Override
     protected void initialize() {

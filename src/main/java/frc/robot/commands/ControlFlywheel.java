@@ -8,7 +8,6 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.OI;
 import frc.robot.Robot;
 //import frc.robot.control.ButtonMap;
@@ -20,7 +19,7 @@ public class ControlFlywheel extends Command {
   private String xboxButton = "X";
   private int panelButton = 6;
 
-  private double wheelSpeed = -1;
+  private double wheelSpeed = 1;
 
   public ControlFlywheel() {
     // Use requires() here to declare subsystem dependencies

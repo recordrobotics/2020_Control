@@ -10,7 +10,6 @@ package frc.robot;
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
-import edu.wpi.first.wpilibj.DigitalOutput;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
@@ -57,7 +56,6 @@ public class Robot extends TimedRobot {
   public static NetworkTableEntry testEntry;
 
 
-  //DigitalOutput o = new DigitalOutput(4);
   /**
    * This function is run when the robot is first started up and should be
    * used for any initialization code.
