@@ -19,7 +19,7 @@ import frc.robot.OI;
 public class ManualDrive extends Command{
 
   //input multiplier, reduces or increases the input value
-  private double turnMult = 0.6, fwdMult = 0.6;
+  private double turnMult = 0.67, fwdMult = 0.6;
   
 
   public ManualDrive() {

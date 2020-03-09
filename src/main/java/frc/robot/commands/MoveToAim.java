@@ -17,7 +17,7 @@ public class MoveToAim extends CommandGroup {
 
     public MoveToAim(double firingDistance){
 
-        setTimeout(7);
+        //setTimeout(5);
 
         if (cameraOffCenter != 0){
             targetAngle = (90 - Math.toDegrees(Math.atan(firingDistance / cameraOffCenter)));
@@ -31,10 +31,12 @@ public class MoveToAim extends CommandGroup {
         else {
             targetAngle = 0;
         }
+        double timeOut = 1.5;
 
-        addSequential(new TurnToGoal(targetAngle));
-        addSequential(new TurnToGoal(targetAngle));
-        addSequential(new MoveToRange(firingDistance));
-        addSequential(new TurnToGoal(targetAngle));
+        addSequential(new TurnToGoal(targetAngle), timeOut);
+        addSequential(new TurnToGoal(targetAngle), timeOut);
+        addSequential(new MoveToRange(firingDistance), 3);
+        addSequential(new TurnToGoal(targetAngle), timeOut);
+        
     }
 }

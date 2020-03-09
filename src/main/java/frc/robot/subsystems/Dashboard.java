@@ -58,18 +58,18 @@ public class Dashboard extends Subsystem {
 
   private void display2020(){
     
-    SmartDashboard.putNumber("Right Encoder", Robot.driveTrain.getRightEncoder());
-    SmartDashboard.putNumber("Left Encoder", Robot.driveTrain.getLeftEncoder());
+    //SmartDashboard.putNumber("Right Encoder", Robot.driveTrain.getRightEncoder());
+   //SmartDashboard.putNumber("Left Encoder", Robot.driveTrain.getLeftEncoder());
     SmartDashboard.putNumber("Gyro Angle", Robot.gyro.getDeg());
     //SmartDashboard.putNumber("Flywheel Speed", Robot.flywheel.getSpeed());
     
     SmartDashboard.putNumber("Range Found", Robot.rangeFinder.getDistance());
-    SmartDashboard.putBoolean("Green Button", OI.getPanelButtonState(ButtonMap.liftRaise));
-    SmartDashboard.putBoolean("Bottom Ball Lift", Robot.belt.getSlot(0));
-    SmartDashboard.putBoolean("Middle Ball Lift", Robot.belt.getSlot(1));
-    SmartDashboard.putBoolean("Top Ball Lift", Robot.belt.getSlot(2));
+   // SmartDashboard.putBoolean("Green Button", OI.getPanelButtonState(ButtonMap.liftRaise));
+   // SmartDashboard.putBoolean("Bottom Ball Lift", Robot.belt.getSlot(0));
+   //SmartDashboard.putBoolean("Middle Ball Lift", Robot.belt.getSlot(1));
+   // SmartDashboard.putBoolean("Top Ball Lift", Robot.belt.getSlot(2));
 
     SmartDashboard.putNumber("Flywheel Voltage", Robot.flywheel.getVoltage());
-    SmartDashboard.putNumber("Balls In Lift", Robot.belt.countBall());
+   // SmartDashboard.putNumber("Balls In Lift", Robot.belt.countBall());
   }
 }

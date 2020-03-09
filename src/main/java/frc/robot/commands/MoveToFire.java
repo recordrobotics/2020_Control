@@ -6,8 +6,6 @@
 /*----------------------------------------------------------------------------*/
 
 package frc.robot.commands;
-
-
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import frc.robot.Robot;
 
@@ -32,12 +30,19 @@ public class MoveToFire extends CommandGroup {
             targetAngle = 0;
         }
 
-        addSequential(new TurnToGoal(targetAngle));
-        addSequential(new TurnToGoal(targetAngle));
-        addSequential(new MoveToRange(firingDistance));
-        addSequential(new TurnToGoal(targetAngle));
+        System.out.println("Target Angle" + targetAngle);
+
+        double timeOut = 2;
+
+        addSequential(new TurnToGoal(targetAngle), timeOut);
+        addSequential(new MoveToRange(firingDistance), 5);
+        addSequential(new TurnToGoal(targetAngle), timeOut);
         addSequential(new BeltAutoRun());
-        addSequential(new TurnToAngle(-180+gyroAngle));
-        addSequential(new MoveForward((120-firingDistance) + 48, 0.5));
+        addSequential(new MoveForward(36, 0.5), 0.8);
+
+        //addSequential(new TiltAcquisition(), timeOut);
+
+        //addSequential(new TurnToAngle(-180+gyroAngle));
+        //addSequential(new MoveForward((120-firingDistance) + 48, 0.5));
     }
 }

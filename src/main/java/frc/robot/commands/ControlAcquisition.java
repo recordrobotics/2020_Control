@@ -15,7 +15,7 @@ import frc.robot.OI;
 
 public class ControlAcquisition extends Command {
 
-    private double acqSpeed = -0.6;
+    private double acqSpeed = -0.5;
     private double upperAngle = 5, lowerAngle = 0;
 
     public ControlAcquisition() {

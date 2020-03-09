@@ -19,8 +19,8 @@ public final class ButtonMap {
 	public static int liftRaise = greenLeft;
 	public static int liftLower = greenRight;
 	public static int mainButton = white;
-	public static int beltUpOne = yellowRight;
-	public static int tiltAcquisition = yellowLeft;
+	public static int LiftOverrideDown = yellowRight;
+	public static int LiftOverrideUp = yellowLeft;
 	public static int winchUp = redLeft;
 	public static int winchDown = redRight;
 	public static int blueTempNameRight = blueRight;

@@ -17,7 +17,7 @@ import frc.robot.Robot;
 public class BeltAutoRun extends Command {
   
   private Timer ballTimer = new Timer();
-  private double beltSpeed = 0.7, flywheelSpeed = 1, ballTimeout = 3.0;
+  private double beltSpeed = 0.5, flywheelSpeed = 0.80, ballTimeout = 5.0;
 
   // Called just before this Command runs the first time
   @Override
@@ -32,7 +32,7 @@ public class BeltAutoRun extends Command {
     
     Robot.flywheel.moveWheel(flywheelSpeed);
 
-    if (ballTimer.get() > 2.0)
+    if (ballTimer.get() > 1)
       Robot.belt.moveBelt(beltSpeed);
   }
 

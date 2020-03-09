@@ -34,7 +34,8 @@ public class Robot extends TimedRobot {
   public static CurrentRobot currentRobot = CurrentRobot.ROBOT2020;
 
   public static final double restingVoltage = 12.5;
-  public static double shootingDistance = 128;
+  public static double shootingDistance = 122;
+  public static double flywheelSpeed = 0.85;
 
   public static ExampleSubsystem m_subsystem = new ExampleSubsystem();
   public static DriveTrain driveTrain;

@@ -14,12 +14,12 @@ import frc.robot.Robot;
 
 public class ControlFlywheel extends Command {
 
-  private boolean prevToggle = false, flywheelIsOn = true;
+  private boolean prevToggle = false, flywheelIsOn = false;
   private boolean useXboxController = true;
   private String xboxButton = "X";
   private int panelButton = 6;
 
-  private double wheelSpeed = 0.8;
+  private double wheelSpeed = Robot.flywheelSpeed;
 
   public ControlFlywheel() {
     // Use requires() here to declare subsystem dependencies
@@ -41,21 +41,16 @@ public class ControlFlywheel extends Command {
     }
 
     if (flywheelIsOn){
-      Robot.flywheel.moveWheel(wheelSpeed);
+      if (OI.getXboxButtonState("Y")){
+        Robot.flywheel.moveWheel(wheelSpeed - 0.15);
+      } else {
+        Robot.flywheel.moveWheel(wheelSpeed);
+      }
     } else {
       Robot.flywheel.moveWheel(0);
     }
 
     prevToggle = getButton();
-  }
-
-  private double findSpeed(){
-    double output = wheelSpeed;
-
-    output *= (Robot.restingVoltage / Robot.flywheel.getVoltage());
-
-    return output;
-
   }
 
   private boolean getButton(){

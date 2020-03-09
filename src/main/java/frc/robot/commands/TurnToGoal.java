@@ -22,7 +22,7 @@ public class TurnToGoal extends Command {
   private double targetAngle = 0;
   private double tolerance = 3; //degrees
   private double angle;
-  double speed = 0.15;
+  double speed = 0.17;
 
   private ArrayList<Double> angleData = new ArrayList<Double>();
   private PID pid;
@@ -76,6 +76,16 @@ public class TurnToGoal extends Command {
 
     if (speed > 0.3) speed = 0.3; //saftey
     if (speed < -0.3) speed = -0.3;
+
+    /* Possible improvment? Ignore for now
+    speed = 0.15;
+
+    if (Math.abs(angle) > Math.abs(targetAngle)){
+      speed *= Math.abs(angle)/Math.abs(targetAngle);
+    } else if (Math.abs(angle) < Math.abs(targetAngle)){
+      speed *= Math.abs(targetAngle)/Math.abs(angle);
+    }
+    */
 
     Robot.driveTrain.moveRightWheels(speed);
     Robot.driveTrain.moveLeftWheels(-speed);

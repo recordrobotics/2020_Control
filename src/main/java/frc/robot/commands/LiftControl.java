@@ -20,11 +20,13 @@ public class LiftControl extends Command {
   } 
 
   private double speed = 0.8;
+  private int position = 0; //nonzero value kills the saftey mechanism
 
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
+    position = 0;
   }
 
   // Called repeatedly when this Command is scheduled to run
@@ -36,17 +38,18 @@ public class LiftControl extends Command {
   private void liftControl(){
     //if the left green button is pressed, move up
     //if the right green button is pressed, move down
-    if(OI.getPanelButtonState(ButtonMap.liftRaise)){
+    if((OI.getPanelButtonState(ButtonMap.liftRaise)) || OI.getPanelButtonState(ButtonMap.LiftOverrideUp)){
         Robot.lift.moveLift(speed);
-        System.out.println("button");
+        position++; 
         
-    } else if(OI.getPanelButtonState(ButtonMap.liftLower)){
+    } else if((OI.getPanelButtonState(ButtonMap.liftLower) && position >= 0) || OI.getPanelButtonState(ButtonMap.LiftOverrideDown)){
         Robot.lift.moveLift(-speed);
+        position--;
     } else {
         Robot.lift.moveLift(0);
     }
-    SmartDashboard.putBoolean("Green Button", OI.getPanelButtonState(ButtonMap.liftRaise));
-
+    
+    SmartDashboard.putNumber("Lift position", position);
   }
 
   // Make this return true when this Command no longer needs to run execute()

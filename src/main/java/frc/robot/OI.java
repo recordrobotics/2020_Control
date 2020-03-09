@@ -36,12 +36,13 @@ public class OI {
 
   boolean enablePID = false; //do not set to true unless you know what you are doing. It causes issues. 
   
+  private MoveToAim aiming = new MoveToAim(Robot.shootingDistance);
 
   public OI(){
     // buttonPanel
-    buttonPanel.getButton(ButtonMap.mainButton).whenPressed(new MoveToAim(Robot.shootingDistance));
-    buttonPanel.getButton(ButtonMap.tiltAcquisition).whenPressed(new TiltAcquisition());
-    buttonPanel.getButton(ButtonMap.beltUpOne).whenPressed(new BallUpOne());
+    buttonPanel.getButton(ButtonMap.mainButton).whenPressed(aiming);
+    buttonPanel.getButton(ButtonMap.blueTempNameLeft).whenPressed(new BeltAutoRun());
+    buttonPanel.getButton(ButtonMap.blueTempNameRight).cancelWhenPressed(aiming);
   }
 
   /*

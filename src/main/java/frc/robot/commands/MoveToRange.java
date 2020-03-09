@@ -46,8 +46,12 @@ public class MoveToRange extends Command {
 
         //speed = pid.control(range);
         speed = 0.125;
-        speed *= (range/distance);
-        
+        if (range > distance){
+            speed *= (range/distance);
+        } else if (range < distance){
+            speed *= (distance/range);
+        }
+
         if (speed > 0.35) speed = 0.35;
         if (speed < -0.35) speed = -0.35;
 
@@ -69,7 +73,7 @@ public class MoveToRange extends Command {
     protected void end() {
         Robot.driveTrain.moveLeftWheels(0);
         Robot.driveTrain.moveRightWheels(0);
-        System.out.println("Moved TO Range");
+        System.out.println("Moved TO Range, Target: " + distance + ", Actual: " + Robot.rangeFinder.getDistance());
     }
 
     // Called when another command which requires one or more of the same
