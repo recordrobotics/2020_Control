@@ -31,12 +31,27 @@ public class RobotMap {
 	public static int driveBackRightPortMonolith = 3;
 	public static int driveBackLeftPortMonolith = 1;
 
-	// CAN Bus Drive 
+	// CAN Bus Drive on Monty
 	public static int driveFrontRightPortMonty = 7;
 	public static int driveFrontLeftPortMonty = 5;
 	public static int driveBackRightPortMonty = 2;
 	public static int driveBackLeftPortMonty = 1;
 
+	//CAN bus on the 2020 Robot
+	public static int driveFrontRight2020 = 1;
+	public static int driveFrontLeft2020 = 2;
+	public static int driveBackRight2020 = 3;
+	public static int driveBackLeft2020 = 4;
+
+	//Set of subsystem motors 2020, temporary ports, set to real numbers later
+	public static int acquireMotorPort = 8;
+	public static int tiltMotorPort = 7;
+	public static int beltMotorPort = 6;
+	public static int flywheelMotorPort = 5;
+	public static int spoolLiftLeftMotor = 10;
+	public static int spoolLiftRightMotor = 11;
+	public static int robotLiftLeftMotorPort = 9; 
+	
 	//lifting mechanism port
 	public static int liftPortMonolith = 4;
 
@@ -46,9 +61,11 @@ public class RobotMap {
 	public static int buttonPanelPort = 1;
 	//hotas
 	public static int hotasPort = 0;
+	//xbox
+	public static int xboxPort = 0;
 
 	//gyroscope port
-	public static SPI.Port gyroPort = SPI.Port.kOnboardCS0;
+	public static SPI.Port gyroPortSPI = SPI.Port.kOnboardCS0;
 
 	
 

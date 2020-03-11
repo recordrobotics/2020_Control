@@ -1,13 +1,13 @@
 package frc.robot.subsystems;
 
-import edu.wpi.first.wpilibj.command.Subsystem;
+//import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;  
 
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Talon;
 import frc.robot.commands.*;
 
-public class LiftMonolith extends Lift{
+public class LiftMonolith extends RobotLift{
 // Put methods for controlling this subsystem
     // here. Call these from Commands.
     
@@ -24,10 +24,10 @@ public class LiftMonolith extends Lift{
     
     public void moveLift(double v)
     {
-        if ((v < 0 & bottomLimit.get()) || (v > 0 & topLimit.get()))
+       /* if ((v < 0 & bottomLimit.get()) || (v > 0 & topLimit.get()))
         {
             motor.set(v);
-        }
+        }*/
     }
     
     public void stop()

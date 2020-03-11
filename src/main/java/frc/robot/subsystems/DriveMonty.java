@@ -15,7 +15,7 @@ import frc.robot.RobotMap;
 import com.ctre.phoenix.motorcontrol.*;
 import com.ctre.phoenix.motorcontrol.can.*;
 
-
+import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 
 /*
 * Drive Train for Monty
@@ -44,7 +44,7 @@ public class DriveMonty extends DriveTrain {
 
 
   public void moveRightWheels(double amount){
-    frontRight.set(ControlMode.PercentOutput, -amount);
+    frontRight.set(ControlMode.PercentOutput, amount);
   }
 
 
@@ -56,6 +56,7 @@ public class DriveMonty extends DriveTrain {
     return 0.0;
   }
   
-  
+  public DifferentialDrive getDrive() {return null;}
 
+  public void resetEncoders(){}
 }

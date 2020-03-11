@@ -9,6 +9,7 @@ package frc.robot.subsystems;
 
 
 import edu.wpi.first.wpilibj.Spark;
+import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import frc.robot.RobotMap;
 
 /**
@@ -21,9 +22,6 @@ public class DriveMonolith extends DriveTrain {
   Spark backRight = new Spark(RobotMap.driveBackRightPortMonolith);
   Spark frontLeft = new Spark(RobotMap.driveFrontLeftPortMonolith);
   Spark backLeft = new Spark(RobotMap.driveBackLeftPortMonolith);
-
-
-
 
   public void moveLeftWheels(double amount){
     frontLeft.set(-amount);
@@ -44,5 +42,8 @@ public class DriveMonolith extends DriveTrain {
     return 0.0;
   }
 
+  public void resetEncoders(){}
+
+  public DifferentialDrive getDrive() {return null;}
 
 }

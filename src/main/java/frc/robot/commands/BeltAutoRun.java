@@ -7,37 +7,46 @@
 
 package frc.robot.commands;
 
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
 /**
  * An example command.  You can replace me with your own command.
  */
-public class ExampleCommand extends Command {
-  public ExampleCommand() {
-    // Use requires() here to declare subsystem dependencies
-    requires(Robot.m_subsystem);
-  }
+public class BeltAutoRun extends Command {
+  
+  private Timer ballTimer = new Timer();
+  private double beltSpeed = 0.5, flywheelSpeed = 0.80, ballTimeout = 5.0;
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
+    ballTimer.start();
+    Robot.flywheel.moveWheel(flywheelSpeed);
   }
 
   // Called repeatedly when this Command is scheduled to run
-  @Override 
+  @Override
   protected void execute() {
+    
+    Robot.flywheel.moveWheel(flywheelSpeed);
+
+    if (ballTimer.get() > 1)
+      Robot.belt.moveBelt(beltSpeed);
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return false;
+    return ballTimer.get() >= ballTimeout;
   }
 
   // Called once after isFinished returns true
   @Override
   protected void end() {
+    Robot.flywheel.moveWheel(0);
+    Robot.belt.moveBelt(0);
   }
 
   // Called when another command which requires one or more of the same

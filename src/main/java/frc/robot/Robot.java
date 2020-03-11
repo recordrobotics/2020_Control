@@ -7,6 +7,9 @@
 
 package frc.robot;
 
+import edu.wpi.first.networktables.NetworkTable;
+import edu.wpi.first.networktables.NetworkTableEntry;
+import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
@@ -26,27 +29,36 @@ import frc.robot.subsystems.*;
 public class Robot extends TimedRobot {
   
   public enum CurrentRobot{
-    MONOLITH, MONTY;
+    MONOLITH, MONTY, ROBOT2020;
   }
-  CurrentRobot currentRobot = CurrentRobot.MONOLITH;
+  public static CurrentRobot currentRobot = CurrentRobot.ROBOT2020;
 
+  public static final double restingVoltage = 12.5;
+  public static double shootingDistance = 122;
+  public static double flywheelSpeed = 0.85;
 
   public static ExampleSubsystem m_subsystem = new ExampleSubsystem();
   public static DriveTrain driveTrain;
+  public static RobotLift lift;
+  public static Gyroscope gyro;
+  public static Acquisition2020 acq;
   public static OI m_oi;
+  public static Flywheel2020 flywheel;
+  public static BallLift belt;
+  public static LiftSpool spool;
+  public static RangeFinder rangeFinder = new RangeFinder();
+  public static CamStream camStream = new CamStream(2);
 
+  public static Dashboard dash = new Dashboard(currentRobot);
 
   Command m_autonomousCommand;
   SendableChooser<Command> m_chooser = new SendableChooser<>();
 
-  public static Lift lift;
+  public static NetworkTableInstance inst;
+  public static NetworkTable table;
+  public static NetworkTableEntry testEntry;
 
-  //gyroscope constructor
-  public static Gyroscope gyro;
 
-  //Dashboard contructor
-  public static Dashboard dash = new Dashboard();
-  
   /**
    * This function is run when the robot is first started up and should be
    * used for any initialization code.
@@ -58,27 +70,23 @@ public class Robot extends TimedRobot {
     // chooser.addOption("My Auto", new MyAutoCommand());
     SmartDashboard.putData("Auto mode", m_chooser);
 
-    if(currentRobot == CurrentRobot.MONOLITH){
-      monolithInit();
-    } else if (currentRobot == CurrentRobot.MONTY){
-      montyInit();
-    } else {
-      System.out.println("OH NO ---> someone forgot to instantiate the drive train");
+    switch(currentRobot){
+      case MONOLITH:
+        monolithInit();
+        break;
+      case MONTY:
+        montyInit();
+        break;
+      case ROBOT2020:
+        robot2020Init();
+        break;
     }
 
-    //calibrate gyroscope
-    boolean recalibrateGyro = true;
-
-    if (recalibrateGyro) {
-      gyro.gyroCalib();
-      System.out.println("Please wait... Calibrating Gyroscope");
-      Timer.delay(5);
-      System.out.println("Calibration Complete");
-      gyro.gyroReset();
-    } else {
-      gyro.gyroReset();
-    }
+    networkInit();
   }
+
+  //calibrate gyroscope
+  boolean recalibrateGyro = true;
 
   private void montyInit(){
     driveTrain = new DriveMonty();
@@ -90,7 +98,40 @@ public class Robot extends TimedRobot {
     //Lift constructor
     lift = new LiftMonolith();
     //gyro
-    gyro = new Gyroscope();
+    gyro = new GyroMonolith();  
+    gyroInit();
+  }
+
+  private void robot2020Init(){
+    driveTrain = new Drive2020();
+    gyro = new Gyro2020();
+    gyroInit();
+    acq = new Acquisition2020();  
+    flywheel = new Flywheel2020();
+    belt = new BallLift();
+    spool = new LiftSpool();
+    lift = new RobotLift2020();
+
+
+  }
+
+  private void networkInit(){
+    inst = NetworkTableInstance.getDefault();
+    table = inst.getTable("datatable");
+
+    testEntry = table.getEntry("Test");
+  }
+
+  private void gyroInit(){
+    if (recalibrateGyro) {
+      gyro.gyroCalib();
+      System.out.println("Please wait... Calibrating Gyroscope");
+      Timer.delay(5);
+      System.out.println("Calibration Complete");
+      gyro.gyroReset();
+    } else {
+      gyro.gyroReset();
+    }
   }
 
   /**
@@ -103,10 +144,9 @@ public class Robot extends TimedRobot {
    */
 
 
-
+  private boolean prevLampState = false;
   @Override
   public void robotPeriodic() {
-    //System.out.println(gyro.getDeg());
 
   }
 
@@ -137,7 +177,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void autonomousInit() {
-    m_autonomousCommand = m_chooser.getSelected();
+    m_autonomousCommand = new MoveToFire(shootingDistance); 
 
     /*
      * String autoSelected = SmartDashboard.getString("Auto Selector",

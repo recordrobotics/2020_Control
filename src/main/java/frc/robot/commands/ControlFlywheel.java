@@ -8,15 +8,22 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
+import frc.robot.OI;
 import frc.robot.Robot;
+//import frc.robot.control.ButtonMap;
 
-/**
- * An example command.  You can replace me with your own command.
- */
-public class ExampleCommand extends Command {
-  public ExampleCommand() {
+public class ControlFlywheel extends Command {
+
+  private boolean prevToggle = false, flywheelIsOn = false;
+  private boolean useXboxController = true;
+  private String xboxButton = "X";
+  private int panelButton = 6;
+
+  private double wheelSpeed = Robot.flywheelSpeed;
+
+  public ControlFlywheel() {
     // Use requires() here to declare subsystem dependencies
-    requires(Robot.m_subsystem);
+    requires(Robot.flywheel);
   }
 
   // Called just before this Command runs the first time
@@ -25,8 +32,33 @@ public class ExampleCommand extends Command {
   }
 
   // Called repeatedly when this Command is scheduled to run
-  @Override 
+  @Override
   protected void execute() {
+    //toggle
+    if ((getButton() != prevToggle) && getButton()){
+      flywheelIsOn = !flywheelIsOn;
+      System.out.println("toggle! " + flywheelIsOn);
+    }
+
+    if (flywheelIsOn){
+      if (OI.getXboxButtonState("Y")){
+        Robot.flywheel.moveWheel(wheelSpeed - 0.15);
+      } else {
+        Robot.flywheel.moveWheel(wheelSpeed);
+      }
+    } else {
+      Robot.flywheel.moveWheel(0);
+    }
+
+    prevToggle = getButton();
+  }
+
+  private boolean getButton(){
+    if (useXboxController){
+      return OI.getXboxButtonState(xboxButton);
+    } else {
+      return OI.getPanelButtonState(panelButton);
+    }
   }
 
   // Make this return true when this Command no longer needs to run execute()

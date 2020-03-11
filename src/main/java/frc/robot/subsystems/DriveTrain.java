@@ -8,6 +8,7 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import frc.robot.commands.ManualDrive;
 
 /**
@@ -32,8 +33,9 @@ public abstract class DriveTrain extends Subsystem {
 
   public abstract double getRightEncoder();
   public abstract double getLeftEncoder();
+  public abstract void resetEncoders();
 
-
+  public abstract DifferentialDrive getDrive();
 
   public boolean isDisabled() {
     return System.currentTimeMillis() - disabled_start_time < disabled_time; 

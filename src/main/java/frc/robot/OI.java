@@ -10,7 +10,19 @@ package frc.robot;
 import frc.robot.control.ButtonPanelController;
 import frc.robot.control.HotasController;
 import frc.robot.commands.AutoTurn;
-import frc.robot.control.ButtonMap;;
+import frc.robot.commands.BallUpOne;
+import frc.robot.commands.BeltAutoRun;
+import frc.robot.commands.MoveForward;
+import frc.robot.commands.MoveToAim;
+import frc.robot.commands.MoveToFire;
+import frc.robot.commands.MoveToRange;
+import frc.robot.commands.TurnToGoal;
+import frc.robot.control.XboxJoystick;
+//import frc.robot.control.XboxMap;
+import frc.robot.control.Controller;
+import frc.robot.control.ButtonMap;
+import frc.robot.commands.TiltAcquisition;
+import frc.robot.commands.TurnToAngle;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -19,20 +31,18 @@ import frc.robot.control.ButtonMap;;
 public class OI {
   private static ButtonPanelController buttonPanel = new ButtonPanelController();
   private static HotasController hotas = new HotasController();
+  private static XboxJoystick xbox = new XboxJoystick();
+  private static Controller joystick = xbox;
 
   boolean enablePID = false; //do not set to true unless you know what you are doing. It causes issues. 
+  
+  private MoveToAim aiming = new MoveToAim(Robot.shootingDistance);
 
   public OI(){
     // buttonPanel
-
-    //control autoTurning with blue buttons
-    double dirMult = 1; //change to -1 if the right button makes robot turns left and vice-versa - DO NOT SET TO ANY VALUE OTHER THAN 1 OR -1
-    int autoRightButton = ButtonMap.turn90Right; //button to use for turing the robot 90 degrees to the right
-    int autoLeftButton = ButtonMap.turn90Left; //button to use for turing the robot 90 degrees to the left
-
-    buttonPanel.getButton(autoRightButton).whenPressed(new AutoTurn(90 * dirMult)); //right turn
-    buttonPanel.getButton(autoLeftButton).whenPressed(new AutoTurn(90 * -dirMult)); //left turn
-
+    buttonPanel.getButton(ButtonMap.mainButton).whenPressed(aiming);
+    buttonPanel.getButton(ButtonMap.blueTempNameLeft).whenPressed(new BeltAutoRun());
+    buttonPanel.getButton(ButtonMap.blueTempNameRight).cancelWhenPressed(aiming);
   }
 
   /*
@@ -68,17 +78,27 @@ public class OI {
   * * * * * * * * * * * * * *
   */
 
-  public static boolean getButtonState(int button){
+  /**
+   * Gets the state a button of the specific XboxJoystick instance xbox, basically an extension of {@link XboxJoystick#getButtonState(buttonName) getButtonState()} specifically for the instance xbox
+   * @param buttonName The abbreviation for the button <p> Accepted inputs are A, B, X, Y, LB, RB, LT, RT
+   * @return Whether or not the buttton buttonName is pressed, unaccepted inputs will return false
+   */
+  public static boolean getXboxButtonState(String buttonName){
+    return xbox.getButtonState(buttonName);
+  }
+
+  public static boolean getPanelButtonState(int button){
     return buttonPanel.getState(button);
   }
 
 
   public static double getForward(){
-    return hotas.getY();
+    return joystick.getYAxis();
   }
 
   public static double getTurn(){
-    return hotas.getRotation();
+    return joystick.getXAxis();
+
   }
   //temp
   public static int getLiftMotion(){

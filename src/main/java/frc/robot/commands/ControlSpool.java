@@ -8,15 +8,19 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
+import frc.robot.OI;
 import frc.robot.Robot;
+import frc.robot.control.ButtonMap;
 
 /**
  * An example command.  You can replace me with your own command.
  */
-public class ExampleCommand extends Command {
-  public ExampleCommand() {
+public class ControlSpool extends Command {
+  private double spoolSpeed = 0.5;
+  
+  public ControlSpool() {
     // Use requires() here to declare subsystem dependencies
-    requires(Robot.m_subsystem);
+    requires(Robot.spool);
   }
 
   // Called just before this Command runs the first time
@@ -25,8 +29,15 @@ public class ExampleCommand extends Command {
   }
 
   // Called repeatedly when this Command is scheduled to run
-  @Override 
+  @Override
   protected void execute() {
+    if(OI.getPanelButtonState(ButtonMap.winchUp)){
+      Robot.spool.MoveSpool(spoolSpeed);
+    } else if(OI.getPanelButtonState(ButtonMap.winchDown)){
+     Robot.spool.MoveSpool(-spoolSpeed);
+    } else {
+      Robot.spool.MoveSpool(0);
+    }
   }
 
   // Make this return true when this Command no longer needs to run execute()
