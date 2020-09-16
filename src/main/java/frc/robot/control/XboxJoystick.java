@@ -6,13 +6,19 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import frc.robot.RobotMap;
 
+
+/**
+ * A class that turns the inputs from an XBox controller into usable inputs for our code
+ */
 public class XboxJoystick extends Controller{
+    //How many usuable button inputs there are on the controller
     private static final int NUM_BUTTONS = 10;
 
     XboxController xbox;
     private JoystickButton[] buttons;
 
     public XboxJoystick(){
+        //Assigns the port the controller is connected to
         xbox = new XboxController(RobotMap.xboxPort);
         buttons = new JoystickButton[NUM_BUTTONS];
 
@@ -67,15 +73,23 @@ public class XboxJoystick extends Controller{
 		return buttons[button];
     }
     
-    
+    /**
+     * @return The X axis value of the left stick
+     */
     public double getXAxis (){
         return xbox.getX(Hand.kLeft);
     }
 
+    /**
+     * Unnecessary function required by the superclass, does the same thing as getXAxis
+     */
     public double getZ (){
         return getXAxis();
     }
 
+    /**
+     * @return The Y axis value of the left stick
+     */
     public double getYAxis (){
         return xbox.getY(Hand.kLeft);
     }
@@ -125,14 +139,26 @@ public class XboxJoystick extends Controller{
         }
 
     }
+    /**
+     * 
+     * @return The X axis value of the right stick
+     */
     public double getCStickXAxis(){
         return xbox.getX(Hand.kRight);
     }
 
+    /**
+     * 
+     * @return The Y axis value of the right stick
+     */
     public double getCStickYAxis(){
         return xbox.getY(Hand.kRight);
     }
 
+    /**
+     * Turns the right stick into inputs that can be used as buttons
+     * @return Whether or not the right stick is more than halfway to the right
+     */
     public boolean getRightStickXRight() {
         if (getCStickXAxis() > 0.5) {
             return true;
@@ -141,7 +167,10 @@ public class XboxJoystick extends Controller{
             return false;
         }
     }
-    
+    /**
+     * Turns the right stick into inputs that can be used as buttons
+     * @return Whether or not the right stick is more than halfway to the left
+     */
     public boolean getRightStickXLeft() {
         if (getCStickXAxis() > -0.5) {
             return true;
@@ -151,6 +180,10 @@ public class XboxJoystick extends Controller{
         }
     }
     
+    /**
+     * Turns the right stick into inputs that can be used as buttons
+     * @return Whether or not the right stick is more than halfway up
+     */
     public boolean getRightStickYUp() {
         if (getCStickYAxis() < -0.5) {
             return true;
@@ -160,6 +193,10 @@ public class XboxJoystick extends Controller{
         }
     }
     
+    /**
+     * Turns the right stick into inputs that can be used as buttons
+     * @return Whether or not the right stick is more than halfway down
+     */
     public boolean getRightStickYDown() {
         if (getCStickYAxis() > 0.5) {
             return true;
@@ -169,10 +206,18 @@ public class XboxJoystick extends Controller{
         }
     }
     
+    /**
+     * 
+     * @return The axis value of the right trigger, i.e. how far it is pushed in
+     */
     public double getRTAxis(){
         return xbox.getTriggerAxis(Hand.kRight);
     }
 
+    /**
+     * 
+     * @return The axis value of the left trigger, i.e. how far it is pushed in
+     */
     public double getLTAxis(){
         return xbox.getTriggerAxis(Hand.kLeft);
     }
