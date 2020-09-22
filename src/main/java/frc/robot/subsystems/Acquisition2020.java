@@ -16,6 +16,12 @@ import com.ctre.phoenix.motorcontrol.*;
 import com.ctre.phoenix.motorcontrol.can.*;
 
 public class Acquisition2020 extends Subsystem {
+    /**
+     * @param aquireMotor @param tiltMotor Creating variables for the acquisition's motors.
+     * @param tiltLimit The maximum angle the acquisition can be at (to avoid unwanted accidents with the acquisition hitting something).
+     * @param tiltSpeed How fast the aquisition tilts.
+     * @param tiltPostition Whether the aquisition is up or down.
+     */
 
     private WPI_VictorSPX acquireMotor = new WPI_VictorSPX(RobotMap.acquireMotorPort);
     private WPI_VictorSPX tiltMotor = new WPI_VictorSPX(RobotMap.tiltMotorPort);
@@ -27,34 +33,54 @@ public class Acquisition2020 extends Subsystem {
 
     private double tiltSpeed = 0.5;
     boolean tiltPosition = true; //true is up, false is down
-
+    /**
+     * Creates an acquisition object with a specific tilt limit.
+     */
     public Acquisition2020(){
         //limitTop = new DigitalInput(3);
         //limitBottom = new DigitalInput(3);
         tiltLimit = new DigitalInput(7);
         //acqEncoder.reset();
     }
-
+    /**
+     * Gets how fast the acquisition is tilting.
+     * @return returns said speed.
+     */
     public double getTiltSpeed(){
         return tiltSpeed;
     }
-
+    /**
+     * Gets where the acquisition is in its tilt path.
+     * @return returns said position.
+     */
     public boolean getTiltPosition() {
         return tiltPosition;
     }
-    
+    /**
+     * Sets the acquisition's tilt.
+     * @param pos whether the tilt should be up or down.
+     */
     public void setTiltPosition(boolean pos){
         tiltPosition = pos;
     }
-
+    /**
+     * Spins the acquisition motor.
+     * @param v speed to spin the acquisition at.
+     */
     public void moveAcq(double v) {
         acquireMotor.set(ControlMode.PercentOutput, v);
     }
-
+    /**
+     * Moves the acquisition up and down.
+     * @param v speed of the motor.
+     */
     public void moveTilt(double v) {
         tiltMotor.set(ControlMode.PercentOutput, v);
     }
-     
+    /**
+     * Returns how far the acquisition can tilt.
+     * @return how far the acquisition can tilt.
+     */
     public boolean getTiltLimit(){
         return tiltLimit.get();
      }
@@ -63,10 +89,16 @@ public class Acquisition2020 extends Subsystem {
         return acqEncoder.get() * 360/174.9;
     }
     */
+    /**
+     * Returns if the acqusition is spinning.
+     * @return is the motor running.
+     */
     public boolean isAcqOn(){
         return acquireMotor.get() > 0;
     }
-    
+    /**
+     * Creates a ControlAcquisition command.
+     */
     @Override
     public void initDefaultCommand() {
         setDefaultCommand(new ControlAcquisition());
