@@ -14,7 +14,10 @@ public abstract class RobotLift extends Subsystem {
     public void initDefaultCommand() {
         setDefaultCommand(new LiftControl());
     }
-    
+    /**
+     * initDefaultCommand() makes LiftControl command.
+     * @param v moves lift at speed v.
+     */
     public abstract void moveLift(double v);
     public abstract void stop();
 }
