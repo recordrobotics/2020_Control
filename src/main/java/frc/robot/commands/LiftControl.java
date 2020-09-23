@@ -14,11 +14,17 @@ import frc.robot.Robot;
 import frc.robot.control.*;
 
 public class LiftControl extends Command {
+  /**
+   * Creates a LiftControl constructor.
+   */
   public LiftControl() {
     // Use requires() here to declare subsystem dependencies
     requires(Robot.lift);
   } 
-
+  /**
+   * @param speed the speed the lift moves.
+   * @param position safety or no safety.
+   */
   private double speed = 0.8;
   private int position = 0; //nonzero value kills the saftey mechanism
 
@@ -34,7 +40,9 @@ public class LiftControl extends Command {
   protected void execute() {
       liftControl();
   }
-
+  /**
+   * Moves lift based on GREEN PANEL BUTTONS.
+   */
   private void liftControl(){
     //if the left green button is pressed, move up
     //if the right green button is pressed, move down
