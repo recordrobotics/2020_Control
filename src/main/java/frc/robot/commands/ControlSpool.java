@@ -16,8 +16,13 @@ import frc.robot.control.ButtonMap;
  * An example command.  You can replace me with your own command.
  */
 public class ControlSpool extends Command {
+  /**
+   * @param spoolSpeed how fast the spool spins.
+   */
   private double spoolSpeed = 0.5;
-  
+  /**
+   * Creates a ControlSpool constuctor.
+   */
   public ControlSpool() {
     // Use requires() here to declare subsystem dependencies
     requires(Robot.spool);

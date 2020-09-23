@@ -13,14 +13,23 @@ import frc.robot.Robot;
 //import frc.robot.control.ButtonMap;
 
 public class ControlFlywheel extends Command {
-
+  /**
+   * @param prevToggle if it was last on or off.
+   * @param flywheelIsOn if the flywheel is currently on or off.
+   * @param useXboxController use xbox controller to toggle flywheel.
+   * @param xboxButton which button on the xbox controller toggles the flywheel.
+   * @param panelButton which button on the panel toggles the flywheel.
+   * @param wheelSpeed how fast the flywheel spins.
+   */
   private boolean prevToggle = false, flywheelIsOn = false;
   private boolean useXboxController = true;
   private String xboxButton = "X";
   private int panelButton = 6;
 
   private double wheelSpeed = Robot.flywheelSpeed;
-
+  /**
+   * Create a ControlFlywheel constructor.
+   */
   public ControlFlywheel() {
     // Use requires() here to declare subsystem dependencies
     requires(Robot.flywheel);
@@ -39,7 +48,7 @@ public class ControlFlywheel extends Command {
       flywheelIsOn = !flywheelIsOn;
       System.out.println("toggle! " + flywheelIsOn);
     }
-
+    //hold y to slow down flywheel
     if (flywheelIsOn){
       if (OI.getXboxButtonState("Y")){
         Robot.flywheel.moveWheel(wheelSpeed - 0.15);
@@ -52,7 +61,10 @@ public class ControlFlywheel extends Command {
 
     prevToggle = getButton();
   }
-
+  /**
+   * Returns the button used to toggle the flywheel.
+   * @return the button used to toggle the flywheel.
+   */
   private boolean getButton(){
     if (useXboxController){
       return OI.getXboxButtonState(xboxButton);
