@@ -17,10 +17,10 @@ import com.ctre.phoenix.motorcontrol.can.*;
 
 public class Acquisition2020 extends Subsystem {
     /**
-     * @param aquireMotor @param tiltMotor Creating variables for the acquisition's motors.
-     * @param tiltLimit The maximum angle the acquisition can be at (to avoid unwanted accidents with the acquisition hitting something).
-     * @param tiltSpeed How fast the aquisition tilts.
-     * @param tiltPostition Whether the aquisition is up or down.
+     * aquireMotor tiltMotor Creating variables for the acquisition's motors.
+     * tiltLimit The maximum angle the acquisition can be at (to avoid unwanted accidents with the acquisition hitting something).
+     * tiltSpeed How fast the aquisition tilts.
+     * tiltPostition Whether the aquisition is up or down.
      */
 
     private WPI_VictorSPX acquireMotor = new WPI_VictorSPX(RobotMap.acquireMotorPort);

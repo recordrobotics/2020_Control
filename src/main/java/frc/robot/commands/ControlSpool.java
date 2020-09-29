@@ -17,7 +17,7 @@ import frc.robot.control.ButtonMap;
  */
 public class ControlSpool extends Command {
   /**
-   * @param spoolSpeed how fast the spool spins.
+   * spoolSpeed how fast the spool spins.
    */
   private double spoolSpeed = 0.5;
   /**

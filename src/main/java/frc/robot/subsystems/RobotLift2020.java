@@ -14,7 +14,7 @@ import frc.robot.RobotMap;
 
 public class RobotLift2020 extends RobotLift{
     /**
-     * @param robotLiftMotorLeft creates variable for the left lift motor.
+     * robotLiftMotorLeft creates variable for the left lift motor.
      * stop() stops the motor.
      */
     private WPI_VictorSPX robotLiftMotorLeft = new WPI_VictorSPX(RobotMap.robotLiftLeftMotorPort);

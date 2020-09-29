@@ -14,12 +14,12 @@ import frc.robot.Robot;
 
 public class ControlFlywheel extends Command {
   /**
-   * @param prevToggle if it was last on or off.
-   * @param flywheelIsOn if the flywheel is currently on or off.
-   * @param useXboxController use xbox controller to toggle flywheel.
-   * @param xboxButton which button on the xbox controller toggles the flywheel.
-   * @param panelButton which button on the panel toggles the flywheel.
-   * @param wheelSpeed how fast the flywheel spins.
+   * prevToggle if it was last on or off.
+   * flywheelIsOn if the flywheel is currently on or off.
+   * useXboxController use xbox controller to toggle flywheel.
+   * xboxButton which button on the xbox controller toggles the flywheel.
+   * panelButton which button on the panel toggles the flywheel.
+   * wheelSpeed how fast the flywheel spins.
    */
   private boolean prevToggle = false, flywheelIsOn = false;
   private boolean useXboxController = true;
