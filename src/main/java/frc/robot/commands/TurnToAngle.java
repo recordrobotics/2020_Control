@@ -18,6 +18,15 @@ import java.util.ArrayList;
  * An example command.  You can replace me with your own command.
  */
 public class TurnToAngle extends Command {
+  /**
+   * targetAngle Angle the robot has to face.
+   * tolerance The error allowed in turning.
+   * angle Current angle.
+   * speed How fast the robot should turn.
+   * angleData ArrayList to store data on the current angle.
+   * pid Creates a PID controller.
+   * kp, ki, kd Part of PID controller.
+   */
   private double targetAngle = 0;
   private double tolerance = 3; //degrees
   private double angle;
@@ -26,11 +35,16 @@ public class TurnToAngle extends Command {
   private ArrayList<Double> angleData = new ArrayList<Double>();
   private PID pid;
   private double kp = 0.2, ki = 0, kd = 0;
-
+  /**
+   * Creates a TurnToAngle object.
+   * @param a The current target angle.
+   */
   public TurnToAngle(double a){
     targetAngle = a;
   }
-
+  /**
+   * If TurnToAngle has no return value, the return value is 0.
+   */
   public TurnToAngle(){
     this(0);
   }

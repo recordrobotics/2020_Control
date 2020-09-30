@@ -15,6 +15,11 @@ import edu.wpi.first.wpilibj.Timer;
  * An example command.  You can replace me with your own command.
  */
 public class TiltAcquisition extends Command {
+  /**
+   * acqTimer Timer to time the amount of time that has passed since the acquisition started tilting.
+   * acqMoveTime How long it should take to tilt.
+   * TiltAcquisition Creates new TiltAcquisition object.
+   */
   private Timer acqTimer = new Timer();
   private double acqMoveTime = 2.5;
   public TiltAcquisition() {
