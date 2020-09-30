@@ -14,15 +14,23 @@ import frc.robot.OI;
 
 
 public class ControlAcquisition extends Command {
-
+    /**
+     * acqSpeed Speed the acquisition spins.
+     * upperAngle Maximum angle of acquisition tilt.
+     * lowerAngle Minimum angle of acquisition tilt.
+     */
     private double acqSpeed = -0.5;
     private double upperAngle = 5, lowerAngle = 0;
-
+    /**
+     * Creates a ControlAcquisition object.
+     */
     public ControlAcquisition() {
         // Use requires() here to declare subsystem dependencies
         requires(Robot.acq);
     }
-
+    /**
+     * Method to spin and tilt acquisition.
+     */
     private void controlAcq() {
         //control the acqusition wheels
        

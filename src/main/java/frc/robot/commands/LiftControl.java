@@ -22,8 +22,8 @@ public class LiftControl extends Command {
     requires(Robot.lift);
   } 
   /**
-   * @param speed the speed the lift moves.
-   * @param position safety or no safety.
+   * speed the speed the lift moves.
+   * position safety or no safety.
    */
   private double speed = 0.8;
   private int position = 0; //nonzero value kills the saftey mechanism
