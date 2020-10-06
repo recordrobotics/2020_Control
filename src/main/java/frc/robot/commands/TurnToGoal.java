@@ -14,9 +14,7 @@ import frc.robot.control.PID;
 
 import java.util.ArrayList;
 
-/**
- * An example command.  You can replace me with your own command.
- */
+
 public class TurnToGoal extends Command {
   
   private double targetAngle = 0;

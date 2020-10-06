@@ -7,9 +7,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 //import edu.wpi.first.wpilibj.Talon;
 import frc.robot.commands.*;
 
-/**
- * 
- */
+
 public abstract class RobotLift extends Subsystem {
     public void initDefaultCommand() {
         setDefaultCommand(new LiftControl());
