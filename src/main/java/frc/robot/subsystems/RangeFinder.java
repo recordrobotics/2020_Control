@@ -14,7 +14,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 //import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
- * Subsystem for the RangeFinder
+ * Subsystem class for the RangeFinder
  */
 public class RangeFinder extends Subsystem {
   // factor to convert sensor values to a distance in inches
