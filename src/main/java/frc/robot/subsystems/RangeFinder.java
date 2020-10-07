@@ -13,9 +13,7 @@ import edu.wpi.first.wpilibj.Ultrasonic;
 import edu.wpi.first.wpilibj.command.Subsystem;
 //import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-/**
- * An example subsystem.  You can replace me with your own Subsystem.
- */
+
 public class RangeFinder extends Subsystem {
   // factor to convert sensor values to a distance in inches
 

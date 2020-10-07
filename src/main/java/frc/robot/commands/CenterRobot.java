@@ -13,9 +13,7 @@ import frc.robot.Robot;
 import frc.robot.commands.AutoTurn;
 import frc.robot.commands.MoveForward;
 //import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-/**
- * An example command.  You can replace me with your own command.
- */
+
 public class CenterRobot extends CommandGroup {
   //TODO: Set distances to correct values
   private double distanceToMove;

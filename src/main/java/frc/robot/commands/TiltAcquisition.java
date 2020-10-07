@@ -11,9 +11,7 @@ import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 import edu.wpi.first.wpilibj.Timer;
 
-/**
- * An example command.  You can replace me with your own command.
- */
+
 public class TiltAcquisition extends Command {
   /**
    * acqTimer Timer to time the amount of time that has passed since the acquisition started tilting.

@@ -14,9 +14,7 @@ import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.commands.CamControl;
 
-/**
- * An example subsystem.  You can replace me with your own Subsystem.
- */
+
 public class CamStream extends Subsystem {
   
     private UsbCamera[] camera;

@@ -12,9 +12,7 @@ import frc.robot.OI;
 import frc.robot.Robot;
 import frc.robot.control.ButtonMap;
 
-/**
- * An example command.  You can replace me with your own command.
- */
+
 public class ControlSpool extends Command {
   /**
    * spoolSpeed how fast the spool spins.
