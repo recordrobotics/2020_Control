@@ -87,25 +87,27 @@ public class OI {
     return xbox.getButtonState(buttonName);
   }
 
+  /**
+   * Gets the state of a button on the panel
+   * @param button The number of the button the read the state of. See label
+   * @return the boolean state of the button
+   */
   public static boolean getPanelButtonState(int button){
     return buttonPanel.getState(button);
   }
 
-
+  /**
+   * @return the forward value of the current joystick
+   */
   public static double getForward(){
     return joystick.getYAxis();
   }
 
+  /**
+   * @return The turn (yaw) value of the current joystick
+   */
   public static double getTurn(){
     return joystick.getXAxis();
 
   }
-  //temp
-  public static int getLiftMotion(){
-    int out = 0;
-    out += (1);
-    return out;
-  }
-
-
 }
