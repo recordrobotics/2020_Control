@@ -28,16 +28,23 @@ import frc.robot.subsystems.*;
  */
 public class Robot extends TimedRobot {
   
+  /**
+   * Enum that determines which robots can be used used. Set to make sure the correct classes are instantiated
+   */
   public enum CurrentRobot{
     MONOLITH, MONTY, ROBOT2020;
   }
+  /**
+   * The robot currently selected
+   */
   public static CurrentRobot currentRobot = CurrentRobot.ROBOT2020;
 
   public static final double restingVoltage = 12.5;
   public static double shootingDistance = 122;
   public static double flywheelSpeed = 0.85;
 
-  public static ExampleSubsystem m_subsystem = new ExampleSubsystem();
+  //Instances for all subsystems.
+  //Refer to these objects when interacting with any subsystem object.
   public static DriveTrain driveTrain;
   public static RobotLift lift;
   public static Gyroscope gyro;
@@ -48,12 +55,13 @@ public class Robot extends TimedRobot {
   public static LiftSpool spool;
   public static RangeFinder rangeFinder = new RangeFinder();
   public static CamStream camStream = new CamStream(2);
-
   public static Dashboard dash = new Dashboard(currentRobot);
 
+  //Autonomous command setup
   Command m_autonomousCommand;
   SendableChooser<Command> m_chooser = new SendableChooser<>();
 
+  //Network table setup
   public static NetworkTableInstance inst;
   public static NetworkTable table;
   public static NetworkTableEntry testEntry;
@@ -70,6 +78,7 @@ public class Robot extends TimedRobot {
     // chooser.addOption("My Auto", new MyAutoCommand());
     SmartDashboard.putData("Auto mode", m_chooser);
 
+    //select which init method to use based on the currently selected robot
     switch(currentRobot){
       case MONOLITH:
         monolithInit();
@@ -88,10 +97,18 @@ public class Robot extends TimedRobot {
   //calibrate gyroscope
   boolean recalibrateGyro = true;
 
+  /**
+   * Init function for Monty
+   * Makes instnaces of all Monty subsystems and assigns them to appropriate variables
+   */
   private void montyInit(){
     driveTrain = new DriveMonty();
   }
 
+  /**
+   * Init function for Monolith
+   * Makes instnaces of all Monolith-specific subsystems and assigns them to appropriate variables
+   */
   private void monolithInit(){
     driveTrain = new DriveMonolith();
     System.out.println("Monolith Initialized");
@@ -102,6 +119,10 @@ public class Robot extends TimedRobot {
     gyroInit();
   }
 
+  /**
+   * Init function for robot 2020
+   * Makes instnaces of all 2020-specific subsystems and assigns them to appropriate variables
+   */
   private void robot2020Init(){
     driveTrain = new Drive2020();
     gyro = new Gyro2020();
@@ -115,6 +136,10 @@ public class Robot extends TimedRobot {
 
   }
 
+  /**
+   * Make new instance of the DataTable used
+   * Get the main entry in the data
+   */
   private void networkInit(){
     inst = NetworkTableInstance.getDefault();
     table = inst.getTable("datatable");
@@ -122,6 +147,9 @@ public class Robot extends TimedRobot {
     testEntry = table.getEntry("Test");
   }
 
+  /**
+   * Setup for Gyroscope. Zero the gyroscope, and calibrate it is necessary
+   */
   private void gyroInit(){
     if (recalibrateGyro) {
       gyro.gyroCalib();

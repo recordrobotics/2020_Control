@@ -12,9 +12,7 @@ import frc.robot.OI;
 import frc.robot.Robot;
 import frc.robot.subsystems.CamStream;
 
-/**
- * An example command.  You can replace me with your own command.
- */
+
 public class CamControl extends Command {
 
     private String switchButton = "Y";

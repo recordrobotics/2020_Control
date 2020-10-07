@@ -13,9 +13,7 @@ import frc.robot.Robot;
 //import frc.robot.subsystems.Drive2020;
 import frc.robot.OI;
 
-/**
- * An example command.  You can replace me with your own command.
- */
+
 public class ManualDrive extends Command{
 
   //input multiplier, reduces or increases the input value

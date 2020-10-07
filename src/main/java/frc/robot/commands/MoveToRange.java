@@ -12,9 +12,7 @@ import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 import frc.robot.control.PID;
 
-/**
- * An example command.  You can replace me with your own command.
- */
+
 public class MoveToRange extends Command {
 
     private double distance, speed = 0.25;
