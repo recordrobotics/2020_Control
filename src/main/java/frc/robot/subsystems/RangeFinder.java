@@ -17,7 +17,9 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  * Subsystem class for the RangeFinder
  */
 public class RangeFinder extends Subsystem {
-  // factor to convert sensor values to a distance in inches
+  /** 
+   * factor to convert sensor values to a distance in inches
+   */
   private Ultrasonic m_ultrasonic = new Ultrasonic(8, 9);
 
   /** 
