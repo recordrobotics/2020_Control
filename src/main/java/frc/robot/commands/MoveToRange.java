@@ -16,14 +16,24 @@ import frc.robot.control.PID;
  * An example command.  You can replace me with your own command.
  */
 public class MoveToRange extends Command {
-
+    /**
+     * distance The current distance from the target.
+     * speed How fast the robot will move.
+     * tolerance Total tolerance when moving to the location.
+     * range The range the robot has to move to.
+     * pid Creates a PID Controller.
+     * kp, ki, kd Components of PID Controller.
+     */
     private double distance, speed = 0.25;
     private double tolerance = 3; //inches
     private double range;
 
     private PID pid;
     private double kp = 0.1, ki = 0, kd = 0;
-
+    /**
+     * MoveToRange() Moves the robot to the set location.
+     * @param dist Total distance to travel.
+     */
     public MoveToRange(double dist){
         distance = dist;
         pid = new PID(kp, ki, kd, dist);

@@ -16,8 +16,13 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  * An example command.  You can replace me with your own command.
  */
 public class MoveToBall extends CommandGroup {
+  /**
+   * pyangle The angle to the ball.
+   */
   private static double pyangle = SmartDashboard.getNumber("Angle to Ball", 0);
-
+  /**
+   * MoveToBall() Moves the robot to a ball.
+   */
   public MoveToBall(){
     addSequential(new AutoTurn(pyangle));
     addSequential(new MoveForward());
