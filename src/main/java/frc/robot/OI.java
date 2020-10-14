@@ -63,7 +63,7 @@ public class OI {
   more complex method to get a curve with a deadzone - graph at;
   https: /**www.desmos.com/calculator/qs1u1uacir*/
   /**simple logrithmic curve*/
-  */
+  
   public static double accCurve(double value){
     double output;
     double e = 2.718;
