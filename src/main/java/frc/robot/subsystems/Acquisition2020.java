@@ -15,7 +15,7 @@ import frc.robot.commands.ControlAcquisition;
 import com.ctre.phoenix.motorcontrol.*;
 import com.ctre.phoenix.motorcontrol.can.*;
 
-public class Acquisition2020 extends Subsystem {
+public class Acquisition2020 extends Acquisition {
     /**
      * aquireMotor tiltMotor Creating variables for the acquisition's motors.
      * tiltLimit The maximum angle the acquisition can be at (to avoid unwanted accidents with the acquisition hitting something).
@@ -96,11 +96,5 @@ public class Acquisition2020 extends Subsystem {
     public boolean isAcqOn(){
         return acquireMotor.get() > 0;
     }
-    /**
-     * Creates a ControlAcquisition command.
-     */
-    @Override
-    public void initDefaultCommand() {
-        setDefaultCommand(new ControlAcquisition());
-    }
+
 }
