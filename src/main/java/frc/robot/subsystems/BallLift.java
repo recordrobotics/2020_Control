@@ -12,13 +12,13 @@ public class BallLift extends Subsystem {
   private WPI_VictorSPX beltMotor = new WPI_VictorSPX(RobotMap.beltMotorPort);
 
 
-  //array of limit switches that are triggered when a ball occupies it's slot
+  /**array of limit switches that are triggered when a ball occupies it's slot*/
   private DigitalInput[] ballLimits = new DigitalInput[3];
   
   public BallLift() {
-    //instance of limit switches
+    /**instance of limit switches*/
     int offset = 4;
-    //ballLimits = new DigitalInput [5];
+    /**ballLimits = new DigitalInput [5];*/
     for (int i = 0; i < ballLimits.length; i++){
       ballLimits[i] = new DigitalInput(i + offset);
       

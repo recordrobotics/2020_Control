@@ -18,7 +18,11 @@ import java.util.ArrayList;
 public class TurnToGoal extends Command {
   
   private double targetAngle = 0;
-  private double tolerance = 3; //degrees
+  private double tolerance = 3;  /**degrees*/
+/**
+*   Called when another command which requires one or more of the same
+*   subsystems is scheduled to run
+*/
   private double angle;
   double speed = 0.17;
 
@@ -34,7 +38,7 @@ public class TurnToGoal extends Command {
     this(0);
   }
 
-  // Called just before this Command runs the first time
+  /** Called just before this Command runs the first time*/
   @Override
   protected void initialize() {
     System.out.println("init");
@@ -61,18 +65,19 @@ public class TurnToGoal extends Command {
     return average;
   }
 
-  // Called repeatedly when this Command is scheduled to run
+  /** Called repeatedly when this Command is scheduled to run*/
   @Override 
   protected void execute() {
     angle = SmartDashboard.getNumber("Angle to Goal", 0);
-    //angle = smoothData();
+    /**angle = smoothData();*/
 
-    //speed = pid.control(angle);
+    /**speed = pid.control(angle);*/
 
     if (angle < 0 && speed > 0) speed *= -1;
     if (angle > 0 && speed < 0) speed *= -1;
 
-    if (speed > 0.3) speed = 0.3; //saftey
+    if (speed > 0.3) speed = 0.3;  /**saftey*/
+    /**speed = pid.control(angle);*/
     if (speed < -0.3) speed = -0.3;
 
     /* Possible improvment? Ignore for now
@@ -89,7 +94,7 @@ public class TurnToGoal extends Command {
     Robot.driveTrain.moveLeftWheels(-speed);
   }
 
-  // Make this return true when this Command no longer needs to run execute()
+  /** Make this return true when this Command no longer needs to run execute()*/
   @Override
   protected boolean isFinished() {
     if ((angle > targetAngle - tolerance && angle < targetAngle + tolerance) && angle != -1.0){
@@ -98,7 +103,7 @@ public class TurnToGoal extends Command {
     return false;
   }
 
-  // Called once after isFinished returns true
+  /** Called once after isFinished returns true*/
   @Override
   protected void end() {
     Robot.driveTrain.moveRightWheels(0);
@@ -106,8 +111,10 @@ public class TurnToGoal extends Command {
     System.out.println("Turn To Goal Completed");
   }
 
-  // Called when another command which requires one or more of the same
-  // subsystems is scheduled to run
+/**
+*   Called when another command which requires one or more of the same
+*   subsystems is scheduled to run
+*/
   @Override
   protected void interrupted() {
   }

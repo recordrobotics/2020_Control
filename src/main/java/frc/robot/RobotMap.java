@@ -7,12 +7,15 @@
 package frc.robot;
 import edu.wpi.first.wpilibj.SPI;
 
+
 /**
  * The RobotMap is a mapping from the ports sensors and actuators are wired into
  * to a variable name. This provides flexibility changing wiring, makes checking
  * the wiring easier and significantly reduces the number of magic numbers
  * floating around.
  */
+
+
 public class RobotMap {
 	/**
 	 * For example to map the Left and Right motors, you could define the
@@ -72,7 +75,7 @@ public class RobotMap {
 	 */
 	public static int liftPortMonolith = 4;
 
-	// the controller ports can be found in the driver station
+	/** the controller ports can be found in the driver station*/
 
 	/**
 	 * lifting mechanism port
@@ -95,3 +98,4 @@ public class RobotMap {
 	
 
 }
+

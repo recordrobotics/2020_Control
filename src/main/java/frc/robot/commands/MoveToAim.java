@@ -17,7 +17,7 @@ public class MoveToAim extends CommandGroup {
 
     public MoveToAim(double firingDistance){
 
-        //setTimeout(5);
+        /**setTimeout(5);*/
 
         if (cameraOffCenter != 0){
             targetAngle = (90 - Math.toDegrees(Math.atan(firingDistance / cameraOffCenter)));

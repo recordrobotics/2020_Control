@@ -7,9 +7,9 @@
 
 package frc.robot.subsystems;
 
-//import frc.robot.RobotMap;
+/**import frc.robot.RobotMap;*/
 
-//If this is throwing an error - you need to install ctre Pheonix stuff, it's a pain, sorry :(
+/**If this is throwing an error - you need to install ctre Pheonix stuff, it's a pain, sorry :(*/
 import com.ctre.phoenix.motorcontrol.*;
 import com.ctre.phoenix.motorcontrol.can.*;
 
@@ -41,27 +41,33 @@ public class Drive2020 extends DriveTrain {
      */
     private DifferentialDrive drive = new DifferentialDrive(frontLeft, frontRight);
 
-    //setting to false may help with crash, but ya know... saftey!? I don't exactly know what this turns on/off...
-    //alternative solution: see if chaning the timeout value using motor.setExpiration​(seconds) will fix it
+/**
+*    setting to false may help with crash, but ya know... saftey!? I don't exactly know what this turns on/off...
+*    alternative solution: see if chaning the timeout value using motor.setExpiration​(seconds) will fix it
+*/
     private boolean useSafety = false; 
-    private double timeout = 600; //600s, 10min
+    private double timeout = 600;  /**600s, 10min*/
+/**
+*    setting to false may help with crash, but ya know... saftey!? I don't exactly know what this turns on/off...
+*    alternative solution: see if chaning the timeout value using motor.setExpiration​(seconds) will fix it
+*/
 
     public Drive2020(){
-        //set the back motors to use the same speeds as the front ones
+        /**set the back motors to use the same speeds as the front ones*/
         backRight.follow(frontRight);
         backLeft.follow(frontLeft);
 
-        //Set the encoders to automatically convert ticks to distance
+        /**Set the encoders to automatically convert ticks to distance*/
         rightEnc.setDistancePerPulse(wheelCirc / ticksPerRotation);
         leftEnc.setDistancePerPulse(wheelCirc / ticksPerRotation);
 
-        //Set saftey system
+        /**Set saftey system*/
         frontLeft.setSafetyEnabled(useSafety);
         backLeft.setSafetyEnabled(useSafety);
         frontRight.setSafetyEnabled(useSafety);
         backRight.setSafetyEnabled(useSafety);
 
-        //set timeout
+        /**set timeout*/
         frontLeft.setExpiration(timeout);
         backLeft.setExpiration(timeout);
         frontRight.setExpiration(timeout);

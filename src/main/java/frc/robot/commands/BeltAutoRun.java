@@ -17,14 +17,14 @@ public class BeltAutoRun extends Command {
   private Timer ballTimer = new Timer();
   private double beltSpeed = 0.5, flywheelSpeed = 0.80, ballTimeout = 5.0;
 
-  // Called just before this Command runs the first time
+  /** Called just before this Command runs the first time*/
   @Override
   protected void initialize() {
     ballTimer.start();
     Robot.flywheel.moveWheel(flywheelSpeed);
   }
 
-  // Called repeatedly when this Command is scheduled to run
+  /** Called repeatedly when this Command is scheduled to run*/
   @Override
   protected void execute() {
     
@@ -34,21 +34,23 @@ public class BeltAutoRun extends Command {
       Robot.belt.moveBelt(beltSpeed);
   }
 
-  // Make this return true when this Command no longer needs to run execute()
+  /** Make this return true when this Command no longer needs to run execute()*/
   @Override
   protected boolean isFinished() {
     return ballTimer.get() >= ballTimeout;
   }
 
-  // Called once after isFinished returns true
+  /** Called once after isFinished returns true*/
   @Override
   protected void end() {
     Robot.flywheel.moveWheel(0);
     Robot.belt.moveBelt(0);
   }
 
-  // Called when another command which requires one or more of the same
-  // subsystems is scheduled to run
+/**
+*   Called when another command which requires one or more of the same
+*   subsystems is scheduled to run
+*/
   @Override
   protected void interrupted() {
   }

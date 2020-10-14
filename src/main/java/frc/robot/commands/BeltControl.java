@@ -18,7 +18,7 @@ public class BeltControl extends Command {
   private boolean moveDown;
 
   public BeltControl() {
-    // Use requires() here to declare subsystem dependencies
+    /** Use requires() here to declare subsystem dependencies*/
     requires(Robot.belt);
     this.beltSpeed = 0.6;
     this.moveUp = false;
@@ -26,7 +26,7 @@ public class BeltControl extends Command {
   }
 
   
-  //new ball in the lift from acq
+  /**new ball in the lift from acq*/
   private boolean checkNewBall(){
    return Robot.belt.getSlot(0) || (!Robot.belt.getSlot(1) && 
    moveUp && !checkInput()) && !Robot.belt.getSlot(3);
@@ -48,15 +48,16 @@ public class BeltControl extends Command {
 return OI.getXboxButtonState("B");
   }
 
-  // Called just before this Command runs the first time
+  /** Called just before this Command runs the first time*/
   @Override
   protected void initialize() {
   }
 
-  // Called repeatedly when this Command is scheduled to run
+  /** Called repeatedly when this Command is scheduled to run*/
   @Override
   protected void execute(){
-    moveUp = checkInput();// || checkNewBall();
+    moveUp = checkInput(); /** || checkNewBall();*/
+  /** Called repeatedly when this Command is scheduled to run*/
     
     
     moveDown = checkReverseInput();
@@ -72,19 +73,21 @@ return OI.getXboxButtonState("B");
     
   }
 
-  // Make this return true when this Command no longer needs to run execute()
+  /** Make this return true when this Command no longer needs to run execute()*/
   @Override
   protected boolean isFinished() {
     return false;
   }
 
-  // Called once after isFinished returns true
+  /** Called once after isFinished returns true*/
   @Override
   protected void end() {
   }
 
-  // Called when another command which requires one or more of the same
-  // subsystems is scheduled to run
+/**
+*   Called when another command which requires one or more of the same
+*   subsystems is scheduled to run
+*/
   @Override
   protected void interrupted() {
   }

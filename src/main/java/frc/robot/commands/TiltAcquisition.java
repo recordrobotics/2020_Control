@@ -21,16 +21,16 @@ public class TiltAcquisition extends Command {
   private Timer acqTimer = new Timer();
   private double acqMoveTime = 2.5;
   public TiltAcquisition() {
-    // Use requires() here to declare subsystem dependencies  
+    /** Use requires() here to declare subsystem dependencies  */
   }
 
-  // Called just before this Command runs the first time
+  /** Called just before this Command runs the first time*/
   @Override
   protected void initialize() {
     acqTimer.start();
   }
 
-  // Called repeatedly when this Command is scheduled to run
+  /** Called repeatedly when this Command is scheduled to run*/
   @Override 
   protected void execute() {
     if(Robot.acq.getTiltPosition()){
@@ -41,13 +41,13 @@ public class TiltAcquisition extends Command {
     }    
   }
 
-  // Make this return true when this Command no longer needs to run execute()
+  /** Make this return true when this Command no longer needs to run execute()*/
   @Override
   protected boolean isFinished() {
     return acqTimer.get() > acqMoveTime && Robot.acq.getTiltLimit();
   }
 
-  // Called once after isFinished returns true
+  /** Called once after isFinished returns true*/
   @Override
   protected void end() {
     Robot.acq.setTiltPosition(!Robot.acq.getTiltPosition());
@@ -55,8 +55,10 @@ public class TiltAcquisition extends Command {
     acqTimer.reset();
   }
 
-  // Called when another command which requires one or more of the same
-  // subsystems is scheduled to run
+/**
+*   Called when another command which requires one or more of the same
+*   subsystems is scheduled to run
+*/
   @Override
   protected void interrupted() {
   }
