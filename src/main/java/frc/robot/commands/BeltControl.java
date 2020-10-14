@@ -30,7 +30,7 @@ public class BeltControl extends Command {
   private boolean checkNewBall(){
    return Robot.belt.getSlot(0) || (!Robot.belt.getSlot(1) && 
    moveUp && !checkInput()) && !Robot.belt.getSlot(3);
-    /*
+    /** 
     Move up if there is a ball in the lowest slot OR if the ball is already moving and there is no ball in slot 1
     NEVER move the ball if there is a ball in the top slot, unless due to user input
 
@@ -39,7 +39,10 @@ public class BeltControl extends Command {
     or a flag when a ball has been recently aquired?
     */
   }
-
+/**
+ * checkInput checks for the button to move up
+ * checkReverseInput checks for the button to move down
+ */
   private boolean checkInput(){
     return OI.getXboxButtonState("RT");
   }
@@ -59,7 +62,9 @@ return OI.getXboxButtonState("B");
     moveUp = checkInput(); /** || checkNewBall();*/
   /** Called repeatedly when this Command is scheduled to run*/
     
-    
+    /**
+     * Checks whether to run forwards or in reverse, then runs belt either forwards or in reverse
+     */
     moveDown = checkReverseInput();
 
     if (moveUp) { 
