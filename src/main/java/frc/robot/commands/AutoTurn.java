@@ -12,31 +12,37 @@ import frc.robot.Robot;
 import frc.robot.control.*;
 
 public class AutoTurn extends Command {
-    //declare variables
-    double inputAngle; //number of degrees to turn
-    double initAngle;   //angle when command is started
-    double targetAngle; //angle robot is trying to be at
-    double precision = 0.5; //how close are we trying to get to target
-    PID pid; //PID controller object
+    double inputAngle;  /**number of degrees to turn*/
+    /**declare variables*/
+    double initAngle;    /**angle when command is started*/
+    /**declare variables*/
+    double targetAngle;  /**angle robot is trying to be at*/
+    /**declare variables*/
+    double precision = 0.5;  /**how close are we trying to get to target*/
+    /**declare variables*/
+    PID pid;  /**PID controller object*/
+    /**declare variables*/
 
-    //constructor
+    /**constructor*/
   public AutoTurn(double angle) {
-    // Use requires() here to declare subsystem dependencies
+    /** Use requires() here to declare subsystem dependencies*/
     if (Robot.driveTrain != null){
       requires(Robot.driveTrain);
     }
-    //assigns argument to variable
-    inputAngle = angle; //input should be an angle from -180 to positive 180
+    inputAngle = angle;  /**input should be an angle from -180 to positive 180*/
+    /**assigns argument to variable*/
   }
 
-  // Called just before this Command runs the first time
+  /** Called just before this Command runs the first time*/
   @Override
   protected void initialize() {
-    initAngle = Robot.gyro.getDeg(); //is a value representing the angle the robot is at
-    targetAngle = (initAngle + inputAngle); //sets the target angle, there is a risk of the angle being less than 360 or greater than 0
+    initAngle = Robot.gyro.getDeg();  /**is a value representing the angle the robot is at*/
+  /** Called just before this Command runs the first time*/
+    targetAngle = (initAngle + inputAngle);  /**sets the target angle, there is a risk of the angle being less than 360 or greater than 0*/
+  /** Called just before this Command runs the first time*/
     System.out.println("init autoturn, target: " + targetAngle);
 
-    //set up PID controller
+    /**set up PID controller*/
     double kp = 0.35, ki = 0.25, kd = 0;
     pid = new PID(kp, ki, kd, Math.toRadians(targetAngle));
 
@@ -45,15 +51,16 @@ public class AutoTurn extends Command {
     */
   }
 
-  // Called repeatedly when this Command is scheduled to run
+  /** Called repeatedly when this Command is scheduled to run*/
   @Override
   protected void execute() {
     System.out.println(Robot.gyro.getDeg());
-    double increment; //the amount that the robot will turn every period
+    double increment;  /**the amount that the robot will turn every period*/
+  /** Called repeatedly when this Command is scheduled to run*/
     double leftAmount;
     double rightAmount;
 
-    //determine which way to turn the wheels
+    /**determine which way to turn the wheels*/
     boolean turnRight;
 
     if (targetAngle > initAngle){
@@ -63,7 +70,7 @@ public class AutoTurn extends Command {
     }
 
     increment = Math.abs(pid.control(Robot.gyro.getRad()));
-    //increment = 0.5;
+    /**increment = 0.5;*/
 
     if (turnRight){
       leftAmount = increment;
@@ -73,12 +80,12 @@ public class AutoTurn extends Command {
       rightAmount = increment;
     }
 
-    //move the robot around it's own axis
+    /**move the robot around it's own axis*/
     Robot.driveTrain.moveLeftWheels(leftAmount);
     Robot.driveTrain.moveRightWheels(rightAmount);
   }
 
-  // Make this return true when this Command no longer needs to run execute()
+  /** Make this return true when this Command no longer needs to run execute()*/
   @Override
   protected boolean isFinished() {
     if (Robot.gyro.getDeg() > targetAngle - precision && Robot.gyro.getDeg() < targetAngle + precision){
@@ -89,13 +96,15 @@ public class AutoTurn extends Command {
     }
   }
 
-  // Called once after isFinished returns true
+  /** Called once after isFinished returns true*/
   @Override
   protected void end() {
   }
 
-  // Called when another command which requires one or more of the same
-  // subsystems is scheduled to run
+/**
+*   Called when another command which requires one or more of the same
+*   subsystems is scheduled to run
+*/
   @Override
   protected void interrupted() {
   }

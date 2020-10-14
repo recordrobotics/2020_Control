@@ -12,46 +12,63 @@ import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
 /**
- * An example command.  You can replace me with your own command.
+ * ballTimer is a built in Timer function
+ * beltSpeed the motor speed for the belt
+ * flywheelSpeed the motor speed for the flywheel
+ * ballTimeout the amount of time that the belt and flywheel run for 
  */
 public class BeltAutoRun extends Command {
   
   private Timer ballTimer = new Timer();
   private double beltSpeed = 0.5, flywheelSpeed = 0.80, ballTimeout = 5.0;
 
-  // Called just before this Command runs the first time
+ /** Called just before this Command runs the first time*/
+ 
   @Override
   protected void initialize() {
+      /**
+   * Starts the timer and turns on the flywheel motor at the set speed
+   */
     ballTimer.start();
     Robot.flywheel.moveWheel(flywheelSpeed);
   }
 
-  // Called repeatedly when this Command is scheduled to run
+  ///** Called rep Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    
+    /**
+     * Once again runs the flywheel motor at the set speed
+     * If the timer has been running for at least 1 second runs the belt at the set speed
+     */
     Robot.flywheel.moveWheel(flywheelSpeed);
 
     if (ballTimer.get() > 1)
       Robot.belt.moveBelt(beltSpeed);
   }
-
-  // Make this return true when this Command no longer needs to run execute()
+ /**
+  * Ends the command when the timer value is greater than the timeout variable
+  */
+  /** Make this return true when this Command no longer needs to run execute()*/
   @Override
   protected boolean isFinished() {
     return ballTimer.get() >= ballTimeout;
   }
-
-  // Called once after isFinished returns true
+/**
+ * Stops the flywheel and belt when the command ends
+ */
+  /** Called once after isFinished returns true*/
   @Override
   protected void end() {
     Robot.flywheel.moveWheel(0);
     Robot.belt.moveBelt(0);
   }
 
-  // Called when another command which requires one or more of the same
-  // subsystems is scheduled to run
-  @Override
+/**
+*   Called when another command which requires one or more of the same
+*   subsystems is scheduled to run
+*/  
+ 
+@Override
   protected void interrupted() {
   }
 }

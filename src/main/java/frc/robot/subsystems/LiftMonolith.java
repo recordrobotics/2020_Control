@@ -1,6 +1,6 @@
 package frc.robot.subsystems;
 
-//import edu.wpi.first.wpilibj.command.Subsystem;
+/**import edu.wpi.first.wpilibj.command.Subsystem;*/
 import frc.robot.RobotMap;  
 
 import edu.wpi.first.wpilibj.DigitalInput;
@@ -8,10 +8,12 @@ import edu.wpi.first.wpilibj.Talon;
 import frc.robot.commands.*;
 
 public class LiftMonolith extends RobotLift{
-// Put methods for controlling this subsystem
-    // here. Call these from Commands.
+/**
+* Put methods for controlling this subsystem
+*     here. Call these from Commands.
+*/
     
-    //Lift for Monolith. Should work.
+    /**Lift for Monolith. Should work.*/
 
     Talon motor = new Talon(RobotMap.liftPortMonolith);
     

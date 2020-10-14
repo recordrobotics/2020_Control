@@ -28,19 +28,27 @@ public class Acquisition2020 extends Subsystem {
 
     DigitalInput tiltLimit;
 
-    //AnalogInput encoderInput = new AnalogInput(0);
-    //AnalogEncoder acqEncoder = new AnalogEncoder(encoderInput);
+/**
+*    AnalogInput encoderInput = new AnalogInput(0);
+*    AnalogEncoder acqEncoder = new AnalogEncoder(encoderInput);
+*/
 
     private double tiltSpeed = 0.5;
-    boolean tiltPosition = true; //true is up, false is down
+    boolean tiltPosition = true;  /**true is up, false is down*/
+/**
+*    AnalogInput encoderInput = new AnalogInput(0);
+*    AnalogEncoder acqEncoder = new AnalogEncoder(encoderInput);
+*/
     /**
      * Creates an acquisition object with a specific tilt limit.
      */
     public Acquisition2020(){
-        //limitTop = new DigitalInput(3);
-        //limitBottom = new DigitalInput(3);
+/**
+*        limitTop = new DigitalInput(3);
+*        limitBottom = new DigitalInput(3);
+*/
         tiltLimit = new DigitalInput(7);
-        //acqEncoder.reset();
+        /**acqEncoder.reset();*/
     }
     /**
      * Gets how fast the acquisition is tilting.

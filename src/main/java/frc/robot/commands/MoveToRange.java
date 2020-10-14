@@ -12,9 +12,7 @@ import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 import frc.robot.control.PID;
 
-/**
- * An example command.  You can replace me with your own command.
- */
+
 public class MoveToRange extends Command {
     /**
      * distance The current distance from the target.
@@ -25,7 +23,11 @@ public class MoveToRange extends Command {
      * kp, ki, kd Components of PID Controller.
      */
     private double distance, speed = 0.25;
-    private double tolerance = 3; //inches
+    private double tolerance = 3;  /**inches*/
+/**
+*        addSequential(new TurnToAngle(-180+gyroAngle));
+*        addSequential(new MoveForward((120-firingDistance) + 48, 0.5));
+*/
     private double range;
 
     private PID pid;
@@ -39,12 +41,12 @@ public class MoveToRange extends Command {
         pid = new PID(kp, ki, kd, dist);
     }
 
-    // Called just before this Command runs the first time
+    /** Called just before this Command runs the first time*/
     @Override
     protected void initialize() {
     }
 
-    // Called repeatedly when this Command is scheduled to run
+    /** Called repeatedly when this Command is scheduled to run*/
     @Override 
     protected void execute() {
         range = Robot.rangeFinder.getDistance();
@@ -54,7 +56,7 @@ public class MoveToRange extends Command {
             direction = -1;
         }
 
-        //speed = pid.control(range);
+        /**speed = pid.control(range);*/
         speed = 0.125;
         if (range > distance){
             speed *= (range/distance);
@@ -69,7 +71,7 @@ public class MoveToRange extends Command {
         Robot.driveTrain.moveRightWheels(speed * -direction);
     }
 
-    // Make this return true when this Command no longer needs to run execute()
+    /** Make this return true when this Command no longer needs to run execute()*/
     @Override
     protected boolean isFinished() {
         if (range < distance + tolerance && range > distance - tolerance){
@@ -78,7 +80,7 @@ public class MoveToRange extends Command {
         return false;
     }
 
-    // Called once after isFinished returns true
+    /** Called once after isFinished returns true*/
     @Override
     protected void end() {
         Robot.driveTrain.moveLeftWheels(0);
@@ -86,8 +88,10 @@ public class MoveToRange extends Command {
         System.out.println("Moved TO Range, Target: " + distance + ", Actual: " + Robot.rangeFinder.getDistance());
     }
 
-    // Called when another command which requires one or more of the same
-    // subsystems is scheduled to run
+/**
+*     Called when another command which requires one or more of the same
+*     subsystems is scheduled to run
+*/
     @Override
     protected void interrupted() {
     }

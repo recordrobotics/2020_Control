@@ -12,12 +12,12 @@ import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import frc.robot.RobotMap;
 
-/**
- * An example subsystem.  You can replace me with your own Subsystem.
- */
+
 public class DriveMonolith extends DriveTrain {
-  // Put methods for controlling this subsystem
-  // here. Call these from Commands.
+/**
+*   Put methods for controlling this subsystem
+*   here. Call these from Commands.
+*/
   Spark frontRight = new Spark(RobotMap.driveFrontRightPortMonolith);
   Spark backRight = new Spark(RobotMap.driveBackRightPortMonolith);
   Spark frontLeft = new Spark(RobotMap.driveFrontLeftPortMonolith);

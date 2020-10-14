@@ -12,9 +12,7 @@ import frc.robot.commands.AutoTurn;
 import frc.robot.commands.MoveForward;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-/**
- * An example command.  You can replace me with your own command.
- */
+
 public class MoveToBall extends CommandGroup {
   /**
    * pyangle The angle to the ball.

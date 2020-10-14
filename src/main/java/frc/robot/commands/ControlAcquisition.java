@@ -8,7 +8,7 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
-//import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+/**import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;*/
 import frc.robot.Robot;
 import frc.robot.OI;
 
@@ -25,14 +25,14 @@ public class ControlAcquisition extends Command {
      * Creates a ControlAcquisition object.
      */
     public ControlAcquisition() {
-        // Use requires() here to declare subsystem dependencies
+        /** Use requires() here to declare subsystem dependencies*/
         requires(Robot.acq);
     }
     /**
      * Method to spin and tilt acquisition.
      */
     private void controlAcq() {
-        //control the acqusition wheels
+        /**control the acqusition wheels*/
        
         if (OI.getXboxButtonState(acqButton)){
             Robot.acq.moveAcq(acqSpeed);
@@ -51,7 +51,7 @@ public class ControlAcquisition extends Command {
         }
     }
 
-    // Called just before this Command runs the first time
+    /** Called just before this Command runs the first time*/
     @Override
     protected void initialize() {
     }
@@ -60,36 +60,38 @@ public class ControlAcquisition extends Command {
     String reverseButton = "A";
     String acqButton = "LT";
 
-    // Called repeatedly when this Command is scheduled to run
+    /** Called repeatedly when this Command is scheduled to run*/
     @Override
     protected void execute() {
-        //control the toggle, this will invert inputPosition when "A" is pressed
+        /**control the toggle, this will invert inputPosition when "A" is pressed*/
         /*
         if (prevButton != OI.getXboxButtonState(toggleButton) && OI.getXboxButtonState(toggleButton)) {
             Robot.acq.setTiltPosition(!Robot.acq.getTiltPosition());
         }
         */
         controlAcq();
-        //controlTilt();
+        /**controlTilt();*/
 
-        //SmartDashboard.putNumber("tilt angle", Robot.acq.getAngle());
+        /**SmartDashboard.putNumber("tilt angle", Robot.acq.getAngle());*/
 
         prevButton = OI.getXboxButtonState(toggleButton);
     }
 
-    // Make this return true when this Command no longer needs to run execute()
+    /** Make this return true when this Command no longer needs to run execute()*/
     @Override
     protected boolean isFinished() {
         return false;
     }
 
-    // Called once after isFinished returns true
+    /** Called once after isFinished returns true*/
     @Override
     protected void end() {
     }
 
-    // Called when another command which requires one or more of the same
-    // subsystems is scheduled to run
+/**
+*     Called when another command which requires one or more of the same
+*     subsystems is scheduled to run
+*/
     @Override
     protected void interrupted() {
     }

@@ -14,7 +14,7 @@ import edu.wpi.first.wpilibj.Timer;
 
 public class BallUpOne extends Command {
   public BallUpOne() {
-    // Use requires() here to declare subsystem dependencies
+    /** Use requires() here to declare subsystem dependencies*/
   }
   private int highestSlot, targetSlot, ballCount;
   private double beltSpeed = 0.4;
@@ -24,7 +24,7 @@ public class BallUpOne extends Command {
 
   private Timer ballTimer = new Timer();
 
-  // Called just before this Command runs the first time
+  /** Called just before this Command runs the first time*/
   @Override
   protected void initialize() {
     ballTimer.start();
@@ -39,7 +39,7 @@ public class BallUpOne extends Command {
     }
   }
 
-  // Called repeatedly when this Command is scheduled to run
+  /** Called repeatedly when this Command is scheduled to run*/
   @Override 
   protected void execute() {
     Robot.belt.moveBelt(beltSpeed);
@@ -49,21 +49,23 @@ public class BallUpOne extends Command {
     
   }
 
-  // Make this return true when this Command no longer needs to run execute()
+  /** Make this return true when this Command no longer needs to run execute()*/
   @Override
   protected boolean isFinished() {
-    // Last or is emergency shutoff so the command will stop running in case of a ball getting stuck
+    /** Last or is emergency shutoff so the command will stop running in case of a ball getting stuck*/
     return (ballTimer.get() > moveTime && hitSlot)
      || (ballTimer.get() > 1);
   }
 
-  // Called once after isFinished returns true
+  /** Called once after isFinished returns true*/
   @Override
   protected void end() {
   }
 
-  // Called when another command which requires one or more of the same
-  // subsystems is scheduled to run
+/**
+*   Called when another command which requires one or more of the same
+*   subsystems is scheduled to run
+*/
   @Override
   protected void interrupted() {
   }
