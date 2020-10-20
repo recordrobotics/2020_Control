@@ -11,7 +11,7 @@ import frc.robot.RobotMap;
 
 
 
-//If this is throwing an error - you need to install ctre Pheonix stuff, it's a pain, sorry :(
+/**If this is throwing an error - you need to install ctre Pheonix stuff, it's a pain, sorry :(*/
 import com.ctre.phoenix.motorcontrol.*;
 import com.ctre.phoenix.motorcontrol.can.*;
 
@@ -21,12 +21,14 @@ import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 * Drive Train for Monty
 */
 public class DriveMonty extends DriveTrain {
-  // Put methods for controlling this subsystem
-  // here. Call these from Commands.
+/**
+*   Put methods for controlling this subsystem
+*   here. Call these from Commands.
+*/
 
 
   
-  //If this is throwing an error - you need to install ctre Pheonix stuff, it's a pain, sorry :(
+  /**If this is throwing an error - you need to install ctre Pheonix stuff, it's a pain, sorry :(*/
   WPI_VictorSPX frontRight = new WPI_VictorSPX(RobotMap.driveFrontRightPortMonty);
   WPI_VictorSPX backRight = new WPI_VictorSPX(RobotMap.driveBackRightPortMonty);
   WPI_VictorSPX frontLeft = new WPI_VictorSPX(RobotMap.driveFrontLeftPortMonty);

@@ -14,8 +14,10 @@ import frc.robot.RobotMap;
 
 
 public class DriveMonolith extends DriveTrain {
-  // Put methods for controlling this subsystem
-  // here. Call these from Commands.
+/**
+*   Put methods for controlling this subsystem
+*   here. Call these from Commands.
+*/
   Spark frontRight = new Spark(RobotMap.driveFrontRightPortMonolith);
   Spark backRight = new Spark(RobotMap.driveBackRightPortMonolith);
   Spark frontLeft = new Spark(RobotMap.driveFrontLeftPortMonolith);

@@ -28,7 +28,7 @@ public class LiftSpool extends Subsystem {
 
   @Override
   public void initDefaultCommand() {
-    // Set the default command for a subsystem here.
+    /** Set the default command for a subsystem here.*/
      setDefaultCommand(new ControlSpool());
   }
 }

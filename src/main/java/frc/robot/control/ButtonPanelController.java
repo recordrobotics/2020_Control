@@ -16,7 +16,7 @@ public class ButtonPanelController{
 		buttonPanel = new Joystick(RobotMap.buttonPanelPort);
 		buttons = new JoystickButton[NUM_BUTTONS];
 
-		//instantiate buttons
+		/**instantiate buttons*/
 		for(int i = 0; i < NUM_BUTTONS; i++){
 			buttons[i] = new JoystickButton(buttonPanel, i);
 		}
@@ -31,8 +31,10 @@ public class ButtonPanelController{
 	/*
 	get states
 	*/
-	//I don't know if getState works
-	//if it doesn't, do a toggle!
+/**
+*	I don't know if getState works
+*	if it doesn't, do a toggle!
+*/
 	public boolean getState(int button){
 		return getButton(button).get();
 	}
