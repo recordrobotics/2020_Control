@@ -16,6 +16,15 @@ public class BallUpOne extends Command {
   public BallUpOne() {
     /** Use requires() here to declare subsystem dependencies*/
   }
+  /**
+   * highestSlot The highest slot with a ball.
+   * targetSlot Where the highest ball needs to go.
+   * ballCount How many balls in the lift.
+   * beltSpeed How fast the belt is moving.
+   * moveTime How long the belt should take to move.
+   * hitSlot If the targetSlot has been reached.
+   * ballTimer Timer to time how long it takes for the ball to move to the targetSlot.
+   */
   private int highestSlot, targetSlot, ballCount;
   private double beltSpeed = 0.4;
   private double moveTime = 0.1;
