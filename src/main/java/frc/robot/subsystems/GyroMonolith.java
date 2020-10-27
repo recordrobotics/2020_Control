@@ -10,7 +10,7 @@ import frc.robot.RobotMap;
 public class GyroMonolith extends Gyroscope {
     @Override
     public void initDefaultCommand() {
-        //do nothing, no default command for this subsystem
+        /**do nothing, no default command for this subsystem*/
     }
 
     /**

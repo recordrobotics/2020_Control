@@ -6,12 +6,14 @@
 /*----------------------------------------------------------------------------*/
 
 package frc.robot.subsystems;
-//import edu.wpi.first.wpilibj.AnalogInput;
-//import edu.wpi.first.wpilibj.PWM;
-//import edu.wpi.first.wpilibj.SerialPort;
+/**
+*import edu.wpi.first.wpilibj.AnalogInput;
+*import edu.wpi.first.wpilibj.PWM;
+*import edu.wpi.first.wpilibj.SerialPort;
+*/
 import edu.wpi.first.wpilibj.Ultrasonic;
 import edu.wpi.first.wpilibj.command.Subsystem;
-//import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+/**import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;*/
 
 /**
  * Subsystem class for the RangeFinder
@@ -34,7 +36,7 @@ public class RangeFinder extends Subsystem {
    * @return the range from 0-4095 that is scaled to inches
    */
   public double getDistance() {
-    //System.out.println(m_ultrasonic.getRangeInches());
+    /**System.out.println(m_ultrasonic.getRangeInches());*/
     return m_ultrasonic.getRangeInches();
     }
 

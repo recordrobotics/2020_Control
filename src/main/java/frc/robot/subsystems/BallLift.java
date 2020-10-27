@@ -7,18 +7,20 @@ import edu.wpi.first.wpilibj.DigitalInput;
 import com.ctre.phoenix.motorcontrol.*;
 import com.ctre.phoenix.motorcontrol.can.*;
 import frc.robot.commands.*;
-
+/**
+ * Creates an instance of the belt motor
+ */
 public class BallLift extends Subsystem {
   private WPI_VictorSPX beltMotor = new WPI_VictorSPX(RobotMap.beltMotorPort);
 
 
-  //array of limit switches that are triggered when a ball occupies it's slot
+  /**array of limit switches that are triggered when a ball occupies it's slot*/
   private DigitalInput[] ballLimits = new DigitalInput[3];
   
   public BallLift() {
-    //instance of limit switches
+    /**instance of limit switches*/
     int offset = 4;
-    //ballLimits = new DigitalInput [5];
+    /**ballLimits = new DigitalInput [5];*/
     for (int i = 0; i < ballLimits.length; i++){
       ballLimits[i] = new DigitalInput(i + offset);
       
@@ -28,11 +30,18 @@ public class BallLift extends Subsystem {
   public void initDefaultCommand() {
       setDefaultCommand(new BeltControl());
   }
-  
+  /**
+   * Runs the belt at speed v
+   * @param v the speed at which the belt runs
+   */
   public void moveBelt(double v){
     beltMotor.set(ControlMode.PercentOutput, v);
   }
 
+  /**
+   * goes through limit switches starting from the bottom until it finds a full slot
+   * @return Number of lowest full slot
+   */
   public int lowestFullSlot(){
     int lowest = ballLimits.length - 1;
     for(int i = ballLimits.length - 1; i >= 0; i--){
@@ -42,7 +51,10 @@ public class BallLift extends Subsystem {
     }
     return lowest; 
   }
-  
+  /**
+   * goes through limit switches starting from the top until it finds a full slot
+   * @return number of highest full slot
+   */
   public int highestFullSlot(){
     int highest = 0;
     for(int i = 0; i < ballLimits.length; i++){
@@ -52,6 +64,10 @@ public class BallLift extends Subsystem {
     }
     return highest;
   }
+  /**
+   * checks each limit switch and check for the total number of full slots
+   * @return number of full slots
+   */
   public int countBall(){
     int count = 0;
 
@@ -63,7 +79,11 @@ public class BallLift extends Subsystem {
 
     return count;
   }  
-
+/**
+ * Checks if a given slot is full
+ * @param slot the slot being checked
+ * @return whether a slot is full or not
+ */
   public boolean getSlot(int slot){
     return ballLimits[slot].get();
   }

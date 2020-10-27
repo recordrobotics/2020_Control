@@ -16,31 +16,51 @@ import java.util.ArrayList;
 
 
 public class TurnToGoal extends Command {
-  
+  /**
+   * targetAngle The target angle the robot has to turn to to face the goal.
+   * tolerance The amount of error tolerated when turning.
+   * angle The current angle the robot is at.
+   * speed How fast the robot will turn.
+   * angleData The data on the current angle.
+   * pid A PID controller.
+   * kp, ki, kd Part of PID controller.
+   */
   private double targetAngle = 0;
-  private double tolerance = 3; //degrees
+  private double tolerance = 3;  /**degrees*/
+/**
+*   Called when another command which requires one or more of the same
+*   subsystems is scheduled to run
+*/
   private double angle;
   double speed = 0.17;
 
   private ArrayList<Double> angleData = new ArrayList<Double>();
   private PID pid;
   private double kp = 0.2, ki = 0, kd = 0;
-
+  /**
+   * Creates a TurnToAngle object.
+   * @param a The current target angle.
+   */
   public TurnToGoal(double a){
     targetAngle = a;
   }
-
+  /**
+   * If TurnToAngle has no return value, the return value is 0.
+   */
   public TurnToGoal(){
     this(0);
   }
 
-  // Called just before this Command runs the first time
+  /** Called just before this Command runs the first time*/
   @Override
   protected void initialize() {
     System.out.println("init");
     pid = new PID(kp, ki, kd, 0);
   }
-
+  /**
+   * smoothData() Updates the data, and creates the average angle based on angleData.
+   * @return returns the average of the angle based on angleData.
+   */
   private double smoothData(){
     angleData.add(angle);
     if (angleData.size() > 9){
@@ -61,18 +81,19 @@ public class TurnToGoal extends Command {
     return average;
   }
 
-  // Called repeatedly when this Command is scheduled to run
+  /** Called repeatedly when this Command is scheduled to run*/
   @Override 
   protected void execute() {
     angle = SmartDashboard.getNumber("Angle to Goal", 0);
-    //angle = smoothData();
+    /**angle = smoothData();*/
 
-    //speed = pid.control(angle);
+    /**speed = pid.control(angle);*/
 
     if (angle < 0 && speed > 0) speed *= -1;
     if (angle > 0 && speed < 0) speed *= -1;
 
-    if (speed > 0.3) speed = 0.3; //saftey
+    if (speed > 0.3) speed = 0.3;  /**saftey*/
+    /**speed = pid.control(angle);*/
     if (speed < -0.3) speed = -0.3;
 
     /* Possible improvment? Ignore for now
@@ -89,7 +110,7 @@ public class TurnToGoal extends Command {
     Robot.driveTrain.moveLeftWheels(-speed);
   }
 
-  // Make this return true when this Command no longer needs to run execute()
+  /** Make this return true when this Command no longer needs to run execute()*/
   @Override
   protected boolean isFinished() {
     if ((angle > targetAngle - tolerance && angle < targetAngle + tolerance) && angle != -1.0){
@@ -98,7 +119,7 @@ public class TurnToGoal extends Command {
     return false;
   }
 
-  // Called once after isFinished returns true
+  /** Called once after isFinished returns true*/
   @Override
   protected void end() {
     Robot.driveTrain.moveRightWheels(0);
@@ -106,8 +127,10 @@ public class TurnToGoal extends Command {
     System.out.println("Turn To Goal Completed");
   }
 
-  // Called when another command which requires one or more of the same
-  // subsystems is scheduled to run
+/**
+*   Called when another command which requires one or more of the same
+*   subsystems is scheduled to run
+*/
   @Override
   protected void interrupted() {
   }

@@ -2,7 +2,7 @@ package frc.robot.subsystems;
 
 import com.kauailabs.navx.frc.AHRS;
 import edu.wpi.first.wpilibj.I2C;
-//import edu.wpi.first.wpilibj.I2C.Port;
+/**import edu.wpi.first.wpilibj.I2C.Port;*/
 
 /**
  * Subsystem class for the gyroscope used on the 2020 Robot
@@ -11,7 +11,7 @@ import edu.wpi.first.wpilibj.I2C;
 public class Gyro2020 extends Gyroscope{
     @Override
     public void initDefaultCommand() {;
-        //do nothing, no default command for this subsystem
+        /**do nothing, no default command for this subsystem*/
     }   
     /**
     * Instance variable representing the gyroscope, an AHRS gyroscope

@@ -43,8 +43,10 @@ public class Robot extends TimedRobot {
   public static double shootingDistance = 122;
   public static double flywheelSpeed = 0.85;
 
-  //Instances for all subsystems.
-  //Refer to these objects when interacting with any subsystem object.
+/**
+*  Instances for all subsystems.
+*  Refer to these objects when interacting with any subsystem object.
+*/
   public static DriveTrain driveTrain;
   public static RobotLift lift;
   public static Gyroscope gyro;
@@ -57,11 +59,11 @@ public class Robot extends TimedRobot {
   public static CamStream camStream = new CamStream(2);
   public static Dashboard dash = new Dashboard(currentRobot);
 
-  //Autonomous command setup
+  /**Autonomous command setup*/
   Command m_autonomousCommand;
   SendableChooser<Command> m_chooser = new SendableChooser<>();
 
-  //Network table setup
+  /**Network table setup*/
   public static NetworkTableInstance inst;
   public static NetworkTable table;
   public static NetworkTableEntry testEntry;
@@ -75,10 +77,10 @@ public class Robot extends TimedRobot {
   public void robotInit() {
     m_oi = new OI();
     m_chooser.setDefaultOption("Default Auto", new ExampleCommand());
-    // chooser.addOption("My Auto", new MyAutoCommand());
+    /** chooser.addOption("My Auto", new MyAutoCommand());*/
     SmartDashboard.putData("Auto mode", m_chooser);
 
-    //select which init method to use based on the currently selected robot
+    /**select which init method to use based on the currently selected robot*/
     switch(currentRobot){
       case MONOLITH:
         monolithInit();
@@ -94,7 +96,7 @@ public class Robot extends TimedRobot {
     networkInit();
   }
 
-  //calibrate gyroscope
+  /**calibrate gyroscope*/
   boolean recalibrateGyro = true;
 
   /**
@@ -112,9 +114,9 @@ public class Robot extends TimedRobot {
   private void monolithInit(){
     driveTrain = new DriveMonolith();
     System.out.println("Monolith Initialized");
-    //Lift constructor
+    /**Lift constructor*/
     lift = new LiftMonolith();
-    //gyro
+    /**gyro*/
     gyro = new GyroMonolith();  
     gyroInit();
   }
@@ -214,7 +216,7 @@ public class Robot extends TimedRobot {
      * autonomousCommand = new ExampleCommand(); break; }
      */
 
-    // schedule the autonomous command (example)
+    /** schedule the autonomous command (example)*/
     if (m_autonomousCommand != null) {
       m_autonomousCommand.start();
     }
@@ -230,10 +232,12 @@ public class Robot extends TimedRobot {
 
   @Override
   public void teleopInit() {
-    // This makes sure that the autonomous stops running when
-    // teleop starts running. If you want the autonomous to
-    // continue until interrupted by another command, remove
-    // this line or comment it out.
+/**
+*     This makes sure that the autonomous stops running when
+*     teleop starts running. If you want the autonomous to
+*     continue until interrupted by another command, remove
+*     this line or comment it out.
+*/
     if (m_autonomousCommand != null) {
       m_autonomousCommand.cancel();
     }

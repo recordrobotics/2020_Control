@@ -18,7 +18,7 @@ public class LiftControl extends Command {
    * Creates a LiftControl constructor.
    */
   public LiftControl() {
-    // Use requires() here to declare subsystem dependencies
+    /** Use requires() here to declare subsystem dependencies*/
     requires(Robot.lift);
   } 
   /**
@@ -26,16 +26,17 @@ public class LiftControl extends Command {
    * position safety or no safety.
    */
   private double speed = 0.8;
-  private int position = 0; //nonzero value kills the saftey mechanism
+  private int position = 0;  /**nonzero value kills the saftey mechanism*/
+    /** Use requires() here to declare subsystem dependencies*/
 
 
-  // Called just before this Command runs the first time
+  /** Called just before this Command runs the first time*/
   @Override
   protected void initialize() {
     position = 0;
   }
 
-  // Called repeatedly when this Command is scheduled to run
+  /** Called repeatedly when this Command is scheduled to run*/
   @Override
   protected void execute() {
       liftControl();
@@ -44,8 +45,10 @@ public class LiftControl extends Command {
    * Moves lift based on GREEN PANEL BUTTONS.
    */
   private void liftControl(){
-    //if the left green button is pressed, move up
-    //if the right green button is pressed, move down
+/**
+*    if the left green button is pressed, move up
+*    if the right green button is pressed, move down
+*/
     if((OI.getPanelButtonState(ButtonMap.liftRaise)) || OI.getPanelButtonState(ButtonMap.LiftOverrideUp)){
         Robot.lift.moveLift(speed);
         position++; 
@@ -60,19 +63,21 @@ public class LiftControl extends Command {
     SmartDashboard.putNumber("Lift position", position);
   }
 
-  // Make this return true when this Command no longer needs to run execute()
+  /** Make this return true when this Command no longer needs to run execute()*/
   @Override
   protected boolean isFinished() {
     return false;
   }
 
-  // Called once after isFinished returns true
+  /** Called once after isFinished returns true*/
   @Override
   protected void end() {
   }
 
-  // Called when another command which requires one or more of the same
-  // subsystems is scheduled to run
+/**
+*   Called when another command which requires one or more of the same
+*   subsystems is scheduled to run
+*/
   @Override
   protected void interrupted() {
   }
