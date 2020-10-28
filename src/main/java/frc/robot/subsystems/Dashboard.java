@@ -21,7 +21,9 @@ public class Dashboard extends Subsystem {
 *   Put methods for controlling this subsystem
 *   here. Call these from Commands.
 */
-
+/**
+ * Creats buttons to execute each of the specified commands at the specified values
+ */
   private CurrentRobot cRobot;
   public Dashboard(CurrentRobot r){
     cRobot = r;
@@ -42,7 +44,9 @@ public class Dashboard extends Subsystem {
 *     setDefaultCommand(new MySpecialCommand());
 */
   }
-
+/**
+ * Checks for which robot is being used
+ */
   @Override
   public void periodic(){
       switch (cRobot){
@@ -61,7 +65,9 @@ public class Dashboard extends Subsystem {
     /**TODO write gyro angle to dashboard*/
     
   }
-
+/**
+ * displays a certain value on the dashboard under a certain name
+ */
   private void display2020(){
     
 /**

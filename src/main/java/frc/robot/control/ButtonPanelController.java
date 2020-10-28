@@ -4,7 +4,12 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import frc.robot.RobotMap;
 
 
-
+/**
+ * creates a new instance of a button pannel and links it to the button port
+ * creates a new instance of the buttons on the joystick
+ * creates an instance of a button for each physical button
+ * has a function for getting the values of a given button
+ */
 public class ButtonPanelController{
 	private static final int NUM_BUTTONS = 10;
 
@@ -28,12 +33,15 @@ public class ButtonPanelController{
 	}
 
 
-	/*
+	/** 
 	get states
 	*/
 /**
 *	I don't know if getState works
 *	if it doesn't, do a toggle!
+*  gets the state of a certain numbered button
+*  checks whether a certain numbered button is pressed
+*  checks whether a certain numbered button is released
 */
 	public boolean getState(int button){
 		return getButton(button).get();
