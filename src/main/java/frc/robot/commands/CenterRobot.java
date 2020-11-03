@@ -19,6 +19,13 @@ public class CenterRobot extends CommandGroup {
   private double distanceToMove;
   private final double distLineToGoal = 120;
 
+  /**
+   * Calculates the distance the robot needs to move by using right triangles with the distance off of the target forwards/backwards and side/side
+   * Calculates the angle needed to turn to be facing the target using the same method as above
+   * Turns the calculated angle, moves the calculated distance, returns to facing straight, and runs the belt to fire all balls
+   * @param distanceFromTarget distance away from target (forward/backward)
+   * @param distanceOffCenter distance away from target (left/right)
+   */
   public CenterRobot(double distanceFromTarget, double distanceOffCenter) {
     distanceToMove = Math.pow(Math.pow(distanceOffCenter,2)+Math.pow(distanceFromTarget,2),0.5);
     distanceFromTarget -= distLineToGoal;

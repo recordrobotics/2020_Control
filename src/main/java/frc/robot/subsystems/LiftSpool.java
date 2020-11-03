@@ -16,11 +16,16 @@ import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 import frc.robot.RobotMap;
 import frc.robot.commands.ControlSpool;
 
-
+/**
+ * Creates new instances of the lift spool motors
+ */
 public class LiftSpool extends Subsystem {
   private WPI_VictorSPX robotSpoolMotorLeft = new WPI_VictorSPX(RobotMap.spoolLiftLeftMotor);
   private WPI_VictorSPX robotSpoolMotorRight = new WPI_VictorSPX(RobotMap.spoolLiftRightMotor);
-  
+  /**
+   * Sets the left motor to run at the same speed as the right motor, then sets the right motor to run at speed v
+   * @param v the speed at which the motors are set to run
+   */
   public void MoveSpool(double v){
     robotSpoolMotorLeft.follow(robotSpoolMotorRight);
     robotSpoolMotorRight.set(ControlMode.PercentOutput, v);
