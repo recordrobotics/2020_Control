@@ -9,12 +9,10 @@ package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
-import edu.wpi.first.wpilibj.command.Subsystem;
-import frc.robot.Robot;
 import frc.robot.RobotMap;
 import frc.robot.commands.ControlFlywheel;
 
-public class Flywheel2020 extends Subsystem {
+public class Flywheel2020 extends Flywheel {
     /**
      * flywheelMotor Creates a motor object for the flywheel motor.
      * targetVoltage The target voltage of the flywheel.

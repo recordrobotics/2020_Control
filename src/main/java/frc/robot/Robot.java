@@ -52,7 +52,7 @@ public class Robot extends TimedRobot {
   public static Gyroscope gyro;
   public static Acquisition acq;
   public static OI m_oi;
-  public static Flywheel2020 flywheel;
+  public static Flywheel flywheel;
   public static BallLift belt;
   public static LiftSpool spool;
   public static RangeFinder rangeFinder = new RangeFinder();
