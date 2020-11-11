@@ -131,11 +131,11 @@ public class Robot extends TimedRobot {
     gyroInit();
     acq = new Acquisition2020();  
     flywheel = new Flywheel2020();
-    belt = new BallLift();
+    belt = new BallLift2020();
     spool = new LiftSpool();
     lift = new RobotLift2020();
     rangeFinder = new RangeFinder2020();
-    
+
   }
 
   /**
