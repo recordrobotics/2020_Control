@@ -1,6 +1,6 @@
 package frc.robot.control;
 import edu.wpi.first.wpilibj.Joystick;
-// import edu.wpi.first.wpilibj.buttons.JoystickButton;
+/** import edu.wpi.first.wpilibj.buttons.JoystickButton;*/
 import frc.robot.RobotMap;
 import edu.wpi.first.wpilibj.GenericHID.Hand;
 
@@ -26,7 +26,7 @@ public class HotasController extends Controller{
 	 * @return The amount the Hotas controller has been pushed forward as a double
 	 */
 	public double getYAxis(){
-		//it's negative because all the way forward is -1
+		/**it's negative because all the way forward is -1*/
 		return -hotas.getY(Hand.kRight);
 	}
 
@@ -38,3 +38,4 @@ public class HotasController extends Controller{
 		return hotas.getX(Hand.kRight);
 	}
 }
+

@@ -12,20 +12,25 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 import frc.robot.Robot;
 import frc.robot.commands.AutoTurn;
 import frc.robot.commands.MoveForward;
-//import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-/**
- * An example command.  You can replace me with your own command.
- */
+/**import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;*/
+
 public class CenterRobot extends CommandGroup {
-  //TODO: Set distances to correct values
+  /**TODO: Set distances to correct values*/
   private double distanceToMove;
   private final double distLineToGoal = 120;
 
+  /**
+   * Calculates the distance the robot needs to move by using right triangles with the distance off of the target forwards/backwards and side/side
+   * Calculates the angle needed to turn to be facing the target using the same method as above
+   * Turns the calculated angle, moves the calculated distance, returns to facing straight, and runs the belt to fire all balls
+   * @param distanceFromTarget distance away from target (forward/backward)
+   * @param distanceOffCenter distance away from target (left/right)
+   */
   public CenterRobot(double distanceFromTarget, double distanceOffCenter) {
     distanceToMove = Math.pow(Math.pow(distanceOffCenter,2)+Math.pow(distanceFromTarget,2),0.5);
     distanceFromTarget -= distLineToGoal;
 
-    //Robot.acq.setTiltPosition(false);
+    /**Robot.acq.setTiltPosition(false);*/
 
     double theta = Math.toDegrees(Math.atan(distanceFromTarget/distanceOffCenter));
 
@@ -33,7 +38,7 @@ public class CenterRobot extends CommandGroup {
       theta += 90;
     }
 
-    // Possibly needs one version for each side of the target
+    /** Possibly needs one version for each side of the target*/
     addSequential(new AutoTurn(theta));
     addSequential(new MoveForward(distanceToMove, 0.5));
     addSequential(new AutoTurn(180 - theta));
