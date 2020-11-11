@@ -12,7 +12,11 @@ import frc.robot.OI;
 import frc.robot.Robot;
 import frc.robot.subsystems.CamStream;
 
-
+/**
+ * Class meant to switch cameras at the press of a button
+ * Written frantically just before competition, function questionably understood
+ * USE AT OWN RISK
+ */
 public class CamControl extends Command {
 
     private String switchButton = "Y";

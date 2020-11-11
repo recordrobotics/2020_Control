@@ -1,5 +1,9 @@
 package frc.robot.control;
 
+/**
+ * Theoritical map of buttons on the HOTAS
+ * Not currently in use. Hopefully.
+ */
 public final class HotasMap{
 
 	/**TODO set these!*/

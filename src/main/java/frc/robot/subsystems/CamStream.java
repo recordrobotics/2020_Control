@@ -14,12 +14,19 @@ import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.commands.CamControl;
 
-
+/**
+ * Allows for use of the Camera in the RoboRio code
+ * A lot of camera stuff is done on the raspberry pi in Python
+ */
 public class CamStream extends Subsystem {
-  
+    /**Objects representing the camera and its networktable */
     private UsbCamera[] camera;
     private NetworkTableEntry cameraSelection;
 
+    /**
+     * @param numCameras number of cameras to initialize
+     * Constructor, initialize all the cameras and get the appropriate table from the network
+     * */
     public CamStream(int numCameras){
         camera = new UsbCamera[numCameras];
 
@@ -31,6 +38,7 @@ public class CamStream extends Subsystem {
         cameraSelection = NetworkTableInstance.getDefault().getTable("").getEntry("CameraSelection");
     }
 
+    /**default constructor */
     public CamStream(){
         this(1);
     }
@@ -40,6 +48,10 @@ public class CamStream extends Subsystem {
         setDefaultCommand(new CamControl());
     }
 
+    /**
+     * @param cameraNum which camera to set
+     * Sets the network to a certain camera
+     */
     public void setCamera(int cameraNum){
         cameraSelection.setString(camera[cameraNum].getName());
     }
