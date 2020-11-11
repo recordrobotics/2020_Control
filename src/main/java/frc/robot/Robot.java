@@ -55,7 +55,7 @@ public class Robot extends TimedRobot {
   public static Flywheel flywheel;
   public static BallLift belt;
   public static LiftSpool spool;
-  public static RangeFinder rangeFinder = new RangeFinder();
+  public static RangeFinder rangeFinder;
   public static CamStream camStream = new CamStream(2);
   public static Dashboard dash = new Dashboard(currentRobot);
 
@@ -134,8 +134,8 @@ public class Robot extends TimedRobot {
     belt = new BallLift();
     spool = new LiftSpool();
     lift = new RobotLift2020();
-
-
+    rangeFinder = new RangeFinder2020();
+    
   }
 
   /**
