@@ -32,7 +32,7 @@ public class Dashboard2020 extends Dashboard {
     /**
      * displays a certain value on the dashboard under a certain name
     */
-    private void display2020(){
+    public void display2020(){
     
         /**
         *    SmartDashboard.putNumber("Right Encoder", Robot.driveTrain.getRightEncoder());
