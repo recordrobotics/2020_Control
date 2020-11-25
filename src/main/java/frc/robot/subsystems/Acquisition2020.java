@@ -25,7 +25,8 @@ public class Acquisition2020 extends Acquisition {
 
     private WPI_VictorSPX acquireMotor = new WPI_VictorSPX(RobotMap.acquireMotorPort);
     private WPI_VictorSPX tiltMotor = new WPI_VictorSPX(RobotMap.tiltMotorPort);
-
+    private double aquireMotorVoltage = 11.5;
+    private double tiltMotorVoltage = 11.5;
     DigitalInput tiltLimit;
 
 /**
@@ -104,5 +105,15 @@ public class Acquisition2020 extends Acquisition {
     public boolean isAcqOn(){
         return acquireMotor.get() > 0;
     }
-
+    
+    @Override
+    public void initDefaultCommand() {
+        setDefaultCommand(new ControlAcquisition());
+    }
+    public double getAcquireVoltage(){
+        return acquireMotor.getMotorOutputVoltage();
+    }
+    public double getTiltVoltage(){
+        return tiltMotor.getMotorOutputVoltage();
+    }
 }

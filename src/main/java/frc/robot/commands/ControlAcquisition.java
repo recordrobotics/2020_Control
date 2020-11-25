@@ -15,9 +15,8 @@ import frc.robot.OI;
 
 public class ControlAcquisition extends Command {
     /**
-     * acqSpeed Speed the acquisition spins.
-     * upperAngle Maximum angle of acquisition tilt.
-     * lowerAngle Minimum angle of acquisition tilt.
+     * acqSpeed This is how fast the aquisition spins.
+     * uperAngle lowerAngle UNUSED.
      */
     private double acqSpeed = -0.5;
     private double upperAngle = 5, lowerAngle = 0;
@@ -32,8 +31,12 @@ public class ControlAcquisition extends Command {
      * Method to spin and tilt acquisition.
      */
     private void controlAcq() {
-        /**control the acqusition wheels*/
-       
+        //control the acqusition wheels
+        /**
+         * IF: if the aquisition button is pressed, move the aquisition by acqSpeed.
+         * ELSE IF: if the reverse button is pressed, move the aquisition by acqSpeed in the other direction.
+         * ELSE: the aquisition shouldn't spin if either button is not pressed.
+         */
         if (OI.getXboxButtonState(acqButton)){
             Robot.acq.moveAcq(acqSpeed);
         } else if (OI.getXboxButtonState(reverseButton)){
@@ -41,7 +44,11 @@ public class ControlAcquisition extends Command {
         } else {
             Robot.acq.moveAcq(0);
         }
-
+        /**
+         * IF: if the right bumper is pressed, tilt the aquisition up by acq.getTiltSpeed().
+         * ELSE IF: if the left bumper is pressed, tilt the aquisition down by acq.getTiltSpeed().
+         * ELSE: the aquisition shouldn't tilt if either bumper is not pressed.
+         */
         if (OI.getXboxButtonState("RB")){
             Robot.acq.moveTilt(Robot.acq.getTiltSpeed());
         } else if (OI.getXboxButtonState("LB")){
@@ -55,6 +62,13 @@ public class ControlAcquisition extends Command {
     @Override
     protected void initialize() {
     }
+
+    /**
+     * @param prevButton Get whether toggleButton has just been pressed to avoid the aquisition being raised multiple times.
+     * @param toggleButton Which button raises the tilt of the aquisition.
+     * @param reverseButton Which button lowers the tilt of the aquisition.
+     * @param acqButton Which button spins the aquisition.
+     */
     boolean prevButton = false;
     String toggleButton = "A";
     String reverseButton = "A";
