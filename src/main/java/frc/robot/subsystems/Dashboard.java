@@ -3,8 +3,10 @@ package frc.robot.subsystems;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.OI;
-//import frc.robot.commands.*;
-//import frc.robot.OI;
+/**
+*import frc.robot.commands.*;
+*import frc.robot.OI;
+*/
 import frc.robot.Robot;
 import frc.robot.Robot.CurrentRobot;
 import frc.robot.commands.AutoTurn;
@@ -15,9 +17,13 @@ import frc.robot.commands.TurnToGoal;
 import frc.robot.control.ButtonMap;
 
 public class Dashboard extends Subsystem {
-  // Put methods for controlling this subsystem
-  // here. Call these from Commands.
-
+/**
+*   Put methods for controlling this subsystem
+*   here. Call these from Commands.
+*/
+/**
+ * Creats buttons to execute each of the specified commands at the specified values
+ */
   private CurrentRobot cRobot;
   public Dashboard(CurrentRobot r){
     cRobot = r;
@@ -33,10 +39,14 @@ public class Dashboard extends Subsystem {
 
   @Override
   public void initDefaultCommand() {
-    // Set the default command for a subsystem here.
-    // setDefaultCommand(new MySpecialCommand());
+/**
+*     Set the default command for a subsystem here.
+*     setDefaultCommand(new MySpecialCommand());
+*/
   }
-
+/**
+ * Checks for which robot is being used
+ */
   @Override
   public void periodic(){
       switch (cRobot){
@@ -52,24 +62,30 @@ public class Dashboard extends Subsystem {
   }
 
   private void displayMonolith(){
-    //write gyro angle to dashboard
+    /**TODO write gyro angle to dashboard*/
     
   }
-
+/**
+ * displays a certain value on the dashboard under a certain name
+ */
   private void display2020(){
     
-    //SmartDashboard.putNumber("Right Encoder", Robot.driveTrain.getRightEncoder());
-   //SmartDashboard.putNumber("Left Encoder", Robot.driveTrain.getLeftEncoder());
+/**
+*    SmartDashboard.putNumber("Right Encoder", Robot.driveTrain.getRightEncoder());
+*   SmartDashboard.putNumber("Left Encoder", Robot.driveTrain.getLeftEncoder());
+*/
     SmartDashboard.putNumber("Gyro Angle", Robot.gyro.getDeg());
-    //SmartDashboard.putNumber("Flywheel Speed", Robot.flywheel.getSpeed());
+    /**SmartDashboard.putNumber("Flywheel Speed", Robot.flywheel.getSpeed());*/
     
     SmartDashboard.putNumber("Range Found", Robot.rangeFinder.getDistance());
-   // SmartDashboard.putBoolean("Green Button", OI.getPanelButtonState(ButtonMap.liftRaise));
-   // SmartDashboard.putBoolean("Bottom Ball Lift", Robot.belt.getSlot(0));
-   //SmartDashboard.putBoolean("Middle Ball Lift", Robot.belt.getSlot(1));
-   // SmartDashboard.putBoolean("Top Ball Lift", Robot.belt.getSlot(2));
+/**
+*    SmartDashboard.putBoolean("Green Button", OI.getPanelButtonState(ButtonMap.liftRaise));
+*    SmartDashboard.putBoolean("Bottom Ball Lift", Robot.belt.getSlot(0));
+*   SmartDashboard.putBoolean("Middle Ball Lift", Robot.belt.getSlot(1));
+*    SmartDashboard.putBoolean("Top Ball Lift", Robot.belt.getSlot(2));
+*/
 
     SmartDashboard.putNumber("Flywheel Voltage", Robot.flywheel.getVoltage());
-   // SmartDashboard.putNumber("Balls In Lift", Robot.belt.countBall());
+   /** SmartDashboard.putNumber("Balls In Lift", Robot.belt.countBall());*/
   }
 }

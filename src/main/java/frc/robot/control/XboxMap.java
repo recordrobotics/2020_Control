@@ -2,6 +2,8 @@ package frc.robot.control;
 
 public final class XboxMap{
 
+    //Port values for each button on the Xbox controller, so that it's easier to assign and keep track of which button does what
+    
     private static int aButton = 1;
     private static int bButton = 2;
     private static int xButton = 3;

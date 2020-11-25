@@ -9,6 +9,9 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 
+/**
+ * This is the class that all Record Robotics gyroscopes should extend
+ */
 public abstract class Gyroscope extends Subsystem {
   public abstract double getDeg();
   public abstract double getRad();

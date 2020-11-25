@@ -1,8 +1,12 @@
 package frc.robot.control;
 
+/**
+ * Theoritical map of buttons on the HOTAS
+ * Not currently in use. Hopefully.
+ */
 public final class HotasMap{
 
-	//TODO set these!
+	/**TODO set these!*/
 	private static int trigger1 = -1;
 	private static int trigger2 = -1;
 	private static int button3 = -1;

@@ -1,8 +1,10 @@
 package frc.robot.control;
 
 
-/*
+/** 
 * this class contains the button panel assignments
+* assigns each of the numbered inputs for the button pannel to their appropriate color/locations pairs
+* then assigns each of the colored names to what their function is 
 */
 public final class ButtonMap {
 

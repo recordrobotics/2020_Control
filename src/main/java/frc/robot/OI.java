@@ -18,7 +18,7 @@ import frc.robot.commands.MoveToFire;
 import frc.robot.commands.MoveToRange;
 import frc.robot.commands.TurnToGoal;
 import frc.robot.control.XboxJoystick;
-//import frc.robot.control.XboxMap;
+/**import frc.robot.control.XboxMap;*/
 import frc.robot.control.Controller;
 import frc.robot.control.ButtonMap;
 import frc.robot.commands.TiltAcquisition;
@@ -34,12 +34,13 @@ public class OI {
   private static XboxJoystick xbox = new XboxJoystick();
   private static Controller joystick = xbox;
 
-  boolean enablePID = false; //do not set to true unless you know what you are doing. It causes issues. 
+  boolean enablePID = false;  /**do not set to true unless you know what you are doing. It causes issues. */
+/**import frc.robot.control.XboxMap;*/
   
   private MoveToAim aiming = new MoveToAim(Robot.shootingDistance);
 
   public OI(){
-    // buttonPanel
+    /** buttonPanel*/
     buttonPanel.getButton(ButtonMap.mainButton).whenPressed(aiming);
     buttonPanel.getButton(ButtonMap.blueTempNameLeft).whenPressed(new BeltAutoRun());
     buttonPanel.getButton(ButtonMap.blueTempNameRight).cancelWhenPressed(aiming);
@@ -51,7 +52,7 @@ public class OI {
   * * * * * * * * * * * * * *
   */ 
   
-  //simple logrithmic curve
+  /**simple logrithmic curve*/
   public static double sCurve(double value){
     double e = 2.718;
     return (1 / (1 + Math.pow(e, value))) * 2 - 1;
@@ -60,8 +61,9 @@ public class OI {
 
   /*
   more complex method to get a curve with a deadzone - graph at;
-  https://www.desmos.com/calculator/qs1u1uacir
-  */
+  https: /**www.desmos.com/calculator/qs1u1uacir*/
+  /**simple logrithmic curve*/
+  
   public static double accCurve(double value){
     double output;
     double e = 2.718;
@@ -72,6 +74,11 @@ public class OI {
   }
 
 
+  
+  /** 
+   * @param buttonName
+   * @return boolean
+   */
   /*
   * * * * * * * * * * * * * *
   * INPUT HANDELING METHODS *
@@ -87,25 +94,27 @@ public class OI {
     return xbox.getButtonState(buttonName);
   }
 
+  /**
+   * Gets the state of a button on the panel
+   * @param button The number of the button the read the state of. See label
+   * @return the boolean state of the button
+   */
   public static boolean getPanelButtonState(int button){
     return buttonPanel.getState(button);
   }
 
-
+  /**
+   * @return the forward value of the current joystick
+   */
   public static double getForward(){
     return joystick.getYAxis();
   }
 
+  /**
+   * @return The turn (yaw) value of the current joystick
+   */
   public static double getTurn(){
     return joystick.getXAxis();
 
   }
-  //temp
-  public static int getLiftMotion(){
-    int out = 0;
-    out += (1);
-    return out;
-  }
-
-
 }

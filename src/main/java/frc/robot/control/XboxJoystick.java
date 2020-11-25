@@ -22,7 +22,7 @@ public class XboxJoystick extends Controller{
         xbox = new XboxController(RobotMap.xboxPort);
         buttons = new JoystickButton[NUM_BUTTONS];
 
-        //instantiate buttons
+        /**instantiate buttons*/
 		for(int i = 0; i < NUM_BUTTONS; i++){
 			buttons[i] = new JoystickButton(xbox, i);
 		}
@@ -242,7 +242,7 @@ public class XboxJoystick extends Controller{
         }
     }
 
-    // unused but planned direct support for commands in the XboxJoystick class, would work similar to whenPressed for a Button
+    /** unused but planned direct support for commands in the XboxJoystick class, would work similar to whenPressed for a Button*/
     public void whenXBPressed(String buttonName, final Command command){
     }
 }
