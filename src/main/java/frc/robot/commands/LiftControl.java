@@ -26,14 +26,17 @@ public class LiftControl extends Command {
    * position safety or no safety.
    */
   private double speed = 0.8;
-  private int position = 0;  /**nonzero value kills the saftey mechanism*/
+  private double position = 0;  /**nonzero value kills the saftey mechanism*/
     /** Use requires() here to declare subsystem dependencies*/
-
+   private boolean useEncoder = false;
+/** Change the above variable to switch between using and not using an encoder */
 
   /** Called just before this Command runs the first time*/
   @Override
   protected void initialize() {
-    position = 0;
+    if(useEncoder = false){
+      position = 0;
+    } /** If not using an encoder sets the position tracker to 0, DO NOT CHANGE THE DEFAULT POSITION VALUE */
   }
 
   /** Called repeatedly when this Command is scheduled to run*/
@@ -42,24 +45,32 @@ public class LiftControl extends Command {
       liftControl();
   }
   /**
-   * Moves lift based on GREEN PANEL BUTTONS.
+   * Moves lift based on GREEN PANEL BUTTONS OR YELLOW PANEL BUTTONS.
    */
   private void liftControl(){
 /**
 *    if the left green button is pressed, move up
 *    if the right green button is pressed, move down
 */
-    if((OI.getPanelButtonState(ButtonMap.liftRaise)) || OI.getPanelButtonState(ButtonMap.LiftOverrideUp)){
+    
+      if((OI.getPanelButtonState(ButtonMap.liftRaise))  || OI.getPanelButtonState(ButtonMap.LiftOverrideUp)){
         Robot.lift.moveLift(speed);
+        if(useEncoder = false){
         position++; 
-        
+        } /** moves the lift up when the correct buttons are pressed, if not using an encoder changes the position variable */
     } else if((OI.getPanelButtonState(ButtonMap.liftLower) && position >= 0) || OI.getPanelButtonState(ButtonMap.LiftOverrideDown)){
         Robot.lift.moveLift(-speed);
+        if(useEncoder = false){
         position--;
+        }/** moves the lift down when the correct buttons are pressed, if not using an encoder changes the position variable */
     } else {
         Robot.lift.moveLift(0);
-    }
-    
+    } /** Makes the lift not move under normal circumstances */
+    if(useEncoder = true){
+      position = Robot.lift.getPosition();
+    } /**If using an encoder, sets the position variable to the position gotten by the encoder */
+
+  
     SmartDashboard.putNumber("Lift position", position);
   }
 
