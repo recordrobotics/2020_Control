@@ -36,17 +36,14 @@ public class Drive2020 extends DriveTrain {
     double ticksPerRotation = 20 * 10.71;
     double wheelCirc = 6 * Math.PI;
 
-<<<<<<< HEAD
     private double frontLeftVoltage = 11.5;
     private double frontRightVoltage = 11.5;
     private double backLeftVoltage = 11.5;
     private double backRightVoltage = 11.5;
 
-=======
     /**
      * Library Differential Drive object
      */
->>>>>>> f4bfb836a9ca0d5ad6d7b21e4da336ac9cb001fe
     private DifferentialDrive drive = new DifferentialDrive(frontLeft, frontRight);
 
 /**
@@ -90,7 +87,7 @@ public class Drive2020 extends DriveTrain {
         frontLeft.setVoltage(frontLeftVoltage);
         backLeft.setVoltage(backLeftVoltage);
         frontRight.setVoltage(frontRightVoltage);
-        backRight.setVoltage(backRight);
+        backRight.setVoltage(backRightVoltage);
     }
 
     /**

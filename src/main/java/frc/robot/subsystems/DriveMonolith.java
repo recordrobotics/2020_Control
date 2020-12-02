@@ -27,7 +27,6 @@ public class DriveMonolith extends DriveTrain {
   Spark frontLeft = new Spark(RobotMap.driveFrontLeftPortMonolith);
   Spark backLeft = new Spark(RobotMap.driveBackLeftPortMonolith);
 
-<<<<<<< HEAD
   //voltage values for each motor. Should probably all be the same!
   private double frontLeftVoltage = 11.5;
   private double frontRightVoltage = 11.5;
@@ -36,6 +35,8 @@ public class DriveMonolith extends DriveTrain {
 
   public DriveMonolith(){
     //set and enable the voltages of the motors
+    //TODO Make voltage regulator work for SPARK motors
+    /*
     frontLeft.enableVoltageCompensation(true);
     backLeft.enableVoltageCompensation(true);
     frontRight.enableVoltageCompensation(true);
@@ -44,15 +45,14 @@ public class DriveMonolith extends DriveTrain {
     frontLeft.setVoltage(frontLeftVoltage);
     backLeft.setVoltage(backLeftVoltage);
     frontRight.setVoltage(frontRightVoltage);
-    backRight.setVoltage(backRight);
+    backRight.setVoltage(backRightVoltage);
+    */
   }
 
-=======
   /**
    * @param amount percent output
    * Set the speed of the left motors
    */
->>>>>>> f4bfb836a9ca0d5ad6d7b21e4da336ac9cb001fe
   public void moveLeftWheels(double amount){
     frontLeft.set(-amount);
     backLeft.set(-amount);

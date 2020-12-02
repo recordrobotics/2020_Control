@@ -22,28 +22,22 @@ import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 */
 public class DriveMonty extends DriveTrain {
 
-<<<<<<< HEAD
   //If this is throwing an error - you need to install ctre Pheonix stuff, it's a pain, sorry :(
-=======
   /**If this is throwing an error - you need to install ctre Pheonix stuff, it's a pain, sorry :(*/
->>>>>>> f4bfb836a9ca0d5ad6d7b21e4da336ac9cb001fe
   WPI_VictorSPX frontRight = new WPI_VictorSPX(RobotMap.driveFrontRightPortMonty);
   WPI_VictorSPX backRight = new WPI_VictorSPX(RobotMap.driveBackRightPortMonty);
   WPI_VictorSPX frontLeft = new WPI_VictorSPX(RobotMap.driveFrontLeftPortMonty);
   WPI_VictorSPX backLeft = new WPI_VictorSPX(RobotMap.driveBackLeftPortMonty);
 
-<<<<<<< HEAD
   private double frontLeftVoltage = 11.5;
   private double frontRightVoltage = 11.5;
   private double backLeftVoltage = 11.5;
   private double backRightVoltage = 11.5;
 
-=======
   /**
    * Constructor
    * Sets the back right/left motors to always have the same speed as the front right/left motors
    */
->>>>>>> f4bfb836a9ca0d5ad6d7b21e4da336ac9cb001fe
   public DriveMonty(){
     backRight.follow(frontRight);
     backLeft.follow(frontLeft);
@@ -57,7 +51,7 @@ public class DriveMonty extends DriveTrain {
     frontLeft.setVoltage(frontLeftVoltage);
     backLeft.setVoltage(backLeftVoltage);
     frontRight.setVoltage(frontRightVoltage);
-    backRight.setVoltage(backRight);
+    backRight.setVoltage(backRightVoltage);
   }
 
   /**
