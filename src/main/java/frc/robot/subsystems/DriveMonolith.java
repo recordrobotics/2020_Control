@@ -13,16 +13,21 @@ import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import frc.robot.RobotMap;
 
 /**
- * An example subsystem.  You can replace me with your own Subsystem.
+ * Drivetrain subclass for Monolith
+ * Controls the wheels and their motors
  */
 public class DriveMonolith extends DriveTrain {
-  // Put methods for controlling this subsystem
-  // here. Call these from Commands.
+
+  /**
+   * Objects representing the motors
+   * @see RobotMap.java for the port numbers 
+   */
   Spark frontRight = new Spark(RobotMap.driveFrontRightPortMonolith);
   Spark backRight = new Spark(RobotMap.driveBackRightPortMonolith);
   Spark frontLeft = new Spark(RobotMap.driveFrontLeftPortMonolith);
   Spark backLeft = new Spark(RobotMap.driveBackLeftPortMonolith);
 
+<<<<<<< HEAD
   //voltage values for each motor. Should probably all be the same!
   private double frontLeftVoltage = 11.5;
   private double frontRightVoltage = 11.5;
@@ -42,25 +47,46 @@ public class DriveMonolith extends DriveTrain {
     backRight.setVoltage(backRight);
   }
 
+=======
+  /**
+   * @param amount percent output
+   * Set the speed of the left motors
+   */
+>>>>>>> f4bfb836a9ca0d5ad6d7b21e4da336ac9cb001fe
   public void moveLeftWheels(double amount){
     frontLeft.set(-amount);
     backLeft.set(-amount);
   }
 
-
+  /**
+   * @param amount percent output
+   * Set the speed of the right motors
+   */
   public void moveRightWheels(double amount){
     frontRight.set(amount);
     backRight.set(amount);
   }
 
+  /**
+   * @return value of the encoder
+   * PLACEHOLDER, no enoders on Monolith atm
+   */
   public double getLeftEncoder(){
     return 0.0;
   }
 
+  /**
+   * @return value of the encoder
+   * PLACEHOLDER, no enoders on Monolith atm
+   */
   public double getRightEncoder(){
     return 0.0;
   }
 
+  /**
+   * reset the encoders to 0
+   * PLACEHOLDER, no encoders on Monolith atm
+   */
   public void resetEncoders(){}
 
   public DifferentialDrive getDrive() {return null;}

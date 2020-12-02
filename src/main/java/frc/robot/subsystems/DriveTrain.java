@@ -23,18 +23,31 @@ public abstract class DriveTrain extends Subsystem {
     setDefaultCommand(new ManualDrive());
   }
 
-  /* 
-  * amount is ambiguous, if it is inconsistant accross robots, 
-  * change the appropriate subclass of DriveTrain, NOT the command
-  */
+  /**
+   * @param amount amount to move the wheel. Depends on contex, is usually percent output
+   */
   public abstract void moveLeftWheels(double amount);
+  /**
+   * @param amount amount to move the wheel. Depends on contex, is usually percent output
+   */
   public abstract void moveRightWheels(double amount);
 
-
+  /**
+   * @return The Value of the right encoder in INCHES
+   */
   public abstract double getRightEncoder();
+  /**
+   * @return The Value of the right encoder in INCHES
+   */
   public abstract double getLeftEncoder();
+  /**
+   * Reset both encoders to zero
+   */
   public abstract void resetEncoders();
 
+  /**
+   * @return The differential drive object used, if any
+   */
   public abstract DifferentialDrive getDrive();
 
   public boolean isDisabled() {

@@ -2,11 +2,12 @@ package frc.robot.control;
 import java.util.ArrayList;
 
 public class PID {
-    //variables for current error, previous error, and integral, and the coefficients
+    /**variables for current error, previous error, and integral, and the coefficients*/
     private double integral = 0, error = 0, deriv = 0;
     private double kp, ki, kd, target;
 
-    private final double time = 0.02; //robot periodic called once every 20ms
+    /**robot periodic called once every 20ms*/
+    private final double time = 0.02;
 
     private ArrayList<Double> errorlist = new ArrayList<Double>();
 
@@ -18,9 +19,11 @@ public class PID {
         target = setpoint;
     }
 
+    /**
+    * should be called once every time interval
+    * gets the output of the PID given the target and coefficients declared for the object and current value
+    */
     public double control(double value) {
-        //should be called once every time interval
-        //gets the output of the PID given the target and coefficients declared for the object and current value
 
         double output = 0;
 
@@ -43,6 +46,9 @@ public class PID {
         return output;
     }
 
+    /**
+     * Updates the derivative using the linear regression of the past 10 points
+     */
     private void updateDeriv(){
         double sumx = 0, sumy = 0, sumxy = 0, sumxsq = 0;
 

@@ -13,7 +13,9 @@ import frc.robot.Robot;
 import frc.robot.subsystems.CamStream;
 
 /**
- * An example command.  You can replace me with your own command.
+ * Class meant to switch cameras at the press of a button
+ * Written frantically just before competition, function questionably understood
+ * USE AT OWN RISK
  */
 public class CamControl extends Command {
 
@@ -23,7 +25,7 @@ public class CamControl extends Command {
         requires(Robot.camStream);
     }
 
-    // Called just before this Command runs the first time
+    /** Called just before this Command runs the first time*/
     @Override
     protected void initialize() {
         Robot.camStream.setCamera(0);
@@ -32,7 +34,7 @@ public class CamControl extends Command {
     private boolean prevButton = false;
     private int count = 0;
 
-    // Called repeatedly when this Command is scheduled to run
+    /** Called repeatedly when this Command is scheduled to run*/
     @Override 
     protected void execute() {
 
@@ -44,19 +46,21 @@ public class CamControl extends Command {
         prevButton = OI.getXboxButtonState(switchButton);
     }
 
-    // Make this return true when this Command no longer needs to run execute()
+    /** Make this return true when this Command no longer needs to run execute()*/
     @Override
     protected boolean isFinished() {
         return false;
     }
 
-    // Called once after isFinished returns true
+    /** Called once after isFinished returns true*/
     @Override
     protected void end() {
     }
 
-    // Called when another command which requires one or more of the same
-    // subsystems is scheduled to run
+/**
+*     Called when another command which requires one or more of the same
+*     subsystems is scheduled to run
+*/
     @Override
     protected void interrupted() {
     }

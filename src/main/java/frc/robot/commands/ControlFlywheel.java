@@ -10,36 +10,45 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.OI;
 import frc.robot.Robot;
-//import frc.robot.control.ButtonMap;
+/**import frc.robot.control.ButtonMap;*/
 
 public class ControlFlywheel extends Command {
-
+  /**
+   * prevToggle if it was last on or off.
+   * flywheelIsOn if the flywheel is currently on or off.
+   * useXboxController use xbox controller to toggle flywheel.
+   * xboxButton which button on the xbox controller toggles the flywheel.
+   * panelButton which button on the panel toggles the flywheel.
+   * wheelSpeed how fast the flywheel spins.
+   */
   private boolean prevToggle = false, flywheelIsOn = false;
   private boolean useXboxController = true;
   private String xboxButton = "X";
   private int panelButton = 6;
 
   private double wheelSpeed = Robot.flywheelSpeed;
-
+  /**
+   * Create a ControlFlywheel constructor.
+   */
   public ControlFlywheel() {
-    // Use requires() here to declare subsystem dependencies
+    /** Use requires() here to declare subsystem dependencies*/
     requires(Robot.flywheel);
   }
 
-  // Called just before this Command runs the first time
+  /** Called just before this Command runs the first time*/
   @Override
   protected void initialize() {
   }
 
-  // Called repeatedly when this Command is scheduled to run
+  /** Called repeatedly when this Command is scheduled to run*/
   @Override
   protected void execute() {
-    //toggle
+    /**toggle*/
     if ((getButton() != prevToggle) && getButton()){
       flywheelIsOn = !flywheelIsOn;
       System.out.println("toggle! " + flywheelIsOn);
     }
-
+    /**hold y to slow down flywheel*/
     if (flywheelIsOn){
       if (OI.getXboxButtonState("Y")){
         Robot.flywheel.moveWheel(wheelSpeed - 0.15);
@@ -52,7 +61,10 @@ public class ControlFlywheel extends Command {
 
     prevToggle = getButton();
   }
-
+  /**
+   * Returns the button used to toggle the flywheel.
+   * @return the button used to toggle the flywheel.
+   */
   private boolean getButton(){
     if (useXboxController){
       return OI.getXboxButtonState(xboxButton);
@@ -61,19 +73,21 @@ public class ControlFlywheel extends Command {
     }
   }
 
-  // Make this return true when this Command no longer needs to run execute()
+  /** Make this return true when this Command no longer needs to run execute()*/
   @Override
   protected boolean isFinished() {
     return false;
   }
 
-  // Called once after isFinished returns true
+  /** Called once after isFinished returns true*/
   @Override
   protected void end() {
   }
 
-  // Called when another command which requires one or more of the same
-  // subsystems is scheduled to run
+/**
+*   Called when another command which requires one or more of the same
+*   subsystems is scheduled to run
+*/
   @Override
   protected void interrupted() {
   }

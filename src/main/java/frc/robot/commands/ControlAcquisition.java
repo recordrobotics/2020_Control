@@ -8,24 +8,35 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
-//import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+/**import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;*/
 import frc.robot.Robot;
 import frc.robot.OI;
 
 
 public class ControlAcquisition extends Command {
-
+    /**
+     * acqSpeed This is how fast the aquisition spins.
+     * uperAngle lowerAngle UNUSED.
+     */
     private double acqSpeed = -0.5;
     private double upperAngle = 5, lowerAngle = 0;
-
+    /**
+     * Creates a ControlAcquisition object.
+     */
     public ControlAcquisition() {
-        // Use requires() here to declare subsystem dependencies
+        /** Use requires() here to declare subsystem dependencies*/
         requires(Robot.acq);
     }
-
+    /**
+     * Method to spin and tilt acquisition.
+     */
     private void controlAcq() {
         //control the acqusition wheels
-       
+        /**
+         * IF: if the aquisition button is pressed, move the aquisition by acqSpeed.
+         * ELSE IF: if the reverse button is pressed, move the aquisition by acqSpeed in the other direction.
+         * ELSE: the aquisition shouldn't spin if either button is not pressed.
+         */
         if (OI.getXboxButtonState(acqButton)){
             Robot.acq.moveAcq(acqSpeed);
         } else if (OI.getXboxButtonState(reverseButton)){
@@ -33,7 +44,11 @@ public class ControlAcquisition extends Command {
         } else {
             Robot.acq.moveAcq(0);
         }
-
+        /**
+         * IF: if the right bumper is pressed, tilt the aquisition up by acq.getTiltSpeed().
+         * ELSE IF: if the left bumper is pressed, tilt the aquisition down by acq.getTiltSpeed().
+         * ELSE: the aquisition shouldn't tilt if either bumper is not pressed.
+         */
         if (OI.getXboxButtonState("RB")){
             Robot.acq.moveTilt(Robot.acq.getTiltSpeed());
         } else if (OI.getXboxButtonState("LB")){
@@ -43,45 +58,54 @@ public class ControlAcquisition extends Command {
         }
     }
 
-    // Called just before this Command runs the first time
+    /** Called just before this Command runs the first time*/
     @Override
     protected void initialize() {
     }
+
+    /**
+     * @param prevButton Get whether toggleButton has just been pressed to avoid the aquisition being raised multiple times.
+     * @param toggleButton Which button raises the tilt of the aquisition.
+     * @param reverseButton Which button lowers the tilt of the aquisition.
+     * @param acqButton Which button spins the aquisition.
+     */
     boolean prevButton = false;
     String toggleButton = "A";
     String reverseButton = "A";
     String acqButton = "LT";
 
-    // Called repeatedly when this Command is scheduled to run
+    /** Called repeatedly when this Command is scheduled to run*/
     @Override
     protected void execute() {
-        //control the toggle, this will invert inputPosition when "A" is pressed
+        /**control the toggle, this will invert inputPosition when "A" is pressed*/
         /*
         if (prevButton != OI.getXboxButtonState(toggleButton) && OI.getXboxButtonState(toggleButton)) {
             Robot.acq.setTiltPosition(!Robot.acq.getTiltPosition());
         }
         */
         controlAcq();
-        //controlTilt();
+        /**controlTilt();*/
 
-        //SmartDashboard.putNumber("tilt angle", Robot.acq.getAngle());
+        /**SmartDashboard.putNumber("tilt angle", Robot.acq.getAngle());*/
 
         prevButton = OI.getXboxButtonState(toggleButton);
     }
 
-    // Make this return true when this Command no longer needs to run execute()
+    /** Make this return true when this Command no longer needs to run execute()*/
     @Override
     protected boolean isFinished() {
         return false;
     }
 
-    // Called once after isFinished returns true
+    /** Called once after isFinished returns true*/
     @Override
     protected void end() {
     }
 
-    // Called when another command which requires one or more of the same
-    // subsystems is scheduled to run
+/**
+*     Called when another command which requires one or more of the same
+*     subsystems is scheduled to run
+*/
     @Override
     protected void interrupted() {
     }

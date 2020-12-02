@@ -20,6 +20,11 @@ public class RobotLift2020 extends RobotLift{
         robotLiftMotor.enableVoltageCompensation(true);
         robotLiftMotor.setVoltage(targetVoltage);
     }
+    /**
+     * robotLiftMotorLeft creates variable for the left lift motor.
+     * stop() stops the motor.
+     */
+    private WPI_VictorSPX robotLiftMotorLeft = new WPI_VictorSPX(RobotMap.robotLiftLeftMotorPort);
   
     public void stop() {
 
@@ -27,6 +32,10 @@ public class RobotLift2020 extends RobotLift{
 
         robotLiftMotor.set(0.0);
     }
+    /**
+     * moveLift() moves lift up and down.
+     * @param v how fast the left lift motor spins.
+     */
     public void moveLift(double v) {
 
         robotLiftMotor.set(ControlMode.PercentOutput, v);

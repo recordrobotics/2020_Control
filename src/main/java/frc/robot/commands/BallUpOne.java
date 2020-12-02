@@ -14,8 +14,17 @@ import edu.wpi.first.wpilibj.Timer;
 
 public class BallUpOne extends Command {
   public BallUpOne() {
-    // Use requires() here to declare subsystem dependencies
+    /** Use requires() here to declare subsystem dependencies*/
   }
+  /**
+   * highestSlot The highest slot with a ball.
+   * targetSlot Where the highest ball needs to go.
+   * ballCount How many balls in the lift.
+   * beltSpeed How fast the belt is moving.
+   * moveTime How long the belt should take to move.
+   * hitSlot If the targetSlot has been reached.
+   * ballTimer Timer to time how long it takes for the ball to move to the targetSlot.
+   */
   private int highestSlot, targetSlot, ballCount;
   private double beltSpeed = 0.4;
   private double moveTime = 0.1;
@@ -24,7 +33,7 @@ public class BallUpOne extends Command {
 
   private Timer ballTimer = new Timer();
 
-  // Called just before this Command runs the first time
+  /** Called just before this Command runs the first time*/
   @Override
   protected void initialize() {
     ballTimer.start();
@@ -39,7 +48,7 @@ public class BallUpOne extends Command {
     }
   }
 
-  // Called repeatedly when this Command is scheduled to run
+  /** Called repeatedly when this Command is scheduled to run*/
   @Override 
   protected void execute() {
     Robot.belt.moveBelt(beltSpeed);
@@ -49,21 +58,23 @@ public class BallUpOne extends Command {
     
   }
 
-  // Make this return true when this Command no longer needs to run execute()
+  /** Make this return true when this Command no longer needs to run execute()*/
   @Override
   protected boolean isFinished() {
-    // Last or is emergency shutoff so the command will stop running in case of a ball getting stuck
+    /** Last or is emergency shutoff so the command will stop running in case of a ball getting stuck*/
     return (ballTimer.get() > moveTime && hitSlot)
      || (ballTimer.get() > 1);
   }
 
-  // Called once after isFinished returns true
+  /** Called once after isFinished returns true*/
   @Override
   protected void end() {
   }
 
-  // Called when another command which requires one or more of the same
-  // subsystems is scheduled to run
+/**
+*   Called when another command which requires one or more of the same
+*   subsystems is scheduled to run
+*/
   @Override
   protected void interrupted() {
   }
