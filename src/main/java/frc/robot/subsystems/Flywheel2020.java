@@ -21,7 +21,7 @@ public class Flywheel2020 extends Subsystem {
 
     public Flywheel2020(){
         flywheelMotor.enableVoltageCompensation(true);
-        flywheelMotor.configVoltageCompSaturation(targetVoltage);
+        flywheelMotor.setVoltage(targetVoltage);
     }
     
     @Override

@@ -28,6 +28,11 @@ public class Drive2020 extends DriveTrain {
     double ticksPerRotation = 20 * 10.71;
     double wheelCirc = 6 * Math.PI;
 
+    private double frontLeftVoltage = 11.5;
+    private double frontRightVoltage = 11.5;
+    private double backLeftVoltage = 11.5;
+    private double backRightVoltage = 11.5;
+
     private DifferentialDrive drive = new DifferentialDrive(frontLeft, frontRight);
 
     //setting to false may help with crash, but ya know... saftey!? I don't exactly know what this turns on/off...
@@ -51,6 +56,17 @@ public class Drive2020 extends DriveTrain {
         backLeft.setExpiration(timeout);
         frontRight.setExpiration(timeout);
         backRight.setExpiration(timeout);
+
+        //set and enable the voltages of the motors
+        frontLeft.enableVoltageCompensation(true);
+        backLeft.enableVoltageCompensation(true);
+        frontRight.enableVoltageCompensation(true);
+        backRight.enableVoltageCompensation(true);
+
+        frontLeft.setVoltage(frontLeftVoltage);
+        backLeft.setVoltage(backLeftVoltage);
+        frontRight.setVoltage(frontRightVoltage);
+        backRight.setVoltage(backRight);
     }
 
     public void moveLeftWheels(double amount){
