@@ -118,7 +118,7 @@ public class Robot extends TimedRobot {
     /**gyro*/
     gyro = new GyroMonolith();  
     gyroInit();
-    dash = new DashboardMonolith();
+    //dash = new DashboardMonolith();
   }
 
   /**
@@ -135,7 +135,7 @@ public class Robot extends TimedRobot {
     spool = new LiftSpool();
     lift = new RobotLift2020();
     rangeFinder = new RangeFinder2020();
-    dash = new Dashboard2020();
+    //dash = new Dashboard2020();
 
   }
 
