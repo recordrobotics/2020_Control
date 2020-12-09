@@ -30,12 +30,14 @@ public class CamStream extends SubsystemBase {
     public CamStream(int numCameras){
         camera = new UsbCamera[numCameras];
 
-        for (int i = 0; i < numCameras; i++){
-            camera[i] = CameraServer.getInstance().startAutomaticCapture(0);
-            camera[i].setResolution(512, 288);
-        }
+        if (Robot.isReal()){
+            for (int i = 0; i < numCameras; i++){
+                camera[i] = CameraServer.getInstance().startAutomaticCapture(0);
+                camera[i].setResolution(512, 288);
+            }
 
-        cameraSelection = NetworkTableInstance.getDefault().getTable("").getEntry("CameraSelection");
+            cameraSelection = NetworkTableInstance.getDefault().getTable("").getEntry("CameraSelection");
+        }
     }
 
     /**default constructor */
