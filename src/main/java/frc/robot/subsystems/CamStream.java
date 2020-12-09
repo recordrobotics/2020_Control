@@ -11,14 +11,14 @@ import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
-import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.commands.CamControl;
 
 /**
  * Allows for use of the Camera in the RoboRio code
  * A lot of camera stuff is done on the raspberry pi in Python
  */
-public class CamStream extends Subsystem {
+public class CamStream extends SubsystemBase {
     /**Objects representing the camera and its networktable */
     private UsbCamera[] camera;
     private NetworkTableEntry cameraSelection;
@@ -30,12 +30,14 @@ public class CamStream extends Subsystem {
     public CamStream(int numCameras){
         camera = new UsbCamera[numCameras];
 
-        for (int i = 0; i < numCameras; i++){
-            camera[i] = CameraServer.getInstance().startAutomaticCapture(0);
-            camera[i].setResolution(512, 288);
-        }
+        if (Robot.isReal()){
+            for (int i = 0; i < numCameras; i++){
+                camera[i] = CameraServer.getInstance().startAutomaticCapture(0);
+                camera[i].setResolution(512, 288);
+            }
 
-        cameraSelection = NetworkTableInstance.getDefault().getTable("").getEntry("CameraSelection");
+            cameraSelection = NetworkTableInstance.getDefault().getTable("").getEntry("CameraSelection");
+        }
     }
 
     /**default constructor */
@@ -43,10 +45,7 @@ public class CamStream extends Subsystem {
         this(1);
     }
 
-    @Override
-    public void initDefaultCommand() {
-        setDefaultCommand(new CamControl());
-    }
+    
 
     /**
      * @param cameraNum which camera to set

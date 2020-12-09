@@ -5,7 +5,8 @@ Both motor control different systems
 Possible thought of combining both lifts
 package frc.robot.subsystems;*/
 package frc.robot.subsystems;
-
+import edu.wpi.first.wpilibj.AnalogInput;
+import edu.wpi.first.wpilibj.AnalogEncoder;
 import com.ctre.phoenix.motorcontrol.*;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
@@ -26,11 +27,17 @@ public class RobotLift2020 extends RobotLift{
      */
     private WPI_VictorSPX robotLiftMotorLeft = new WPI_VictorSPX(RobotMap.robotLiftLeftMotorPort);
   
+    AnalogInput encoderInput = new AnalogInput(0);
+    AnalogEncoder liftEncoder = new AnalogEncoder(encoderInput);
+
     public void stop() {
 
         robotLiftMotor.stopMotor();
 
         robotLiftMotor.set(0.0);
+    }
+    public double getPosition(){
+        return liftEncoder.get();
     }
     /**
      * moveLift() moves lift up and down.

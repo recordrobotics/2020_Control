@@ -2,7 +2,6 @@ package frc.robot.subsystems;
 
 import frc.robot.RobotMap;  
 import edu.wpi.first.wpilibj.DigitalInput;
-
 import com.ctre.phoenix.motorcontrol.*;
 import com.ctre.phoenix.motorcontrol.can.*;
 import frc.robot.commands.*;
@@ -26,9 +25,7 @@ public class BallLift2020 extends BallLift {
     }
    }
   
-  public void initDefaultCommand() {
-      setDefaultCommand(new BeltControl());
-  }
+  
   /**
    * Runs the belt at speed v
    * @param v the speed at which the belt runs

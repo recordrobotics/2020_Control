@@ -8,7 +8,7 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.DigitalInput;
-import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.RobotMap;
 import frc.robot.commands.ControlAcquisition;
 
@@ -29,8 +29,8 @@ public class Acquisition2020 extends Acquisition {
     private double tiltMotorVoltage = 11.5;
     DigitalInput tiltLimit;
 
-/**
-*    AnalogInput encoderInput = new AnalogInput(0);
+/** 
+*   AnalogInput encoderInput = new AnalogInput(0);
 *    AnalogEncoder acqEncoder = new AnalogEncoder(encoderInput);
 */
 
@@ -106,10 +106,7 @@ public class Acquisition2020 extends Acquisition {
         return acquireMotor.get() > 0;
     }
     
-    @Override
-    public void initDefaultCommand() {
-        setDefaultCommand(new ControlAcquisition());
-    }
+    
     public double getAcquireVoltage(){
         return acquireMotor.getMotorOutputVoltage();
     }
