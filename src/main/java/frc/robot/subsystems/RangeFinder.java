@@ -1,11 +1,7 @@
 package frc.robot.subsystems;
 
-import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
-public abstract class RangeFinder extends Subsystem {
-    public abstract double getDistance();
-
-  @Override
-  public void initDefaultCommand() {
-  }
+public abstract class RangeFinder extends SubsystemBase {
+  public abstract double getDistance();
 }
