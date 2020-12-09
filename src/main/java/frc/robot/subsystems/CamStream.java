@@ -12,6 +12,7 @@ import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import frc.robot.Robot;
 import frc.robot.commands.CamControl;
 
 /**
@@ -30,12 +31,14 @@ public class CamStream extends Subsystem {
     public CamStream(int numCameras){
         camera = new UsbCamera[numCameras];
 
-        for (int i = 0; i < numCameras; i++){
-            camera[i] = CameraServer.getInstance().startAutomaticCapture(0);
-            camera[i].setResolution(512, 288);
-        }
+        if (Robot.isReal()){
+            for (int i = 0; i < numCameras; i++){
+                camera[i] = CameraServer.getInstance().startAutomaticCapture(0);
+                camera[i].setResolution(512, 288);
+            }
 
-        cameraSelection = NetworkTableInstance.getDefault().getTable("").getEntry("CameraSelection");
+            cameraSelection = NetworkTableInstance.getDefault().getTable("").getEntry("CameraSelection");
+        }
     }
 
     /**default constructor */
@@ -45,7 +48,9 @@ public class CamStream extends Subsystem {
 
     @Override
     public void initDefaultCommand() {
-        setDefaultCommand(new CamControl());
+        if (Robot.isReal()){
+            setDefaultCommand(new CamControl());
+        }
     }
 
     /**
