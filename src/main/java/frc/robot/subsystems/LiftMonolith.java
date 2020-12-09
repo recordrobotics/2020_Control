@@ -37,6 +37,9 @@ public class LiftMonolith extends RobotLift{
             motor.set(v);
         }*/
     }
+    public double getPosition(){
+        return 0;
+    }
     /**
      * Stops the lift from moving.
      */

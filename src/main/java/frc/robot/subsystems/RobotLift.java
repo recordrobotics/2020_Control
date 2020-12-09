@@ -19,5 +19,6 @@ public abstract class RobotLift extends Subsystem {
      * v moves lift at speed v.
      */
     public abstract void moveLift(double v);
+    public abstract double getPosition();
     public abstract void stop();
 }

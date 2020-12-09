@@ -57,8 +57,7 @@ public class Robot extends TimedRobot {
   public static LiftSpool spool;
   public static RangeFinder rangeFinder;
   public static CamStream camStream = new CamStream(2);
-  public static Dashboard dash = new Dashboard(currentRobot);
-
+  public static Dashboard dash;
   /**Autonomous command setup*/
   Command m_autonomousCommand;
   SendableChooser<Command> m_chooser = new SendableChooser<>();
@@ -119,6 +118,7 @@ public class Robot extends TimedRobot {
     /**gyro*/
     gyro = new GyroMonolith();  
     gyroInit();
+    //dash = new DashboardMonolith();
   }
 
   /**
@@ -135,6 +135,7 @@ public class Robot extends TimedRobot {
     spool = new LiftSpool();
     lift = new RobotLift2020();
     rangeFinder = new RangeFinder2020();
+    //dash = new Dashboard2020();
 
   }
 

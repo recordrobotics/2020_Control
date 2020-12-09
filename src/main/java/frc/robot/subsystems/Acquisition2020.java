@@ -29,8 +29,8 @@ public class Acquisition2020 extends Acquisition {
     private double tiltMotorVoltage = 11.5;
     DigitalInput tiltLimit;
 
-/**
-*    AnalogInput encoderInput = new AnalogInput(0);
+/** 
+*   AnalogInput encoderInput = new AnalogInput(0);
 *    AnalogEncoder acqEncoder = new AnalogEncoder(encoderInput);
 */
 
