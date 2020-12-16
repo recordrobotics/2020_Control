@@ -7,14 +7,13 @@
 
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
 
 /**
  * An example command. You can replace me with your own command.
  */
-public class ExampleCommand extends CommandBase implements Command {
+public class ExampleCommand extends CommandBase {
   public ExampleCommand() {
     /** Use requires() here to declare subsystem dependencies */
     // requires(Robot.m_subsystem);
