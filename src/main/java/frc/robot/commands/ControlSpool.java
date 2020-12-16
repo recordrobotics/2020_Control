@@ -7,58 +7,41 @@
 
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.OI;
 import frc.robot.Robot;
 import frc.robot.control.ButtonMap;
 
-
-public class ControlSpool extends Command {
+public class ControlSpool extends CommandBase {
   /**
    * spoolSpeed how fast the spool spins.
    */
   private double spoolSpeed = 0.5;
+
   /**
    * Creates a ControlSpool constuctor.
    */
   public ControlSpool() {
-    /** Use requires() here to declare subsystem dependencies*/
-    requires(Robot.spool);
+    /** Use requires() here to declare subsystem dependencies */
+    addRequirements(Robot.spool);
   }
 
-  /** Called just before this Command runs the first time*/
+  /** Called repeatedly when this Command is scheduled to run */
   @Override
-  protected void initialize() {
-  }
-
-  /** Called repeatedly when this Command is scheduled to run*/
-  @Override
-  protected void execute() {
-    if(OI.getPanelButtonState(ButtonMap.winchUp)){
+  public void execute() {
+    if (OI.getPanelButtonState(ButtonMap.winchUp)) {
       Robot.spool.MoveSpool(spoolSpeed);
-    } else if(OI.getPanelButtonState(ButtonMap.winchDown)){
-     Robot.spool.MoveSpool(-spoolSpeed);
+    } else if (OI.getPanelButtonState(ButtonMap.winchDown)) {
+      Robot.spool.MoveSpool(-spoolSpeed);
     } else {
       Robot.spool.MoveSpool(0);
     }
   }
 
-  /** Make this return true when this Command no longer needs to run execute()*/
+  /** Make this return true when this Command no longer needs to run execute() */
   @Override
-  protected boolean isFinished() {
+  public boolean isFinished() {
     return false;
   }
 
-  /** Called once after isFinished returns true*/
-  @Override
-  protected void end() {
-  }
-
-/**
-*   Called when another command which requires one or more of the same
-*   subsystems is scheduled to run
-*/
-  @Override
-  protected void interrupted() {
-  }
 }

@@ -7,89 +7,69 @@
 
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.OI;
 import frc.robot.Robot;
 import frc.robot.control.*;
 
-public class LiftControl extends Command {
+public class LiftControl extends CommandBase {
   /**
    * Creates a LiftControl constructor.
    */
   public LiftControl() {
-    /** Use requires() here to declare subsystem dependencies*/
-    requires(Robot.lift);
-  } 
+    /** Use requires() here to declare subsystem dependencies */
+    addRequirements(Robot.lift);
+  }
+
   /**
-   * speed the speed the lift moves.
-   * position safety or no safety.
+   * speed the speed the lift moves. position safety or no safety.
    */
   private double speed = 0.8;
-  private double position = 0;  /**nonzero value kills the saftey mechanism*/
-    /** Use requires() here to declare subsystem dependencies*/
-   private boolean useEncoder = false;
-/** Change the above variable to switch between using and not using an encoder */
+  private int position = 0;
 
-  /** Called just before this Command runs the first time*/
+  /** nonzero value kills the saftey mechanism */
+  /** Use requires() here to declare subsystem dependencies */
+
+  /** Called just before this Command runs the first time */
   @Override
-  protected void initialize() {
-    if(useEncoder = false){
-      position = 0;
-    } /** If not using an encoder sets the position tracker to 0, DO NOT CHANGE THE DEFAULT POSITION VALUE */
+  public void initialize() {
+    position = 0;
   }
 
-  /** Called repeatedly when this Command is scheduled to run*/
+  /** Called repeatedly when this Command is scheduled to run */
   @Override
-  protected void execute() {
-      liftControl();
+  public void execute() {
+    liftControl();
   }
+
   /**
    * Moves lift based on GREEN PANEL BUTTONS OR YELLOW PANEL BUTTONS.
    */
-  private void liftControl(){
-/**
-*    if the left green button is pressed, move up
-*    if the right green button is pressed, move down
-*/
-    
-      if((OI.getPanelButtonState(ButtonMap.liftRaise))  || OI.getPanelButtonState(ButtonMap.LiftOverrideUp)){
-        Robot.lift.moveLift(speed);
-        if(useEncoder = false){
-        position++; 
-        } /** moves the lift up when the correct buttons are pressed, if not using an encoder changes the position variable */
-    } else if((OI.getPanelButtonState(ButtonMap.liftLower) && position >= 0) || OI.getPanelButtonState(ButtonMap.LiftOverrideDown)){
-        Robot.lift.moveLift(-speed);
-        if(useEncoder = false){
-        position--;
-        }/** moves the lift down when the correct buttons are pressed, if not using an encoder changes the position variable */
-    } else {
-        Robot.lift.moveLift(0);
-    } /** Makes the lift not move under normal circumstances */
-    if(useEncoder = true){
-      position = Robot.lift.getPosition();
-    } /**If using an encoder, sets the position variable to the position gotten by the encoder */
+  public void liftControl() {
+    /**
+     * if the left green button is pressed, move up if the right green button is
+     * pressed, move down
+     */
+    if ((OI.getPanelButtonState(ButtonMap.liftRaise)) || OI.getPanelButtonState(ButtonMap.LiftOverrideUp)) {
+      Robot.lift.moveLift(speed);
+      position++;
 
-  
+    } else if ((OI.getPanelButtonState(ButtonMap.liftLower) && position >= 0)
+        || OI.getPanelButtonState(ButtonMap.LiftOverrideDown)) {
+      Robot.lift.moveLift(-speed);
+      position--;
+    } else {
+      Robot.lift.moveLift(0);
+    }
+
     SmartDashboard.putNumber("Lift position", position);
   }
 
-  /** Make this return true when this Command no longer needs to run execute()*/
+  /** Make this return true when this Command no longer needs to run execute() */
   @Override
-  protected boolean isFinished() {
+  public boolean isFinished() {
     return false;
   }
 
-  /** Called once after isFinished returns true*/
-  @Override
-  protected void end() {
-  }
-
-/**
-*   Called when another command which requires one or more of the same
-*   subsystems is scheduled to run
-*/
-  @Override
-  protected void interrupted() {
-  }
 }
