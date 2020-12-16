@@ -50,6 +50,7 @@ public class Acquisition2020 extends Acquisition {
 */
         tiltLimit = new DigitalInput(7);
         /**acqEncoder.reset();*/
+        setDefaultCommand(new ControlAcquisition());
     }
     /**
      * Gets how fast the acquisition is tilting.

@@ -15,18 +15,22 @@ import frc.robot.commands.ManualDrive;
  * This is the class that all Record Robotics drive trains should extend
  */
 public abstract class DriveTrain extends SubsystemBase {
+  public DriveTrain() {
+    setDefaultCommand(new ManualDrive());
+  }
 
   private long disabled_time = 0;
   private long disabled_start_time = 0;
-  
-  
 
   /**
-   * @param amount amount to move the wheel. Depends on contex, is usually percent output
+   * @param amount amount to move the wheel. Depends on contex, is usually percent
+   *               output
    */
   public abstract void moveLeftWheels(double amount);
+
   /**
-   * @param amount amount to move the wheel. Depends on contex, is usually percent output
+   * @param amount amount to move the wheel. Depends on contex, is usually percent
+   *               output
    */
   public abstract void moveRightWheels(double amount);
 
@@ -34,10 +38,12 @@ public abstract class DriveTrain extends SubsystemBase {
    * @return The Value of the right encoder in INCHES
    */
   public abstract double getRightEncoder();
+
   /**
    * @return The Value of the right encoder in INCHES
    */
   public abstract double getLeftEncoder();
+
   /**
    * Reset both encoders to zero
    */
@@ -49,12 +55,12 @@ public abstract class DriveTrain extends SubsystemBase {
   public abstract DifferentialDrive getDrive();
 
   public boolean isDisabled() {
-    return System.currentTimeMillis() - disabled_start_time < disabled_time; 
+    return System.currentTimeMillis() - disabled_start_time < disabled_time;
   }
 
   /*
-  * disables for t millis
-  */
+   * disables for t millis
+   */
   public void disable(long t) {
     disabled_time = t;
     disabled_start_time = System.currentTimeMillis();

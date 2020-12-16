@@ -16,6 +16,8 @@ public class BallLift2020 extends BallLift {
   private DigitalInput[] ballLimits = new DigitalInput[3];
   
   public BallLift2020() {
+    setDefaultCommand(new BeltControl());
+    
     /**instance of limit switches*/
     int offset = 4;
     /**ballLimits = new DigitalInput [5];*/

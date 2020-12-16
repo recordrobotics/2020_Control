@@ -14,35 +14,36 @@ import frc.robot.commands.ControlFlywheel;
 
 public class Flywheel2020 extends Flywheel {
     /**
-     * flywheelMotor Creates a motor object for the flywheel motor.
-     * targetVoltage The target voltage of the flywheel.
+     * flywheelMotor Creates a motor object for the flywheel motor. targetVoltage
+     * The target voltage of the flywheel.
      */
-    private WPI_VictorSPX flywheelMotor = new WPI_VictorSPX (RobotMap.flywheelMotorPort);
+    private WPI_VictorSPX flywheelMotor = new WPI_VictorSPX(RobotMap.flywheelMotorPort);
     private double targetVoltage = 11.0;
+
     /**
      * Creates an Object for the flywheel class.
      */
-    public Flywheel2020(){
+    public Flywheel2020() {
+        setDefaultCommand(new ControlFlywheel());
         flywheelMotor.enableVoltageCompensation(true);
         flywheelMotor.setVoltage(targetVoltage);
     }
-    
-    @Override
-    public void initDefaultCommand() {
-        setDefaultCommand(new ControlFlywheel());
-    }
+
     /**
      * Spins the flywheel motor.
+     * 
      * @param v The speed at which the flywheel motor turns.
      */
-    public void moveWheel(double v){
+    public void moveWheel(double v) {
         flywheelMotor.set(ControlMode.PercentOutput, v);
     }
+
     /**
      * Returns the flywheel's voltage output.
+     * 
      * @return The flywheel's voltage output.
      */
-    public double getVoltage(){
+    public double getVoltage() {
         return flywheelMotor.getMotorOutputVoltage();
     }
 
