@@ -8,7 +8,7 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.Timer;
-import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
 
 /**
@@ -17,7 +17,7 @@ import frc.robot.Robot;
  * flywheelSpeed the motor speed for the flywheel
  * ballTimeout the amount of time that the belt and flywheel run for 
  */
-public class BeltAutoRun extends Command {
+public class BeltAutoRun extends CommandBase {
   
   private Timer ballTimer = new Timer();
   private double beltSpeed = 0.5, flywheelSpeed = 0.80, ballTimeout = 5.0;
@@ -25,7 +25,7 @@ public class BeltAutoRun extends Command {
  /** Called just before this Command runs the first time*/
  
   @Override
-  protected void initialize() {
+  public void initialize() {
       /**
    * Starts the timer and turns on the flywheel motor at the set speed
    */
@@ -35,7 +35,7 @@ public class BeltAutoRun extends Command {
 
   ///** Called rep Called repeatedly when this Command is scheduled to run
   @Override
-  protected void execute() {
+  public void execute() {
     /**
      * Once again runs the flywheel motor at the set speed
      * If the timer has been running for at least 1 second runs the belt at the set speed
@@ -50,7 +50,7 @@ public class BeltAutoRun extends Command {
   */
   /** Make this return true when this Command no longer needs to run execute()*/
   @Override
-  protected boolean isFinished() {
+  public boolean isFinished() {
     return ballTimer.get() >= ballTimeout;
   }
 /**
@@ -58,17 +58,9 @@ public class BeltAutoRun extends Command {
  */
   /** Called once after isFinished returns true*/
   @Override
-  protected void end() {
+  public void end(boolean interrupted) {
     Robot.flywheel.moveWheel(0);
     Robot.belt.moveBelt(0);
   }
 
-/**
-*   Called when another command which requires one or more of the same
-*   subsystems is scheduled to run
-*/  
- 
-@Override
-  protected void interrupted() {
-  }
 }

@@ -65,12 +65,4 @@ public class BallUpOne extends CommandBase {
     return (ballTimer.get() > moveTime && hitSlot)
      || (ballTimer.get() > 1);
   }
-
-  /** Called once after isFinished returns true*/
- 
-/**
-*   Called when another command which requires one or more of the same
-*   subsystems is scheduled to run
-*/
-  
 }

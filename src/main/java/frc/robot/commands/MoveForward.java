@@ -7,16 +7,17 @@
 
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
 
-public class MoveForward extends Command {
-    
-    private double distance;  /**distance to travel in INCHES*/
-/**
-*   Called when another command which requires one or more of the same
-*   subsystems is scheduled to run
-*/
+public class MoveForward extends CommandBase {
+
+    private double distance;
+    /** distance to travel in INCHES */
+    /**
+     * Called when another command which requires one or more of the same subsystems
+     * is scheduled to run
+     */
     private double speed;
 
     public MoveForward(double dist, double sp) {
@@ -24,45 +25,36 @@ public class MoveForward extends Command {
         speed = sp;
     }
 
-    public MoveForward(){
+    public MoveForward() {
         distance = Robot.rangeFinder.getDistance();
         speed = 0.7;
     }
 
-    /** Called just before this Command runs the first time*/
+    /** Called just before this Command runs the first time */
     @Override
-    protected void initialize() {
-        /**reset the encoders*/
+    public void initialize() {
+        /** reset the encoders */
         Robot.driveTrain.resetEncoders();
         System.out.println("command move init");
     }
 
-    /** Called repeatedly when this Command is scheduled to run*/
+    /** Called repeatedly when this Command is scheduled to run */
     @Override
-    protected void execute() {
+    public void execute() {
         Robot.driveTrain.moveLeftWheels(speed);
         Robot.driveTrain.moveRightWheels(speed);
     }
 
-    /** Make this return true when this Command no longer needs to run execute()*/
+    /** Make this return true when this Command no longer needs to run execute() */
     @Override
-    protected boolean isFinished() {
-        return Robot.driveTrain.getRightEncoder() >= distance ||
-             Robot.driveTrain.getLeftEncoder() >= distance;
+    public boolean isFinished() {
+        return Robot.driveTrain.getRightEncoder() >= distance || Robot.driveTrain.getLeftEncoder() >= distance;
     }
 
-    /** Called once after isFinished returns true*/
+    /** Called once after isFinished returns true */
     @Override
-    protected void end() {
+    public void end(boolean intterupted) {
         Robot.driveTrain.moveLeftWheels(0);
         Robot.driveTrain.moveRightWheels(0);
-    }
-
-/**
-*     Called when another command which requires one or more of the same
-*     subsystems is scheduled to run
-*/
-    @Override
-    protected void interrupted() {
     }
 }

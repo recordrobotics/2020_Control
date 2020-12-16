@@ -7,59 +7,50 @@
 
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
 import edu.wpi.first.wpilibj.Timer;
 
-
-public class TiltAcquisition extends Command {
+public class TiltAcquisition extends CommandBase {
   /**
-   * acqTimer Timer to time the amount of time that has passed since the acquisition started tilting.
-   * acqMoveTime How long it should take to tilt.
+   * acqTimer Timer to time the amount of time that has passed since the
+   * acquisition started tilting. acqMoveTime How long it should take to tilt.
    * TiltAcquisition Creates new TiltAcquisition object.
    */
   private Timer acqTimer = new Timer();
   private double acqMoveTime = 2.5;
+
   public TiltAcquisition() {
-    /** Use requires() here to declare subsystem dependencies  */
+    /** Use requires() here to declare subsystem dependencies */
   }
 
-  /** Called just before this Command runs the first time*/
+  /** Called just before this Command runs the first time */
   @Override
-  protected void initialize() {
+  public void initialize() {
     acqTimer.start();
   }
 
-  /** Called repeatedly when this Command is scheduled to run*/
-  @Override 
-  protected void execute() {
-    if(Robot.acq.getTiltPosition()){
+  /** Called repeatedly when this Command is scheduled to run */
+  @Override
+  public void execute() {
+    if (Robot.acq.getTiltPosition()) {
       Robot.acq.moveTilt(-Robot.acq.getTiltSpeed());
-    }
-    else{
+    } else {
       Robot.acq.moveTilt(Robot.acq.getTiltSpeed());
-    }    
+    }
   }
 
-  /** Make this return true when this Command no longer needs to run execute()*/
+  /** Make this return true when this Command no longer needs to run execute() */
   @Override
-  protected boolean isFinished() {
+  public boolean isFinished() {
     return acqTimer.get() > acqMoveTime && Robot.acq.getTiltLimit();
   }
 
-  /** Called once after isFinished returns true*/
+  /** Called once after isFinished returns true */
   @Override
-  protected void end() {
+  public void end(boolean intterupted) {
     Robot.acq.setTiltPosition(!Robot.acq.getTiltPosition());
     acqTimer.stop();
     acqTimer.reset();
-  }
-
-/**
-*   Called when another command which requires one or more of the same
-*   subsystems is scheduled to run
-*/
-  @Override
-  protected void interrupted() {
   }
 }
