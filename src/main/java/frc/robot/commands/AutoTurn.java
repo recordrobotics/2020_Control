@@ -7,11 +7,11 @@
 
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
 import frc.robot.control.*;
 
-public class AutoTurn extends Command {
+public class AutoTurn extends CommandBase {
     double inputAngle;  /**number of degrees to turn*/
     /**declare variables*/
     double initAngle;    /**angle when command is started*/
@@ -27,7 +27,7 @@ public class AutoTurn extends Command {
   public AutoTurn(double angle) {
     /** Use requires() here to declare subsystem dependencies*/
     if (Robot.driveTrain != null){
-      requires(Robot.driveTrain);
+      addRequirements(Robot.driveTrain);
     }
     inputAngle = angle;  /**input should be an angle from -180 to positive 180*/
     /**assigns argument to variable*/
@@ -35,7 +35,7 @@ public class AutoTurn extends Command {
 
   /** Called just before this Command runs the first time*/
   @Override
-  protected void initialize() {
+  public void initialize() {
     initAngle = Robot.gyro.getDeg();  /**is a value representing the angle the robot is at*/
   /** Called just before this Command runs the first time*/
     targetAngle = (initAngle + inputAngle);  /**sets the target angle, there is a risk of the angle being less than 360 or greater than 0*/
@@ -53,7 +53,7 @@ public class AutoTurn extends Command {
 
   /** Called repeatedly when this Command is scheduled to run*/
   @Override
-  protected void execute() {
+  public void execute() {
     System.out.println(Robot.gyro.getDeg());
     double increment;  /**the amount that the robot will turn every period*/
   /** Called repeatedly when this Command is scheduled to run*/
@@ -87,7 +87,7 @@ public class AutoTurn extends Command {
 
   /** Make this return true when this Command no longer needs to run execute()*/
   @Override
-  protected boolean isFinished() {
+  public boolean isFinished() {
     if (Robot.gyro.getDeg() > targetAngle - precision && Robot.gyro.getDeg() < targetAngle + precision){
         System.out.println("Done turing at angle: " + Robot.gyro.getDeg());
         return true;
@@ -97,15 +97,11 @@ public class AutoTurn extends Command {
   }
 
   /** Called once after isFinished returns true*/
-  @Override
-  protected void end() {
-  }
+  
 
 /**
 *   Called when another command which requires one or more of the same
 *   subsystems is scheduled to run
 */
-  @Override
-  protected void interrupted() {
-  }
+  
 }

@@ -7,13 +7,13 @@
 
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj2.command.CommandBase;
 /**import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;*/
 import frc.robot.Robot;
 import frc.robot.OI;
 
 
-public class ControlAcquisition extends Command {
+public class ControlAcquisition extends CommandBase {
     /**
      * acqSpeed This is how fast the aquisition spins.
      * uperAngle lowerAngle UNUSED.
@@ -25,7 +25,7 @@ public class ControlAcquisition extends Command {
      */
     public ControlAcquisition() {
         /** Use requires() here to declare subsystem dependencies*/
-        requires(Robot.acq);
+        addRequirements(Robot.acq);
     }
     /**
      * Method to spin and tilt acquisition.
@@ -59,9 +59,7 @@ public class ControlAcquisition extends Command {
     }
 
     /** Called just before this Command runs the first time*/
-    @Override
-    protected void initialize() {
-    }
+    
 
     /**
      * @param prevButton Get whether toggleButton has just been pressed to avoid the aquisition being raised multiple times.
@@ -76,7 +74,7 @@ public class ControlAcquisition extends Command {
 
     /** Called repeatedly when this Command is scheduled to run*/
     @Override
-    protected void execute() {
+    public void execute() {
         /**control the toggle, this will invert inputPosition when "A" is pressed*/
         /*
         if (prevButton != OI.getXboxButtonState(toggleButton) && OI.getXboxButtonState(toggleButton)) {
@@ -93,20 +91,16 @@ public class ControlAcquisition extends Command {
 
     /** Make this return true when this Command no longer needs to run execute()*/
     @Override
-    protected boolean isFinished() {
+    public boolean isFinished() {
         return false;
     }
 
     /** Called once after isFinished returns true*/
-    @Override
-    protected void end() {
-    }
+    
 
 /**
 *     Called when another command which requires one or more of the same
 *     subsystems is scheduled to run
 */
-    @Override
-    protected void interrupted() {
-    }
+    
 }

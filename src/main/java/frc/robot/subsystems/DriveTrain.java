@@ -7,21 +7,19 @@
 
 package frc.robot.subsystems;
 
-import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import frc.robot.commands.ManualDrive;
 
 /**
  * This is the class that all Record Robotics drive trains should extend
  */
-public abstract class DriveTrain extends Subsystem {
+public abstract class DriveTrain extends SubsystemBase {
 
   private long disabled_time = 0;
   private long disabled_start_time = 0;
   
-  public void initDefaultCommand(){
-    setDefaultCommand(new ManualDrive());
-  }
+  
 
   /**
    * @param amount amount to move the wheel. Depends on contex, is usually percent output

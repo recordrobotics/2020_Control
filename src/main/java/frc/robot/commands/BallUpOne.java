@@ -7,12 +7,12 @@
 
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
 
 import edu.wpi.first.wpilibj.Timer;
 
-public class BallUpOne extends Command {
+public class BallUpOne extends CommandBase {
   public BallUpOne() {
     /** Use requires() here to declare subsystem dependencies*/
   }
@@ -35,7 +35,7 @@ public class BallUpOne extends Command {
 
   /** Called just before this Command runs the first time*/
   @Override
-  protected void initialize() {
+  public void initialize() {
     ballTimer.start();
 
     highestSlot = Robot.belt.highestFullSlot();
@@ -50,7 +50,7 @@ public class BallUpOne extends Command {
 
   /** Called repeatedly when this Command is scheduled to run*/
   @Override 
-  protected void execute() {
+  public void execute() {
     Robot.belt.moveBelt(beltSpeed);
     Robot.acq.moveAcq(0.9);
     ballCount = Robot.belt.countBall();
@@ -60,22 +60,17 @@ public class BallUpOne extends Command {
 
   /** Make this return true when this Command no longer needs to run execute()*/
   @Override
-  protected boolean isFinished() {
+  public boolean isFinished() {
     /** Last or is emergency shutoff so the command will stop running in case of a ball getting stuck*/
     return (ballTimer.get() > moveTime && hitSlot)
      || (ballTimer.get() > 1);
   }
 
   /** Called once after isFinished returns true*/
-  @Override
-  protected void end() {
-  }
-
+ 
 /**
 *   Called when another command which requires one or more of the same
 *   subsystems is scheduled to run
 */
-  @Override
-  protected void interrupted() {
-  }
+  
 }

@@ -7,12 +7,12 @@
 
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.OI;
 import frc.robot.Robot;
 /**import frc.robot.control.ButtonMap;*/
 
-public class ControlFlywheel extends Command {
+public class ControlFlywheel extends CommandBase {
   /**
    * prevToggle if it was last on or off.
    * flywheelIsOn if the flywheel is currently on or off.
@@ -32,17 +32,15 @@ public class ControlFlywheel extends Command {
    */
   public ControlFlywheel() {
     /** Use requires() here to declare subsystem dependencies*/
-    requires(Robot.flywheel);
+    addRequirements(Robot.flywheel);
   }
 
   /** Called just before this Command runs the first time*/
-  @Override
-  protected void initialize() {
-  }
+  
 
   /** Called repeatedly when this Command is scheduled to run*/
   @Override
-  protected void execute() {
+  public void execute() {
     /**toggle*/
     if ((getButton() != prevToggle) && getButton()){
       flywheelIsOn = !flywheelIsOn;
@@ -75,20 +73,16 @@ public class ControlFlywheel extends Command {
 
   /** Make this return true when this Command no longer needs to run execute()*/
   @Override
-  protected boolean isFinished() {
+  public boolean isFinished() {
     return false;
   }
 
   /** Called once after isFinished returns true*/
-  @Override
-  protected void end() {
-  }
+  
 
 /**
 *   Called when another command which requires one or more of the same
 *   subsystems is scheduled to run
 */
-  @Override
-  protected void interrupted() {
-  }
+  
 }
