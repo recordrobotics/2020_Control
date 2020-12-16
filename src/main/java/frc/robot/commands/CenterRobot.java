@@ -8,13 +8,13 @@
 package frc.robot.commands;
 
 
-import edu.wpi.first.wpilibj.command.CommandGroup;
+import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.Robot;
 import frc.robot.commands.AutoTurn;
 import frc.robot.commands.MoveForward;
 /**import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;*/
 
-public class CenterRobot extends CommandGroup {
+public class CenterRobot extends SequentialCommandGroup {
   /**TODO: Set distances to correct values*/
   private double distanceToMove;
   private final double distLineToGoal = 120;
@@ -39,10 +39,13 @@ public class CenterRobot extends CommandGroup {
     }
 
     /** Possibly needs one version for each side of the target*/
-    addSequential(new AutoTurn(theta));
-    addSequential(new MoveForward(distanceToMove, 0.5));
-    addSequential(new AutoTurn(180 - theta));
-    addSequential(new BeltAutoRun());
+
+    addCommands(
+      new AutoTurn(theta),
+      new MoveForward(distanceToMove, 0.5),
+      new AutoTurn(180 - theta),
+      new BeltAutoRun()
+    );
   
   }
 }

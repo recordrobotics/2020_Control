@@ -10,10 +10,10 @@ package frc.robot.commands;
 
 import frc.robot.commands.AutoTurn;
 import frc.robot.commands.MoveForward;
-import edu.wpi.first.wpilibj.command.CommandGroup;
+import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-public class MoveToBall extends CommandGroup {
+public class MoveToBall extends SequentialCommandGroup {
   /**
    * pyangle The angle to the ball.
    */
@@ -22,8 +22,10 @@ public class MoveToBall extends CommandGroup {
    * MoveToBall() Moves the robot to a ball.
    */
   public MoveToBall(){
-    addSequential(new AutoTurn(pyangle));
-    addSequential(new MoveForward());
+    addCommands(
+      new AutoTurn(pyangle),
+      new MoveForward()
+    );
  
   }
  
