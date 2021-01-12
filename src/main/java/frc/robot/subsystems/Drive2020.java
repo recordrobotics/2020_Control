@@ -12,9 +12,14 @@ package frc.robot.subsystems;
 /**If this is throwing an error - you need to install ctre Pheonix stuff, it's a pain, sorry :(*/
 import com.ctre.phoenix.motorcontrol.*;
 import com.ctre.phoenix.motorcontrol.can.*;
-
+import edu.wpi.first.wpilibj.simulation.*;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj.system.plant.DCMotor;
+import edu.wpi.first.wpiutil.math.VecBuilder;
 import edu.wpi.first.wpilibj.Encoder;
+import edu.wpi.first.wpilibj.RobotController;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+import frc.robot.Robot;
 import frc.robot.RobotMap;
 
 public class Drive2020 extends DriveTrain {
@@ -56,6 +61,21 @@ public class Drive2020 extends DriveTrain {
 *    setting to false may help with crash, but ya know... saftey!? I don't exactly know what this turns on/off...
 *    alternative solution: see if chaning the timeout value using motor.setExpiration​(seconds) will fix it
 */
+
+
+    //simulated stuff
+    private EncoderSim sim_RightEnc = new EncoderSim(rightEnc);
+    private EncoderSim sim_LeftEnc = new EncoderSim(leftEnc);
+
+    private DifferentialDrivetrainSim sim_drive = new DifferentialDrivetrainSim(
+        DCMotor.getCIM(2), //Motor type and number per side
+        10.71, //gear ratio
+        5.2, //moment of inertia **VERY PROBABLY WRONG**
+        54.4, //mass of robot in KG **MIGHT BE WRONG**
+        0.0762, //robot wheel radius in METERS
+        0.7112, //width of robot in METERS
+        VecBuilder.fill(0.001, 0.001, 0.001, 0.1, 0.1, 0.005, 0.005)
+    );
 
     public Drive2020(){
         /**set the back motors to use the same speeds as the front ones*/
@@ -126,5 +146,32 @@ public class Drive2020 extends DriveTrain {
     public void resetEncoders(){
         leftEnc.reset();
         rightEnc.reset();
+    }
+
+    public void simulate(){
+
+        System.out.println("Simulate");
+
+        //drive train inputs
+        sim_drive.setInputs(frontLeft.get() * RobotController.getInputVoltage(), 
+                            frontRight.get() * RobotController.getInputVoltage());
+        
+        //update stuff
+        sim_drive.update(0.02);
+
+        sim_LeftEnc.setDistance(sim_drive.getLeftPositionMeters() * 39.37);
+        sim_LeftEnc.setRate(sim_drive.getLeftVelocityMetersPerSecond() * 39.37);
+
+        sim_RightEnc.setDistance(sim_drive.getRightPositionMeters() * 39.37);
+        sim_LeftEnc.setRate(sim_drive.getRightVelocityMetersPerSecond() * 39.37);
+    }
+
+    public double getSimulatedAngle(){
+        if (Robot.isReal()){
+            //DO NO USE THIS METHOD IF THIS IS NOT A SIMULATION
+            throw new IllegalStateException();
+        }
+
+        return -sim_drive.getHeading().getDegrees();
     }
 }

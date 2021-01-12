@@ -135,7 +135,9 @@ public class Robot extends TimedRobot {
     spool = new LiftSpool();
     lift = new RobotLift2020();
     rangeFinder = new RangeFinder2020();
-    //dash = new Dashboard2020();
+    dash = new Dashboard2020();
+
+    driveTrain.resetEncoders();
 
   }
 
@@ -250,6 +252,11 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopPeriodic() {
     Scheduler.getInstance().run();
+  }
+
+  @Override
+  public void simulationPeriodic() {
+    driveTrain.simulate();
   }
 
   /**

@@ -54,6 +54,8 @@ public abstract class DriveTrain extends Subsystem {
     return System.currentTimeMillis() - disabled_start_time < disabled_time; 
   }
 
+  public void simulate(){}
+
   /*
   * disables for t millis
   */
