@@ -56,6 +56,10 @@ public abstract class DriveTrain extends Subsystem {
 
   public void simulate(){}
 
+  public double getSimulatedAngle() {
+    return 0; //stub
+  }
+
   /*
   * disables for t millis
   */

@@ -2,7 +2,9 @@ package frc.robot.subsystems;
 
 import com.kauailabs.navx.frc.AHRS;
 import edu.wpi.first.wpilibj.I2C;
+import edu.wpi.first.wpilibj.RobotController;
 /**import edu.wpi.first.wpilibj.I2C.Port;*/
+import frc.robot.Robot;
 
 /**
  * Subsystem class for the gyroscope used on the 2020 Robot
@@ -24,6 +26,9 @@ public class Gyro2020 extends Gyroscope{
      * @return the current angle the robot is at, in degrees
      */
     public double getDeg(){
+        if (Robot.isSimulation())
+            return Robot.driveTrain.getSimulatedAngle();
+        
         return gyro.getAngle();
     }
 
