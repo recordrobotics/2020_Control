@@ -254,15 +254,21 @@ public class Robot extends TimedRobot {
     Scheduler.getInstance().run();
   }
 
-  @Override
-  public void simulationPeriodic() {
-    driveTrain.simulate();
-  }
-
   /**
    * This function is called periodically during test mode.
    */
   @Override
   public void testPeriodic() {
+  }
+
+  
+  @Override
+  public void simulationPeriodic() {
+    driveTrain.simulate();
+  }
+
+  @Override
+  public void simulationInit(){
+    driveTrain.resetEncoders();
   }
 }

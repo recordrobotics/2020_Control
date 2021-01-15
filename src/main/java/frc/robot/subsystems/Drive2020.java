@@ -74,7 +74,7 @@ public class Drive2020 extends DriveTrain {
         54.4, //mass of robot in KG **MIGHT BE WRONG**
         0.0762, //robot wheel radius in METERS
         0.7112, //width of robot in METERS
-        VecBuilder.fill(0.001, 0.001, 0.001, 0.1, 0.1, 0.005, 0.005)
+        VecBuilder.fill(0, 0, 0, 0, 0, 0, 0)
     );
 
     public Drive2020(){
@@ -108,6 +108,14 @@ public class Drive2020 extends DriveTrain {
         backLeft.setVoltage(backLeftVoltage);
         frontRight.setVoltage(frontRightVoltage);
         backRight.setVoltage(backRightVoltage);
+
+        moveLeftWheels(0);
+        moveRightWheels(0);
+
+        if(!Robot.isReal()){
+            frontLeft.setInverted(true);
+            backLeft.setInverted(true);
+        }
     }
 
     /**
@@ -149,10 +157,8 @@ public class Drive2020 extends DriveTrain {
     }
 
     public void simulate(){
-
-        System.out.println("Simulate");
-
         //drive train inputs
+        //right drive is inverted, so input is negative
         sim_drive.setInputs(frontLeft.get() * RobotController.getInputVoltage(), 
                             frontRight.get() * RobotController.getInputVoltage());
         
@@ -160,10 +166,10 @@ public class Drive2020 extends DriveTrain {
         sim_drive.update(0.02);
 
         sim_LeftEnc.setDistance(sim_drive.getLeftPositionMeters() * 39.37);
-        sim_LeftEnc.setRate(sim_drive.getLeftVelocityMetersPerSecond() * 39.37);
+        sim_LeftEnc.setRate(sim_drive.getLeftVelocityMetersPerSecond());
 
         sim_RightEnc.setDistance(sim_drive.getRightPositionMeters() * 39.37);
-        sim_LeftEnc.setRate(sim_drive.getRightVelocityMetersPerSecond() * 39.37);
+        sim_RightEnc.setRate(sim_drive.getRightVelocityMetersPerSecond());
     }
 
     public double getSimulatedAngle(){
