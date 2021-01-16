@@ -130,14 +130,16 @@ public class Robot extends TimedRobot {
     driveTrain = new Drive2020();
     gyro = new Gyro2020();
     gyroInit();
+
     acq = new Acquisition2020();  
     flywheel = new Flywheel2020();
     belt = new BallLift2020();
     spool = new LiftSpool();
+
     lift = new RobotLift2020();
     rangeFinder = new RangeFinder2020();
     dash = new Dashboard2020();
-    odometry = new Odometry();
+    odometry = new Odometry(3.5, 4, 0);
 
     driveTrain.resetEncoders();
 
