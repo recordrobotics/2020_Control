@@ -1,5 +1,4 @@
 # Created by https://www.gitignore.io/api/c++,java,linux,macos,gradle,windows,visualstudiocode
-# coppied from Control2019_VSCode
 
 ### C++ ###
 # Prerequisites
@@ -137,28 +136,33 @@ $RECYCLE.BIN/
 
 ### Gradle ###
 .gradle
-*.gradle
 /build/
-gradlew
-gradlew.bat
 
 # Ignore Gradle GUI config
 gradle-app.setting
 
 # Avoid ignoring Gradle wrapper jar file (.jar files are usually ignored)
-#!gradle-wrapper.jar
+!gradle-wrapper.jar
 
 # Cache of project
 .gradletasknamecache
 
 # # Work around https://youtrack.jetbrains.com/issue/IDEA-116898
-gradle/wrapper/gradle-wrapper.properties
+# gradle/wrapper/gradle-wrapper.properties
 
 # # VS Code Specific Java Settings
 .classpath
 .project
 .settings/
 bin/
+imgui.ini
 
 
 # End of https://www.gitignore.io/api/c++,java,linux,macos,gradle,windows,visualstudiocode
+build.gradle
+gradle/wrapper/gradle-wrapper.jar
+gradle/wrapper/gradle-wrapper.properties
+gradlew
+gradlew.bat
+settings.gradle
+logs/PIDoutput.txt

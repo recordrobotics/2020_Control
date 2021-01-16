@@ -58,6 +58,7 @@ public class Robot extends TimedRobot {
   public static RangeFinder rangeFinder;
   public static CamStream camStream = new CamStream(2);
   public static Dashboard dash;
+  public static Odometry odometry;
   /**Autonomous command setup*/
   Command m_autonomousCommand;
   SendableChooser<Command> m_chooser = new SendableChooser<>();
@@ -136,6 +137,7 @@ public class Robot extends TimedRobot {
     lift = new RobotLift2020();
     rangeFinder = new RangeFinder2020();
     dash = new Dashboard2020();
+    odometry = new Odometry();
 
     driveTrain.resetEncoders();
 
