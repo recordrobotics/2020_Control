@@ -132,6 +132,11 @@ public class Drive2020 extends DriveTrain {
         frontRight.set(ControlMode.PercentOutput, -amount);
     }
 
+    public void stop(){
+        moveRightWheels(0);
+        moveLeftWheels(0);
+    }
+
    /**
    * @return The Value of the right encoder in INCHES
    */   

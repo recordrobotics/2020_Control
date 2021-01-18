@@ -214,7 +214,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void autonomousInit() {
-    m_autonomousCommand = new MoveToFire(shootingDistance); 
+    m_autonomousCommand = new CircularTrajectory(1, 3.14);
 
     /*
      * String autoSelected = SmartDashboard.getString("Auto Selector",

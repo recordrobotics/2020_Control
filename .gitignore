@@ -159,10 +159,19 @@ imgui.ini
 
 
 # End of https://www.gitignore.io/api/c++,java,linux,macos,gradle,windows,visualstudiocode
-build.gradle
-gradle/wrapper/gradle-wrapper.jar
-gradle/wrapper/gradle-wrapper.properties
-gradlew
-gradlew.bat
 settings.gradle
 logs/PIDoutput.txt
+gradlew.bat
+gradlew
+gradle/wrapper/gradle-wrapper.properties
+gradle/wrapper/gradle-wrapper.jar
+build.gradle
+.wpilib/wpilib_preferences.json
+.wpilib/wpilib_preferences.json
+logs/PIDoutput.txt
+.wpilib/wpilib_preferences.json
+logs/PIDoutput.txt
+.wpilib/wpilib_preferences.json
+logs/PIDoutput.txt
+.wpilib/wpilib_preferences.json
+.wpilib/wpilib_preferences.json
