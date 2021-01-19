@@ -15,8 +15,14 @@ public class Odometry extends Subsystem {
     DifferentialDriveOdometry odometry;
     Field2d field = new Field2d();
 
+    double xInit, yInit, thetaInit;
+
     public Odometry(double x, double y, double theta){
-        initialPosition = new Pose2d(x, y, new Rotation2d(theta));
+        xInit = x;
+        yInit = y;
+        thetaInit = theta;
+
+        initialPosition = new Pose2d(xInit, yInit, new Rotation2d(thetaInit));
 
         odometry = new DifferentialDriveOdometry(
             new Rotation2d(Robot.gyro.getRad()),
@@ -44,5 +50,10 @@ public class Odometry extends Subsystem {
         );
 
         field.setRobotPose(odometry.getPoseMeters());
+    }
+
+    public void reset(){
+        odometry.resetPosition(new Pose2d(xInit, yInit, new Rotation2d(thetaInit)), new Rotation2d(0.0));
+        Robot.driveTrain.resetEncoders();
     }
 }
