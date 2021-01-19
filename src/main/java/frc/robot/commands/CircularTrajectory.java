@@ -18,7 +18,7 @@ public class CircularTrajectory extends Command {
 
     /**
      * 
-     * @param r radius of trajectory in METERS
+     * @param r radius of trajectory in METERS. To turn left you need to have a negative radius
      * @param th angle of the circle to traverse in RADIANS
      * @param v how fast the robot should go in METERS PER SECOND
      */
@@ -28,7 +28,7 @@ public class CircularTrajectory extends Command {
         theta = th;
 
         chassisSpeeds = new ChassisSpeeds(velocity, 0, velocity/radius);
-        time = 1.0/((1.0/theta) * chassisSpeeds.omegaRadiansPerSecond);
+        time = Math.abs(1.0/((1.0/theta) * chassisSpeeds.omegaRadiansPerSecond));
     }
 
     public CircularTrajectory(double r, double th){
@@ -37,9 +37,10 @@ public class CircularTrajectory extends Command {
 
     /*
     CIM Motor max speed @ 5330rpm
-    model: Output = 0.246 * Velocity + 0.002
+    model: Output = 0.246 * Velocity (m/2) + 0.002
+    
+    TODO model might be causing imprecision, look into it at some point!
     */
-
     private double velocityToOutput(double v){
         return 0.246 * v + 0.002;
     }
