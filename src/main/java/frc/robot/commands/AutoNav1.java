@@ -14,8 +14,8 @@ public class AutoNav1 extends CommandGroup {
         addSequential(new CircularTrajectory(-0.5, 1.5*Math.PI));
         addSequential(new CircularTrajectory(-2.5, 0.4*Math.PI, velocity));
         addSequential(new CircularTrajectory(-0.6, 1.2*Math.PI));
-        addSequential(new CircularTrajectory(4, Math.PI/4, velocity+1));
-        addSequential(new CircularTrajectory(-5, Math.PI/4, velocity+1));
+        addSequential(new CircularTrajectory(4, Math.PI/4, velocity*1.25));
+        addSequential(new CircularTrajectory(-5, Math.PI/4, velocity*1.25));
 
     }
 }
