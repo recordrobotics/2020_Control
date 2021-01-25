@@ -11,13 +11,22 @@ import com.ctre.phoenix.motorcontrol.*;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 
+import frc.robot.Robot;
 import frc.robot.RobotMap;
 
 public class RobotLift2020 extends RobotLift{
     private WPI_VictorSPX robotLiftMotor = new WPI_VictorSPX(RobotMap.robotLiftLeftMotorPort);
     private double targetVoltage = 11.5;
 
+    AnalogInput encoderInput;
+    AnalogEncoder liftEncoder;
+
     public RobotLift2020(){
+        if (Robot.isReal()){
+            encoderInput = new AnalogInput(0);
+            liftEncoder = new AnalogEncoder(encoderInput);
+        }
+
         robotLiftMotor.enableVoltageCompensation(true);
         robotLiftMotor.setVoltage(targetVoltage);
     }
@@ -27,9 +36,6 @@ public class RobotLift2020 extends RobotLift{
      */
     private WPI_VictorSPX robotLiftMotorLeft = new WPI_VictorSPX(RobotMap.robotLiftLeftMotorPort);
   
-    AnalogInput encoderInput = new AnalogInput(0);
-    AnalogEncoder liftEncoder = new AnalogEncoder(encoderInput);
-
     public void stop() {
 
         robotLiftMotor.stopMotor();

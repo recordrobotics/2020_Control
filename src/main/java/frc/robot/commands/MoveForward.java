@@ -13,6 +13,7 @@ import frc.robot.Robot;
 public class MoveForward extends Command {
     
     private double distance;  /**distance to travel in INCHES*/
+    private double position;
 /**
 *   Called when another command which requires one or more of the same
 *   subsystems is scheduled to run
@@ -32,9 +33,7 @@ public class MoveForward extends Command {
     /** Called just before this Command runs the first time*/
     @Override
     protected void initialize() {
-        /**reset the encoders*/
-        Robot.driveTrain.resetEncoders();
-        System.out.println("command move init");
+        position = Robot.driveTrain.getRightEncoder();
     }
 
     /** Called repeatedly when this Command is scheduled to run*/
@@ -47,8 +46,7 @@ public class MoveForward extends Command {
     /** Make this return true when this Command no longer needs to run execute()*/
     @Override
     protected boolean isFinished() {
-        return Robot.driveTrain.getRightEncoder() >= distance ||
-             Robot.driveTrain.getLeftEncoder() >= distance;
+        return Robot.driveTrain.getRightEncoder() >= position + distance || Robot.driveTrain.getRightEncoder() <= position - distance;
     }
 
     /** Called once after isFinished returns true*/

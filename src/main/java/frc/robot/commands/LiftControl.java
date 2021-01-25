@@ -29,6 +29,7 @@ public class LiftControl extends Command {
   private double position = 0;  /**nonzero value kills the saftey mechanism*/
     /** Use requires() here to declare subsystem dependencies*/
    private boolean useEncoder = false;
+   private boolean sentEncoderError = false;
 /** Change the above variable to switch between using and not using an encoder */
 
   /** Called just before this Command runs the first time*/
@@ -67,7 +68,15 @@ public class LiftControl extends Command {
         Robot.lift.moveLift(0);
     } /** Makes the lift not move under normal circumstances */
     if(useEncoder = true){
-      position = Robot.lift.getPosition();
+      try {
+        position = Robot.lift.getPosition();
+      } catch (NullPointerException ex){
+       if(sentEncoderError =false){ System.out.println(ex);
+        System.out.println("The Analog Encoder used as a lift safety mechanism not found");
+        position = 0;
+      sentEncoderError = true; }
+
+      }
     } /**If using an encoder, sets the position variable to the position gotten by the encoder */
 
   

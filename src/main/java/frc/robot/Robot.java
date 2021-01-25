@@ -58,6 +58,7 @@ public class Robot extends TimedRobot {
   public static RangeFinder rangeFinder;
   public static CamStream camStream = new CamStream(2);
   public static Dashboard dash;
+  public static Odometry odometry;
   /**Autonomous command setup*/
   Command m_autonomousCommand;
   SendableChooser<Command> m_chooser = new SendableChooser<>();
@@ -129,13 +130,18 @@ public class Robot extends TimedRobot {
     driveTrain = new Drive2020();
     gyro = new Gyro2020();
     gyroInit();
+
     acq = new Acquisition2020();  
     flywheel = new Flywheel2020();
     belt = new BallLift2020();
     spool = new LiftSpool();
+
     lift = new RobotLift2020();
     rangeFinder = new RangeFinder2020();
-    //dash = new Dashboard2020();
+    dash = new Dashboard2020();
+    odometry = new Odometry(1.3, 2.3, 0);
+
+    driveTrain.resetEncoders();
 
   }
 
@@ -208,7 +214,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void autonomousInit() {
-    m_autonomousCommand = new MoveToFire(shootingDistance); 
+    m_autonomousCommand = new AutoNav3(2);
 
     /*
      * String autoSelected = SmartDashboard.getString("Auto Selector",
@@ -257,5 +263,16 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void testPeriodic() {
+  }
+
+  
+  @Override
+  public void simulationPeriodic() {
+    driveTrain.simulate();
+  }
+
+  @Override
+  public void simulationInit(){
+    driveTrain.resetEncoders();
   }
 }
