@@ -56,7 +56,8 @@ public class Robot extends TimedRobot {
   public static BallLift belt;
   public static LiftSpool spool;
   public static RangeFinder rangeFinder;
-  public static CamStream camStream = new CamStream(2);
+  //public static CamStream camStream = new CamStream(2);
+  public static CamStream camStream;
   public static Dashboard dash;
   public static Odometry odometry;
   /**Autonomous command setup*/

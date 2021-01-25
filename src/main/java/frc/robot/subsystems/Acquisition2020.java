@@ -103,7 +103,7 @@ public class Acquisition2020 extends Acquisition {
      * @return is the motor running.
      */
     public boolean isAcqOn(){
-        return acquireMotor.get() > 0;
+        return acquireMotor.get() != 0;
     }
     
     @Override

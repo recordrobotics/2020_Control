@@ -12,6 +12,10 @@ public class GalSearchA extends CommandGroup {
 
     public GalSearchA(double v){
         velocity = v;
+        SmartDashboard.putBoolean("Acquistion", Robot.acq.isAcqOn());
+
+        addParallel(new TiltAcquisition());
+
         redPath();
     }
 
@@ -22,14 +26,16 @@ public class GalSearchA extends CommandGroup {
     private void redPath(){
         addSequential(new MoveForward(48, -0.7));
         
-        //addParallel(pick up ball) TODO write command that picks up ball and call it here
+        addParallel(new PickUpBall());
         addSequential(new MoveForward(18, -0.4));
 
         addSequential(new CircularTrajectory(1.5, Math.PI/3.25, velocity));
+        addParallel(new PickUpBall());
+        
         addSequential(new CircularTrajectory(-0.25, Math.PI - 0.4, velocity));
         addSequential(new MoveForward(48, -0.7));
 
-        //addParallel(pick up ball) TODO write command that picks up ball and call it here
+        addParallel(new PickUpBall());
         addSequential(new MoveForward(18, -0.4));
         addSequential(new CircularTrajectory(0.25, Math.PI/2 + 0.75, velocity));   
         
