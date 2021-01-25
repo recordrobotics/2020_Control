@@ -48,9 +48,7 @@ public class CamStream extends Subsystem {
 
     @Override
     public void initDefaultCommand() {
-        if (Robot.isReal()){
-            setDefaultCommand(new CamControl());
-        }
+        setDefaultCommand(new CamControl());
     }
 
     /**
