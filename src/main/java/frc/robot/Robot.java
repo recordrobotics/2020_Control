@@ -139,7 +139,7 @@ public class Robot extends TimedRobot {
     lift = new RobotLift2020();
     rangeFinder = new RangeFinder2020();
     dash = new Dashboard2020();
-    odometry = new Odometry(1.3, 2.3, 0);
+    odometry = new Odometry(0.5, 2.3, 0);
 
     driveTrain.resetEncoders();
 
@@ -214,7 +214,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void autonomousInit() {
-    m_autonomousCommand = new AutoNav3(2);
+    m_autonomousCommand = new GalSearchA(2);
 
     /*
      * String autoSelected = SmartDashboard.getString("Auto Selector",
