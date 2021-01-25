@@ -1,9 +1,9 @@
 package frc.robot.subsystems;
 
-import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.commands.*;
 
-public abstract class BallLift extends SubsystemBase {
+public abstract class BallLift extends Subsystem {
 
     public abstract void moveBelt(double v);
     public abstract int lowestFullSlot();
@@ -12,6 +12,8 @@ public abstract class BallLift extends SubsystemBase {
     public abstract boolean getSlot(int slot);
 
 
-    
+    public void initDefaultCommand() {
+      setDefaultCommand(new BeltControl());
+  }
 
 }

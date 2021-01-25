@@ -1,9 +1,9 @@
 package frc.robot.subsystems;
 
-import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.commands.*;
 
-public abstract class Acquisition extends SubsystemBase {
+public abstract class Acquisition extends Subsystem {
     public abstract double getTiltSpeed();
     public abstract boolean getTiltPosition();
     public abstract void setTiltPosition(boolean pos);
@@ -15,4 +15,8 @@ public abstract class Acquisition extends SubsystemBase {
     /**
      * Creates a ControlAcquisition command.
      */
+    @Override
+    public void initDefaultCommand() {
+        setDefaultCommand(new ControlAcquisition());
+    }
 }
