@@ -175,6 +175,8 @@ public class Drive2020 extends DriveTrain {
 
         sim_RightEnc.setDistance(sim_drive.getRightPositionMeters() * 39.37);
         sim_RightEnc.setRate(sim_drive.getRightVelocityMetersPerSecond());
+
+        //TODO add accelSim support
     }
 
     public double getSimulatedAngle(){

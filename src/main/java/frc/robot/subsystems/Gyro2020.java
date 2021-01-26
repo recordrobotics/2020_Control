@@ -1,8 +1,11 @@
 package frc.robot.subsystems;
 
 import com.kauailabs.navx.frc.AHRS;
+
+import edu.wpi.first.wpilibj.BuiltInAccelerometer;
 import edu.wpi.first.wpilibj.I2C;
 import edu.wpi.first.wpilibj.RobotController;
+import edu.wpi.first.wpilibj.simulation.BuiltInAccelerometerSim;
 /**import edu.wpi.first.wpilibj.I2C.Port;*/
 import frc.robot.Robot;
 
@@ -21,7 +24,10 @@ public class Gyro2020 extends Gyroscope{
     */
     private AHRS gyro = new AHRS(I2C.Port.kOnboard);
 
-    
+    private BuiltInAccelerometer builtInAccel = new BuiltInAccelerometer();
+    public BuiltInAccelerometerSim builtInAccelSim = new BuiltInAccelerometerSim(builtInAccel);
+    private boolean useBuiltIn = true;
+
     /**
      * @return the current angle the robot is at, in degrees
      */
@@ -55,4 +61,58 @@ public class Gyro2020 extends Gyroscope{
     public void gyroReset(){
         gyro.reset();
     }
+
+    /**
+     TODO add accelerometer support
+     Guesstimate indicates that it should take about 33N to tip robot with froce at center of mass
+     F = (g * 0.6858) * (1/Hm) where Hm is the height of the center of mass (estimate = 8")
+     */
+
+     public double getAccelX(){
+        return getAccel("x");
+     }
+
+     public double getAccelY(){
+        return getAccel("y");
+     }
+
+     public double getAccelZ(){
+        return getAccel("z");
+     }
+
+     private double getAccel(String direction){
+        double accel = 0;
+
+        if (Robot.isSimulation() && !useBuiltIn){
+            useBuiltIn = true;
+        }
+
+        switch(direction){
+        case "x":
+            if (useBuiltIn) {
+                accel = builtInAccel.getX();
+            } else {
+                accel = gyro.getRawAccelX();
+            }
+            break;
+        case "y":
+            if (useBuiltIn) {
+                accel = builtInAccel.getY();
+            } else {
+                accel = gyro.getRawAccelY();
+            }
+            break;
+        case "z":
+            if (useBuiltIn) {
+                accel = builtInAccel.getZ();
+            } else {
+                accel = gyro.getRawAccelZ();
+            }
+            break;
+        default:
+            throw new IllegalArgumentException("Direction should be x, y, or z");
+        }
+
+        return accel;
+     }
 }
