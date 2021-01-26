@@ -73,11 +73,17 @@ public class Robot extends TimedRobot {
   /**
    * This function is run when the robot is first started up and should be
    * used for any initialization code.
-   */
+   */ 
   @Override
   public void robotInit() {
     m_oi = new OI();
-    m_chooser.setDefaultOption("Default Auto", new ExampleCommand());
+    
+
+    m_chooser.addOption("AutoNav 1", new AutoNav1());
+    m_chooser.addOption("AutoNav 2", new AutoNav2());
+    m_chooser.addOption("AutoNav 3", new AutoNav3());
+    m_chooser.addOption("GalSearch A", new GalSearchA());
+    m_chooser.addOption("GalSearch B", new GalSearchB());
 
     /** chooser.addOption("My Auto", new MyAutoCommand());*/
     SmartDashboard.putData("Auto mode", m_chooser);
@@ -96,7 +102,13 @@ public class Robot extends TimedRobot {
     }
 
     networkInit();
-    m_autonomousCommand = new AutoNav3(2.0);
+
+
+    //??????????
+    m_autonomousCommand = new AutoNav3();
+
+
+
   }
 
   /**calibrate gyroscope*/
@@ -142,7 +154,7 @@ public class Robot extends TimedRobot {
     lift = new RobotLift2020();
     rangeFinder = new RangeFinder2020();
     dash = new Dashboard2020();
-    odometry = new Odometry(0.5, 2.3, 0);
+    odometry = new Odometry(1, 1, 0);
 
     driveTrain.resetEncoders();
 
@@ -216,7 +228,9 @@ public class Robot extends TimedRobot {
    * to the switch structure below with additional strings & commands.
    */
   @Override
-  public void autonomousInit() {
+  public void autonomousInit() {    
+    m_autonomousCommand = m_chooser.getSelected();
+
     /*
      * String autoSelected = SmartDashboard.getString("Auto Selector",
      * "Default"); switch(autoSelected) { case "My Auto": autonomousCommand
