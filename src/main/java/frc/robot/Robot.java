@@ -73,11 +73,17 @@ public class Robot extends TimedRobot {
   /**
    * This function is run when the robot is first started up and should be
    * used for any initialization code.
-   */
+   */ 
   @Override
   public void robotInit() {
     m_oi = new OI();
-    m_chooser.setDefaultOption("Default Auto", new ExampleCommand());
+    
+
+    m_chooser.addOption("AutoNav 1", new AutoNav1());
+    m_chooser.addOption("AutoNav 2", new AutoNav2(v));
+    m_chooser.addOption("AutoNav 3", new AutoNav3(v));
+    m_chooser.addOption("GalSearch A", new GalSearchA(v));
+    m_chooser.addOption("Pick Up Ball", new GalSearchB(v));
 
     /** chooser.addOption("My Auto", new MyAutoCommand());*/
     SmartDashboard.putData("Auto mode", m_chooser);
@@ -142,7 +148,7 @@ public class Robot extends TimedRobot {
     lift = new RobotLift2020();
     rangeFinder = new RangeFinder2020();
     dash = new Dashboard2020();
-    odometry = new Odometry(0.5, 2.3, 0);
+    odometry = new Odometry(1, 1, 0);
 
     driveTrain.resetEncoders();
 
@@ -217,6 +223,11 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void autonomousInit() {
+    double v = SmartDashboard.getNumber("Autonomous velocity", 2);
+    
+    m_autonomousCommand = m_chooser.getSelected();
+    
+
     /*
      * String autoSelected = SmartDashboard.getString("Auto Selector",
      * "Default"); switch(autoSelected) { case "My Auto": autonomousCommand
@@ -226,6 +237,8 @@ public class Robot extends TimedRobot {
 
     /** schedule the autonomous command (example)*/
     if (m_autonomousCommand != null) {
+
+      m_autonomousCommand.runCommand(v);
       m_autonomousCommand.start();
     }
   }
