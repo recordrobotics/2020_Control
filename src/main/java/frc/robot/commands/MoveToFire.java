@@ -21,6 +21,7 @@ public class MoveToFire extends CommandGroup {
     double gyroAngle = Robot.gyro.getDeg();
     /**
      * MoveToFire() Moves the robot into position to fire.
+     * USE THIS COMMAND TO SHOOT AUTONOMOUSLY
      * @param firingDistance How far the robot needs to be from the goal in order to score.
      */
     public MoveToFire(double firingDistance){
