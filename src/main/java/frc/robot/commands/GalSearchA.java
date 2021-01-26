@@ -10,8 +10,7 @@ public class GalSearchA extends CommandGroup {
     private double velocity;
     private boolean redPath = true;
 
-    public GalSearchA(double v){
-        velocity = v;
+    public GalSearchA(){
         SmartDashboard.putBoolean("Acquistion", Robot.acq.isAcqOn());
 
         addParallel(new TiltAcquisition());
@@ -41,6 +40,11 @@ public class GalSearchA extends CommandGroup {
         
         addSequential(new CircularTrajectory(-14, Math.PI/11, velocity));
     
+    }
+
+    @Override
+    protected void initialize() {
+        velocity = SmartDashboard.getNumber("Autonomous Velocity", 2.0);    
     }
 
     @Override

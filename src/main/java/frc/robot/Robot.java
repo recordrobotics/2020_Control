@@ -80,10 +80,10 @@ public class Robot extends TimedRobot {
     
 
     m_chooser.addOption("AutoNav 1", new AutoNav1());
-    m_chooser.addOption("AutoNav 2", new AutoNav2(v));
-    m_chooser.addOption("AutoNav 3", new AutoNav3(v));
-    m_chooser.addOption("GalSearch A", new GalSearchA(v));
-    m_chooser.addOption("Pick Up Ball", new GalSearchB(v));
+    m_chooser.addOption("AutoNav 2", new AutoNav2());
+    m_chooser.addOption("AutoNav 3", new AutoNav3());
+    m_chooser.addOption("GalSearch A", new GalSearchA());
+    m_chooser.addOption("GalSearch B", new GalSearchB());
 
     /** chooser.addOption("My Auto", new MyAutoCommand());*/
     SmartDashboard.putData("Auto mode", m_chooser);
@@ -102,7 +102,13 @@ public class Robot extends TimedRobot {
     }
 
     networkInit();
-    m_autonomousCommand = new AutoNav3(2.0);
+
+
+    //??????????
+    m_autonomousCommand = new AutoNav3();
+
+
+
   }
 
   /**calibrate gyroscope*/
@@ -222,11 +228,8 @@ public class Robot extends TimedRobot {
    * to the switch structure below with additional strings & commands.
    */
   @Override
-  public void autonomousInit() {
-    double v = SmartDashboard.getNumber("Autonomous velocity", 2);
-    
+  public void autonomousInit() {    
     m_autonomousCommand = m_chooser.getSelected();
-    
 
     /*
      * String autoSelected = SmartDashboard.getString("Auto Selector",
@@ -237,8 +240,6 @@ public class Robot extends TimedRobot {
 
     /** schedule the autonomous command (example)*/
     if (m_autonomousCommand != null) {
-
-      m_autonomousCommand.runCommand(v);
       m_autonomousCommand.start();
     }
   }

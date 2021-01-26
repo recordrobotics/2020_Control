@@ -1,21 +1,17 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Robot;
 
 public class AutoNav1 extends CommandGroup {
 
     private double initX = 1.2, initY = 1.9;
+    private double velocity;
 
     /**start at edge of starting box
      */
-    public AutoNav1(double v) {
-        runCommand(v);
-    }
-    public AutoNav1() {}
-
-    public void runCommand(double v) {
-        double velocity = v;
+    public AutoNav1() {
         Robot.odometry.reset(initX, initY);
         addSequential(new CircularTrajectory(-1.8, 0.45, velocity));
         addSequential(new CircularTrajectory(2.5, 0.9, velocity));
@@ -28,4 +24,8 @@ public class AutoNav1 extends CommandGroup {
         addSequential(new CircularTrajectory(-5, Math.PI/4, velocity*1.25));
     }
 
+    @Override
+    protected void initialize() {
+        velocity = SmartDashboard.getNumber("Autonomous Velocity", 2.0);       
+    }
 }
