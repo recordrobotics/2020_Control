@@ -32,6 +32,10 @@ public class Odometry extends Subsystem {
         SmartDashboard.putData(field);
     }
 
+    public Odometry(double theta){
+        this (0, 0, theta);
+    }
+
     public Odometry(){
         this(0, 0, 0);
     }
@@ -53,7 +57,16 @@ public class Odometry extends Subsystem {
     }
 
     public void reset(){
-        odometry.resetPosition(new Pose2d(xInit, yInit, new Rotation2d(thetaInit)), new Rotation2d(0.0));
+        reset(xInit, yInit);
+    }
+
+    public void reset(double newX, double newY){
+        System.out.println("Reseting...");
+        
+        odometry.resetPosition(new Pose2d(newX, newY, new Rotation2d(thetaInit)), new Rotation2d(0.0));
         Robot.driveTrain.resetEncoders();
+        Robot.gyro.gyroReset();
+
+        System.out.println("Reset to " + newX + " " + newY);
     }
 }

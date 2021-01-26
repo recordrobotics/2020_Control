@@ -1,13 +1,17 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
+import frc.robot.Robot;
 
 public class AutoNav3 extends CommandGroup{
     
     double velocity;
 
+    private double initX = 1.15, initY = 2.3;
+
     public AutoNav3(double v){
         velocity = v;
+        Robot.odometry.reset(initX, initY);
 
         addSequential(new CircularTrajectory(-1, Math.PI/2.0, velocity));
         addSequential(new MoveForward(24, -0.5)); //this command is configured in Inches and Motor Output %. We should probably make it consistent at some point

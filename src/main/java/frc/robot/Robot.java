@@ -78,6 +78,7 @@ public class Robot extends TimedRobot {
   public void robotInit() {
     m_oi = new OI();
     m_chooser.setDefaultOption("Default Auto", new ExampleCommand());
+
     /** chooser.addOption("My Auto", new MyAutoCommand());*/
     SmartDashboard.putData("Auto mode", m_chooser);
 
@@ -95,6 +96,7 @@ public class Robot extends TimedRobot {
     }
 
     networkInit();
+    m_autonomousCommand = new AutoNav3(2.0);
   }
 
   /**calibrate gyroscope*/
@@ -215,8 +217,6 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void autonomousInit() {
-    m_autonomousCommand = new GalSearchA(2);
-
     /*
      * String autoSelected = SmartDashboard.getString("Auto Selector",
      * "Default"); switch(autoSelected) { case "My Auto": autonomousCommand
