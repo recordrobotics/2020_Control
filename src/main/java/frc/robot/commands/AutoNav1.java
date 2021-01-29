@@ -13,6 +13,10 @@ public class AutoNav1 extends CommandGroup {
      */
     public AutoNav1() {
         Robot.odometry.reset(initX, initY);
+        velocity = SmartDashboard.getNumber("Autonomous Velocity", 2.0);
+
+        System.out.println("Velocity = " + velocity);
+
         addSequential(new CircularTrajectory(-1.8, 0.45, velocity));
         addSequential(new CircularTrajectory(2.5, 0.9, velocity));
         addSequential(new CircularTrajectory(0.5, 2*Math.PI));
@@ -26,6 +30,7 @@ public class AutoNav1 extends CommandGroup {
 
     @Override
     protected void initialize() {
-        velocity = SmartDashboard.getNumber("Autonomous Velocity", 2.0);       
+        velocity = SmartDashboard.getNumber("Autonomous Velocity", 2.0);   
+        Robot.odometry.reset(initX, initY);    
     }
 }

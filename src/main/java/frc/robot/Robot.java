@@ -78,13 +78,6 @@ public class Robot extends TimedRobot {
   public void robotInit() {
     m_oi = new OI();
     
-
-    m_chooser.addOption("AutoNav 1", new AutoNav1());
-    m_chooser.addOption("AutoNav 2", new AutoNav2());
-    m_chooser.addOption("AutoNav 3", new AutoNav3());
-    m_chooser.addOption("GalSearch A", new GalSearchA());
-    //m_chooser.addOption("GalSearch B", new GalSearchB());
-
     /** chooser.addOption("My Auto", new MyAutoCommand());*/
     SmartDashboard.putData("Auto mode", m_chooser);
 
@@ -103,12 +96,11 @@ public class Robot extends TimedRobot {
 
     networkInit();
 
-
-    //??????????
-    m_autonomousCommand = new AutoNav3();
-
-
-
+    m_chooser.addOption("AutoNav 1", new AutoNav1());
+    m_chooser.addOption("AutoNav 2", new AutoNav2());
+    m_chooser.addOption("AutoNav 3", new AutoNav3());
+    m_chooser.addOption("GalSearch A", new GalSearchA());
+    //m_chooser.addOption("GalSearch B", new GalSearchB());
   }
 
   /**calibrate gyroscope*/
@@ -229,6 +221,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void autonomousInit() {    
+    System.out.println("Chosen Command:" + m_chooser.getSelected());
     m_autonomousCommand = m_chooser.getSelected();
 
     /*

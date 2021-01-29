@@ -18,5 +18,7 @@ public abstract class Gyroscope extends Subsystem {
 
   public abstract void gyroCalib();
   public abstract void gyroReset();
+
+  public void updateAccelSim(double Vleft, double Vright){} //stub, only for Gyro2020
 }
 

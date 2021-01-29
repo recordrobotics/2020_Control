@@ -42,7 +42,17 @@ public class CircularTrajectory extends Command {
     TODO model might be causing imprecision, look into it at some point!
     */
     private double velocityToOutput(double v){
-        return Math.max(0.246 * v + 0.002, 0.95); //sets a max of 95% output for safety reasons
+        double output = 0.246 * v + 0.002;
+        
+        //cap output magnitude at 98% for safety reasons
+        if (output > 0.98){
+            output = 0.98;
+        }
+        if (output < -0.98){
+            output = -0.98;
+        }
+
+        return output;
     }
 
     /** Called just before this Command runs the first time*/

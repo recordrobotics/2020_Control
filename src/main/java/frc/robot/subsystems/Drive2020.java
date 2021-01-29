@@ -176,7 +176,7 @@ public class Drive2020 extends DriveTrain {
         sim_RightEnc.setDistance(sim_drive.getRightPositionMeters() * 39.37);
         sim_RightEnc.setRate(sim_drive.getRightVelocityMetersPerSecond());
 
-        //TODO add accelSim support
+        Robot.gyro.updateAccelSim(sim_drive.getLeftVelocityMetersPerSecond(), sim_drive.getRightVelocityMetersPerSecond());
     }
 
     public double getSimulatedAngle(){

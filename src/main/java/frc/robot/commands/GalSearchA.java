@@ -12,6 +12,7 @@ public class GalSearchA extends CommandGroup {
 
     public GalSearchA(){
         SmartDashboard.putBoolean("Acquistion", Robot.acq.isAcqOn());
+        velocity = SmartDashboard.getNumber("Autonomous Velocity", 2.0);
 
         addParallel(new TiltAcquisition());
 

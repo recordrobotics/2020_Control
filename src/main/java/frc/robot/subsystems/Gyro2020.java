@@ -5,6 +5,9 @@ import com.kauailabs.navx.frc.AHRS;
 import edu.wpi.first.wpilibj.BuiltInAccelerometer;
 import edu.wpi.first.wpilibj.I2C;
 import edu.wpi.first.wpilibj.RobotController;
+import edu.wpi.first.wpilibj.kinematics.ChassisSpeeds;
+import edu.wpi.first.wpilibj.kinematics.DifferentialDriveKinematics;
+import edu.wpi.first.wpilibj.kinematics.DifferentialDriveWheelSpeeds;
 import edu.wpi.first.wpilibj.simulation.BuiltInAccelerometerSim;
 /**import edu.wpi.first.wpilibj.I2C.Port;*/
 import frc.robot.Robot;
@@ -63,9 +66,9 @@ public class Gyro2020 extends Gyroscope{
     }
 
     /**
-     TODO add accelerometer support
-     Guesstimate indicates that it should take about 33N to tip robot with froce at center of mass
-     F = (g * 0.6858) * (1/Hm) where Hm is the height of the center of mass (estimate = 8")
+     Guesstimate indicates that it should take about 1.7kN to tip robot with froce at center of mass
+     F = (m * g * 0.6858) * (1/h) where h is the height of the center of mass (estimate = 8")
+     But this seems like a lot, so I may be misunderstanding the torque applied here
      */
 
      public double getAccelX(){
@@ -114,5 +117,25 @@ public class Gyro2020 extends Gyroscope{
         }
 
         return accel;
+     }
+
+     private DifferentialDriveKinematics dKin = new DifferentialDriveKinematics(0.6858);
+     private double vX, vY, prev_Vx, prev_Vy;
+     /**
+      * Updates the virtual accelerometer using simualted data
+      * A two-point derrivative is fine for this, as simulated data is noiseless
+      * t = 0.02s = 20ms, units are Gs (1G = 9.81 m/s^2)
+      */
+     public void updateAccelSim(double Vleft, double Vright){
+        ChassisSpeeds cSpeeds = dKin.toChassisSpeeds(new DifferentialDriveWheelSpeeds(Vleft, Vright));
+
+        prev_Vx = vX;
+        prev_Vy = vY;
+
+        vX = cSpeeds.vxMetersPerSecond;
+        vY = cSpeeds.vyMetersPerSecond;
+
+        builtInAccelSim.setX(((vX - prev_Vx)/0.02)/9.81);
+        builtInAccelSim.setY(((vY - prev_Vy)/0.02)/9.81);
      }
 }
