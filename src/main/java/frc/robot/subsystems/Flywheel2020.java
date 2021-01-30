@@ -24,7 +24,7 @@ public class Flywheel2020 extends Flywheel {
      */
     public Flywheel2020(){
         flywheelMotor.enableVoltageCompensation(true);
-        flywheelMotor.setVoltage(targetVoltage);
+        //flywheelMotor.setVoltage(targetVoltage);
     }
     
     @Override

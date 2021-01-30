@@ -28,7 +28,7 @@ public class RobotLift2020 extends RobotLift{
         }
 
         robotLiftMotor.enableVoltageCompensation(true);
-        robotLiftMotor.setVoltage(targetVoltage);
+        //robotLiftMotor.setVoltage(targetVoltage);
     }
     /**
      * robotLiftMotorLeft creates variable for the left lift motor.
