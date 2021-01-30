@@ -31,9 +31,6 @@ public class CircularTrajectory extends Command {
         }
         radius = r;
         theta = th;
-
-        chassisSpeeds = new ChassisSpeeds(velocity, 0, velocity/radius);
-        time = Math.abs(1.0/((1.0/theta) * chassisSpeeds.omegaRadiansPerSecond));
     }
 
     public CircularTrajectory(double r, double th){
@@ -63,8 +60,16 @@ public class CircularTrajectory extends Command {
     /** Called just before this Command runs the first time*/
     @Override
     protected void initialize() {
-        //velocity = SmartDashboard.getNumber("Autonomous Velocity", velocity);
+        if (velocity >= 0){
+            velocity = SmartDashboard.getNumber("Autonomous Velocity", velocity);
+        } else {
+            velocity = -SmartDashboard.getNumber("Autonomous Velocity", -velocity);
+        }
+
         System.out.println("Command Speed = " + velocity);
+
+        chassisSpeeds = new ChassisSpeeds(velocity, 0, velocity/radius);
+        time = Math.abs(1.0/((1.0/theta) * chassisSpeeds.omegaRadiansPerSecond));
     }
 
     /** Called repeatedly when this Command is scheduled to run*/
