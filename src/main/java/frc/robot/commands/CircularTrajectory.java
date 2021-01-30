@@ -3,6 +3,7 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.kinematics.ChassisSpeeds;
 import edu.wpi.first.wpilibj.kinematics.DifferentialDriveKinematics;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Robot;
 
 public class CircularTrajectory extends Command {
@@ -23,7 +24,11 @@ public class CircularTrajectory extends Command {
      * @param v how fast the robot should go in METERS PER SECOND
      */
     public CircularTrajectory(double r, double th, double v){
-        velocity = v;
+        if (v >= 0){
+            velocity = SmartDashboard.getNumber("Autonomous Velocity", v);
+        } else {
+            velocity = -SmartDashboard.getNumber("Autonomous Velocity", -v);
+        }
         radius = r;
         theta = th;
 
@@ -58,7 +63,8 @@ public class CircularTrajectory extends Command {
     /** Called just before this Command runs the first time*/
     @Override
     protected void initialize() {
-        
+        //velocity = SmartDashboard.getNumber("Autonomous Velocity", velocity);
+        System.out.println("Command Speed = " + velocity);
     }
 
     /** Called repeatedly when this Command is scheduled to run*/
