@@ -11,7 +11,7 @@ public class Dashboard2020 extends Dashboard {
     * Creates buttons to execute each of the specified commands at the specified values
     */
     public Dashboard2020(){
-        SmartDashboard.putData("Move 3ft", new MoveForward(24, 0.2));
+        SmartDashboard.putData("Move 3ft", new MoveForward(-36, 0.2));
         SmartDashboard.putData("Turn Left", new AutoTurn(-90));
         SmartDashboard.putData("Turn Right", new AutoTurn(90));
         SmartDashboard.putData("Tilt Acquisition", new TiltAcquisition());
