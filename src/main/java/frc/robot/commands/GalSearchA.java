@@ -9,14 +9,24 @@ public class GalSearchA extends CommandGroup {
 
     private double velocity;
     private boolean redPath = true;
+    private double initX;
+    private double initY;
+    
 
     public GalSearchA(){
         SmartDashboard.putBoolean("Acquistion", Robot.acq.isAcqOn());
         velocity = SmartDashboard.getNumber("Autonomous Velocity", 2.0);
 
         addParallel(new TiltAcquisition());
-
-        redPath();
+        if (redPath) {
+            initX = 0.0;
+            initY = 2.286;
+            redPath();
+        }
+        else {
+            initX = 1.15;
+            bluePath();
+        }
     }
 
     private void bluePath(){
@@ -39,13 +49,14 @@ public class GalSearchA extends CommandGroup {
         addSequential(new MoveForward(18, -0.4));
         addSequential(new CircularTrajectory(0.25, Math.PI/2 + 0.75, velocity));   
         
-        addSequential(new CircularTrajectory(-14, Math.PI/11, velocity));
+        addSequential(new CircularTrajectory(-14, Math.PI/10, velocity));
     
     }
 
     @Override
     protected void initialize() {
-        velocity = SmartDashboard.getNumber("Autonomous Velocity", 2.0);    
+        velocity = SmartDashboard.getNumber("Autonomous Velocity", 2.0);
+        Robot.odometry.reset(initX, initY);
     }
 
     @Override
