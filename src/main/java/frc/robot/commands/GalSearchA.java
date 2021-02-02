@@ -8,10 +8,12 @@ import frc.robot.Robot;
 public class GalSearchA extends CommandGroup {
 
     private double velocity;
+    private double initX = 0.5, initY = 2.3;
     private boolean redPath = true;
 
     public GalSearchA(){
         SmartDashboard.putBoolean("Acquistion", Robot.acq.isAcqOn());
+        Robot.odometry.reset(initX, initY);
         velocity = SmartDashboard.getNumber("Autonomous Velocity", 2.0);
 
         addParallel(new TiltAcquisition());
@@ -46,6 +48,7 @@ public class GalSearchA extends CommandGroup {
     @Override
     protected void initialize() {
         velocity = SmartDashboard.getNumber("Autonomous Velocity", 2.0);    
+        Robot.odometry.reset(initX, initY);
     }
 
     @Override

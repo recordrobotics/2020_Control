@@ -1,5 +1,6 @@
 package frc.robot.commands;
 
+import edu.wpi.first.wpilibj.RobotController;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.kinematics.ChassisSpeeds;
 import edu.wpi.first.wpilibj.kinematics.DifferentialDriveKinematics;
@@ -10,6 +11,8 @@ public class CircularTrajectory extends Command {
 
     private double velocity;
     private double radius;
+    private double centerDist, leftDist, rightDist;
+    private double initRightDist, initLeftDist;
     private double theta;
     private double time;
 
@@ -31,6 +34,20 @@ public class CircularTrajectory extends Command {
         }
         radius = r;
         theta = th;
+
+        centerDist = theta * radius;
+        if (radius < 0){
+            //left turn, left wheels = outer wheels, right wheels = inner wheels
+            leftDist = theta * (Math.abs(radius) + 0.6858/2.0);
+            rightDist = theta * (Math.abs(radius) - 0.6858/2.0);
+        } else {
+            //right turn, left wheels = inner wheels, right wheels = outer wheels
+            leftDist = theta * (radius - 0.6858/2.0);
+            rightDist = theta * (radius + 0.6858/2.0);
+        }
+
+        System.out.println("Left Distance = " + leftDist);
+        System.out.println("Right Distance = " + rightDist);
     }
 
     public CircularTrajectory(double r, double th){
@@ -70,6 +87,9 @@ public class CircularTrajectory extends Command {
 
         chassisSpeeds = new ChassisSpeeds(velocity, 0, velocity/radius);
         time = Math.abs(1.0/((1.0/theta) * chassisSpeeds.omegaRadiansPerSecond));
+
+        initLeftDist = Robot.driveTrain.getLeftEncoder();
+        initRightDist = Robot.driveTrain.getRightEncoder();
     }
 
     /** Called repeatedly when this Command is scheduled to run*/
@@ -82,7 +102,9 @@ public class CircularTrajectory extends Command {
     /** Make this return true when this Command no longer needs to run execute()*/
     @Override
     protected boolean isFinished() {
-        return timeSinceInitialized() >= time;
+        //return timeSinceInitialized() >= time;
+        return Math.abs(Robot.driveTrain.getLeftEncoder()) >= (leftDist * 39.37 + initLeftDist)
+            && Math.abs(Robot.driveTrain.getRightEncoder()) >= (rightDist * 39.37 + initRightDist);
     }
 
     /** Called once after isFinished returns true*/

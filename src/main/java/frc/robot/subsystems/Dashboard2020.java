@@ -21,11 +21,11 @@ public class Dashboard2020 extends Dashboard {
     }
     @Override
     public void periodic() {
-        /**
-        *   SmartDashboard.putNumber("Right Encoder", Robot.driveTrain.getRightEncoder());
-        *   SmartDashboard.putNumber("Left Encoder", Robot.driveTrain.getLeftEncoder());
-        */
+
+        SmartDashboard.putNumber("Right Encoder", Robot.driveTrain.getRightEncoder());
+        SmartDashboard.putNumber("Left Encoder", Robot.driveTrain.getLeftEncoder());
         SmartDashboard.putNumber("Gyro Angle", Robot.gyro.getDeg());
+        
         /**SmartDashboard.putNumber("Flywheel Speed", Robot.flywheel.getSpeed());*/
         
         SmartDashboard.putNumber("Range Found", Robot.rangeFinder.getDistance());
