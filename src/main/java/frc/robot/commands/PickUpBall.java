@@ -12,7 +12,7 @@ public class PickUpBall extends Command {
     }
 
     public PickUpBall(){
-        this(3);
+        this(1);
     }
 
     /** Called just before this Command runs the first time*/
@@ -30,7 +30,7 @@ public class PickUpBall extends Command {
     /** Make this return true when this Command no longer needs to run execute()*/
     @Override
     protected boolean isFinished() {
-        return time > this.timeSinceInitialized();
+        return this.timeSinceInitialized() >= time;
     }
 
     /** Called once after isFinished returns true*/

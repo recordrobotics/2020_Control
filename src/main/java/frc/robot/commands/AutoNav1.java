@@ -17,15 +17,21 @@ public class AutoNav1 extends CommandGroup {
 
         System.out.println("Velocity = " + velocity);
 
-        addSequential(new CircularTrajectory(-1.8, 0.45, velocity));
+        addSequential(new CircularTrajectory(-2.5, 0.3, velocity));
         addSequential(new CircularTrajectory(2.5, 0.9, velocity));
-        addSequential(new CircularTrajectory(0.5, 2*Math.PI));
+        addSequential(new CircularTrajectory(0.7, 2*Math.PI - 0.2));
         addSequential(new CircularTrajectory(-3.6, 0.65, 3));
-        addSequential(new CircularTrajectory(-0.5, 1.5*Math.PI));
+        
+        addSequential(new CircularTrajectory(-0.5, 1.75*Math.PI));
+        
         addSequential(new CircularTrajectory(-2.5, 0.4*Math.PI, velocity));
-        addSequential(new CircularTrajectory(-0.6, 1.2*Math.PI));
+        addSequential(new CircularTrajectory(-0.6, 1.15*Math.PI));
+
+        addSequential(new MoveForward(20 * 12, -0.75));
+        /*
         addSequential(new CircularTrajectory(4, Math.PI/4, velocity*1.25));
         addSequential(new CircularTrajectory(-5, Math.PI/4, velocity*1.25));
+        */
     }
 
     @Override
