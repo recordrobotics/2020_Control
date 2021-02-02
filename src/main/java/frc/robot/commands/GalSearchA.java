@@ -31,7 +31,6 @@ public class GalSearchA extends CommandGroup {
     }
 
     private void bluePath(){
-
     }
 
     private void redPath(){
@@ -40,18 +39,18 @@ public class GalSearchA extends CommandGroup {
         addParallel(new PickUpBall());
         addSequential(new MoveForward(18, -0.4));
 
-        addSequential(new CircularTrajectory(1.5, Math.PI/3.25, velocity));
+        addSequential(new CircularTrajectory(3, Math.PI/5, velocity));
         addParallel(new PickUpBall());
         
-        addSequential(new CircularTrajectory(-0.25, Math.PI - 0.4, velocity));
-        addSequential(new MoveForward(48, -0.7));
+        addSequential(new CircularTrajectory(-0.5, Math.PI - 0.25, velocity*0.75));
+/*        addSequential(new MoveForward(48, -0.7));
 
         addParallel(new PickUpBall());
         addSequential(new MoveForward(18, -0.4));
         addSequential(new CircularTrajectory(0.25, Math.PI/2 + 0.75, velocity));   
         
         addSequential(new CircularTrajectory(-14, Math.PI/10, velocity));
-    
+  */  
     }
 
     @Override
