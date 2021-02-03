@@ -14,7 +14,9 @@ import frc.robot.control.PID;
 
 import java.util.ArrayList;
 
-
+/**
+ * DEGREES!
+ */
 public class TurnToAngle extends Command {
   /**
    * targetAngle Angle the robot has to face.
