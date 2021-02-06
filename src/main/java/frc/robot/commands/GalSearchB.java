@@ -16,34 +16,61 @@ import frc.robot.Robot;
  */
 public class GalSearchB extends CommandGroup {
   private double velocity;
-  private double initXred = 0.5, initYred = 3.81, initXblue, initYblue;
-  private boolean redPath = true;
+  private double initXred = 0.5, initYred = 3.81, initXblue = 0.5, initYblue = 1.524;
+  private boolean redPath = false;
 
   public GalSearchB() {
     SmartDashboard.putBoolean("Acquistion", Robot.acq.isAcqOn());
-        Robot.odometry.reset(initXred, initYred);
-        velocity = SmartDashboard.getNumber("Autonomous Velocity", 2.0);
+        reset();    
 
         addParallel(new TiltAcquisition());
 
-        bluePath();
+        if (redPath) {
+          redPath();
+        } else {
+          bluePath();
+        }
   }
 
   private void redPath(){
+    addParallel(new PickUpBall(2));
     addSequential(new CircularTrajectory(2.5, Math.PI/3, velocity));
+
+    addParallel(new PickUpBall(2));
     addSequential(new CircularTrajectory(-1, Math.PI - 1, velocity));
+
+    addParallel(new PickUpBall(2));
     addSequential(new MoveForward(60, -0.7));
+
     addSequential(new CircularTrajectory(3, Math.PI/3.5, velocity));
   }
 
   private void bluePath(){
-    addSequential(new TurnToAngle(140));
+    addParallel(new PickUpBall(3));
+    addSequential(new MoveForward(134, -0.7));
+    addSequential(new CircularTrajectory(-1.5, Math.PI/2));
+
+    addParallel(new PickUpBall(1));
+    addSequential(new CircularTrajectory(0.5, Math.PI/1.4));
+
+    addParallel(new PickUpBall(2));
+    addSequential(new MoveForward(60, -0.7));
+    addSequential(new CircularTrajectory(-0.5, Math.PI));
   }
 
   @Override
   protected void initialize() {
-    velocity = SmartDashboard.getNumber("Autonomous Velocity", 2.0);    
-    Robot.odometry.reset(initXred, initYred);
+    reset();
+  }
+
+  private void reset(){
+    velocity = SmartDashboard.getNumber("Autonomous Velocity", 2.0);  
+    
+    if (redPath){
+      Robot.odometry.reset(initXred, initYred);
+    } else {
+      Robot.odometry.reset(initXblue, initYblue);
+    }
   }
 
 }
