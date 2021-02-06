@@ -27,7 +27,7 @@ public class MoveForward extends Command {
      */
     public MoveForward(double dist, double sp) {
         distance = dist;
-        speed = sp;
+        speed = -sp;
     }
 
     /**
@@ -36,7 +36,7 @@ public class MoveForward extends Command {
      */
     public MoveForward(){
         distance = Robot.rangeFinder.getDistance();
-        speed = 0.7;
+        speed = -0.7;
     }
 
     /** Called just before this Command runs the first time*/

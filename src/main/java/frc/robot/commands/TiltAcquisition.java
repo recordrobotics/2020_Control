@@ -20,6 +20,7 @@ public class TiltAcquisition extends Command {
    */
   private Timer acqTimer = new Timer();
   private double acqMoveTime = 2.5;
+
   public TiltAcquisition() {
     /** Use requires() here to declare subsystem dependencies  */
   }
@@ -61,5 +62,9 @@ public class TiltAcquisition extends Command {
 */
   @Override
   protected void interrupted() {
+  }
+
+  public double getAcqTime(){
+    return acqMoveTime;
   }
 }

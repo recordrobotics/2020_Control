@@ -15,15 +15,15 @@ public class AutoNav3 extends CommandGroup{
         Robot.odometry.reset(initX, initY);
 
         addSequential(new CircularTrajectory(-1, Math.PI/3, velocity));
-        addSequential(new MoveForward(24, -0.5)); //this command is configured in Inches and Motor Output %. We should probably make it consistent at some point
+        addSequential(new MoveForward(24, 0.5)); //this command is configured in Inches and Motor Output %. We should probably make it consistent at some point
         
         addSequential(new CircularTrajectory(3, Math.PI/25, -velocity));
         addSequential(new CircularTrajectory(0.7, 2.4*Math.PI/3.0, -velocity));
-        addSequential(new MoveForward(96, 0.5));
+        addSequential(new MoveForward(96, -0.5));
 
-        addSequential(new MoveForward(48, -0.5));
+        addSequential(new MoveForward(48, 0.5));
         addSequential(new CircularTrajectory(-1, Math.PI/8, velocity));
-        addSequential(new MoveForward(72, -0.5));
+        addSequential(new MoveForward(72, 0.5));
         addSequential(new CircularTrajectory(2, Math.PI/2.0, -velocity));
     }
 
