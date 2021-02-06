@@ -9,7 +9,9 @@ public class GalSearchA extends CommandGroup {
 
     private double velocity;
     private double initX = 0.5, initY = 2.3;
-    private boolean redPath = true;
+    private boolean redPath = false;
+
+    
 
     public GalSearchA(){
         SmartDashboard.putBoolean("Acquistion", Robot.acq.isAcqOn());
@@ -17,32 +19,33 @@ public class GalSearchA extends CommandGroup {
         velocity = SmartDashboard.getNumber("Autonomous Velocity", 2.0);
 
         addParallel(new TiltAcquisition());
-
-        redPath();
+        if (redPath) {
+            initX = 0.0;
+            initY = 2.286;
+            redPath();
+        }
+        else {
+            initX = 0.0;
+            initY = 0.7;
+            bluePath();
+        }
     }
 
-    private void bluePath(){
-
+    private void bluePath() {
+        addSequential(new MoveForward(132, -velocity));
+        addSequential(new CircularTrajectory(-0.9, 5*Math.PI/6, velocity));
+        addSequential(new CircularTrajectory(0.8, 5*Math.PI/6, velocity));
+        addSequential(new CircularTrajectory(-3, Math.PI/3));
     }
 
-    private void redPath(){
-        addSequential(new MoveForward(48, -0.7));
-        
-        addParallel(new PickUpBall());
-        addSequential(new MoveForward(18, -0.4));
-
-        addSequential(new CircularTrajectory(1.5, Math.PI/3.25, velocity));
-        addParallel(new PickUpBall());
-        
-        addSequential(new CircularTrajectory(-0.25, Math.PI - 0.4, velocity));
-        addSequential(new MoveForward(48, -0.7));
-
-        addParallel(new PickUpBall());
-        addSequential(new MoveForward(18, -0.4));
-        addSequential(new CircularTrajectory(0.25, Math.PI/2 + 0.75, velocity));   
-        
-        addSequential(new CircularTrajectory(-14, Math.PI/11, velocity));
-    
+    private void redPath() {
+        addSequential(new CircularTrajectory(-2, Math.PI/12, velocity));
+        addSequential(new CircularTrajectory(1.5, Math.PI/2.5, velocity));
+        addSequential(new CircularTrajectory(-1.5, Math.PI/4, velocity));
+        addSequential(new CircularTrajectory(-0.5, 11*Math.PI/12, velocity));
+        addSequential(new CircularTrajectory(1.25, Math.PI/2, velocity));
+        addSequential(new CircularTrajectory(1.75, Math.PI/2.75, velocity*1.25));
+        addSequential(new CircularTrajectory(-4.5, Math.PI/6, velocity*1.25));
     }
 
     @Override

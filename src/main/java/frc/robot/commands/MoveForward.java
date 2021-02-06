@@ -20,11 +20,20 @@ public class MoveForward extends Command {
 */
     private double speed;
 
+    /**
+     * Moves the robot forward a set distance
+     * @param dist distance to move the robot in INCHES
+     * @param sp NEGATIVE speed to move the robot
+     */
     public MoveForward(double dist, double sp) {
         distance = dist;
         speed = sp;
     }
 
+    /**
+     * Moves the robot forward the distance set by the range finder
+     * at a speed of 0.7
+     */
     public MoveForward(){
         distance = Robot.rangeFinder.getDistance();
         speed = 0.7;
