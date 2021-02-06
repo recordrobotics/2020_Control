@@ -23,7 +23,7 @@ public class MoveForward extends Command {
     /**
      * Moves the robot forward a set distance
      * @param dist distance to move the robot in INCHES
-     * @param sp speed to move the robot
+     * @param sp NEGATIVE speed to move the robot
      */
     public MoveForward(double dist, double sp) {
         distance = dist;
