@@ -9,7 +9,7 @@ public class GalSearchA extends CommandGroup {
 
     private double velocity;
     private double initX = 0.5, initY = 2.3;
-    private boolean redPath = true;
+    private boolean redPath = false;
 
     
 
@@ -25,32 +25,27 @@ public class GalSearchA extends CommandGroup {
             redPath();
         }
         else {
-            initX = 1.15;
+            initX = 0.0;
+            initY = 0.7;
             bluePath();
         }
     }
 
-    private void bluePath(){
+    private void bluePath() {
+        addSequential(new MoveForward(132, -velocity));
+        addSequential(new CircularTrajectory(-0.9, 5*Math.PI/6, velocity));
+        addSequential(new CircularTrajectory(0.8, 5*Math.PI/6, velocity));
+        addSequential(new CircularTrajectory(-3, Math.PI/3));
     }
 
-    private void redPath(){
-        addSequential(new MoveForward(48, -0.7));
-        
-        addParallel(new PickUpBall());
-        addSequential(new MoveForward(18, -0.4));
-
-        addSequential(new CircularTrajectory(3, Math.PI/5, velocity));
-        addParallel(new PickUpBall());
-        
-        addSequential(new CircularTrajectory(-0.5, Math.PI - 0.25, velocity*0.75));
-/*        addSequential(new MoveForward(48, -0.7));
-
-        addParallel(new PickUpBall());
-        addSequential(new MoveForward(18, -0.4));
-        addSequential(new CircularTrajectory(0.25, Math.PI/2 + 0.75, velocity));   
-        
-        addSequential(new CircularTrajectory(-14, Math.PI/10, velocity));
-  */  
+    private void redPath() {
+        addSequential(new CircularTrajectory(-2, Math.PI/12, velocity));
+        addSequential(new CircularTrajectory(1.5, Math.PI/2.5, velocity));
+        addSequential(new CircularTrajectory(-1.5, Math.PI/4, velocity));
+        addSequential(new CircularTrajectory(-0.5, 11*Math.PI/12, velocity));
+        addSequential(new CircularTrajectory(1.25, Math.PI/2, velocity));
+        addSequential(new CircularTrajectory(1.75, Math.PI/2.75, velocity*1.25));
+        addSequential(new CircularTrajectory(-4.5, Math.PI/6, velocity*1.25));
     }
 
     @Override
