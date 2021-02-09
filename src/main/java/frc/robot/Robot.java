@@ -63,6 +63,8 @@ public class Robot extends TimedRobot {
   /**Autonomous command setup*/
   Command m_autonomousCommand;
   SendableChooser<Command> m_chooser = new SendableChooser<>();
+  public static SendableChooser<GalacticSearch.path> path_chooser = new SendableChooser<>();
+
 
   /**Network table setup*/
   public static NetworkTableInstance inst;
@@ -80,7 +82,8 @@ public class Robot extends TimedRobot {
     
     /** chooser.addOption("My Auto", new MyAutoCommand());*/
     SmartDashboard.putData("Auto mode", m_chooser);
-
+    SmartDashboard.putData("GalSearch Path", path_chooser);
+    
     /**select which init method to use based on the currently selected robot*/
     switch(currentRobot){
       case MONOLITH:
@@ -95,12 +98,18 @@ public class Robot extends TimedRobot {
     }
 
     networkInit();
+    
+    path_chooser.setDefaultOption("Path A, Red", GalacticSearch.path.A_RED);
+    path_chooser.addOption("Path A, Blue", GalacticSearch.path.A_BLUE);
+    path_chooser.addOption("Path B, Red", GalacticSearch.path.B_RED);
+    path_chooser.addOption("Path B, Blue", GalacticSearch.path.B_BLUE);   
 
     m_chooser.addOption("AutoNav 1", new AutoNav1());
     m_chooser.addOption("AutoNav 2", new AutoNav2());
     m_chooser.addOption("AutoNav 3", new AutoNav3());
     m_chooser.addOption("GalSearch A", new GalSearchA());
     m_chooser.addOption("GalSearch B", new GalSearchB());
+    m_chooser.addOption("[WIP] DO NOT USE! GalSearch", new GalacticSearch());
   }
 
   /**calibrate gyroscope*/
