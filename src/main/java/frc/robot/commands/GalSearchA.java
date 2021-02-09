@@ -2,33 +2,26 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.CommandGroup;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import frc.robot.Robot;
+
 
 public class GalSearchA extends CommandGroup {
 
     private double velocity;
-    private double initX = 0.5, initY = 2.3;
-    private boolean redPath = true;
 
-    
-
-    public GalSearchA(){
-        SmartDashboard.putBoolean("Acquistion", Robot.acq.isAcqOn());
-        Robot.odometry.reset(initX, initY);
-        velocity = SmartDashboard.getNumber("Autonomous Velocity", 2.0);
-
-        addParallel(new TiltAcquisition());
+    public GalSearchA(boolean redPath, double v){
+        velocity = v;
         if (redPath) {
-            initX = 0.0;
-            initY = 2.286;
+/*            System.out.println("ABOUT TO RUN.....");
             redPath();
+            System.out.println("WE MADE IT!!");
+            */
         }
         else {
-            initX = 0.0;
-            initY = 0.7;
             bluePath();
         }
+    }
+    public GalSearchA(boolean redPath) {
+        this(redPath, 2.0);
     }
 
     private void bluePath() {
@@ -41,7 +34,8 @@ public class GalSearchA extends CommandGroup {
         addSequential(new CircularTrajectory(-3, Math.PI/3));
     }
 
-    private void redPath() {
+    void redPath() {
+        System.out.println("REDPATH RUNNING");
         addSequential(new CircularTrajectory(-2, Math.PI/12, velocity));
         addParallel(new PickUpBall(2));
         addSequential(new CircularTrajectory(1.5, Math.PI/2.5, velocity));
@@ -52,17 +46,7 @@ public class GalSearchA extends CommandGroup {
         addSequential(new CircularTrajectory(1.25, Math.PI/2, velocity));
         addSequential(new CircularTrajectory(1.75, Math.PI/2.75, velocity*1.25));
         addSequential(new CircularTrajectory(-4.5, Math.PI/6, velocity*1.25));
-    }
-
-    @Override
-    protected void initialize() {
-        velocity = SmartDashboard.getNumber("Autonomous Velocity", 2.0);    
-        Robot.odometry.reset(initX, initY);
-    }
-
-    @Override
-    protected void execute() {
-        SmartDashboard.putBoolean("Acquistion", Robot.acq.isAcqOn());
+        
     }
     
 }

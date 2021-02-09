@@ -1,12 +1,11 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Robot;
 import frc.robot.subsystems.Odometry;
 
-public class GalacticSearch extends CommandGroup{
+public class GalacticSearch extends Command{
 
     private double velocity;
     private path selectedPath;
@@ -27,28 +26,37 @@ public class GalacticSearch extends CommandGroup{
     };
 
     public GalacticSearch() {
+        velocity = SmartDashboard.getNumber("Autonomous Velocity", 2);
+        SmartDashboard.putBoolean("Acquistion", Robot.acq.isAcqOn());
+        //addParallel(new TiltAcquisition());
         selectedPath = Robot.path_chooser.getSelected();
-        switch (selectedPath) {
-            case A_RED:
-                Robot.odometry.reset(redA_init[0], redA_init[1]);
-                redA_path();
-            case B_RED:
-                Robot.odometry.reset(redB_init[0], redB_init[1]);
-                redB_path();
-            case A_BLUE:
-                Robot.odometry.reset(blueA_init[0], blueA_init[1]);
-                blueA_path();
-            case B_BLUE:
-                Robot.odometry.reset(blueB_init[0], blueB_init[1]);
-                blueB_path();
-        }
     }
 
     @Override
     protected void initialize(){
-
+        switch (selectedPath) {
+            case A_RED:
+                Robot.odometry.reset(redA_init[0], redA_init[1]);
+                System.out.println("GALSEARCH A REDPATH CALLED");
+                GalSearchA pathARed = new GalSearchA(true, velocity);
+                
+                break;
+            case B_RED:
+                Robot.odometry.reset(redB_init[0], redB_init[1]);
+                GalSearchB pathBRed = new GalSearchB(false, velocity);
+            case A_BLUE:
+                Robot.odometry.reset(blueA_init[0], blueA_init[1]);
+                GalSearchA pathABlue = new GalSearchA(false, velocity);
+            case B_BLUE:
+                Robot.odometry.reset(blueB_init[0], blueB_init[1]);
+                GalSearchB pathBBlue = new GalSearchB(false, velocity);
+        }
     }
-
+    @Override
+    protected boolean isFinished() {
+        return true;
+    }
+/*
     private void redA_path(){
         addSequential(new CircularTrajectory(-2, Math.PI/12, velocity));
         addParallel(new PickUpBall(2));
@@ -94,5 +102,6 @@ public class GalacticSearch extends CommandGroup{
         addParallel(new PickUpBall(2));
         addSequential(new MoveForward(60, 0.7));
         addSequential(new CircularTrajectory(-0.5, Math.PI));
-    }
+        
+    } */
 }
