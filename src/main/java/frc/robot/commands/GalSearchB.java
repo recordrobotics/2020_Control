@@ -21,15 +21,15 @@ public class GalSearchB extends CommandGroup {
 
   public GalSearchB() {
     SmartDashboard.putBoolean("Acquistion", Robot.acq.isAcqOn());
-        reset();    
+    reset();    
 
-        addParallel(new TiltAcquisition());
+    addParallel(new TiltAcquisition());
 
-        if (redPath) {
-          redPath();
-        } else {
-          bluePath();
-        }
+    if (redPath) {
+      redPath();
+    } else {
+      bluePath();
+    }
   }
 
   private void redPath(){
@@ -40,21 +40,21 @@ public class GalSearchB extends CommandGroup {
     addSequential(new CircularTrajectory(-1, Math.PI - 1, velocity));
 
     addParallel(new PickUpBall(2));
-    addSequential(new MoveForward(60, -0.7));
+    addSequential(new MoveForward(60, 0.7));
 
     addSequential(new CircularTrajectory(3, Math.PI/3.5, velocity));
   }
 
   private void bluePath(){
     addParallel(new PickUpBall(3));
-    addSequential(new MoveForward(134, -0.7));
+    addSequential(new MoveForward(134, 0.7));
     addSequential(new CircularTrajectory(-1.5, Math.PI/2));
 
     addParallel(new PickUpBall(1));
     addSequential(new CircularTrajectory(0.5, Math.PI/1.4));
 
     addParallel(new PickUpBall(2));
-    addSequential(new MoveForward(60, -0.7));
+    addSequential(new MoveForward(60, 0.7));
     addSequential(new CircularTrajectory(-0.5, Math.PI));
   }
 

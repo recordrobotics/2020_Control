@@ -32,7 +32,7 @@ public class GalSearchA extends CommandGroup {
     }
 
     private void bluePath() {
-        addSequential(new MoveForward(132, -velocity));
+        addSequential(new MoveForward(132, velocity));
         addSequential(new CircularTrajectory(-0.9, 5*Math.PI/6, velocity));
         addSequential(new CircularTrajectory(0.8, 5*Math.PI/6, velocity));
         addSequential(new CircularTrajectory(-3, Math.PI/3));
