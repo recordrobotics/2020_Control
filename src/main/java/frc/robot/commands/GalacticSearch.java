@@ -1,12 +1,11 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Robot;
 import frc.robot.subsystems.Odometry;
 
-public class GalacticSearch extends CommandGroup {
+public class GalacticSearch extends Command{
 
     private double velocity;
     private path selectedPath;
@@ -57,7 +56,7 @@ public class GalacticSearch extends CommandGroup {
     protected boolean isFinished() {
         return true;
     }
-
+/*
     private void redA_path(){
         addSequential(new CircularTrajectory(-2, Math.PI/12, velocity));
         addParallel(new PickUpBall(2));
@@ -104,5 +103,5 @@ public class GalacticSearch extends CommandGroup {
         addSequential(new MoveForward(60, 0.7));
         addSequential(new CircularTrajectory(-0.5, Math.PI));
         
-    }
+    } */
 }
