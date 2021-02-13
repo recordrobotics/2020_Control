@@ -11,10 +11,7 @@ public class GalSearchA extends CommandGroup {
     public GalSearchA(boolean redPath, double v){
         velocity = v;
         if (redPath) {
-/*            System.out.println("ABOUT TO RUN.....");
             redPath();
-            System.out.println("WE MADE IT!!");
-            */
         }
         else {
             bluePath();
