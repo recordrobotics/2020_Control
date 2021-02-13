@@ -8,6 +8,7 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Robot;
 
@@ -16,13 +17,21 @@ import frc.robot.Robot;
  */
 public class GalSearchB extends CommandGroup {
   private double velocity;
+  private double initXred = 0.5, initYred = 3.81, initXblue = 0.5, initYblue = 1.524;
+  private boolean redPath = false;
 
-  public GalSearchB(boolean redPath, double v) {
-    velocity = v;
+  private SendableChooser pathChooser = new SendableChooser<Integer>();
+
+  public GalSearchB() {
+    SmartDashboard.putBoolean("Acquistion", Robot.acq.isAcqOn());
+    
+    reset();    
+
+    addParallel(new TiltAcquisition());
+
     if (redPath) {
       redPath();
-    }
-    else {
+    } else {
       bluePath();
     }
   }
@@ -55,6 +64,17 @@ public class GalSearchB extends CommandGroup {
 
   @Override
   protected void initialize() {
+    reset();
+  }
+
+  private void reset(){
+    velocity = SmartDashboard.getNumber("Autonomous Velocity", 2.0);  
+    
+    if (redPath){
+      Robot.odometry.reset(initXred, initYred);
+    } else {
+      Robot.odometry.reset(initXblue, initYblue);
+    }
   }
 
 }
