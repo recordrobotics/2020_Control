@@ -38,7 +38,7 @@ public class Drive2020 extends DriveTrain {
      */
     Encoder rightEnc = new Encoder(RobotMap.rightDriveEncoder[0], RobotMap.rightDriveEncoder[1]);
     Encoder leftEnc = new Encoder(RobotMap.leftDriveEncoder[0], RobotMap.leftDriveEncoder[1]);
-    double ticksPerRotation = 20 * 10.71;
+    double ticksPerRotation = 20 * 10.71 * 2;
     double wheelCirc = 6 * Math.PI;
 
     private double frontLeftVoltage = 11.5;
