@@ -73,7 +73,7 @@ public class Drive2020 extends DriveTrain {
         5.2, //moment of inertia **VERY PROBABLY WRONG**
         54.4, //mass of robot in KG **MIGHT BE WRONG**
         0.0762, //robot wheel radius in METERS
-        0.7112, //width of robot in METERS
+        0.6858, //width of robot in METERS
         VecBuilder.fill(0, 0, 0, 0, 0, 0, 0)
     );
 
