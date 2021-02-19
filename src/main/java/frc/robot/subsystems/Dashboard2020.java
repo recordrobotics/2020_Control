@@ -18,6 +18,7 @@ public class Dashboard2020 extends Dashboard {
         SmartDashboard.putData("Move to 3ft", new MoveToRange(36));
         SmartDashboard.putData("Turn to Goal", new TurnToGoal());
         SmartDashboard.putNumber("Autonomous Velocity", 2.0);
+        SmartDashboard.putNumber("Firing Distance", Robot.shootingDistance);
     }
     @Override
     public void periodic() {

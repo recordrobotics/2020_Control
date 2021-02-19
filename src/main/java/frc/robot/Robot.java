@@ -104,6 +104,7 @@ public class Robot extends TimedRobot {
     path_chooser.addOption("Path B, Red", GalacticSearch.path.B_RED);
     path_chooser.addOption("Path B, Blue", GalacticSearch.path.B_BLUE);   
 
+    m_chooser.addOption("Auto Shooting", new MoveToFire(SmartDashboard.getNumber("Firing Distance", shootingDistance)));
     m_chooser.addOption("AutoNav 1", new AutoNav1());
     m_chooser.addOption("AutoNav 2", new AutoNav2());
     m_chooser.addOption("AutoNav 3", new AutoNav3());

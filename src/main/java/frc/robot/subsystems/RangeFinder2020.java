@@ -6,6 +6,7 @@
 /*----------------------------------------------------------------------------*/
 
 package frc.robot.subsystems;
+import edu.wpi.first.wpilibj.LinearFilter;
 /**
 *import edu.wpi.first.wpilibj.AnalogInput;
 *import edu.wpi.first.wpilibj.PWM;
@@ -23,6 +24,8 @@ public class RangeFinder2020 extends RangeFinder {
    */
   private Ultrasonic m_ultrasonic = new Ultrasonic(8, 9);
 
+  private LinearFilter noiseFilter = LinearFilter.singlePoleIIR(0.1, 0.02);
+
   /** 
    * Method that enables the rangefinder
    */
@@ -36,11 +39,16 @@ public class RangeFinder2020 extends RangeFinder {
    */
   public double getDistance() {
     /**System.out.println(m_ultrasonic.getRangeInches());*/
-    return m_ultrasonic.getRangeInches();
-    }
+    return noiseFilter.calculate(noiseFilter.calculate(m_ultrasonic.getRangeInches()));
+  }
 
   @Override
   public void initDefaultCommand() {
   
+  }
+
+  @Override
+  public void periodic() {
+    noiseFilter.calculate(m_ultrasonic.getRangeInches());
   }
 }
