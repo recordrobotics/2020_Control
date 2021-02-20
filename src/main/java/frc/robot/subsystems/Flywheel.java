@@ -13,7 +13,8 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public abstract class Flywheel extends Subsystem {
 
     public abstract void moveWheel(double v);
-    public abstract double getVoltage();
+	public abstract double getVoltage();
+	public abstract double getVelocity();
 
 	public void initDefaultCommand() {
   		setDefaultCommand(new ControlFlywheel());
