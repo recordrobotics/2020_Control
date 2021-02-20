@@ -46,9 +46,4 @@ public class RangeFinder2020 extends RangeFinder {
   public void initDefaultCommand() {
   
   }
-
-  @Override
-  public void periodic() {
-    noiseFilter.calculate(m_ultrasonic.getRangeInches());
-  }
 }

@@ -74,6 +74,9 @@ public class RobotMap {
 
 	/** the controller ports can be found in the driver station*/
 
+	//flywheel encoder ports
+	public static int[] flywheelEncoder = {9, 10};
+
 	/**
 	 * lifting mechanism port
 	 */

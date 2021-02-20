@@ -8,6 +8,7 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.OI;
 import frc.robot.Robot;
 /**import frc.robot.control.ButtonMap;*/
@@ -43,6 +44,12 @@ public class ControlFlywheel extends Command {
   /** Called repeatedly when this Command is scheduled to run*/
   @Override
   protected void execute() {
+
+    wheelSpeed = SmartDashboard.getNumber("FlywheelSpeed", Robot.flywheelSpeed);
+    if (wheelSpeed > 1){
+      wheelSpeed = 1;
+    }
+
     /**toggle*/
     if ((getButton() != prevToggle) && getButton()){
       flywheelIsOn = !flywheelIsOn;
