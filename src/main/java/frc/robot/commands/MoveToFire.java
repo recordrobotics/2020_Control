@@ -46,13 +46,6 @@ public class MoveToFire extends CommandGroup {
         addSequential(new MoveToRange(firingDistance), 5);
         addSequential(new TurnToGoal(targetAngle), timeOut);
         addSequential(new BeltAutoRun());
-        addSequential(new MoveForward(36, 0.5), 0.8);
-
-        /**addSequential(new TiltAcquisition(), timeOut);*/
-
-/**
-*        addSequential(new TurnToAngle(-180+gyroAngle));
-*        addSequential(new MoveForward((120-firingDistance) + 48, 0.5));
-*/
+        addSequential(new MoveForward(36, -0.5), 0.8);
     }
 }
