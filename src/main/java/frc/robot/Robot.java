@@ -41,7 +41,7 @@ public class Robot extends TimedRobot {
 
   public static final double restingVoltage = 12.5;
   public static double shootingDistance = 122;
-  public static double flywheelSpeed = 1;
+  public static double flywheelSpeed = 0.85;
 
 /**
 *  Instances for all subsystems.
