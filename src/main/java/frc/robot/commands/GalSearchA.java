@@ -32,7 +32,6 @@ public class GalSearchA extends CommandGroup {
     }
 
     void redPath() {
-        System.out.println("REDPATH RUNNING");
         addSequential(new CircularTrajectory(-2, Math.PI/12, velocity));
         addParallel(new PickUpBall(2));
         addSequential(new CircularTrajectory(1.5, Math.PI/2.5, velocity));
