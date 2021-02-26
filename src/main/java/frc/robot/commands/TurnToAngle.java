@@ -7,6 +7,7 @@
 
 package frc.robot.commands;
 
+import edu.wpi.first.wpilibj.LinearFilter;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Robot;
@@ -40,6 +41,8 @@ public class TurnToAngle extends Command {
   private ArrayList<Double> angleData = new ArrayList<Double>();
   private PID pid;
   private double kp = 0.2, ki = 0, kd = 0;
+
+  private LinearFilter filter = LinearFilter.singlePoleIIR(0.1, 0.02);
   /**
    * Creates a TurnToAngle object.
    * @param a The current target angle.
@@ -64,16 +67,15 @@ public class TurnToAngle extends Command {
   /** Called repeatedly when this Command is scheduled to run*/
   @Override 
   protected void execute() {
-    angle = Robot.gyro.getDeg();
+    angle = filter.calculate(angle);
     /**angle = smoothData();*/
 
-    /**speed = pid.control(angle);*/
+    speed = pid.control(angle);
 
     if (angle < 0 && speed > 0) speed *= -1;
     if (angle > 0 && speed < 0) speed *= -1;
 
     if (speed > 0.3) speed = 0.3;  /**saftey*/
-    /**speed = pid.control(angle);*/
     if (speed < -0.3) speed = -0.3;
 
     Robot.driveTrain.moveRightWheels(speed);
@@ -102,5 +104,6 @@ public class TurnToAngle extends Command {
 */
   @Override
   protected void interrupted() {
+    end();
   }
 }

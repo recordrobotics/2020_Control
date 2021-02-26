@@ -19,12 +19,19 @@ public class MoveToFire extends CommandGroup {
     double cameraOffCenter = 5.25;
     double targetAngle;
     double gyroAngle = Robot.gyro.getDeg();
+
+    double firingDistance;
+    double timeOut = 2;
+
     /**
      * MoveToFire() Moves the robot into position to fire.
      * USE THIS COMMAND TO SHOOT AUTONOMOUSLY
-     * @param firingDistance How far the robot needs to be from the goal in order to score.
+     * @param fDist How far the robot needs to be from the goal in order to score.
      */
-    public MoveToFire(double firingDistance){
+    public MoveToFire(double fDist){
+
+        firingDistance = fDist;
+
         if (cameraOffCenter != 0){
             targetAngle = (90 - Math.toDegrees(Math.atan(firingDistance / cameraOffCenter)));
             targetAngle = (int)(targetAngle + 0.5);
@@ -40,12 +47,25 @@ public class MoveToFire extends CommandGroup {
 
         System.out.println("Target Angle" + targetAngle);
 
-        double timeOut = 2;
+        autonomousOne();
+    }
 
+    private void autonomousOne(){
         addSequential(new TurnToGoal(targetAngle), timeOut);
         addSequential(new MoveToRange(firingDistance), 5);
         addSequential(new TurnToGoal(targetAngle), timeOut);
         addSequential(new BeltAutoRun());
-        addSequential(new MoveForward(36, -0.5), 0.8);
+        addSequential(new MoveForward(120 - firingDistance + 36, -0.5), 0.7);
+    }
+
+    private void autonomousTwo(){
+        addSequential(new TurnToGoal(targetAngle), timeOut);
+        addSequential(new MoveToRange(firingDistance), 5);
+        addSequential(new TurnToGoal(targetAngle), timeOut);
+        addSequential(new BeltAutoRun());
+
+        addSequential(new TurnToAngle(180));
+        addParallel(new TiltAcquisition());
+        addSequential(new MoveForward(120 - firingDistance + 36, 0.5), 0.7);
     }
 }
