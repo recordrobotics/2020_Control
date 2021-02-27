@@ -108,8 +108,6 @@ public class Robot extends TimedRobot {
     m_chooser.addOption("AutoNav 1", new AutoNav1());
     m_chooser.addOption("AutoNav 2", new AutoNav2());
     m_chooser.addOption("AutoNav 3", new AutoNav3());
-    //m_chooser.addOption("GalSearch A", new GalSearchA());
-    //m_chooser.addOption("GalSearch B", new GalSearchB());
     m_chooser.addOption("GalSearch", new GalacticSearch());
   }
 
