@@ -26,10 +26,8 @@ public class Flywheel2020 extends Flywheel {
      * Creates an Object for the flywheel class.
      */
     public Flywheel2020(){
+        flywheelMotor.configVoltageCompSaturation(targetVoltage);
         flywheelMotor.enableVoltageCompensation(true);
-        flywheelMotor.setVoltage(targetVoltage);
-
-        //flywheelEncoder = new Encoder();
     }
     
     @Override
