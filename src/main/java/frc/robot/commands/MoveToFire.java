@@ -47,13 +47,13 @@ public class MoveToFire extends CommandGroup {
 
         System.out.println("Target Angle" + targetAngle);
 
-        autonomousOne();
+        autonomousTwo();
     }
 
     private void autonomousOne(){
         addSequential(new TurnToGoal(targetAngle), timeOut);
         addSequential(new MoveToRange(firingDistance), 5);
-        addSequential(new TurnToGoal(targetAngle), timeOut);
+        //addSequential(new TurnToGoal(targetAngle), timeOut);
         addSequential(new BeltAutoRun());
         addSequential(new MoveForward(120 - firingDistance + 36, -0.5), 0.7);
     }
@@ -61,11 +61,10 @@ public class MoveToFire extends CommandGroup {
     private void autonomousTwo(){
         addSequential(new TurnToGoal(targetAngle), timeOut);
         addSequential(new MoveToRange(firingDistance), 5);
-        addSequential(new TurnToGoal(targetAngle), timeOut);
+        //addSequential(new TurnToGoal(targetAngle), timeOut);
         addSequential(new BeltAutoRun());
 
-        addSequential(new TurnToAngle(180));
         addParallel(new TiltAcquisition());
-        addSequential(new MoveForward(120 - firingDistance + 36, 0.5), 0.7);
+        addSequential(new MoveForward(120 - firingDistance + 36, -0.5));
     }
 }

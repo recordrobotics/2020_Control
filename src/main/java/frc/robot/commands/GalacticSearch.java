@@ -11,6 +11,8 @@ public class GalacticSearch extends CommandGroup {
     private double velocity;
     private path selectedPath;
 
+    private double ballDistance;
+
     //starting coordinates
     private double[] redA_init = {0, 2.286};
     private double[] blueA_init = {0.0, 0.7};
@@ -35,6 +37,9 @@ public class GalacticSearch extends CommandGroup {
 
     @Override
     protected void initialize(){
+
+        ballDistance = SmartDashboard.getNumber("ballDistance", -1);
+
         selectedPath = Robot.path_chooser.getSelected();
         switch (selectedPath) {
             case A_RED:

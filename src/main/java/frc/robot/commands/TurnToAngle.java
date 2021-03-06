@@ -36,7 +36,7 @@ public class TurnToAngle extends Command {
 *   subsystems is scheduled to run
 */
   private double angle;
-  double speed = 0.15;
+  double speed = 0.4;
 
   private ArrayList<Double> angleData = new ArrayList<Double>();
   private PID pid;
@@ -75,8 +75,8 @@ public class TurnToAngle extends Command {
     if (angle < 0 && speed > 0) speed *= -1;
     if (angle > 0 && speed < 0) speed *= -1;
 
-    if (speed > 0.3) speed = 0.3;  /**saftey*/
-    if (speed < -0.3) speed = -0.3;
+    if (speed > 0.5) speed = 0.5;  /**saftey*/
+    if (speed < -0.5) speed = -0.5;
 
     Robot.driveTrain.moveRightWheels(speed);
     Robot.driveTrain.moveLeftWheels(-speed);
