@@ -38,6 +38,7 @@ public class Drive2020 extends DriveTrain {
      */
     Encoder rightEnc = new Encoder(RobotMap.rightDriveEncoder[0], RobotMap.rightDriveEncoder[1]);
     Encoder leftEnc = new Encoder(RobotMap.leftDriveEncoder[0], RobotMap.leftDriveEncoder[1]);
+    //Gear ratio is either 10.71:1 or 10.75:1, but we're not sure. 10.71 was causing drift, so we're trying this.
     double ticksPerRotation = 20 * 10.75 * 2;
     double wheelCirc = 6 * Math.PI;
 
