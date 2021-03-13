@@ -38,7 +38,7 @@ public class Drive2020 extends DriveTrain {
      */
     Encoder rightEnc = new Encoder(RobotMap.rightDriveEncoder[0], RobotMap.rightDriveEncoder[1]);
     Encoder leftEnc = new Encoder(RobotMap.leftDriveEncoder[0], RobotMap.leftDriveEncoder[1]);
-    double ticksPerRotation = 20 * 10.71 * 2;
+    double ticksPerRotation = 20 * 10.75 * 2;
     double wheelCirc = 6 * Math.PI;
 
     private double frontLeftVoltage = 11.5;
@@ -69,7 +69,7 @@ public class Drive2020 extends DriveTrain {
 
     private DifferentialDrivetrainSim sim_drive = new DifferentialDrivetrainSim(
         DCMotor.getCIM(2), //Motor type and number per side
-        10.71, //gear ratio
+        10.75, //gear ratio
         5.2, //moment of inertia **VERY PROBABLY WRONG**
         54.4, //mass of robot in KG **MIGHT BE WRONG**
         0.0762, //robot wheel radius in METERS
