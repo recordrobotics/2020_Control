@@ -28,16 +28,17 @@ public class GalSearchB extends CommandGroup {
   }
 
   private void redPath(){
+    addSequential(new MoveForward(33, 0.7));
+    addParallel(new PickUpBall(2));
+    addSequential(new CircularTrajectory(2, Math.PI/3, velocity));
+
+    addParallel(new PickUpBall(2));
+    addSequential(new CircularTrajectory(-0.7, Math.PI-0.8, velocity));
+    addSequential(new MoveForward(40, 0.7));
+
     addParallel(new PickUpBall(2));
     addSequential(new CircularTrajectory(2.5, Math.PI/3, velocity));
-
-    addParallel(new PickUpBall(2));
-    addSequential(new CircularTrajectory(-1, Math.PI - 1, velocity));
-
-    addParallel(new PickUpBall(2));
-    addSequential(new MoveForward(60, 0.7));
-
-    addSequential(new CircularTrajectory(3, Math.PI/3.5, velocity));
+    addSequential(new MoveForward(46, 0.7));
   }
 
   private void bluePath(){

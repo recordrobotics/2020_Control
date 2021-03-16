@@ -13,12 +13,20 @@ public class GalacticSearch extends CommandGroup {
 
     private double ballDistance;
 
+    /**
+     * Distance to balls: 
+     * Red path A: 5 units 
+     * Blue path A: 7 units
+     * Red path B: 3 units
+     * Blue path B: 6 units
+     */
     //starting coordinates
-    private double[] redA_init = {0, 2.286};
-    private double[] blueA_init = {0.0, 0.7};
+    private double[] redA_init = {0.3, 1.524};
+    private double[] blueA_init = {0.3, 3.048};
 
-    private double[] redB_init = {0.5, 3.81};
-    private double[] blueB_init = {0.5, 1.524};
+    private double[] redB_init = {0.3, 3.048};
+    private double[] blueB_init = {0.3, 1.524};
+
 
     //Object declarations
     public enum path {
