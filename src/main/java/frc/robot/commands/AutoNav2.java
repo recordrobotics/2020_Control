@@ -19,7 +19,7 @@ public class AutoNav2 extends CommandGroup {
         
         addSequential(new CircularTrajectory(-1, 1.9 * Math.PI, velocity));
 
-        addSequential(new CircularTrajectory(2.35, 0.75 * Math.PI, velocity));
+        addSequential(new CircularTrajectory(2.35, 0.8 * Math.PI, velocity));
         addSequential(new CircularTrajectory(-1, (Math.PI)/2, velocity));
     }
 

@@ -22,10 +22,10 @@ public class AutoNav3 extends CommandGroup{
         addSequential(new MoveForward(96, -0.5));
         
         addSequential(new MoveForward(48, 0.5));
-        addSequential(new CircularTrajectory(-1.25, Math.PI/7, velocity));
+        addSequential(new CircularTrajectory(-1.2, Math.PI/7, velocity));
         
-        addSequential(new MoveForward(72, 0.5));
-        addSequential(new CircularTrajectory(2, Math.PI/2.0, -velocity));
+        addSequential(new MoveForward(60, 0.5));
+        addSequential(new CircularTrajectory(2.25, Math.PI/2.0, -velocity));
         
     }
 
