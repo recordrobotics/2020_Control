@@ -13,13 +13,7 @@ public class GalacticSearch extends CommandGroup {
 
     private double ballDistance;
 
-    /**
-     * Distance to balls: 
-     * Red path A: 5 units 
-     * Blue path A: 7 units
-     * Red path B: 3 units
-     * Blue path B: 6 units
-     */
+    
     //starting coordinates
     private double[] redA_init = {0.3, 1.524};
     private double[] blueA_init = {0.3, 3.048};
@@ -46,9 +40,32 @@ public class GalacticSearch extends CommandGroup {
     @Override
     protected void initialize(){
 
-        ballDistance = SmartDashboard.getNumber("ballDistance", -1);
+        ballDistance = SmartDashboard.getNumber("Distace to Ball", -1);
+        double error = 12.0; //inches
+        //selectedPath = Robot.path_chooser.getSelected();
 
-        selectedPath = Robot.path_chooser.getSelected();
+        /**
+         * Distance to balls: 
+         * Red path A: 5 units 
+         * Blue path A: 7 units
+         * Red path B: 3 units
+         * Blue path B: 6 units
+         * 
+         * 1 unit = 30 inches = 2.5 ft
+         */
+        if (ballDistance > 3 * 30 - error && ballDistance < 3 * 30 + error){
+            selectedPath = path.B_RED;
+        } else if (ballDistance > 5 * 30 - error && ballDistance < 5 * 30 + error) {
+            selectedPath = path.A_RED;
+        } else if (ballDistance > 6 * 30 - error && ballDistance < 6 * 30 + error){
+            selectedPath = path.B_BLUE;
+        } else if (ballDistance > 7 * 30 - error && ballDistance < 7 * 30 + error){
+            selectedPath = path.A_BLUE;
+        } else {
+            System.out.println("DISTANCE = " + ballDistance);
+            throw new IllegalStateException();
+        }
+
         switch (selectedPath) {
             case A_RED:
                 Robot.odometry.reset(redA_init[0], redA_init[1]);
