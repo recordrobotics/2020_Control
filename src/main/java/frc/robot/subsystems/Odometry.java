@@ -64,7 +64,9 @@ public class Odometry extends Subsystem {
         System.out.println("Reseting...");
         
         odometry.resetPosition(new Pose2d(newX, newY, new Rotation2d(thetaInit)), new Rotation2d(0.0));
-        Robot.driveTrain.resetEncoders();
+        if (!Robot.isReal()){
+            Robot.driveTrain.resetEncoders();
+        }
         Robot.gyro.gyroReset();
 
         System.out.println("Reset to " + newX + " " + newY);

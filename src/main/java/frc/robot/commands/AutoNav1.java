@@ -19,15 +19,15 @@ public class AutoNav1 extends CommandGroup {
 
         addSequential(new CircularTrajectory(-2.5, 0.3, velocity));
         addSequential(new CircularTrajectory(2.5, 0.9, velocity));
-        addSequential(new CircularTrajectory(0.7, 2*Math.PI - 0.5, velocity));
+        addSequential(new CircularTrajectory(0.7, 0.5*Math.PI, velocity));
         addSequential(new CircularTrajectory(-3.6, 0.65, velocity * 1.5));
         
-        addSequential(new CircularTrajectory(-0.5, 1.7*Math.PI, velocity));
+        addSequential(new CircularTrajectory(-0.7, 0.5*Math.PI, velocity));
         
         addSequential(new CircularTrajectory(-2.5, 0.4*Math.PI, velocity));
-        addSequential(new CircularTrajectory(-0.6, 1.2*Math.PI - 0.2, velocity));
+        addSequential(new CircularTrajectory(-0.6, 0.6*Math.PI - 0.2, velocity));
 
-        addSequential(new MoveForward(20 * 12, 0.75));
+        //addSequential(new MoveForward(20 * 12, 0.75));
         
         //addSequential(new CircularTrajectory(4, Math.PI/4, velocity*1.25));
         //addSequential(new CircularTrajectory(-5, Math.PI/4, velocity*1.25));

@@ -169,7 +169,7 @@ public class Drive2020 extends DriveTrain {
     @Override
     public void periodic() {
         SmartDashboard.putNumber("Left Encoder Raw", leftEnc.get());
-        SmartDashboard.putNumber("Left Encoder Raw", rightEnc.get());
+        SmartDashboard.putNumber("Right Encoder Raw", rightEnc.get());
     }
 
     public void simulate(){

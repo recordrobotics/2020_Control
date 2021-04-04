@@ -7,6 +7,7 @@
 
 package frc.robot.commands;
 
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.OI;
@@ -41,14 +42,31 @@ public class ControlFlywheel extends Command {
   protected void initialize() {
   }
 
+  double timeOfLastSpeedChange = 0;
   /** Called repeatedly when this Command is scheduled to run*/
   @Override
   protected void execute() {
 
     wheelSpeed = SmartDashboard.getNumber("FlywheelSpeed", Robot.flywheelSpeed);
+
+    if (OI.getXboxButtonState("START") && Timer.getFPGATimestamp() > timeOfLastSpeedChange + 0.25){
+      wheelSpeed += 0.05;
+      timeOfLastSpeedChange = Timer.getFPGATimestamp();
+    } 
+
+    if (OI.getXboxButtonState("BACK") && Timer.getFPGATimestamp() > timeOfLastSpeedChange + 0.25){
+      wheelSpeed -= 0.05;
+      timeOfLastSpeedChange = Timer.getFPGATimestamp();
+    }
+
     if (wheelSpeed > 1){
       wheelSpeed = 1;
     }
+    if (wheelSpeed < 0){
+      wheelSpeed = 0;
+    }
+
+    SmartDashboard.putNumber("FlywheelSpeed", wheelSpeed);
 
     /**toggle*/
     if ((getButton() != prevToggle) && getButton()){

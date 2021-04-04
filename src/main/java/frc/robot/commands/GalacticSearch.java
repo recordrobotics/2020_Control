@@ -46,9 +46,11 @@ public class GalacticSearch extends CommandGroup {
     @Override
     protected void initialize(){
 
-        ballDistance = SmartDashboard.getNumber("ballDistance", -1);
+        ballDistance = SmartDashboard.getNumber("Distance to Ball", -1);
+        double error = 6; //inches
 
         selectedPath = Robot.path_chooser.getSelected();
+        
         switch (selectedPath) {
             case A_RED:
                 Robot.odometry.reset(redA_init[0], redA_init[1]);
