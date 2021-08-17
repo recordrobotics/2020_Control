@@ -38,7 +38,7 @@ public class Robot extends TimedRobot {
   /**
    * The robot currently selected
    */
-  public static CurrentRobot currentRobot = CurrentRobot.ROBOT2020;
+  public static CurrentRobot currentRobot = CurrentRobot.MONOLITH;
 
   public static final double restingVoltage = 12.5;
   public static double shootingDistance = 39;
@@ -99,7 +99,7 @@ public class Robot extends TimedRobot {
     }
 
     networkInit();
-    
+    /*
     path_chooser.setDefaultOption("Path A, Red", GalacticSearch.path.A_RED);
     path_chooser.addOption("Path A, Blue", GalacticSearch.path.A_BLUE);
     path_chooser.addOption("Path B, Red", GalacticSearch.path.B_RED);
@@ -109,7 +109,7 @@ public class Robot extends TimedRobot {
     m_chooser.addOption("AutoNav 1", new AutoNav1());
     m_chooser.addOption("AutoNav 2", new AutoNav2());
     m_chooser.addOption("AutoNav 3", new AutoNav3());
-    m_chooser.addOption("GalSearch", new GalacticSearch());
+    m_chooser.addOption("GalSearch", new GalacticSearch()); */
   }
 
   /**calibrate gyroscope*/
