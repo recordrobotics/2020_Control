@@ -34,7 +34,7 @@ public class GalacticSearch extends CommandGroup {
         velocity = SmartDashboard.getNumber("Autonomous Velocity", 2);
         SmartDashboard.putBoolean("Acquistion", Robot.acq.isAcqOn());
         //addParallel(new TiltAcquisition());
-        selectedPath = Robot.path_chooser.getSelected();
+        //selectedPath = Robot.path_chooser.getSelected();
     }
 
     @Override
