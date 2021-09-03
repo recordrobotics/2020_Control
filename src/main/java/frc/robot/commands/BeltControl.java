@@ -48,7 +48,7 @@ public class BeltControl extends Command {
   }
 
   private boolean checkReverseInput(){
-return OI.getXboxButtonState("B");
+return OI.getXboxButtonState("RB");
   }
 
   /** Called just before this Command runs the first time*/
