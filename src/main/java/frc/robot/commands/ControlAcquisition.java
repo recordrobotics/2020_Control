@@ -49,9 +49,9 @@ public class ControlAcquisition extends Command {
          * ELSE IF: if the left bumper is pressed, tilt the aquisition down by acq.getTiltSpeed().
          * ELSE: the aquisition shouldn't tilt if either bumper is not pressed.
          */
-        if (OI.getXboxButtonState("RB")){
+        if (OI.getXboxButtonState("RSYUP")){
             Robot.acq.moveTilt(Robot.acq.getTiltSpeed());
-        } else if (OI.getXboxButtonState("LB")){
+        } else if (OI.getXboxButtonState("RSYDOWN")){
             Robot.acq.moveTilt(-Robot.acq.getTiltSpeed());
         } else {
             Robot.acq.moveTilt(0);
@@ -70,8 +70,8 @@ public class ControlAcquisition extends Command {
      * @param acqButton Which button spins the aquisition.
      */
     boolean prevButton = false;
-    String toggleButton = "A";
-    String reverseButton = "A";
+    String toggleButton = "LB";
+    String reverseButton = "LB";
     String acqButton = "LT";
 
     /** Called repeatedly when this Command is scheduled to run*/
