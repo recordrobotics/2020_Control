@@ -1,5 +1,6 @@
 package frc.robot.control;
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.SendableBase;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import frc.robot.RobotMap;
 

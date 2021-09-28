@@ -6,11 +6,11 @@
 /*----------------------------------------------------------------------------*/
 
 package frc.robot.commands;
-import edu.wpi.first.wpilibj.command.CommandGroup;
+import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.Robot;
 
 
-public class MoveToFire extends CommandGroup {
+public class MoveToFire extends SequentialCommandGroup {
     /**
      * cameraOffCenter How far away the camera is from the center of the robot.
      * targetAngle The angle the robot needs to face in order to shoot at the goal.
@@ -39,13 +39,14 @@ public class MoveToFire extends CommandGroup {
 
         System.out.println("Target Angle" + targetAngle);
 
-        double timeOut = 2;
+        
+        addCommands(
 
-        addSequential(new TurnToGoal(targetAngle), timeOut);
-        addSequential(new MoveToRange(firingDistance), 5);
-        addSequential(new TurnToGoal(targetAngle), timeOut);
-        addSequential(new BeltAutoRun());
-        addSequential(new MoveForward(36, 0.5), 0.8);
+        new TurnToGoal(targetAngle),
+        new MoveToRange(firingDistance),
+        new TurnToGoal(targetAngle),
+        new BeltAutoRun(),
+        new MoveForward(36, 0.5));
 
         /**addSequential(new TiltAcquisition(), timeOut);*/
 
